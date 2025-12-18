@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+.venv/
+
+# Editor/IDE files
+.vscode/
+.idea/
+.
+
+# Logs and output
+*.log
+game_log.json
+
+# Environment variables
+.env
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+env/
+venv/
+*.venv
+
+# Database files
+*.db
+*.sqlite3
+
+# Instance folder (for secrets)
+instance/
+
+# IDE / Editor specific
+.vscode/
+.idea/
+.github/
+.gemini/
+
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Documentation
+Gemini.md
+trim.txt
+image_rendering_report.md
+
+# Environment variables
+.env
