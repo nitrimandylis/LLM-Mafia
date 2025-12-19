@@ -1,0 +1,8 @@
+name: llm-mafia
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - ollama
+  - psutil
