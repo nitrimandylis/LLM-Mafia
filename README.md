@@ -1,52 +1,83 @@
-# LLM Mafia Game
+# LLM Mafia 🎭
 
-This is an LLM-powered Mafia game where each player is controlled by a language model. Players interact, discuss, accuse, and vote to eliminate each other, trying to uncover the Mafia hidden among them.
+A Python simulation of the classic Mafia party game, where every player is an LLM
+running locally via Ollama. No humans. Pure model-vs-model deception.
+
+## How It Works
+
+Each player is assigned a role (Villager, Mafia, Detective, or Doctor) and given
+a system prompt defining their personality and win condition. Players reason,
+argue, accuse, and vote entirely through LLM inference — running in parallel
+across local threads.
+
+## Features
+
+- Fully autonomous Mafia game with LLM-controlled players
+- Parallel model querying with configurable worker count
+- Detective and Doctor roles with private reasoning
+- Memory-aware execution — skips model calls if RAM is too low
+- `--reveal-secrets` flag to expose private mafia chat and detective results
+- `--pro-mode` flag to upgrade to a more capable local model
+- JSON game log output for post-game analysis
+
+## Requirements
+
+- [Ollama](https://ollama.com) installed and running locally
+- Conda (recommended) or Python 3.11+
+- ~8GB+ RAM for comfortable multi-player parallel inference
 
 ## Setup
 
-1.  **Install Ollama:**
-    Follow the instructions on [Ollama's website](https://ollama.com/) to install Ollama for your operating system.
-
-2.  **Pull Models:**
-    The game currently uses the `llama3.2:3b` model. Pull it using Ollama:
-    ```bash
-    ollama pull llama3.2:3b
-    ```
-
-3.  **Install Dependencies:**
-    It's recommended to create a virtual environment first:
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: `venv\Scripts\activate`
-    pip install -r requirements.txt
-    ```
-
-## How to Run
-
-To start the game, run `main.py`:
+### With Conda (recommended)
 
 ```bash
-python main.py [OPTIONS]
+git clone https://github.com/nitrimandylis/LLM-Mafia.git
+cd LLM-Mafia
+conda env create -f environment.yml
+conda activate llm-mafia
 ```
 
-**Options:**
-
-*   `--reveal-secrets`: Show private mafia conversations and detective results.
-*   `--player-count <int>`: Number of players (4-10). Defaults to 10.
-*   `--output <filename>`: Output file for the game log (e.g., `game_log.json`). Defaults to `game_log.json`.
-
-**Example:**
+### Pull a model via Ollama
 
 ```bash
-python main.py --player-count 7 --output my_mafia_game.json
+ollama pull llama3.2
 ```
 
-## Recent Changes
+## Usage
 
-*   **Improved Day Phase:** Added questioning rounds for more dynamic player interaction.
-*   **Prevented Self-Voting:** Players can no longer vote for themselves.
-*   **Model Upgrade:** All players now use the more capable `llama3.2:3b` model to improve game context understanding and reduce "hallucinations."
-*   **Performance Optimization (Planned):** Future updates will focus on parallelizing model queries to significantly speed up gameplay.
+```bash
+python main.py
+```
 
----
-Enjoy the game!
+### Flags
+
+| Flag | Default | Description |
+|---|---|---|
+| `--player-count` | 10 | Number of players (4–10) |
+| `--reveal-secrets` | off | Show private mafia chat and detective results |
+| `--pro-mode` | off | Use a more advanced local model |
+| `--max-workers` | 4 | Parallel threads for model queries |
+| `--memory-threshold` | 4 | Minimum free RAM in GB to proceed |
+| `--output` | game_log.json | Output path for the JSON game log |
+
+### Example
+
+```bash
+python main.py --player-count 8 --reveal-secrets --output my_game.json
+```
+
+## Project Structure
+
+```
+LLM-Mafia/
+├── main.py            # Entry point and CLI argument parsing
+├── game.py            # Core game logic and phase management
+├── player.py          # Player class and role definitions
+├── players.json       # Player name pool
+├── system_prompt.md   # Active system prompt for LLM players
+└── environment.yml    # Conda environment
+```
+
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
