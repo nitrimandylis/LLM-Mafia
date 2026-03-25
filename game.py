@@ -784,13 +784,22 @@ Here is the game history so far:
                     + ("\n".join(chat) if chat else "(no messages yet)")
                     + ""
                 )
-                prompt = f"You are talking privately with your fellow mafia members. Decide on a target to eliminate. Valid targets: {', '.join(valid_targets)}"
-                response = self.query_model(m, prompt, chat_context)
-                chat.append(f"{m.name}: {response}")
-                self.log(f"   {m.name}: {response}", "red", public=False)
+                if r == 0:
+                    prompt = f"Mafia coordination: Suggest ONE target from this list: {', '.join(valid_targets)}. One sentence reason."
+                else:
+                    prompt = f"Mafia coordination: Based on the discussion, confirm or change your target. Choose from: {', '.join(valid_targets)}. Reply with name only or one sentence."
+                try:
+                    response = self.query_model(m, prompt, chat_context)
+                    if response and "remains silent" not in response:
+                        chat.append(f"{m.name}: {response}")
+                        self.log(f"   {m.name}: {response}", "red", public=False)
+                    else:
+                        self.log(f"   {m.name}: [no response]", "red", public=False)
+                except Exception as e:
+                    self.log(f"   {m.name}: [error: {e}]", "red", public=False)
 
         # Final decision
-        final_prompt = f"Based on the conversation, who is the final target? Valid targets: {', '.join(valid_targets)}\nRespond with only the name of the player you vote for."
+        final_prompt = f"Final mafia vote. Choose ONE target from: {', '.join(valid_targets)}. Reply with the name ONLY."
         final_votes: Dict[str, int] = {}
         for m in mafia:
             response = self.query_model(m, final_prompt, "\n".join(chat), min_words=1)
