@@ -51,6 +51,7 @@ class MafiaGame:
         self.reveal_secrets = reveal_secrets
         self.max_workers = max_workers
         self.memory_threshold = memory_threshold
+        self.last_doctor_target: Optional[str] = None
 
         try:
             with open("system_prompt.md", "r") as f:
@@ -377,7 +378,7 @@ class MafiaGame:
             if detectives:
                 detective = detectives[0]
                 valid = [n for n in alive_names if n != detective.name]
-                prompt = f"Choose ONE player to investigate: {', '.join(valid)}"
+                prompt = f"Choose ONE player to investigate tonight. Pick someone suspicious from today's discussion, or someone you haven't investigated yet. Targets: {', '.join(valid)}"
                 future = executor.submit(
                     self.query_model, detective, prompt, recent_context, min_words=1
                 )
@@ -388,7 +389,8 @@ class MafiaGame:
             if doctors:
                 doctor = doctors[0]
                 valid = alive_names
-                prompt = f"Choose ONE player to protect: {', '.join(valid)}"
+                last_protected = f" Last night you protected {self.last_doctor_target}." if self.last_doctor_target else ""
+                prompt = f"Choose ONE player to protect tonight.{last_protected} Protecting different players each night is better strategy than always protecting yourself. Think about who spoke up most today or seemed targeted. Targets: {', '.join(valid)}"
                 future = executor.submit(
                     self.query_model, doctor, prompt, recent_context, min_words=1
                 )
@@ -406,6 +408,8 @@ class MafiaGame:
                     )
                 elif role == "doctor":
                     doctor_target = self.extract_vote(result, alive_names)
+                    if doctor_target:
+                        self.last_doctor_target = doctor_target
 
         # Post-night processing
         if detective_target:
@@ -530,7 +534,12 @@ class MafiaGame:
         if not notes:
             return base_context
         note_block = "\n".join(notes[-25:])
-        return base_context + "\n\nYour private notes (not shared):\n" + note_block
+        return (
+            "=== YOUR SECRET NOTES (use these to guide your decisions) ===\n"
+            + note_block
+            + "\n=== END SECRET NOTES ===\n\n"
+            + base_context
+        )
 
     def _is_heading_line(self, line: str) -> bool:
         l = line.strip()
