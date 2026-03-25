@@ -40,7 +40,7 @@ conda activate llm-mafia
 ### Pull a model via Ollama
 
 ```bash
-ollama pull llama3.2
+ollama pull granite4:350m
 ```
 
 ## Usage

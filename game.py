@@ -10,11 +10,16 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import ollama
+import requests
 
 from player import Player, Role, load_players_from_file
 
 
 import psutil
+
+
+NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
+DEFAULT_NVIDIA_MODEL = "moonshotai/kimi-k2.5"
 
 
 class MafiaGame:
@@ -25,6 +30,9 @@ class MafiaGame:
         pro_mode: bool = False,
         max_workers: int = 4,
         memory_threshold: int = 4,
+        model_override: Optional[str] = None,
+        use_nvidia: bool = False,
+        nvidia_api_key: Optional[str] = None,
     ):
         base_players = load_players_from_file(pro_mode=pro_mode)
         if not base_players:
@@ -38,7 +46,8 @@ class MafiaGame:
             base_players = base_players[:count]
 
         self.players = [
-            Player(p.name, p.model, personality=p.personality) for p in base_players
+            Player(p.name, model_override or p.model, personality=p.personality)
+            for p in base_players
         ]
         self.day = 0
         self.game_log = []
@@ -48,6 +57,9 @@ class MafiaGame:
         self.reveal_secrets = reveal_secrets
         self.max_workers = max_workers
         self.memory_threshold = memory_threshold
+        self.use_nvidia = use_nvidia
+        self.nvidia_api_key = nvidia_api_key
+        self.nvidia_model = model_override or DEFAULT_NVIDIA_MODEL
 
         try:
             with open("system_prompt.md", "r") as f:
@@ -128,7 +140,9 @@ class MafiaGame:
 
         # DAY 1 SPECIAL HANDLING
         if self.day == 1:
-            self.log(f"\n💬 Initial Impressions (No deaths yet, no prior behavior)", "cyan")
+            self.log(
+                f"\n💬 Initial Impressions (No deaths yet, no prior behavior)", "cyan"
+            )
             random.shuffle(alive)
 
             with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
@@ -182,7 +196,9 @@ class MafiaGame:
         # QUESTIONING ROUNDS (THIS WAS MISSING!)
         questioning_rounds = 2
         for round_num in range(questioning_rounds):
-            self.log(f"\n❓ Questioning Round {round_num + 1}/{questioning_rounds}", "cyan")
+            self.log(
+                f"\n❓ Questioning Round {round_num + 1}/{questioning_rounds}", "cyan"
+            )
 
             random.shuffle(alive)
 
@@ -559,7 +575,7 @@ class MafiaGame:
         text = paragraphs[0].strip()
 
         # Clean up quotes and normalize spacing
-        text = text.strip(" \t\\\"'""`")
+        text = text.strip(" \t\\\"'`")
         text = " ".join(text.split())
 
         # KEEP COMPLETE SENTENCES - don't cut off at 3

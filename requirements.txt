@@ -1,0 +1,4 @@
+ollama
+psutil
+requests
+python-dotenv

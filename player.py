@@ -21,16 +21,24 @@ class Player:
 
 
 def load_players_from_file(
-    file_path: str = "players.json", pro_mode: bool = False
+    file_path: str = "players.json",
+    pro_mode: bool = False,
+    model_override: Optional[str] = None,
 ) -> List[Player]:
     """Load player configurations from a JSON file."""
     try:
         with open(file_path, "r") as f:
             player_data = json.load(f)
+        if model_override:
+            model = model_override
+        elif pro_mode:
+            model = "qwen3:4b"
+        else:
+            model = "granite4:350m"
         return [
             Player(
                 name=p["name"],
-                model="qwen3:4b" if pro_mode else "llama3.2:1b",
+                model=model,
                 personality=p["personality"],
             )
             for p in player_data
