@@ -75,7 +75,7 @@ if __name__ == "__main__":
     # Create and run the game
     print("🎭 INITIALIZING LLM MAFIA GAME...\n")
     if args.nvidia:
-        print(f"🔌 Backend: NVIDIA NIM  |  Model: {model or 'moonshotai/kimi-k2.5'}\n")
+        print(f"🔌 Backend: NVIDIA NIM  |  Model: {model or 'minimaxai/minimax-m2.5'}\n")
     else:
         print(f"🔌 Backend: Ollama\n")
 

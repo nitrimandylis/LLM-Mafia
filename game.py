@@ -20,7 +20,7 @@ import psutil
 
 
 NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
-DEFAULT_NVIDIA_MODEL = "moonshotai/kimi-k2.5"
+DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m2.5"
 
 
 class MafiaGame:
