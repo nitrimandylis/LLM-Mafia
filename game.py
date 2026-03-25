@@ -169,11 +169,25 @@ class MafiaGame:
                 else "No eliminations yet"
             )
 
+            # Build KEY FACTS from recent events (same for all players this round)
+            key_facts_parts = []
+            if self.night_kill_history:
+                last_kill = self.night_kill_history[-1]
+                if last_kill["saved"]:
+                    key_facts_parts.append(f"Last night: {last_kill['victim']} was targeted by mafia but SAVED by the doctor.")
+                else:
+                    key_facts_parts.append(f"Last night: {last_kill['victim']} was killed (they were {last_kill['role']}).")
+            if self.vote_history:
+                last_vote = self.vote_history[-1]
+                key_facts_parts.append(f"Yesterday: Town voted out {last_vote['eliminated']} (they were {last_vote['role']}).")
+
+            key_facts = (" ".join(key_facts_parts) + " ") if key_facts_parts else ""
+
             with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
                 futures = {}
                 for player in alive:
                     others = [n for n in alive_names if n != player.name]
-                    prompt = f"Day {self.day}. {eliminated_str}. Who among the ALIVE players is suspicious? Reference specific past behavior from: {', '.join(others[:5])}. "
+                    prompt = f"KEY FACTS: {key_facts}Day {self.day}. {eliminated_str}. Given these new facts, who among the ALIVE players is most suspicious? Reference specific past behavior from: {', '.join(others[:5])}."
                     future = executor.submit(
                         self.query_model, player, prompt, recent_context
                     )
@@ -186,6 +200,14 @@ class MafiaGame:
                     self.add_private_note(player, f"Day {self.day} opening: {response}")
 
         # QUESTIONING ROUNDS (THIS WAS MISSING!)
+        QUESTION_TEMPLATES = [
+            "Ask {target} ONE direct question about their vote choices. Be specific (1 sentence).",
+            "Challenge {target} on something suspicious they said or did. One direct question.",
+            "Ask {target} to explain their behavior during yesterday's discussion. One sentence.",
+            "Confront {target} about a moment where they seemed evasive. One direct question.",
+            "Ask {target} who THEY most suspect and why. One sentence.",
+            "Ask {target} to defend themselves against current suspicions. One direct question.",
+        ]
         questioning_rounds = 2
         for round_num in range(questioning_rounds):
             self.log(f"\n❓ Questioning Round {round_num + 1}/{questioning_rounds}", "cyan")
@@ -205,7 +227,8 @@ class MafiaGame:
                     recent_context = build_day_summary(
                         self.day, alive_names, self.vote_history, self.night_kill_history
                     )
-                    prompt = f"Ask {target.name} ONE direct question about their behavior or votes. Be specific (1 sentence)."
+                    template = QUESTION_TEMPLATES[(round_num + abs(hash(player.name))) % len(QUESTION_TEMPLATES)]
+                    prompt = template.format(target=target.name)
                     future = executor.submit(
                         self.query_model, player, prompt, recent_context, min_words=3
                     )
