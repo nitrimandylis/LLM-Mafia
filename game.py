@@ -11,6 +11,7 @@ from typing import Dict, List, Optional, Tuple
 
 import ollama
 
+from game_state import build_day_summary
 from player import Player, Role, load_players_from_file
 
 
@@ -45,6 +46,8 @@ class MafiaGame:
         self.public_log = []
         self.night_actions = {}
         self.private_notes: Dict[str, List[str]] = {}
+        self.vote_history: List[Dict] = []      # {"day": int, "eliminated": str, "role": str, "votes": Dict[str,str]}
+        self.night_kill_history: List[Dict] = [] # {"night": int, "victim": str, "role": str, "saved": bool}
         self.reveal_secrets = reveal_secrets
         self.max_workers = max_workers
         self.memory_threshold = memory_threshold
@@ -124,7 +127,9 @@ class MafiaGame:
         self.log(f"Alive players: {', '.join(alive_names)}", "yellow")
 
         # Build context from recent events
-        recent_context = "\n".join(self.public_log[-40:])
+        recent_context = build_day_summary(
+            self.day, alive_names, self.vote_history, self.night_kill_history
+        )
 
         # DAY 1 SPECIAL HANDLING
         if self.day == 1:
@@ -196,7 +201,9 @@ class MafiaGame:
                         continue
                     target = random.choice(others)
 
-                    recent_context = "\n".join(self.public_log[-30:])
+                    recent_context = build_day_summary(
+                        self.day, alive_names, self.vote_history, self.night_kill_history
+                    )
                     prompt = f"Ask {target.name} ONE direct question about their behavior or votes. Be specific (1 sentence)."
                     future = executor.submit(
                         self.query_model, player, prompt, recent_context, min_words=3
@@ -248,7 +255,7 @@ class MafiaGame:
                 others = [n for n in alive_names if n != player.name]
                 prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence)."
                 future = executor.submit(
-                    self.query_model, player, prompt, "\n".join(self.public_log[-20:])
+                    self.query_model, player, prompt, build_day_summary(self.day, alive_names, self.vote_history, self.night_kill_history)
                 )
                 futures[future] = player
 
@@ -272,7 +279,9 @@ class MafiaGame:
             else ""
         )
 
-        recent_context = "\n".join(self.public_log[-30:])
+        recent_context = build_day_summary(
+            self.day, alive_names, self.vote_history, self.night_kill_history
+        )
         votes: Dict[str, str] = {}
 
         # Collect votes
@@ -322,6 +331,12 @@ class MafiaGame:
         eliminated = next(p for p in alive if p.name == eliminated_name)
 
         eliminated.alive = False
+        self.vote_history.append({
+            "day": self.day,
+            "eliminated": eliminated.name,
+            "role": eliminated.role.value,
+            "votes": dict(votes),
+        })
         self.log(
             f"\n💀 {eliminated.name} has been eliminated! They were: {eliminated.role.value}",
             "red",
@@ -337,7 +352,9 @@ class MafiaGame:
         alive_names = [p.name for p in alive]
         mafia = self.get_mafia()
 
-        recent_context = "\n".join(self.public_log[-30:])
+        recent_context = build_day_summary(
+            self.day, alive_names, self.vote_history, self.night_kill_history
+        )
 
         mafia_target = None
         detective_target = None
@@ -413,11 +430,23 @@ class MafiaGame:
         if mafia_target and mafia_target != doctor_target:
             victim = next(p for p in alive if p.name == mafia_target)
             victim.alive = False
+            self.night_kill_history.append({
+                "night": self.day,
+                "victim": victim.name,
+                "role": victim.role.value,
+                "saved": False,
+            })
             self.log(
                 f"\n💀 {victim.name} was killed during the night! They were: {victim.role.value}",
                 "red",
             )
         elif mafia_target == doctor_target:
+            self.night_kill_history.append({
+                "night": self.day,
+                "victim": mafia_target,
+                "role": next(p for p in self.players if p.name == mafia_target).role.value,
+                "saved": True,
+            })
             self.log(f"\n✨ The doctor's protection saved {doctor_target}!", "green")
         else:
             self.log(f"\n🌅 No one died during the night.", "green")
