@@ -600,6 +600,13 @@ class MafiaGame:
         if not text:
             return ""
 
+        # Strip internal reasoning blocks — these must never be visible to other players
+        text = re.sub(r"<thinking>.*?</thinking>", "", text, flags=re.DOTALL | re.IGNORECASE)
+        text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
+        text = text.strip()
+        if not text:
+            return ""
+
         # Clean up formatting
         text = text.replace("\r\n", "\n").replace("\r", "\n")
         lines = [ln.rstrip() for ln in text.split("\n")]
