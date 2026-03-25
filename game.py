@@ -610,9 +610,13 @@ Here is the game history so far:
                         "content": f"Current task: {prompt}",
                     },
                 ],
-                options={"temperature": 0.7},
+                options={"temperature": 0.7, "keep_alive": "10m"},
+                timeout=120,
             )
-            response_text = response["message"]["content"]
+            if response is None or response.get("message") is None:
+                response_text = ""
+            else:
+                response_text = response["message"]["content"]
 
             elapsed = time.time() - start_time
             tokens = len(response_text.split()) * 1.3
@@ -647,9 +651,13 @@ Here is the game history so far:
                             "content": f"Current task: {prompt}\n\n{retry_suffix}",
                         },
                     ],
-                    options={"temperature": 0.7},
+                    options={"temperature": 0.7, "keep_alive": "10m"},
+                    timeout=120,
                 )
-                response_text = response["message"]["content"]
+                if response is None or response.get("message") is None:
+                    response_text = ""
+                else:
+                    response_text = response["message"]["content"]
                 response_text = self.sanitize_response(player, response_text)
 
             if not response_text:
@@ -657,7 +665,8 @@ Here is the game history so far:
             return response_text
 
         except Exception as e:
-            return f"*{player.name} mumbles incoherently* ({e})"
+            self.log(f"  [ERROR querying {player.model}: {e}]", "red", public=False)
+            return f"*{player.name} remains silent*"
 
     def extract_vote(self, response: str, valid_targets: List[str]) -> Optional[str]:
         response_lower = response.lower()
