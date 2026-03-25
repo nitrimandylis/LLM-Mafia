@@ -228,7 +228,7 @@ class MafiaGame:
                     self.log(f"💬 {target.name}: {response}", "normal")
                     self.add_private_note(
                         target,
-                        f"Day {self.day}: {player.name} asked me, I said: {response}",
+                        f"Day {self.day}: {player_name} asked me, I said: {response}",
                     )
 
         # FINAL ACCUSATIONS
