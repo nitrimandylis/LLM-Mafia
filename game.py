@@ -10,12 +10,17 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import ollama
+import requests
 
 from game_state import build_day_summary
 from player import Player, Role, load_players_from_file
 
 
 import psutil
+
+
+NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
+DEFAULT_NVIDIA_MODEL = "moonshotai/kimi-k2.5"
 
 
 class MafiaGame:
@@ -26,6 +31,9 @@ class MafiaGame:
         pro_mode: bool = False,
         max_workers: int = 4,
         memory_threshold: int = 4,
+        model_override: Optional[str] = None,
+        use_nvidia: bool = False,
+        nvidia_api_key: Optional[str] = None,
     ):
         base_players = load_players_from_file(pro_mode=pro_mode)
         if not base_players:
@@ -52,6 +60,14 @@ class MafiaGame:
         self.max_workers = max_workers
         self.memory_threshold = memory_threshold
         self.last_doctor_target: Optional[str] = None
+        self.use_nvidia = use_nvidia
+        self.nvidia_api_key = nvidia_api_key
+        self.nvidia_model = model_override or DEFAULT_NVIDIA_MODEL
+
+        # When using NVIDIA, override every player's model to the NVIDIA model name
+        if use_nvidia:
+            for p in self.players:
+                p.model = self.nvidia_model
 
         try:
             with open("system_prompt.md", "r") as f:
@@ -655,42 +671,30 @@ Here is the game history so far:
         while psutil.virtual_memory().available / (1024**3) < self.memory_threshold:
             time.sleep(10)
 
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"Current task: {prompt}"},
+        ]
+
         try:
             self.log(f"  [Querying {player.model}... ]", "cyan", public=False)
             start_time = time.time()
 
-            response = ollama.chat(
-                model=player.model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": system_prompt,
-                    },
-                    {
-                        "role": "user",
-                        "content": f"Current task: {prompt}",
-                    },
-                ],
-                options={"temperature": 0.7, "keep_alive": "10m"},
-                timeout=120,
-            )
-            if response is None or response.get("message") is None:
-                response_text = ""
-            else:
-                response_text = response["message"]["content"]
+            response_text = self._call_backend(messages, player.model)
 
             elapsed = time.time() - start_time
             tokens = len(response_text.split()) * 1.3
             tps = tokens / elapsed if elapsed > 0 else 0
+            backend = "NVIDIA" if self.use_nvidia else "Ollama"
             self.log(
-                f"  [Ollama: {elapsed:.1f}s, ~{tps:.0f} tok/s]",
+                f"  [{backend}: {elapsed:.1f}s, ~{tps:.0f} tok/s]",
                 "cyan",
                 public=False,
             )
 
             response_text = self.sanitize_response(player, response_text)
 
-            # Retry logic
+            # Retry if response is empty or too short
             if not response_text or (
                 min_words > 0 and len(response_text.split()) < min_words
             ):
@@ -699,26 +703,11 @@ Here is the game history so far:
                     if min_words <= 1
                     else "Provide a concise 2-4 sentence answer. No headings."
                 )
-
-                response = ollama.chat(
-                    model=player.model,
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": system_prompt,
-                        },
-                        {
-                            "role": "user",
-                            "content": f"Current task: {prompt}\n\n{retry_suffix}",
-                        },
-                    ],
-                    options={"temperature": 0.7, "keep_alive": "10m"},
-                    timeout=120,
-                )
-                if response is None or response.get("message") is None:
-                    response_text = ""
-                else:
-                    response_text = response["message"]["content"]
+                retry_messages = [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"Current task: {prompt}\n\n{retry_suffix}"},
+                ]
+                response_text = self._call_backend(retry_messages, player.model)
                 response_text = self.sanitize_response(player, response_text)
 
             if not response_text:
@@ -728,6 +717,42 @@ Here is the game history so far:
         except Exception as e:
             self.log(f"  [ERROR querying {player.model}: {e}]", "red", public=False)
             return f"*{player.name} remains silent*"
+
+    def _call_backend(self, messages: List[Dict], model: str) -> str:
+        """Route a chat request to either NVIDIA NIM or local Ollama."""
+        if self.use_nvidia:
+            headers = {
+                "Authorization": f"Bearer {self.nvidia_api_key}",
+                "Content-Type": "application/json",
+            }
+            payload = {
+                "model": self.nvidia_model,
+                "messages": messages,
+                "temperature": 0.7,
+                "max_tokens": 512,
+            }
+            resp = requests.post(
+                NVIDIA_API_URL, headers=headers, json=payload, timeout=120
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            choices = data.get("choices") or []
+            if not choices:
+                return ""
+            return (choices[0].get("message") or {}).get("content") or ""
+        else:
+            # Memory check before Ollama call
+            while psutil.virtual_memory().available / (1024**3) < self.memory_threshold:
+                time.sleep(10)
+            response = ollama.chat(
+                model=model,
+                messages=messages,
+                options={"temperature": 0.7, "keep_alive": "10m"},
+                timeout=120,
+            )
+            if response is None or response.get("message") is None:
+                return ""
+            return response["message"]["content"] or ""
 
     def extract_vote(self, response: str, valid_targets: List[str]) -> Optional[str]:
         response_lower = response.lower()
