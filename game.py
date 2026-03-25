@@ -251,15 +251,15 @@ class MafiaGame:
                     future = executor.submit(
                         self.query_model, target, response_prompt, recent_context
                     )
-                    futures[future] = target
+                    futures[future] = (target, player_name)
 
                 for future in as_completed(futures):
-                    target = futures[future]
+                    target, asker_name = futures[future]
                     response = future.result()
                     self.log(f"💬 {target.name}: {response}", "normal")
                     self.add_private_note(
                         target,
-                        f"Day {self.day}: {player_name} asked me, I said: {response}",
+                        f"Day {self.day}: {asker_name} asked me, I said: {response}",
                     )
 
         # FINAL ACCUSATIONS
