@@ -1,13 +1,7 @@
 import argparse
 import json
 import os
-<<<<<<< HEAD
 from dotenv import load_dotenv
-=======
-
-from dotenv import load_dotenv
-
->>>>>>> t3code/071c921b
 from game import MafiaGame
 
 load_dotenv()
@@ -24,14 +18,10 @@ if __name__ == "__main__":
         "--pro-mode", action="store_true", help="Use a more advanced model for players"
     )
     parser.add_argument(
-<<<<<<< HEAD
-        "--model", type=str, default=None, help="Override model for all players (e.g. llama3.2:1b, qwen3:4b)"
-=======
         "--model",
         type=str,
         default=None,
         help="Override model for all players (e.g. llama3.2:1b, qwen3:4b)",
->>>>>>> t3code/071c921b
     )
     parser.add_argument(
         "--player-count", type=int, default=10, help="Number of players (4-10)"
@@ -77,21 +67,13 @@ if __name__ == "__main__":
         print("❌ --nvidia requires an API key via --nvidia-key or NVIDIA_API_KEY env var")
         raise SystemExit(1)
 
-<<<<<<< HEAD
-    # Resolve model: --nvidia-model takes precedence over --model when using NVIDIA backend
-=======
     # --nvidia-model takes precedence over --model when using NVIDIA backend
->>>>>>> t3code/071c921b
     model = (args.nvidia_model if args.nvidia else None) or args.model
 
     # Create and run the game
     print("🎭 INITIALIZING LLM MAFIA GAME...\n")
     if args.nvidia:
-<<<<<<< HEAD
-        print(f"🔌 Backend: NVIDIA NIM  |  Model: {model or 'moonshotai/kimi-k2.5'}\n")
-=======
         print(f"🔌 Backend: NVIDIA NIM  |  Model: {model or 'minimaxai/minimax-m2.5'}\n")
->>>>>>> t3code/071c921b
     else:
         print(f"🔌 Backend: Ollama\n")
 

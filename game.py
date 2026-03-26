@@ -20,11 +20,7 @@ import psutil
 
 
 NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
-<<<<<<< HEAD
-DEFAULT_NVIDIA_MODEL = "moonshotai/kimi-k2.5"
-=======
 DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m2.5"
->>>>>>> t3code/071c921b
 
 
 class MafiaGame:
@@ -64,11 +60,6 @@ class MafiaGame:
         self.reveal_secrets = reveal_secrets
         self.max_workers = max_workers
         self.memory_threshold = memory_threshold
-<<<<<<< HEAD
-        self.use_nvidia = use_nvidia
-        self.nvidia_api_key = nvidia_api_key
-        self.nvidia_model = model_override or DEFAULT_NVIDIA_MODEL
-=======
         self.last_doctor_target: Optional[str] = None
         self.use_nvidia = use_nvidia
         self.nvidia_api_key = nvidia_api_key
@@ -78,7 +69,6 @@ class MafiaGame:
         if use_nvidia:
             for p in self.players:
                 p.model = self.nvidia_model
->>>>>>> t3code/071c921b
 
         try:
             with open("system_prompt.md", "r") as f:
