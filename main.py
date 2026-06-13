@@ -1,7 +1,10 @@
 import argparse
 import json
 import os
+from dotenv import load_dotenv
 from mafia.game import MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_GM_MODEL
+
+load_dotenv()
 
 
 if __name__ == "__main__":
