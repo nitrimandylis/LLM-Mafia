@@ -115,7 +115,7 @@ LLM-Mafia/
 
 **[Nick Trimandylis](https://github.com/nitrimandylis)**
 
-`THE TOWN SLEEPS. THE GPU DOES NOT.`
+`LLMS LIE. PROVED IT.`
 
 MIT licensed.
 
