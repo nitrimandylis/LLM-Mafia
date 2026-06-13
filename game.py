@@ -9,18 +9,18 @@ from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-import ollama
-import requests
+from openai import OpenAI
 
+from game_master import GameMaster
 from game_state import build_day_summary
 from player import Player, Role, load_players_from_file
 
 
-import psutil
-
-
-NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
-DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m2.5"
+LM_STUDIO_URL = "http://localhost:1234/v1"
+NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1"
+DEFAULT_MODEL = "qwen/qwen3.5-9b"
+DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m3"
+DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
 
 
 class MafiaGame:
@@ -28,14 +28,14 @@ class MafiaGame:
         self,
         reveal_secrets: bool = False,
         player_count: Optional[int] = None,
-        pro_mode: bool = False,
         max_workers: int = 4,
-        memory_threshold: int = 4,
         model_override: Optional[str] = None,
-        use_nvidia: bool = False,
+        lm_studio_url: str = LM_STUDIO_URL,
         nvidia_api_key: Optional[str] = None,
+        gm_model: Optional[str] = None,
+        gm_enabled: bool = True,
     ):
-        base_players = load_players_from_file(pro_mode=pro_mode)
+        base_players = load_players_from_file()
         if not base_players:
             raise ValueError("No players could be loaded.")
         if player_count is not None:
@@ -46,8 +46,16 @@ class MafiaGame:
             count = max(4, min(count, len(base_players)))
             base_players = base_players[:count]
 
+        self.use_nvidia = nvidia_api_key is not None
+        if self.use_nvidia:
+            self.model = model_override or DEFAULT_NVIDIA_MODEL
+            self._lm_client = OpenAI(base_url=NVIDIA_API_URL, api_key=nvidia_api_key)
+        else:
+            self.model = model_override or DEFAULT_MODEL
+            self._lm_client = OpenAI(base_url=lm_studio_url, api_key="lm-studio")
+
         self.players = [
-            Player(p.name, model_override or p.model, personality=p.personality)
+            Player(p.name, self.model, personality=p.personality)
             for p in base_players
         ]
         self.day = 0
@@ -55,20 +63,20 @@ class MafiaGame:
         self.public_log = []
         self.night_actions = {}
         self.private_notes: Dict[str, List[str]] = {}
-        self.vote_history: List[Dict] = []      # {"day": int, "eliminated": str, "role": str, "votes": Dict[str,str]}
-        self.night_kill_history: List[Dict] = [] # {"night": int, "victim": str, "role": str, "saved": bool}
+        self.vote_history: List[Dict] = []
+        self.night_kill_history: List[Dict] = []
         self.reveal_secrets = reveal_secrets
         self.max_workers = max_workers
-        self.memory_threshold = memory_threshold
         self.last_doctor_target: Optional[str] = None
-        self.use_nvidia = use_nvidia
-        self.nvidia_api_key = nvidia_api_key
-        self.nvidia_model = model_override or DEFAULT_NVIDIA_MODEL
-
-        # When using NVIDIA, override every player's model to the NVIDIA model name
-        if use_nvidia:
-            for p in self.players:
-                p.model = self.nvidia_model
+        self.detective_investigated: set = set()
+        self.day_summaries: Dict[int, str] = {}
+        gm_model_resolved = gm_model or (self.model if self.use_nvidia else DEFAULT_GM_MODEL)
+        self.gm = GameMaster(
+            client=self._lm_client,
+            model=gm_model_resolved,
+            use_nvidia=self.use_nvidia,
+            enabled=gm_enabled,
+        )
 
         try:
             with open("system_prompt.md", "r") as f:
@@ -144,10 +152,18 @@ class MafiaGame:
 
         self.log(f"Alive players: {', '.join(alive_names)}", "yellow")
 
+        last_kill = self.night_kill_history[-1] if self.night_kill_history else None
+        last_vote = self.vote_history[-1] if self.vote_history else None
+        gm_intro = self.gm.narrate_day_start(self.day, alive_names, last_kill, last_vote)
+        if gm_intro:
+            self.log(f"\n📜 {gm_intro}", "magenta")
+
         # Build context from recent events
         recent_context = build_day_summary(
             self.day, alive_names, self.vote_history, self.night_kill_history
         )
+
+        day_statements: List[str] = []
 
         # DAY 1 SPECIAL HANDLING
         if self.day == 1:
@@ -175,6 +191,7 @@ class MafiaGame:
                     response = future.result()
                     self.log(f"🗣️  {player.name}: {response}", "normal")
                     self.add_private_note(player, f"Day {self.day} opening: {response}")
+                    day_statements.append(f"{player.name}: {response}")
         else:
             # NORMAL DAY
             self.log(f"\n💬 Opening Statements", "cyan")
@@ -217,6 +234,7 @@ class MafiaGame:
                     response = future.result()
                     self.log(f"🗣️  {player.name}: {response}", "normal")
                     self.add_private_note(player, f"Day {self.day} opening: {response}")
+                    day_statements.append(f"{player.name}: {response}")
 
         # QUESTIONING ROUNDS (THIS WAS MISSING!)
         QUESTION_TEMPLATES = [
@@ -263,6 +281,7 @@ class MafiaGame:
                     self.add_private_note(
                         player, f"Day {self.day}: Asked {target.name}: {question}"
                     )
+                    day_statements.append(f"{player.name} questions {target.name}: {question}")
 
             # Phase 2: Answer questions in parallel
             with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
@@ -282,6 +301,7 @@ class MafiaGame:
                         target,
                         f"Day {self.day}: {asker_name} asked me, I said: {response}",
                     )
+                    day_statements.append(f"{target.name} answers {asker_name}: {response}")
 
         # FINAL ACCUSATIONS
         self.log(f"\n⚖️  Final Accusations", "cyan")
@@ -308,6 +328,13 @@ class MafiaGame:
                 player = futures[future]
                 response = future.result()
                 self.log(f"⚔️  {player.name}: {response}", "red")
+                day_statements.append(f"{player.name} accuses: {response}")
+
+        # GM summarizes the day for injection into subsequent context
+        summary = self.gm.narrate_day_summary(self.day, day_statements)
+        if summary:
+            self.day_summaries[self.day] = summary
+            self.log(f"\n📋 Day {self.day} recap: {summary}", "cyan", public=False)
 
     def voting_phase(self) -> Optional[Player]:
         """Run voting phase and return eliminated player"""
@@ -382,10 +409,15 @@ class MafiaGame:
             "role": eliminated.role.value,
             "votes": dict(votes),
         })
-        self.log(
-            f"\n💀 {eliminated.name} has been eliminated! They were: {eliminated.role.value}",
-            "red",
-        )
+
+        gm_elim = self.gm.narrate_elimination(eliminated.name, eliminated.role.value, vote_counts)
+        if gm_elim:
+            self.log(f"\n📜 {gm_elim}", "magenta")
+        else:
+            self.log(
+                f"\n💀 {eliminated.name} has been eliminated! They were: {eliminated.role.value}",
+                "red",
+            )
 
         return eliminated
 
@@ -421,8 +453,9 @@ class MafiaGame:
             detectives = [p for p in alive if p.role == Role.DETECTIVE]
             if detectives:
                 detective = detectives[0]
-                valid = [n for n in alive_names if n != detective.name]
-                prompt = f"Choose ONE player to investigate tonight. Pick someone suspicious from today's discussion, or someone you haven't investigated yet. Targets: {', '.join(valid)}"
+                uninvestigated = [n for n in alive_names if n != detective.name and n not in self.detective_investigated]
+                valid = uninvestigated if uninvestigated else [n for n in alive_names if n != detective.name]
+                prompt = f"Choose ONE player to investigate tonight. Pick someone suspicious from today's discussion. Targets: {', '.join(valid)}"
                 future = executor.submit(
                     self.query_model, detective, prompt, recent_context, min_words=1
                 )
@@ -457,6 +490,7 @@ class MafiaGame:
 
         # Post-night processing
         if detective_target:
+            self.detective_investigated.add(detective_target)
             investigated = next(p for p in alive if p.name == detective_target)
             result = "MAFIA" if investigated.role == Role.MAFIA else "INNOCENT"
             note = f"Night {self.day}: Investigated {detective_target} - {result}"
@@ -484,10 +518,11 @@ class MafiaGame:
                 "role": victim.role.value,
                 "saved": False,
             })
-            self.log(
-                f"\n💀 {victim.name} was killed during the night! They were: {victim.role.value}",
-                "red",
-            )
+            gm_kill = self.gm.narrate_night_kill(victim.name, saved=False)
+            if gm_kill:
+                self.log(f"\n📜 {gm_kill}", "magenta")
+            else:
+                self.log(f"\n💀 {victim.name} was killed during the night! They were: {victim.role.value}", "red")
         elif mafia_target == doctor_target:
             self.night_kill_history.append({
                 "night": self.day,
@@ -495,9 +530,17 @@ class MafiaGame:
                 "role": next(p for p in self.players if p.name == mafia_target).role.value,
                 "saved": True,
             })
-            self.log(f"\n✨ The doctor's protection saved {doctor_target}!", "green")
+            gm_save = self.gm.narrate_night_kill(mafia_target, saved=True)
+            if gm_save:
+                self.log(f"\n📜 {gm_save}", "magenta")
+            else:
+                self.log(f"\n✨ The doctor's protection saved {doctor_target}!", "green")
         else:
-            self.log(f"\n🌅 No one died during the night.", "green")
+            gm_quiet = self.gm.narrate_no_kill()
+            if gm_quiet:
+                self.log(f"\n📜 {gm_quiet}", "magenta")
+            else:
+                self.log(f"\n🌅 No one died during the night.", "green")
 
     def run(self):
         """Main game loop"""
@@ -539,6 +582,11 @@ class MafiaGame:
 
         # Game over
         self.log("\n\n🏁 GAME OVER", "bold")
+        survivors = [p.name for p in self.players if p.alive]
+        if winner in ("town", "mafia"):
+            gm_end = self.gm.narrate_game_over(winner, survivors, self.day)
+            if gm_end:
+                self.log(f"\n📜 {gm_end}", "magenta")
         if winner == "town":
             self.log("🎉 TOWN WINS! All mafia eliminated!", "green")
         elif winner == "mafia":
@@ -551,6 +599,18 @@ class MafiaGame:
         for p in self.players:
             status = "💀" if not p.alive else "✅"
             self.log(f"  {status} {p.name}: {p.role.value}", "cyan")
+
+        # Print stats
+        stats = self.compute_stats()
+        self.log("\n📊 GAME STATS:", "bold")
+        self.log(f"  Days played: {stats['days']}", "cyan")
+        self.log(f"  Night kills: {stats['night_kills']}  |  Doctor saves: {stats['successful_saves']}", "cyan")
+        if stats["detective"]:
+            d = stats["detective"]
+            self.log(f"  Detective ({d['name']}): investigated {d['investigated']}, found mafia: {d['mafia_found']}", "cyan")
+        self.log("  Vote accuracy:", "cyan")
+        for name, ps in stats["players"].items():
+            self.log(f"    {name} ({ps['role']}): {ps['vote_accuracy']} mafia votes correct", "cyan")
 
     def log(self, message: str, style: str = "normal", public: bool = True):
         """Print and store game events"""
@@ -574,16 +634,26 @@ class MafiaGame:
         self.private_notes.setdefault(player.name, []).append(note)
 
     def build_context_for_player(self, player: Player, base_context: str) -> str:
+        parts = []
+
+        if self.day_summaries:
+            recent = sorted(self.day_summaries.items())[-2:]
+            summary_block = "\n".join(f"Day {d} summary: {s}" for d, s in recent)
+            parts.append(
+                "=== RECENT DAY SUMMARIES ===\n" + summary_block + "\n=== END SUMMARIES ==="
+            )
+
         notes = self.private_notes.get(player.name)
-        if not notes:
-            return base_context
-        note_block = "\n".join(notes[-25:])
-        return (
-            "=== YOUR SECRET NOTES (use these to guide your decisions) ===\n"
-            + note_block
-            + "\n=== END SECRET NOTES ===\n\n"
-            + base_context
-        )
+        if notes:
+            note_block = "\n".join(notes[-25:])
+            parts.append(
+                "=== YOUR SECRET NOTES (use these to guide your decisions) ===\n"
+                + note_block
+                + "\n=== END SECRET NOTES ==="
+            )
+
+        parts.append(base_context)
+        return "\n\n".join(parts)
 
     def _is_heading_line(self, line: str) -> bool:
         l = line.strip()
@@ -663,10 +733,10 @@ class MafiaGame:
     def query_model(
         self, player: Player, prompt: str, context: str = "", min_words: int = 4
     ) -> str:
-        """Query player model via Ollama"""
         context = self.build_context_for_player(player, context)
 
-        system_prompt = f"""{self.universal_prompt}
+        system_prompt = f"""/no_think
+{self.universal_prompt}
 
 ### YOUR PERSONALITY
 You are {player.name}. {player.personality}
@@ -679,25 +749,21 @@ Your role is: {player.role.value}.
 Here is the game history so far:
 {context if context.strip() else "No events yet. This is the start of the game."} """
 
-        # Memory check
-        while psutil.virtual_memory().available / (1024**3) < self.memory_threshold:
-            time.sleep(10)
-
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"Current task: {prompt}"},
         ]
 
         try:
-            self.log(f"  [Querying {player.model}... ]", "cyan", public=False)
+            self.log(f"  [Querying {self.model}... ]", "cyan", public=False)
             start_time = time.time()
 
-            response_text = self._call_backend(messages, player.model)
+            response_text = self._call_backend(messages)
 
             elapsed = time.time() - start_time
             tokens = len(response_text.split()) * 1.3
             tps = tokens / elapsed if elapsed > 0 else 0
-            backend = "NVIDIA" if self.use_nvidia else "Ollama"
+            backend = "NVIDIA" if self.use_nvidia else "LM Studio"
             self.log(
                 f"  [{backend}: {elapsed:.1f}s, ~{tps:.0f} tok/s]",
                 "cyan",
@@ -706,7 +772,6 @@ Here is the game history so far:
 
             response_text = self.sanitize_response(player, response_text)
 
-            # Retry if response is empty or too short
             if not response_text or (
                 min_words > 0 and len(response_text.split()) < min_words
             ):
@@ -719,7 +784,7 @@ Here is the game history so far:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": f"Current task: {prompt}\n\n{retry_suffix}"},
                 ]
-                response_text = self._call_backend(retry_messages, player.model)
+                response_text = self._call_backend(retry_messages)
                 response_text = self.sanitize_response(player, response_text)
 
             if not response_text:
@@ -727,63 +792,86 @@ Here is the game history so far:
             return response_text
 
         except Exception as e:
-            self.log(f"  [ERROR querying {player.model}: {e}]", "red", public=False)
+            self.log(f"  [ERROR querying {self.model}: {e}]", "red", public=False)
             return f"*{player.name} remains silent*"
 
-    def _call_backend(self, messages: List[Dict], model: str) -> str:
-        """Route a chat request to either NVIDIA NIM or local Ollama."""
-        if self.use_nvidia:
-            headers = {
-                "Authorization": f"Bearer {self.nvidia_api_key}",
-                "Content-Type": "application/json",
-            }
-            payload = {
-                "model": self.nvidia_model,
-                "messages": messages,
-                "temperature": 0.7,
-                "max_tokens": 512,
-            }
-            resp = requests.post(
-                NVIDIA_API_URL, headers=headers, json=payload, timeout=120
-            )
-            resp.raise_for_status()
-            data = resp.json()
-            choices = data.get("choices") or []
-            if not choices:
-                return ""
-            return (choices[0].get("message") or {}).get("content") or ""
-        else:
-            # Memory check before Ollama call
-            while psutil.virtual_memory().available / (1024**3) < self.memory_threshold:
-                time.sleep(10)
-            response = ollama.chat(
-                model=model,
-                messages=messages,
-                options={"temperature": 0.7, "keep_alive": "10m"},
-                timeout=120,
-            )
-            if response is None or response.get("message") is None:
-                return ""
-            return response["message"]["content"] or ""
+    _RESPONSE_SCHEMA = {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "response",
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": {"response": {"type": "string"}},
+                "required": ["response"],
+                "additionalProperties": False,
+            },
+        },
+    }
+
+    def _call_backend(self, messages: List[Dict]) -> str:
+        kwargs: Dict = dict(
+            model=self.model,
+            messages=messages,
+            temperature=0.7,
+            max_tokens=512,
+        )
+        if not self.use_nvidia:
+            kwargs["response_format"] = self._RESPONSE_SCHEMA
+
+        for attempt in range(5):
+            try:
+                response = self._lm_client.chat.completions.create(**kwargs)
+                msg = response.choices[0].message
+                content = (msg.content or "").strip()
+                reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
+                raw = content if content else reasoning
+                if not self.use_nvidia:
+                    try:
+                        return json.loads(raw).get("response", raw)
+                    except (json.JSONDecodeError, AttributeError):
+                        return raw
+                return raw
+            except Exception as e:
+                if "429" in str(e) and attempt < 4:
+                    wait = 2 ** attempt * 5  # 5, 10, 20, 40s
+                    self.log(f"  [429 rate limit — retrying in {wait}s]", "yellow", public=False)
+                    time.sleep(wait)
+                else:
+                    raise
+        return ""
 
     def extract_vote(self, response: str, valid_targets: List[str]) -> Optional[str]:
         response_lower = response.lower()
         name_map = {n.lower(): n for n in valid_targets}
 
-        m = re.search(r"\bvote(?:for)?[^a-zA-Z0-9]+([a-z][a-z']+)", response_lower)
-        if m:
-            candidate = m.group(1)
-            for key, name in name_map.items():
-                if key.startswith(candidate):
-                    return name
+        # Explicit vote-intent patterns tried first so "vote X because Y mentions Z" picks X not Z
+        explicit_patterns = [
+            r"\bvot(?:e|ing|ed)(?:\s+(?:for|out|to\s+eliminate))?\s+([\w][^\n,\.!?]{0,40})",
+            r"\beliminate\s+([\w][^\n,\.!?]{0,40})",
+            r"\bmy\s+vote\s+(?:is\s+)?(?:for\s+)?([\w][^\n,\.!?]{0,40})",
+            r"\bi\s+(?:would\s+)?(?:pick|choose|select|nominate)\s+(?:to\s+eliminate\s+)?([\w][^\n,\.!?]{0,40})",
+        ]
+        explicit_hits: List[Tuple[int, str]] = []
+        for pat in explicit_patterns:
+            for m in re.finditer(pat, response_lower):
+                candidate = m.group(1).strip()
+                for key, name in name_map.items():
+                    if re.search(rf"\b{re.escape(key.split()[0])}\b", candidate):
+                        explicit_hits.append((m.start(), name))
+                        break
+        if explicit_hits:
+            explicit_hits.sort(key=lambda x: x[0])
+            return explicit_hits[-1][1]
 
-        matches = []
+        # Fallback: last name mentioned anywhere in response
+        all_hits: List[Tuple[int, str]] = []
         for key, name in name_map.items():
             for hit in re.finditer(rf"\b{re.escape(key)}\b", response_lower):
-                matches.append((hit.start(), name))
-        if matches:
-            matches.sort(key=lambda x: x[0])
-            return matches[-1][1]
+                all_hits.append((hit.start(), name))
+        if all_hits:
+            all_hits.sort(key=lambda x: x[0])
+            return all_hits[-1][1]
         return None
 
     def parse_mafia_choice(
@@ -871,3 +959,47 @@ Here is the game history so far:
             return random.choice(valid_targets)
 
         return max(final_votes, key=final_votes.get)
+
+    def compute_stats(self) -> Dict:
+        """Compute per-player vote accuracy, detective efficiency, and kill summary."""
+        mafia_names = {p.name for p in self.players if p.role == Role.MAFIA}
+
+        player_stats = {}
+        for p in self.players:
+            votes = []
+            for vh in self.vote_history:
+                if p.name in vh["votes"]:
+                    target = vh["votes"][p.name]
+                    votes.append({
+                        "day": vh["day"],
+                        "target": target,
+                        "correct": target in mafia_names,
+                    })
+            correct = sum(1 for v in votes if v["correct"])
+            player_stats[p.name] = {
+                "role": p.role.value if p.role else None,
+                "survived": p.alive,
+                "vote_accuracy": f"{correct}/{len(votes)}",
+                "votes": votes,
+            }
+
+        detective_stats = None
+        det = next((p for p in self.players if p.role == Role.DETECTIVE), None)
+        if det:
+            found = [n for n in self.detective_investigated if n in mafia_names]
+            detective_stats = {
+                "name": det.name,
+                "survived": det.alive,
+                "investigated": sorted(self.detective_investigated),
+                "mafia_found": found,
+            }
+
+        kills = [k for k in self.night_kill_history if not k["saved"]]
+        saves = [k for k in self.night_kill_history if k["saved"]]
+        return {
+            "days": self.day,
+            "players": player_stats,
+            "detective": detective_stats,
+            "night_kills": len(kills),
+            "successful_saves": len(saves),
+        }

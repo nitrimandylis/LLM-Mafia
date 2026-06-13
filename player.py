@@ -22,7 +22,6 @@ class Player:
 
 def load_players_from_file(
     file_path: str = "players.json",
-    pro_mode: bool = False,
     model_override: Optional[str] = None,
 ) -> List[Player]:
     """Load player configurations from a JSON file."""
@@ -31,10 +30,8 @@ def load_players_from_file(
             player_data = json.load(f)
         if model_override:
             model = model_override
-        elif pro_mode:
-            model = "qwen3:4b"
         else:
-            model = "granite4:350m"
+            model = "qwen/qwen3.5-9b"
         return [
             Player(
                 name=p["name"],
