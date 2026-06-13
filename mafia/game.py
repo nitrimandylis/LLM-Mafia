@@ -4,16 +4,15 @@ import random
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from openai import OpenAI
 
-from game_master import GameMaster
-from game_state import build_day_summary
-from player import Player, Role, load_players_from_file
+from mafia.game_master import GameMaster
+from mafia.game_state import build_day_summary
+from mafia.player import Player, Role, load_players_from_file
 
 
 LM_STUDIO_URL = "http://localhost:1234/v1"
@@ -35,7 +34,8 @@ class MafiaGame:
         gm_model: Optional[str] = None,
         gm_enabled: bool = True,
     ):
-        base_players = load_players_from_file()
+        _root = Path(__file__).parent.parent
+        base_players = load_players_from_file(str(_root / "players.json"))
         if not base_players:
             raise ValueError("No players could be loaded.")
         if player_count is not None:
@@ -79,7 +79,7 @@ class MafiaGame:
         )
 
         try:
-            with open("system_prompt.md", "r") as f:
+            with open(_root / "system_prompt.md", "r") as f:
                 self.universal_prompt = f.read()
         except FileNotFoundError:
             print("ERROR: system_prompt.md not found. Using default prompt.")

@@ -4,5 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - ollama
-  - psutil
+  - pip
+  - pip:
+      - openai
+      - python-dotenv
