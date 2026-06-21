@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { GameEvent, Player } from "./events";
+import { deriveState } from "./derive";
 
 // Dwell time (ms) AFTER an event is shown, before the next reveals. This is the
 // whole "drama" knob — kills/eliminations hang, votes snap by. Scaled by speed.
@@ -84,41 +85,7 @@ export function useReplay(events: GameEvent[], initialSpeed: Speed = 1): ReplayS
 
   const revealed = useMemo(() => events.slice(0, cursor), [events, cursor]);
 
-  const derived = useMemo(() => {
-    let players: Player[] = [];
-    const alive = new Set<string>();
-    const deaths = new Map<string, string>();
-    let phase: "day" | "night" = "day";
-    let day = 0;
-    let winner: string | undefined;
-
-    for (const e of revealed) {
-      switch (e.type) {
-        case "game_start":
-          players = e.players;
-          for (const p of e.players) alive.add(p.name);
-          break;
-        case "phase":
-          phase = e.phase;
-          day = e.day;
-          break;
-        case "elimination":
-          alive.delete(e.target);
-          deaths.set(e.target, e.role);
-          break;
-        case "night_kill":
-          if (!e.saved) {
-            alive.delete(e.target);
-            deaths.set(e.target, e.role);
-          }
-          break;
-        case "game_over":
-          winner = e.winner;
-          break;
-      }
-    }
-    return { players, alive, deaths, phase, day, winner };
-  }, [revealed]);
+  const derived = useMemo(() => deriveState(revealed), [revealed]);
 
   const controls = useMemo(
     () => ({
