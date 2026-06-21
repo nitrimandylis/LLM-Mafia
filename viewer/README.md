@@ -40,6 +40,10 @@ npm run build     # type-check + compile
 node verify.mjs   # validate the sample log + replay reduction logic
 ```
 
+`/selftest` renders all three skins against the full sample log (server-side),
+so the real components can be smoke-tested headlessly (`curl` it) and eyeballed
+in one page.
+
 ## How it fits together
 
 ```
