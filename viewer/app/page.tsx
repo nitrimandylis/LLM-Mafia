@@ -18,6 +18,7 @@ export default function Viewer() {
   const settings = useMemo(() => (mounted ? loadSettings() : DEFAULTS), [mounted]);
   const [events, setEvents] = useState<GameEvent[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [source, setSource] = useState<"game" | "sample" | "upload" | null>(null);
   const [skin, setSkin] = useState<SkinId>(DEFAULTS.skin);
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -27,14 +28,23 @@ export default function Viewer() {
     setSkin(settings.skin);
   }, [settings.skin]);
 
-  // Default log: the bundled sample.
+  // Load whatever the engine last wrote (../game_log.json), else the sample.
   useEffect(() => {
-    fetch("/logs/sample.json")
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("no sample log"))))
-      .then((log: GameLog) => applyLog(log))
-      .catch(() => setError("Could not load the sample log."));
+    loadFromServer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function loadFromServer() {
+    fetch("/api/log", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((data: { source: "game" | "sample"; log: GameLog }) => {
+        setSource(data.source);
+        applyLog(data.log);
+      })
+      .catch(() =>
+        setError("No game log found. Run a game (python main.py) or generate the sample.")
+      );
+  }
 
   function applyLog(log: GameLog) {
     if (!Array.isArray(log.events) || log.events.length === 0) {
@@ -53,7 +63,10 @@ export default function Viewer() {
     if (!file) return;
     file
       .text()
-      .then((t) => applyLog(JSON.parse(t)))
+      .then((t) => {
+        setSource("upload");
+        applyLog(JSON.parse(t));
+      })
       .catch(() => setError("That file isn't a valid game log JSON."));
   }
 
@@ -92,6 +105,29 @@ export default function Viewer() {
           </button>
         ))}
         <span style={{ flex: 1 }} />
+        {source && (
+          <span title="Where this replay came from">
+            {source === "game"
+              ? "● latest game"
+              : source === "sample"
+              ? "○ bundled sample"
+              : "○ uploaded file"}
+          </span>
+        )}
+        <button
+          onClick={loadFromServer}
+          style={{
+            background: "var(--panel-2)",
+            color: "var(--ink)",
+            border: "1px solid var(--line)",
+            borderRadius: 6,
+            padding: "4px 10px",
+            cursor: "pointer",
+          }}
+          title="Reload ../game_log.json from the engine"
+        >
+          ↻ Latest game
+        </button>
         <button
           onClick={() => fileInput.current?.click()}
           style={{

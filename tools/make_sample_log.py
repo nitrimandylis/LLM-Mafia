@@ -1,20 +1,28 @@
 """
-Contract guard for the structured event stream + sample-log generator.
+Sample-log generator + contract guard for the replay viewer.
 
 Runs a full game with a stubbed model (no network), validates every emitted
-event against the schema, checks the day-phase ordering, and writes a sample
-log to viewer/public/logs/sample.json for the replay viewer.
+event against the schema, checks the day-phase ordering, and confirms the
+Python and TypeScript event schemas haven't drifted apart. With --write it
+(re)generates the viewer's bundled sample log.
 
-    python test_events.py            # validate
-    python test_events.py --write    # validate + (re)generate sample.json
+    python tools/make_sample_log.py            # validate engine + schema parity
+    python tools/make_sample_log.py --write    # also (re)write the sample log
 """
 import json
+import pathlib
 import random
+import re
 import sys
-from pathlib import Path
 
-from mafia.events import REQUIRED
-from mafia.game import MafiaGame
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from mafia.events import REQUIRED  # noqa: E402
+from mafia.game import MafiaGame  # noqa: E402
+
+SAMPLE_LOG = ROOT / "viewer" / "public" / "logs" / "sample.json"
+EVENTS_TS = ROOT / "viewer" / "lib" / "events.ts"
 
 # Flavorful canned lines. Each mentions {name} so extract_vote() resolves a
 # target for votes/accusations/night choices — drives a real game to completion.
@@ -65,12 +73,9 @@ def validate(events):
             assert field in ev, f"event {t!r} missing {field!r}"
         types.add(t)
 
-    # A real game must produce a full day: phase -> statements -> votes -> elimination.
     assert "phase" in types and "statement" in types, "missing day discussion"
     assert "vote" in types and "elimination" in types, "missing voting outcome"
 
-    # Ordering within the first day: phase(day) before first statement before
-    # first vote before first elimination.
     def first(pred):
         return next(i for i, e in enumerate(events) if pred(e))
 
@@ -81,26 +86,43 @@ def validate(events):
     assert i_phase < i_stmt < i_vote < i_elim, "day-phase ordering wrong"
 
 
+def check_schema_parity():
+    """The TS event union (viewer/lib/events.ts) must list the same event types
+    as the Python schema. Catches the contract silently drifting apart."""
+    ts = EVENTS_TS.read_text()
+    ts_types = set(re.findall(r'type:\s*"([a-z_]+)"', ts))
+    py_types = set(REQUIRED.keys())
+    only_py = py_types - ts_types
+    only_ts = ts_types - py_types
+    assert not only_py, f"event types in mafia/events.py but missing from events.ts: {only_py}"
+    assert not only_ts, f"event types in events.ts but missing from mafia/events.py: {only_ts}"
+
+
 def main():
     game = run_game()
     events = game.events.to_list()
     validate(events)
-    print(f"OK: {len(events)} events validated "
-          f"({sum(1 for e in events if e['type']=='statement')} statements, "
-          f"game_over winner={events[-1]['winner']})")
+    check_schema_parity()
+    print(
+        f"OK: {len(events)} events validated, schema parity holds "
+        f"({len(REQUIRED)} event types; winner={events[-1]['winner']})"
+    )
 
     if "--write" in sys.argv:
-        out = Path(__file__).parent / "viewer" / "public" / "logs" / "sample.json"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        payload = {
-            "events": events,
-            "game_log": game.game_log,
-            "public_log": game.public_log,
-            "day": game.day,
-            "stats": game.compute_stats(),
-        }
-        out.write_text(json.dumps(payload, indent=2))
-        print(f"wrote {out}")
+        SAMPLE_LOG.parent.mkdir(parents=True, exist_ok=True)
+        SAMPLE_LOG.write_text(
+            json.dumps(
+                {
+                    "events": events,
+                    "game_log": game.game_log,
+                    "public_log": game.public_log,
+                    "day": game.day,
+                    "stats": game.compute_stats(),
+                },
+                indent=2,
+            )
+        )
+        print(f"wrote {SAMPLE_LOG.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

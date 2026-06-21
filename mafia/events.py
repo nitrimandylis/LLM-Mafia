@@ -3,6 +3,10 @@ Structured event stream for the replay viewer.
 
 The console `log()` output is prose; this is a parallel, ordered list of typed
 events that a web viewer can dramatize. One place owns the schema.
+
+This is the source of truth. It is mirrored in `viewer/lib/events.ts`; the two
+are kept in sync by `tools/make_sample_log.py` (check_schema_parity), which
+fails if the event-type lists drift apart.
 """
 from typing import Dict, List
 

@@ -1,4 +1,6 @@
-// TypeScript mirror of the Python event schema (mafia/events.py). The contract.
+// TypeScript mirror of the Python event schema (mafia/events.py) — the source
+// of truth. `tools/make_sample_log.py` (check_schema_parity) fails if the
+// event-type lists here and in events.py drift apart.
 
 export type Player = {
   name: string;

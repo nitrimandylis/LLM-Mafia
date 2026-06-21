@@ -12,22 +12,26 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
-It loads `public/logs/sample.json` by default. Use **Load a log…** in the
-header to drop in any `game_log.json`, and **Settings** to set the default
-style and playback speed (saved in your browser).
+On load it calls `/api/log`, which reads the engine's `../game_log.json` and
+falls back to the bundled `public/logs/sample.json` if no game has been played.
+The header shows the source (`● latest game` / `○ bundled sample`); **↻ Latest
+game** re-reads the file after a new run, **Load a log…** drops in any
+`game_log.json` by hand, and **Settings** sets the default style and playback
+speed (saved in your browser).
 
 ## Generate a log to watch
 
-From the repo root, either play a real game:
+From the repo root, play a real game (writes `game_log.json`, which the viewer
+reads automatically):
 
 ```bash
-python main.py --reveal-secrets --output viewer/public/logs/sample.json
+python main.py --reveal-secrets
 ```
 
-…or generate the deterministic-ish sample fixture (no LLM needed):
+…or generate the sample fixture (no LLM needed):
 
 ```bash
-python test_events.py --write
+python tools/make_sample_log.py --write
 ```
 
 `--reveal-secrets` includes the private mafia whispers and detective results in
@@ -47,7 +51,7 @@ in one page.
 ## How it fits together
 
 ```
-mafia/events.py ─▶ game_log.json { events: [...] } ─▶ lib/useReplay.ts ─▶ skin
+mafia/events.py ─▶ ../game_log.json ─▶ app/api/log ─▶ lib/useReplay.ts ─▶ skin
 ```
 
 `lib/useReplay.ts` is the shared engine (event cursor, pacing, play/pause,
