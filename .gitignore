@@ -127,3 +127,6 @@ dmypy.json
 .pyre/
 .worktrees/
 node_modules/
+
+# brainstorm visual companion
+.superpowers/
