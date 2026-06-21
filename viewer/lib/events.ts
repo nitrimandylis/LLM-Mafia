@@ -44,3 +44,29 @@ export function isSpeech(
 ): e is Extract<GameEvent, { actor: string; text: string }> {
   return SPEECH_TYPES.has(e.type);
 }
+
+// A run of consecutive votes — skins render these as one tally, not N lines.
+export type Ballot = { type: "ballot"; votes: { actor: string; target: string }[] };
+
+// Collapse consecutive `vote` events into a single Ballot; pass everything else
+// through unchanged. Shared by the Case File and Transcript skins.
+export function withBallots(revealed: GameEvent[]): (GameEvent | Ballot)[] {
+  const out: (GameEvent | Ballot)[] = [];
+  for (const e of revealed) {
+    const last = out[out.length - 1];
+    if (e.type === "vote") {
+      if (last && last.type === "ballot") last.votes.push({ actor: e.actor, target: e.target });
+      else out.push({ type: "ballot", votes: [{ actor: e.actor, target: e.target }] });
+    } else {
+      out.push(e);
+    }
+  }
+  return out;
+}
+
+// Tally a ballot's targets, most-voted first.
+export function tallyVotes(votes: { actor: string; target: string }[]): [string, string[]][] {
+  const m = new Map<string, string[]>();
+  for (const v of votes) (m.get(v.target) ?? m.set(v.target, []).get(v.target)!).push(v.actor);
+  return [...m.entries()].sort((a, b) => b[1].length - a[1].length);
+}

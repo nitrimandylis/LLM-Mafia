@@ -1,14 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { loadSettings, saveSettings, type SkinId } from "@/lib/settings";
+import { loadSettings, saveSettings, SKINS, type SkinId } from "@/lib/settings";
 import type { Speed } from "@/lib/useReplay";
-
-const SKINS: { id: SkinId; name: string; blurb: string }[] = [
-  { id: "chat", name: "Group-chat", blurb: "Avatars and bubbles in a thread. Easiest to follow who said what." },
-  { id: "table", name: "Table + spotlight", blurb: "Players around a table; a spotlight follows the speaker; the dead grey out." },
-  { id: "broadcast", name: "Broadcast", blurb: "Elimination-show treatment: title cards, lower-third nameplates, recap ticker." },
-];
 
 const SPEEDS: { id: Speed; label: string }[] = [
   { id: 1, label: "1× — full drama" },
@@ -38,8 +32,8 @@ export default function SettingsPage() {
 
   return (
     <div style={{ maxWidth: 640, margin: "32px auto", padding: "0 20px" }}>
-      <h1 style={{ fontSize: 20 }}>Settings</h1>
-      <p style={{ color: "var(--muted)", marginTop: 4 }}>
+      <h1 style={{ fontSize: 20, letterSpacing: ".02em" }}>Settings</h1>
+      <p style={{ color: "var(--shell-muted)", marginTop: 4 }}>
         Saved to your browser. {saved && <span style={{ color: "var(--green)" }}>✓ saved</span>}
       </p>
 
@@ -50,20 +44,30 @@ export default function SettingsPage() {
             key={s.id}
             onClick={() => persist({ skin: s.id })}
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
               textAlign: "left",
-              background: skin === s.id ? "#241015" : "var(--panel)",
-              border: `1px solid ${skin === s.id ? "var(--red)" : "var(--line)"}`,
+              background: skin === s.id ? "var(--shell-panel-2)" : "var(--shell-panel)",
+              border: `1px solid ${skin === s.id ? "var(--brand)" : "var(--shell-line)"}`,
               borderRadius: 10,
               padding: "14px 16px",
               cursor: "pointer",
-              color: "var(--ink)",
+              color: "var(--shell-ink)",
             }}
           >
-            <div style={{ fontWeight: 700 }}>
-              {skin === s.id ? "● " : "○ "}
-              {s.name}
-            </div>
-            <div style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>{s.blurb}</div>
+            <span style={{ display: "flex", borderRadius: 5, overflow: "hidden", flex: "0 0 auto", boxShadow: "0 0 0 1px rgba(255,255,255,.08)" }}>
+              {s.swatch.map((c, j) => (
+                <span key={j} style={{ width: 12, height: 34, background: c }} />
+              ))}
+            </span>
+            <span>
+              <span style={{ fontWeight: 700, display: "block" }}>
+                {skin === s.id ? "● " : "○ "}
+                {s.name} <span style={{ color: "var(--shell-muted)", fontWeight: 400 }}>· {s.tag}</span>
+              </span>
+              <span style={{ color: "var(--shell-muted)", fontSize: 13, marginTop: 4, display: "block" }}>{s.blurb}</span>
+            </span>
           </button>
         ))}
       </div>
@@ -75,9 +79,9 @@ export default function SettingsPage() {
             key={String(s.id)}
             onClick={() => persist({ speed: s.id })}
             style={{
-              background: speed === s.id ? "var(--gold)" : "var(--panel-2)",
-              color: speed === s.id ? "#111" : "var(--ink)",
-              border: "1px solid var(--line)",
+              background: speed === s.id ? "var(--gold)" : "var(--shell-panel-2)",
+              color: speed === s.id ? "#111" : "var(--shell-ink)",
+              border: "1px solid var(--shell-line)",
               borderRadius: 7,
               padding: "8px 14px",
               cursor: "pointer",

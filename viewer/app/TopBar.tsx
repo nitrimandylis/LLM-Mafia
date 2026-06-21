@@ -7,8 +7,9 @@ export default function TopBar() {
   const path = usePathname();
   return (
     <header className="topbar">
-      <Link href="/" className="brand" style={{ textDecoration: "none" }}>
-        LLM <span className="accent">MAFIA</span> · REPLAY
+      <Link href="/" className="brand">
+        <span className="mark">MAFIA</span>
+        <span className="rest">LLM REPLAY</span>
       </Link>
       <nav>
         <Link href="/" className={path === "/" ? "active" : ""}>

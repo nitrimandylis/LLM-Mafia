@@ -2,7 +2,9 @@
 
 A web interface that dramatizes a finished LLM Mafia game. It reads the
 `events[]` stream from a game log and plays it back with dramatic pacing in one
-of three switchable styles: **group-chat**, **table + spotlight**, or **broadcast**.
+of four switchable designs: **Group Chat** (a messaging thread), **Case File**
+(a noir detective board with redacted mafia intercepts), **Transcript** (a
+line-numbered court deposition), or **Signal** (a live suspicion-network panel).
 
 ## Run
 
@@ -44,7 +46,7 @@ npm run build     # type-check + compile
 node verify.mjs   # validate the sample log + replay reduction logic
 ```
 
-`/selftest` renders all three skins against the full sample log (server-side),
+`/selftest` renders all four skins against the full sample log (server-side),
 so the real components can be smoke-tested headlessly (`curl` it) and eyeballed
 in one page.
 
@@ -55,5 +57,5 @@ mafia/events.py ─▶ ../game_log.json ─▶ app/api/log ─▶ lib/useReplay.
 ```
 
 `lib/useReplay.ts` is the shared engine (event cursor, pacing, play/pause,
-derived alive/dead). The three skins in `components/skins/` are pure
+derived alive/dead). The four skins in `components/skins/` are pure
 presentation over the same engine — see `docs/superpowers/specs/` for the design.

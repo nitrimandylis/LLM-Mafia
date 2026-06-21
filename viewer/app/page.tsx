@@ -3,13 +3,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { GameEvent, GameLog } from "@/lib/events";
 import { useReplay } from "@/lib/useReplay";
-import { loadSettings, DEFAULTS, type SkinId } from "@/lib/settings";
+import { loadSettings, DEFAULTS, SKINS as SKIN_META, type SkinId } from "@/lib/settings";
 import Controls from "@/components/Controls";
 import ChatSkin from "@/components/skins/ChatSkin";
-import TableSkin from "@/components/skins/TableSkin";
-import BroadcastSkin from "@/components/skins/BroadcastSkin";
+import CaseFileSkin from "@/components/skins/CaseFileSkin";
+import TranscriptSkin from "@/components/skins/TranscriptSkin";
+import SignalSkin from "@/components/skins/SignalSkin";
 
-const SKINS = { chat: ChatSkin, table: TableSkin, broadcast: BroadcastSkin };
+const SKIN_COMPONENTS = {
+  chat: ChatSkin,
+  casefile: CaseFileSkin,
+  transcript: TranscriptSkin,
+  signal: SignalSkin,
+};
 
 export default function Viewer() {
   // `mounted` gates localStorage reads so SSR and first client render match
@@ -71,74 +77,48 @@ export default function Viewer() {
   }
 
   const state = useReplay(events ?? [], settings.speed);
-  const ActiveSkin = SKINS[skin];
 
   return (
     <div className="stage-wrap">
-      <div
-        style={{
-          display: "flex",
-          gap: 12,
-          padding: "8px 18px",
-          borderBottom: "1px solid var(--line)",
-          alignItems: "center",
-          fontSize: 12,
-          color: "var(--muted)",
-        }}
-      >
-        <span>Style:</span>
-        {(["chat", "table", "broadcast"] as SkinId[]).map((s) => (
-          <button
-            key={s}
-            onClick={() => setSkin(s)}
-            style={{
-              background: skin === s ? "var(--red)" : "var(--panel-2)",
-              color: skin === s ? "#fff" : "var(--ink)",
-              border: "1px solid var(--line)",
-              borderRadius: 6,
-              padding: "4px 10px",
-              cursor: "pointer",
-              textTransform: "capitalize",
-            }}
-          >
-            {s}
-          </button>
-        ))}
-        <span style={{ flex: 1 }} />
+      <div className="menu">
+        <div className="skin-seg" role="tablist" aria-label="Presentation style">
+          {SKIN_META.map((m) => (
+            <button
+              key={m.id}
+              role="tab"
+              aria-selected={skin === m.id}
+              className={`skin-opt${skin === m.id ? " on" : ""}`}
+              onClick={() => setSkin(m.id)}
+              title={m.blurb}
+            >
+              <span className="skin-swatch" aria-hidden>
+                {m.swatch.map((c, j) => (
+                  <i key={j} style={{ background: c }} />
+                ))}
+              </span>
+              <span className="skin-meta">
+                <span className="nm">{m.name}</span>
+                <span className="tg">{m.tag}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <span className="menu-spacer" />
+
         {source && (
-          <span title="Where this replay came from">
-            {source === "game"
-              ? "● latest game"
-              : source === "sample"
-              ? "○ bundled sample"
-              : "○ uploaded file"}
+          <span
+            className={`source-badge${source === "game" ? " live" : ""}`}
+            title="Where this replay came from"
+          >
+            <span className="dot" />
+            {source === "game" ? "latest game" : source === "sample" ? "bundled sample" : "uploaded file"}
           </span>
         )}
-        <button
-          onClick={loadFromServer}
-          style={{
-            background: "var(--panel-2)",
-            color: "var(--ink)",
-            border: "1px solid var(--line)",
-            borderRadius: 6,
-            padding: "4px 10px",
-            cursor: "pointer",
-          }}
-          title="Reload ../game_log.json from the engine"
-        >
+        <button className="menu-btn" onClick={loadFromServer} title="Reload ../game_log.json from the engine">
           ↻ Latest game
         </button>
-        <button
-          onClick={() => fileInput.current?.click()}
-          style={{
-            background: "var(--panel-2)",
-            color: "var(--ink)",
-            border: "1px solid var(--line)",
-            borderRadius: 6,
-            padding: "4px 10px",
-            cursor: "pointer",
-          }}
-        >
+        <button className="menu-btn" onClick={() => fileInput.current?.click()}>
           Load a log…
         </button>
         <input
@@ -165,7 +145,17 @@ export default function Viewer() {
         </div>
       ) : (
         <>
-          <ActiveSkin state={state} />
+          {/* All four stay mounted so each keeps its own scroll position; only
+              the selected design is shown. */}
+          {SKIN_META.map((m) => {
+            const Skin = SKIN_COMPONENTS[m.id];
+            const isActive = skin === m.id;
+            return (
+              <div key={m.id} className="skin-pane" style={{ display: isActive ? "flex" : "none" }}>
+                <Skin state={state} active={isActive} />
+              </div>
+            );
+          })}
           <Controls state={state} />
         </>
       )}
