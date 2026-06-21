@@ -1,0 +1,1874 @@
+{
+  "events": [
+    {
+      "type": "game_start",
+      "players": [
+        {
+          "name": "RICO",
+          "seat": 0,
+          "color": "#7cc4ff",
+          "role": "Villager"
+        },
+        {
+          "name": "ARIA",
+          "seat": 1,
+          "color": "#ff9a9a",
+          "role": "Detective"
+        },
+        {
+          "name": "SAGE",
+          "seat": 2,
+          "color": "#b9f6ca",
+          "role": "Doctor"
+        },
+        {
+          "name": "HOLMES",
+          "seat": 3,
+          "color": "#ffd180",
+          "role": "Mafia"
+        },
+        {
+          "name": "MARSHAL",
+          "seat": 4,
+          "color": "#ce93d8",
+          "role": "Villager"
+        },
+        {
+          "name": "SOCRATES",
+          "seat": 5,
+          "color": "#80deea",
+          "role": "Villager"
+        },
+        {
+          "name": "DR. VANCE",
+          "seat": 6,
+          "color": "#ffab91",
+          "role": "Villager"
+        },
+        {
+          "name": "PIP",
+          "seat": 7,
+          "color": "#c5e1a5",
+          "role": "Mafia"
+        }
+      ],
+      "player_count": 8
+    },
+    {
+      "type": "phase",
+      "day": 1,
+      "phase": "day"
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "text": "I trust my gut and my gut says ARIA. Let's vote out ARIA."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "MARSHAL",
+      "text": "HOLMES flipped their story twice today. That's mafia behavior. Vote HOLMES."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "SAGE",
+      "text": "HOLMES has been awfully quiet, and quiet people are hiding something. HOLMES."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "HOLMES",
+      "text": "Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "RICO",
+      "text": "DR. VANCE has been awfully quiet, and quiet people are hiding something. DR. VANCE."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "SOCRATES",
+      "text": "ARIA has been awfully quiet, and quiet people are hiding something. ARIA."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "PIP",
+      "text": "Something about MARSHAL feels off \u2014 too calm when the pressure's on. My vote is MARSHAL."
+    },
+    {
+      "type": "statement",
+      "day": 1,
+      "actor": "ARIA",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "HOLMES",
+      "text": "Something about HOLMES feels off \u2014 too calm when the pressure's on. My vote is HOLMES."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "SAGE",
+      "text": "Honestly? RICO. The timing of their accusations is too convenient. RICO."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "PIP",
+      "target": "HOLMES",
+      "text": "Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "MARSHAL",
+      "target": "DR. VANCE",
+      "text": "I trust my gut and my gut says PIP. Let's vote out PIP."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "RICO",
+      "target": "SAGE",
+      "text": "I trust my gut and my gut says PIP. Let's vote out PIP."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "ARIA",
+      "target": "MARSHAL",
+      "text": "SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "target": "HOLMES",
+      "text": "MARSHAL flipped their story twice today. That's mafia behavior. Vote MARSHAL."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "SOCRATES",
+      "target": "HOLMES",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "target": "MARSHAL",
+      "text": "Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "DR. VANCE",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "RICO",
+      "text": "Honestly? DR. VANCE. The timing of their accusations is too convenient. DR. VANCE."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "PIP",
+      "text": "I trust my gut and my gut says RICO. Let's vote out RICO."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "HOLMES",
+      "text": "I've been watching HOLMES dodge every direct question. I say we eliminate HOLMES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "SAGE",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "SOCRATES",
+      "text": "I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "MARSHAL",
+      "target": "ARIA",
+      "text": "ARIA flipped their story twice today. That's mafia behavior. Vote ARIA."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "MARSHAL",
+      "target": "HOLMES",
+      "text": "HOLMES has been awfully quiet, and quiet people are hiding something. HOLMES."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "target": "SOCRATES",
+      "text": "RICO flipped their story twice today. That's mafia behavior. Vote RICO."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "ARIA",
+      "target": "PIP",
+      "text": "Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "RICO",
+      "target": "SAGE",
+      "text": "SAGE has been awfully quiet, and quiet people are hiding something. SAGE."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "SOCRATES",
+      "target": "HOLMES",
+      "text": "Honestly? HOLMES. The timing of their accusations is too convenient. HOLMES."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "DR. VANCE",
+      "text": "I've been watching RICO dodge every direct question. I say we eliminate RICO."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "PIP",
+      "text": "Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE."
+    },
+    {
+      "type": "question",
+      "day": 1,
+      "actor": "PIP",
+      "target": "HOLMES",
+      "text": "Honestly? SAGE. The timing of their accusations is too convenient. SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "PIP",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "PIP",
+      "target": "SAGE",
+      "text": "I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "RICO",
+      "text": "Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "PIP",
+      "target": "ARIA",
+      "text": "I've been watching SAGE dodge every direct question. I say we eliminate SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "target": "HOLMES",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "SOCRATES",
+      "target": "DR. VANCE",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "MARSHAL",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "SOCRATES",
+      "text": "I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "target": "MARSHAL",
+      "text": "MARSHAL flipped their story twice today. That's mafia behavior. Vote MARSHAL."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "DR. VANCE",
+      "text": "I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "RICO",
+      "text": "RICO has been awfully quiet, and quiet people are hiding something. RICO."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "RICO",
+      "target": "PIP",
+      "text": "I've been watching PIP dodge every direct question. I say we eliminate PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "ARIA",
+      "target": "PIP",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "MARSHAL",
+      "target": "PIP",
+      "text": "PIP has been awfully quiet, and quiet people are hiding something. PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "PIP",
+      "target": "MARSHAL",
+      "text": "MARSHAL has been awfully quiet, and quiet people are hiding something. MARSHAL."
+    },
+    {
+      "type": "accusation",
+      "day": 1,
+      "actor": "SOCRATES",
+      "target": "DR. VANCE",
+      "text": "Honestly? DR. VANCE. The timing of their accusations is too convenient. DR. VANCE."
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "DR. VANCE",
+      "target": "MARSHAL"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "RICO",
+      "target": "MARSHAL"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "ARIA",
+      "target": "MARSHAL"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "PIP",
+      "target": "MARSHAL"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "SAGE",
+      "target": "HOLMES"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "SOCRATES",
+      "target": "MARSHAL"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "MARSHAL",
+      "target": "PIP"
+    },
+    {
+      "type": "vote",
+      "day": 1,
+      "actor": "HOLMES",
+      "target": "PIP"
+    },
+    {
+      "type": "elimination",
+      "day": 1,
+      "target": "MARSHAL",
+      "role": "Villager",
+      "tally": {
+        "MARSHAL": 5,
+        "HOLMES": 1,
+        "PIP": 2
+      }
+    },
+    {
+      "type": "phase",
+      "day": 1,
+      "phase": "night"
+    },
+    {
+      "type": "mafia_chat",
+      "day": 1,
+      "actor": "HOLMES",
+      "text": "RICO flipped their story twice today. That's mafia behavior. Vote RICO."
+    },
+    {
+      "type": "mafia_chat",
+      "day": 1,
+      "actor": "PIP",
+      "text": "Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO."
+    },
+    {
+      "type": "mafia_chat",
+      "day": 1,
+      "actor": "HOLMES",
+      "text": "I've been watching PIP dodge every direct question. I say we eliminate PIP."
+    },
+    {
+      "type": "mafia_chat",
+      "day": 1,
+      "actor": "PIP",
+      "text": "I trust my gut and my gut says SAGE. Let's vote out SAGE."
+    },
+    {
+      "type": "investigation",
+      "day": 1,
+      "actor": "ARIA",
+      "target": "SAGE",
+      "result": "INNOCENT"
+    },
+    {
+      "type": "night_kill",
+      "day": 1,
+      "target": "ARIA",
+      "role": "Detective",
+      "saved": false
+    },
+    {
+      "type": "phase",
+      "day": 2,
+      "phase": "day"
+    },
+    {
+      "type": "statement",
+      "day": 2,
+      "actor": "PIP",
+      "text": "I've been watching RICO dodge every direct question. I say we eliminate RICO."
+    },
+    {
+      "type": "statement",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "text": "SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES."
+    },
+    {
+      "type": "statement",
+      "day": 2,
+      "actor": "HOLMES",
+      "text": "I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE."
+    },
+    {
+      "type": "statement",
+      "day": 2,
+      "actor": "SAGE",
+      "text": "Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES."
+    },
+    {
+      "type": "statement",
+      "day": 2,
+      "actor": "SOCRATES",
+      "text": "Honestly? HOLMES. The timing of their accusations is too convenient. HOLMES."
+    },
+    {
+      "type": "statement",
+      "day": 2,
+      "actor": "RICO",
+      "text": "I've been watching SAGE dodge every direct question. I say we eliminate SAGE."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "HOLMES",
+      "text": "I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "SAGE",
+      "target": "RICO",
+      "text": "I trust my gut and my gut says HOLMES. Let's vote out HOLMES."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "HOLMES",
+      "target": "DR. VANCE",
+      "text": "Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "target": "RICO",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "PIP",
+      "target": "SOCRATES",
+      "text": "Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "RICO",
+      "target": "SOCRATES",
+      "text": "I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "RICO",
+      "target": "DR. VANCE",
+      "text": "SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "RICO",
+      "target": "SAGE",
+      "text": "Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "HOLMES",
+      "target": "SOCRATES",
+      "text": "DR. VANCE flipped their story twice today. That's mafia behavior. Vote DR. VANCE."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "PIP",
+      "text": "Honestly? SAGE. The timing of their accusations is too convenient. SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "target": "HOLMES",
+      "text": "HOLMES flipped their story twice today. That's mafia behavior. Vote HOLMES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "RICO",
+      "text": "Honestly? RICO. The timing of their accusations is too convenient. RICO."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "target": "HOLMES",
+      "text": "I trust my gut and my gut says HOLMES. Let's vote out HOLMES."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "SAGE",
+      "target": "DR. VANCE",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "PIP",
+      "target": "SAGE",
+      "text": "I trust my gut and my gut says RICO. Let's vote out RICO."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "HOLMES",
+      "target": "SOCRATES",
+      "text": "Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "SAGE",
+      "text": "I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE."
+    },
+    {
+      "type": "question",
+      "day": 2,
+      "actor": "RICO",
+      "target": "SOCRATES",
+      "text": "Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "HOLMES",
+      "text": "I've been watching HOLMES dodge every direct question. I say we eliminate HOLMES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "target": "SAGE",
+      "text": "Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "HOLMES",
+      "target": "DR. VANCE",
+      "text": "I trust my gut and my gut says SAGE. Let's vote out SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "SAGE",
+      "target": "SOCRATES",
+      "text": "I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "SAGE",
+      "target": "PIP",
+      "text": "Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE."
+    },
+    {
+      "type": "answer",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "RICO",
+      "text": "I trust my gut and my gut says SAGE. Let's vote out SAGE."
+    },
+    {
+      "type": "accusation",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "target": "RICO",
+      "text": "Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO."
+    },
+    {
+      "type": "accusation",
+      "day": 2,
+      "actor": "HOLMES",
+      "target": "PIP",
+      "text": "PIP has been awfully quiet, and quiet people are hiding something. PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 2,
+      "actor": "PIP",
+      "target": "DR. VANCE",
+      "text": "I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE."
+    },
+    {
+      "type": "accusation",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "SAGE",
+      "text": "I trust my gut and my gut says SAGE. Let's vote out SAGE."
+    },
+    {
+      "type": "accusation",
+      "day": 2,
+      "actor": "RICO",
+      "target": "SOCRATES",
+      "text": "Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES."
+    },
+    {
+      "type": "accusation",
+      "day": 2,
+      "actor": "SAGE",
+      "target": "HOLMES",
+      "text": "Something about HOLMES feels off \u2014 too calm when the pressure's on. My vote is HOLMES."
+    },
+    {
+      "type": "vote",
+      "day": 2,
+      "actor": "RICO",
+      "target": "HOLMES"
+    },
+    {
+      "type": "vote",
+      "day": 2,
+      "actor": "HOLMES",
+      "target": "DR. VANCE"
+    },
+    {
+      "type": "vote",
+      "day": 2,
+      "actor": "SOCRATES",
+      "target": "HOLMES"
+    },
+    {
+      "type": "vote",
+      "day": 2,
+      "actor": "SAGE",
+      "target": "SOCRATES"
+    },
+    {
+      "type": "vote",
+      "day": 2,
+      "actor": "DR. VANCE",
+      "target": "PIP"
+    },
+    {
+      "type": "vote",
+      "day": 2,
+      "actor": "PIP",
+      "target": "RICO"
+    },
+    {
+      "type": "elimination",
+      "day": 2,
+      "target": "HOLMES",
+      "role": "Mafia",
+      "tally": {
+        "HOLMES": 2,
+        "DR. VANCE": 1,
+        "SOCRATES": 1,
+        "PIP": 1,
+        "RICO": 1
+      }
+    },
+    {
+      "type": "phase",
+      "day": 2,
+      "phase": "night"
+    },
+    {
+      "type": "save",
+      "day": 2,
+      "target": "RICO"
+    },
+    {
+      "type": "phase",
+      "day": 3,
+      "phase": "day"
+    },
+    {
+      "type": "statement",
+      "day": 3,
+      "actor": "RICO",
+      "text": "I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES."
+    },
+    {
+      "type": "statement",
+      "day": 3,
+      "actor": "PIP",
+      "text": "I've been watching RICO dodge every direct question. I say we eliminate RICO."
+    },
+    {
+      "type": "statement",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "statement",
+      "day": 3,
+      "actor": "SOCRATES",
+      "text": "PIP has been awfully quiet, and quiet people are hiding something. PIP."
+    },
+    {
+      "type": "statement",
+      "day": 3,
+      "actor": "SAGE",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "SAGE",
+      "target": "RICO",
+      "text": "SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "PIP",
+      "target": "DR. VANCE",
+      "text": "SAGE flipped their story twice today. That's mafia behavior. Vote SAGE."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "SOCRATES",
+      "target": "SAGE",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "RICO",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "RICO",
+      "target": "DR. VANCE",
+      "text": "Honestly? SAGE. The timing of their accusations is too convenient. SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "SAGE",
+      "target": "SOCRATES",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "PIP",
+      "text": "SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "RICO",
+      "target": "SAGE",
+      "text": "Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "RICO",
+      "target": "DR. VANCE",
+      "text": "I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "RICO",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "RICO",
+      "target": "SOCRATES",
+      "text": "Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "SAGE",
+      "target": "RICO",
+      "text": "Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "SOCRATES",
+      "target": "DR. VANCE",
+      "text": "SAGE has been awfully quiet, and quiet people are hiding something. SAGE."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "SOCRATES",
+      "text": "I trust my gut and my gut says RICO. Let's vote out RICO."
+    },
+    {
+      "type": "question",
+      "day": 3,
+      "actor": "PIP",
+      "target": "RICO",
+      "text": "I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "RICO",
+      "target": "SAGE",
+      "text": "PIP has been awfully quiet, and quiet people are hiding something. PIP."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "SOCRATES",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "SOCRATES",
+      "target": "RICO",
+      "text": "Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "SOCRATES",
+      "target": "DR. VANCE",
+      "text": "RICO has been awfully quiet, and quiet people are hiding something. RICO."
+    },
+    {
+      "type": "answer",
+      "day": 3,
+      "actor": "RICO",
+      "target": "PIP",
+      "text": "Honestly? SAGE. The timing of their accusations is too convenient. SAGE."
+    },
+    {
+      "type": "accusation",
+      "day": 3,
+      "actor": "SOCRATES",
+      "target": "PIP",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 3,
+      "actor": "SAGE",
+      "target": "SOCRATES",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "accusation",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "RICO",
+      "text": "I trust my gut and my gut says RICO. Let's vote out RICO."
+    },
+    {
+      "type": "accusation",
+      "day": 3,
+      "actor": "RICO",
+      "target": "PIP",
+      "text": "I trust my gut and my gut says PIP. Let's vote out PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 3,
+      "actor": "PIP",
+      "target": "RICO",
+      "text": "Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO."
+    },
+    {
+      "type": "vote",
+      "day": 3,
+      "actor": "DR. VANCE",
+      "target": "RICO"
+    },
+    {
+      "type": "vote",
+      "day": 3,
+      "actor": "SAGE",
+      "target": "DR. VANCE"
+    },
+    {
+      "type": "vote",
+      "day": 3,
+      "actor": "RICO",
+      "target": "SOCRATES"
+    },
+    {
+      "type": "vote",
+      "day": 3,
+      "actor": "SOCRATES",
+      "target": "RICO"
+    },
+    {
+      "type": "vote",
+      "day": 3,
+      "actor": "PIP",
+      "target": "SAGE"
+    },
+    {
+      "type": "elimination",
+      "day": 3,
+      "target": "RICO",
+      "role": "Villager",
+      "tally": {
+        "RICO": 2,
+        "DR. VANCE": 1,
+        "SOCRATES": 1,
+        "SAGE": 1
+      }
+    },
+    {
+      "type": "phase",
+      "day": 3,
+      "phase": "night"
+    },
+    {
+      "type": "night_kill",
+      "day": 3,
+      "target": "DR. VANCE",
+      "role": "Villager",
+      "saved": false
+    },
+    {
+      "type": "phase",
+      "day": 4,
+      "phase": "day"
+    },
+    {
+      "type": "statement",
+      "day": 4,
+      "actor": "SAGE",
+      "text": "I trust my gut and my gut says PIP. Let's vote out PIP."
+    },
+    {
+      "type": "statement",
+      "day": 4,
+      "actor": "SOCRATES",
+      "text": "Honestly? PIP. The timing of their accusations is too convenient. PIP."
+    },
+    {
+      "type": "statement",
+      "day": 4,
+      "actor": "PIP",
+      "text": "SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 4,
+      "actor": "SAGE",
+      "target": "PIP",
+      "text": "SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SAGE",
+      "text": "I've been watching SAGE dodge every direct question. I say we eliminate SAGE."
+    },
+    {
+      "type": "question",
+      "day": 4,
+      "actor": "SOCRATES",
+      "target": "PIP",
+      "text": "SAGE has been awfully quiet, and quiet people are hiding something. SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SAGE",
+      "text": "SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SOCRATES",
+      "text": "Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 4,
+      "actor": "SAGE",
+      "target": "PIP",
+      "text": "I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES."
+    },
+    {
+      "type": "question",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SAGE",
+      "text": "SAGE has been awfully quiet, and quiet people are hiding something. SAGE."
+    },
+    {
+      "type": "question",
+      "day": 4,
+      "actor": "SAGE",
+      "target": "SOCRATES",
+      "text": "PIP flipped their story twice today. That's mafia behavior. Vote PIP."
+    },
+    {
+      "type": "question",
+      "day": 4,
+      "actor": "SOCRATES",
+      "target": "PIP",
+      "text": "SAGE has been awfully quiet, and quiet people are hiding something. SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 4,
+      "actor": "SAGE",
+      "target": "PIP",
+      "text": "I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES."
+    },
+    {
+      "type": "answer",
+      "day": 4,
+      "actor": "SOCRATES",
+      "target": "SAGE",
+      "text": "Honestly? SAGE. The timing of their accusations is too convenient. SAGE."
+    },
+    {
+      "type": "answer",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SOCRATES",
+      "text": "SAGE has been awfully quiet, and quiet people are hiding something. SAGE."
+    },
+    {
+      "type": "accusation",
+      "day": 4,
+      "actor": "SAGE",
+      "target": "PIP",
+      "text": "Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 4,
+      "actor": "SOCRATES",
+      "target": "PIP",
+      "text": "Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP."
+    },
+    {
+      "type": "accusation",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SOCRATES",
+      "text": "Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES."
+    },
+    {
+      "type": "vote",
+      "day": 4,
+      "actor": "SAGE",
+      "target": "SOCRATES"
+    },
+    {
+      "type": "vote",
+      "day": 4,
+      "actor": "PIP",
+      "target": "SAGE"
+    },
+    {
+      "type": "vote",
+      "day": 4,
+      "actor": "SOCRATES",
+      "target": "SAGE"
+    },
+    {
+      "type": "elimination",
+      "day": 4,
+      "target": "SAGE",
+      "role": "Doctor",
+      "tally": {
+        "SOCRATES": 1,
+        "SAGE": 2
+      }
+    },
+    {
+      "type": "game_over",
+      "winner": "mafia",
+      "survivors": [
+        "SOCRATES",
+        "PIP"
+      ]
+    }
+  ],
+  "game_log": [
+    "\ud83c\udfae WELCOME TO LLM MAFIA",
+    "Players: 8",
+    "\n\ud83c\udfad ROLES ASSIGNED",
+    "  RICO: Villager",
+    "  ARIA: Detective",
+    "  SAGE: Doctor",
+    "  HOLMES: Mafia",
+    "  MARSHAL: Villager",
+    "  SOCRATES: Villager",
+    "  DR. VANCE: Villager",
+    "  PIP: Mafia",
+    "\n\n\u2600\ufe0f  DAY 1 - TOWN MEETING",
+    "Alive players: RICO, ARIA, SAGE, HOLMES, MARSHAL, SOCRATES, DR. VANCE, PIP",
+    "\n\ud83d\udcac Initial Impressions (No deaths yet, no prior behavior)",
+    "\ud83d\udde3\ufe0f  DR. VANCE: I trust my gut and my gut says ARIA. Let's vote out ARIA.",
+    "\ud83d\udde3\ufe0f  MARSHAL: HOLMES flipped their story twice today. That's mafia behavior. Vote HOLMES.",
+    "\ud83d\udde3\ufe0f  SAGE: HOLMES has been awfully quiet, and quiet people are hiding something. HOLMES.",
+    "\ud83d\udde3\ufe0f  HOLMES: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\ud83d\udde3\ufe0f  RICO: DR. VANCE has been awfully quiet, and quiet people are hiding something. DR. VANCE.",
+    "\ud83d\udde3\ufe0f  SOCRATES: ARIA has been awfully quiet, and quiet people are hiding something. ARIA.",
+    "\ud83d\udde3\ufe0f  PIP: Something about MARSHAL feels off \u2014 too calm when the pressure's on. My vote is MARSHAL.",
+    "\ud83d\udde3\ufe0f  ARIA: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SAGE \u2192 HOLMES: Something about HOLMES feels off \u2014 too calm when the pressure's on. My vote is HOLMES.",
+    "\ud83d\udd0d HOLMES \u2192 SAGE: Honestly? RICO. The timing of their accusations is too convenient. RICO.",
+    "\ud83d\udd0d PIP \u2192 HOLMES: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\ud83d\udd0d MARSHAL \u2192 DR. VANCE: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\ud83d\udd0d RICO \u2192 SAGE: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\ud83d\udd0d ARIA \u2192 MARSHAL: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udd0d DR. VANCE \u2192 HOLMES: MARSHAL flipped their story twice today. That's mafia behavior. Vote MARSHAL.",
+    "\ud83d\udd0d SOCRATES \u2192 HOLMES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udcac DR. VANCE: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac SAGE: Honestly? DR. VANCE. The timing of their accusations is too convenient. DR. VANCE.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\ud83d\udcac SAGE: I've been watching HOLMES dodge every direct question. I say we eliminate HOLMES.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udcac MARSHAL: ARIA flipped their story twice today. That's mafia behavior. Vote ARIA.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d MARSHAL \u2192 HOLMES: HOLMES has been awfully quiet, and quiet people are hiding something. HOLMES.",
+    "\ud83d\udd0d DR. VANCE \u2192 SOCRATES: RICO flipped their story twice today. That's mafia behavior. Vote RICO.",
+    "\ud83d\udd0d ARIA \u2192 PIP: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udd0d RICO \u2192 SAGE: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udd0d SOCRATES \u2192 HOLMES: Honestly? HOLMES. The timing of their accusations is too convenient. HOLMES.",
+    "\ud83d\udd0d HOLMES \u2192 DR. VANCE: I've been watching RICO dodge every direct question. I say we eliminate RICO.",
+    "\ud83d\udd0d SAGE \u2192 PIP: Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE.",
+    "\ud83d\udd0d PIP \u2192 HOLMES: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac PIP: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udcac SAGE: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\ud83d\udcac PIP: I've been watching SAGE dodge every direct question. I say we eliminate SAGE.",
+    "\ud83d\udcac DR. VANCE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac SOCRATES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  DR. VANCE: MARSHAL flipped their story twice today. That's mafia behavior. Vote MARSHAL.",
+    "\u2694\ufe0f  HOLMES: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\u2694\ufe0f  SAGE: RICO has been awfully quiet, and quiet people are hiding something. RICO.",
+    "\u2694\ufe0f  RICO: I've been watching PIP dodge every direct question. I say we eliminate PIP.",
+    "\u2694\ufe0f  ARIA: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\u2694\ufe0f  MARSHAL: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\u2694\ufe0f  PIP: MARSHAL has been awfully quiet, and quiet people are hiding something. MARSHAL.",
+    "\u2694\ufe0f  SOCRATES: Honestly? DR. VANCE. The timing of their accusations is too convenient. DR. VANCE.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "DR. VANCE votes: MARSHAL",
+    "RICO votes: MARSHAL",
+    "ARIA votes: MARSHAL",
+    "PIP votes: MARSHAL",
+    "SAGE votes: HOLMES",
+    "SOCRATES votes: MARSHAL",
+    "MARSHAL votes: PIP",
+    "HOLMES votes: PIP",
+    "\n\ud83d\udc80 MARSHAL has been eliminated! They were: Villager",
+    "\n\n\ud83c\udf19 NIGHT 1",
+    "\n\ud83e\udd2b MAFIA WHISPER CHANNEL (private)",
+    "   (round 1/2)",
+    "   HOLMES: RICO flipped their story twice today. That's mafia behavior. Vote RICO.",
+    "   PIP: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "   (round 2/2)",
+    "   HOLMES: I've been watching PIP dodge every direct question. I say we eliminate PIP.",
+    "   PIP: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\ud83d\udd0d ARIA investigated SAGE: INNOCENT",
+    "\ud83c\udfe5 SAGE protected PIP",
+    "\n\ud83d\udc80 ARIA was killed during the night! They were: Detective",
+    "\n\n\u2600\ufe0f  DAY 2 - TOWN MEETING",
+    "Alive players: RICO, SAGE, HOLMES, SOCRATES, DR. VANCE, PIP",
+    "\n\ud83d\udcac Opening Statements",
+    "\ud83d\udde3\ufe0f  PIP: I've been watching RICO dodge every direct question. I say we eliminate RICO.",
+    "\ud83d\udde3\ufe0f  DR. VANCE: SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES.",
+    "\ud83d\udde3\ufe0f  HOLMES: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\ud83d\udde3\ufe0f  SAGE: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\ud83d\udde3\ufe0f  SOCRATES: Honestly? HOLMES. The timing of their accusations is too convenient. HOLMES.",
+    "\ud83d\udde3\ufe0f  RICO: I've been watching SAGE dodge every direct question. I say we eliminate SAGE.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SOCRATES \u2192 HOLMES: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udd0d SAGE \u2192 RICO: I trust my gut and my gut says HOLMES. Let's vote out HOLMES.",
+    "\ud83d\udd0d HOLMES \u2192 DR. VANCE: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udd0d DR. VANCE \u2192 RICO: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d PIP \u2192 SOCRATES: Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES.",
+    "\ud83d\udd0d RICO \u2192 SOCRATES: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udcac RICO: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udcac RICO: Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES.",
+    "\ud83d\udcac HOLMES: DR. VANCE flipped their story twice today. That's mafia behavior. Vote DR. VANCE.",
+    "\ud83d\udcac SOCRATES: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac DR. VANCE: HOLMES flipped their story twice today. That's mafia behavior. Vote HOLMES.",
+    "\ud83d\udcac SOCRATES: Honestly? RICO. The timing of their accusations is too convenient. RICO.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d DR. VANCE \u2192 HOLMES: I trust my gut and my gut says HOLMES. Let's vote out HOLMES.",
+    "\ud83d\udd0d SAGE \u2192 DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d PIP \u2192 SAGE: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\ud83d\udd0d HOLMES \u2192 SOCRATES: Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE.",
+    "\ud83d\udd0d SOCRATES \u2192 SAGE: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\ud83d\udd0d RICO \u2192 SOCRATES: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\ud83d\udcac SOCRATES: I've been watching HOLMES dodge every direct question. I say we eliminate HOLMES.",
+    "\ud83d\udcac DR. VANCE: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\ud83d\udcac SAGE: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udcac SAGE: Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE.",
+    "\ud83d\udcac SOCRATES: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  DR. VANCE: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\u2694\ufe0f  HOLMES: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\u2694\ufe0f  PIP: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\u2694\ufe0f  SOCRATES: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\u2694\ufe0f  RICO: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\u2694\ufe0f  SAGE: Something about HOLMES feels off \u2014 too calm when the pressure's on. My vote is HOLMES.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "RICO votes: HOLMES",
+    "HOLMES votes: DR. VANCE",
+    "SOCRATES votes: HOLMES",
+    "SAGE votes: SOCRATES",
+    "DR. VANCE votes: PIP",
+    "PIP votes: RICO",
+    "\n\ud83d\udc80 HOLMES has been eliminated! They were: Mafia",
+    "\n\n\ud83c\udf19 NIGHT 2",
+    "\ud83c\udfe5 SAGE protected RICO",
+    "\n\u2728 The doctor's protection saved RICO!",
+    "\n\n\u2600\ufe0f  DAY 3 - TOWN MEETING",
+    "Alive players: RICO, SAGE, SOCRATES, DR. VANCE, PIP",
+    "\n\ud83d\udcac Opening Statements",
+    "\ud83d\udde3\ufe0f  RICO: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udde3\ufe0f  PIP: I've been watching RICO dodge every direct question. I say we eliminate RICO.",
+    "\ud83d\udde3\ufe0f  DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udde3\ufe0f  SOCRATES: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\ud83d\udde3\ufe0f  SAGE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SAGE \u2192 RICO: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udd0d PIP \u2192 DR. VANCE: SAGE flipped their story twice today. That's mafia behavior. Vote SAGE.",
+    "\ud83d\udd0d SOCRATES \u2192 SAGE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d DR. VANCE \u2192 RICO: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udd0d RICO \u2192 DR. VANCE: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac SAGE: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udcac DR. VANCE: SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES.",
+    "\ud83d\udcac RICO: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udcac RICO: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udcac DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d RICO \u2192 SOCRATES: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\ud83d\udd0d SAGE \u2192 RICO: Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES.",
+    "\ud83d\udd0d SOCRATES \u2192 DR. VANCE: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udd0d DR. VANCE \u2192 SOCRATES: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\ud83d\udd0d PIP \u2192 RICO: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udcac RICO: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\ud83d\udcac DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udcac SOCRATES: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\ud83d\udcac SOCRATES: RICO has been awfully quiet, and quiet people are hiding something. RICO.",
+    "\ud83d\udcac RICO: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  SOCRATES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\u2694\ufe0f  SAGE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\u2694\ufe0f  DR. VANCE: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\u2694\ufe0f  RICO: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\u2694\ufe0f  PIP: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "DR. VANCE votes: RICO",
+    "SAGE votes: DR. VANCE",
+    "RICO votes: SOCRATES",
+    "SOCRATES votes: RICO",
+    "PIP votes: SAGE",
+    "\n\ud83d\udc80 RICO has been eliminated! They were: Villager",
+    "\n\n\ud83c\udf19 NIGHT 3",
+    "\ud83c\udfe5 SAGE protected PIP",
+    "\n\ud83d\udc80 DR. VANCE was killed during the night! They were: Villager",
+    "\n\n\u2600\ufe0f  DAY 4 - TOWN MEETING",
+    "Alive players: SAGE, SOCRATES, PIP",
+    "\n\ud83d\udcac Opening Statements",
+    "\ud83d\udde3\ufe0f  SAGE: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\ud83d\udde3\ufe0f  SOCRATES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udde3\ufe0f  PIP: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SAGE \u2192 PIP: SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES.",
+    "\ud83d\udd0d PIP \u2192 SAGE: I've been watching SAGE dodge every direct question. I say we eliminate SAGE.",
+    "\ud83d\udd0d SOCRATES \u2192 PIP: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udcac PIP: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udcac PIP: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udcac SAGE: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d PIP \u2192 SAGE: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udd0d SAGE \u2192 SOCRATES: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d SOCRATES \u2192 PIP: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udcac SAGE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac SOCRATES: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac PIP: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  SAGE: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\u2694\ufe0f  SOCRATES: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\u2694\ufe0f  PIP: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "SAGE votes: SOCRATES",
+    "PIP votes: SAGE",
+    "SOCRATES votes: SAGE",
+    "\n\ud83d\udc80 SAGE has been eliminated! They were: Doctor",
+    "\n\n\ud83c\udfc1 GAME OVER",
+    "\ud83d\ude08 MAFIA WINS! They control the town!",
+    "\n\ud83d\udccb FINAL ROLES:",
+    "  \ud83d\udc80 RICO: Villager",
+    "  \ud83d\udc80 ARIA: Detective",
+    "  \ud83d\udc80 SAGE: Doctor",
+    "  \ud83d\udc80 HOLMES: Mafia",
+    "  \ud83d\udc80 MARSHAL: Villager",
+    "  \u2705 SOCRATES: Villager",
+    "  \ud83d\udc80 DR. VANCE: Villager",
+    "  \u2705 PIP: Mafia",
+    "\n\ud83d\udcca GAME STATS:",
+    "  Days played: 4",
+    "  Night kills: 2  |  Doctor saves: 1",
+    "  Detective (ARIA): investigated ['SAGE'], found mafia: []",
+    "  Vote accuracy:",
+    "    RICO (Villager): 1/3 mafia votes correct",
+    "    ARIA (Detective): 0/1 mafia votes correct",
+    "    SAGE (Doctor): 1/4 mafia votes correct",
+    "    HOLMES (Mafia): 1/2 mafia votes correct",
+    "    MARSHAL (Villager): 1/1 mafia votes correct",
+    "    SOCRATES (Villager): 1/4 mafia votes correct",
+    "    DR. VANCE (Villager): 1/3 mafia votes correct",
+    "    PIP (Mafia): 0/4 mafia votes correct"
+  ],
+  "public_log": [
+    "\ud83c\udfae WELCOME TO LLM MAFIA",
+    "Players: 8",
+    "\n\ud83c\udfad ROLES ASSIGNED",
+    "\n\n\u2600\ufe0f  DAY 1 - TOWN MEETING",
+    "Alive players: RICO, ARIA, SAGE, HOLMES, MARSHAL, SOCRATES, DR. VANCE, PIP",
+    "\n\ud83d\udcac Initial Impressions (No deaths yet, no prior behavior)",
+    "\ud83d\udde3\ufe0f  DR. VANCE: I trust my gut and my gut says ARIA. Let's vote out ARIA.",
+    "\ud83d\udde3\ufe0f  MARSHAL: HOLMES flipped their story twice today. That's mafia behavior. Vote HOLMES.",
+    "\ud83d\udde3\ufe0f  SAGE: HOLMES has been awfully quiet, and quiet people are hiding something. HOLMES.",
+    "\ud83d\udde3\ufe0f  HOLMES: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\ud83d\udde3\ufe0f  RICO: DR. VANCE has been awfully quiet, and quiet people are hiding something. DR. VANCE.",
+    "\ud83d\udde3\ufe0f  SOCRATES: ARIA has been awfully quiet, and quiet people are hiding something. ARIA.",
+    "\ud83d\udde3\ufe0f  PIP: Something about MARSHAL feels off \u2014 too calm when the pressure's on. My vote is MARSHAL.",
+    "\ud83d\udde3\ufe0f  ARIA: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SAGE \u2192 HOLMES: Something about HOLMES feels off \u2014 too calm when the pressure's on. My vote is HOLMES.",
+    "\ud83d\udd0d HOLMES \u2192 SAGE: Honestly? RICO. The timing of their accusations is too convenient. RICO.",
+    "\ud83d\udd0d PIP \u2192 HOLMES: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\ud83d\udd0d MARSHAL \u2192 DR. VANCE: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\ud83d\udd0d RICO \u2192 SAGE: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\ud83d\udd0d ARIA \u2192 MARSHAL: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udd0d DR. VANCE \u2192 HOLMES: MARSHAL flipped their story twice today. That's mafia behavior. Vote MARSHAL.",
+    "\ud83d\udd0d SOCRATES \u2192 HOLMES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udcac DR. VANCE: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac SAGE: Honestly? DR. VANCE. The timing of their accusations is too convenient. DR. VANCE.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\ud83d\udcac SAGE: I've been watching HOLMES dodge every direct question. I say we eliminate HOLMES.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udcac MARSHAL: ARIA flipped their story twice today. That's mafia behavior. Vote ARIA.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d MARSHAL \u2192 HOLMES: HOLMES has been awfully quiet, and quiet people are hiding something. HOLMES.",
+    "\ud83d\udd0d DR. VANCE \u2192 SOCRATES: RICO flipped their story twice today. That's mafia behavior. Vote RICO.",
+    "\ud83d\udd0d ARIA \u2192 PIP: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udd0d RICO \u2192 SAGE: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udd0d SOCRATES \u2192 HOLMES: Honestly? HOLMES. The timing of their accusations is too convenient. HOLMES.",
+    "\ud83d\udd0d HOLMES \u2192 DR. VANCE: I've been watching RICO dodge every direct question. I say we eliminate RICO.",
+    "\ud83d\udd0d SAGE \u2192 PIP: Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE.",
+    "\ud83d\udd0d PIP \u2192 HOLMES: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac PIP: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udcac SAGE: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\ud83d\udcac PIP: I've been watching SAGE dodge every direct question. I say we eliminate SAGE.",
+    "\ud83d\udcac DR. VANCE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac SOCRATES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udcac HOLMES: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  DR. VANCE: MARSHAL flipped their story twice today. That's mafia behavior. Vote MARSHAL.",
+    "\u2694\ufe0f  HOLMES: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\u2694\ufe0f  SAGE: RICO has been awfully quiet, and quiet people are hiding something. RICO.",
+    "\u2694\ufe0f  RICO: I've been watching PIP dodge every direct question. I say we eliminate PIP.",
+    "\u2694\ufe0f  ARIA: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\u2694\ufe0f  MARSHAL: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\u2694\ufe0f  PIP: MARSHAL has been awfully quiet, and quiet people are hiding something. MARSHAL.",
+    "\u2694\ufe0f  SOCRATES: Honestly? DR. VANCE. The timing of their accusations is too convenient. DR. VANCE.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "DR. VANCE votes: MARSHAL",
+    "RICO votes: MARSHAL",
+    "ARIA votes: MARSHAL",
+    "PIP votes: MARSHAL",
+    "SAGE votes: HOLMES",
+    "SOCRATES votes: MARSHAL",
+    "MARSHAL votes: PIP",
+    "HOLMES votes: PIP",
+    "\n\ud83d\udc80 MARSHAL has been eliminated! They were: Villager",
+    "\n\n\ud83c\udf19 NIGHT 1",
+    "\n\ud83d\udc80 ARIA was killed during the night! They were: Detective",
+    "\n\n\u2600\ufe0f  DAY 2 - TOWN MEETING",
+    "Alive players: RICO, SAGE, HOLMES, SOCRATES, DR. VANCE, PIP",
+    "\n\ud83d\udcac Opening Statements",
+    "\ud83d\udde3\ufe0f  PIP: I've been watching RICO dodge every direct question. I say we eliminate RICO.",
+    "\ud83d\udde3\ufe0f  DR. VANCE: SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES.",
+    "\ud83d\udde3\ufe0f  HOLMES: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\ud83d\udde3\ufe0f  SAGE: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\ud83d\udde3\ufe0f  SOCRATES: Honestly? HOLMES. The timing of their accusations is too convenient. HOLMES.",
+    "\ud83d\udde3\ufe0f  RICO: I've been watching SAGE dodge every direct question. I say we eliminate SAGE.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SOCRATES \u2192 HOLMES: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udd0d SAGE \u2192 RICO: I trust my gut and my gut says HOLMES. Let's vote out HOLMES.",
+    "\ud83d\udd0d HOLMES \u2192 DR. VANCE: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udd0d DR. VANCE \u2192 RICO: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d PIP \u2192 SOCRATES: Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES.",
+    "\ud83d\udd0d RICO \u2192 SOCRATES: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udcac RICO: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udcac RICO: Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES.",
+    "\ud83d\udcac HOLMES: DR. VANCE flipped their story twice today. That's mafia behavior. Vote DR. VANCE.",
+    "\ud83d\udcac SOCRATES: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac DR. VANCE: HOLMES flipped their story twice today. That's mafia behavior. Vote HOLMES.",
+    "\ud83d\udcac SOCRATES: Honestly? RICO. The timing of their accusations is too convenient. RICO.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d DR. VANCE \u2192 HOLMES: I trust my gut and my gut says HOLMES. Let's vote out HOLMES.",
+    "\ud83d\udd0d SAGE \u2192 DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d PIP \u2192 SAGE: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\ud83d\udd0d HOLMES \u2192 SOCRATES: Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE.",
+    "\ud83d\udd0d SOCRATES \u2192 SAGE: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\ud83d\udd0d RICO \u2192 SOCRATES: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\ud83d\udcac SOCRATES: I've been watching HOLMES dodge every direct question. I say we eliminate HOLMES.",
+    "\ud83d\udcac DR. VANCE: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\ud83d\udcac HOLMES: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\ud83d\udcac SAGE: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udcac SAGE: Something about DR. VANCE feels off \u2014 too calm when the pressure's on. My vote is DR. VANCE.",
+    "\ud83d\udcac SOCRATES: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  DR. VANCE: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\u2694\ufe0f  HOLMES: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\u2694\ufe0f  PIP: I've been watching DR. VANCE dodge every direct question. I say we eliminate DR. VANCE.",
+    "\u2694\ufe0f  SOCRATES: I trust my gut and my gut says SAGE. Let's vote out SAGE.",
+    "\u2694\ufe0f  RICO: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\u2694\ufe0f  SAGE: Something about HOLMES feels off \u2014 too calm when the pressure's on. My vote is HOLMES.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "RICO votes: HOLMES",
+    "HOLMES votes: DR. VANCE",
+    "SOCRATES votes: HOLMES",
+    "SAGE votes: SOCRATES",
+    "DR. VANCE votes: PIP",
+    "PIP votes: RICO",
+    "\n\ud83d\udc80 HOLMES has been eliminated! They were: Mafia",
+    "\n\n\ud83c\udf19 NIGHT 2",
+    "\n\u2728 The doctor's protection saved RICO!",
+    "\n\n\u2600\ufe0f  DAY 3 - TOWN MEETING",
+    "Alive players: RICO, SAGE, SOCRATES, DR. VANCE, PIP",
+    "\n\ud83d\udcac Opening Statements",
+    "\ud83d\udde3\ufe0f  RICO: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udde3\ufe0f  PIP: I've been watching RICO dodge every direct question. I say we eliminate RICO.",
+    "\ud83d\udde3\ufe0f  DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udde3\ufe0f  SOCRATES: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\ud83d\udde3\ufe0f  SAGE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SAGE \u2192 RICO: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udd0d PIP \u2192 DR. VANCE: SAGE flipped their story twice today. That's mafia behavior. Vote SAGE.",
+    "\ud83d\udd0d SOCRATES \u2192 SAGE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d DR. VANCE \u2192 RICO: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udd0d RICO \u2192 DR. VANCE: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac SAGE: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udcac DR. VANCE: SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES.",
+    "\ud83d\udcac RICO: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udcac RICO: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\ud83d\udcac DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d RICO \u2192 SOCRATES: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\ud83d\udd0d SAGE \u2192 RICO: Honestly? SOCRATES. The timing of their accusations is too convenient. SOCRATES.",
+    "\ud83d\udd0d SOCRATES \u2192 DR. VANCE: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udd0d DR. VANCE \u2192 SOCRATES: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\ud83d\udd0d PIP \u2192 RICO: I trust my gut and my gut says DR. VANCE. Let's vote out DR. VANCE.",
+    "\ud83d\udcac RICO: PIP has been awfully quiet, and quiet people are hiding something. PIP.",
+    "\ud83d\udcac DR. VANCE: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udcac SOCRATES: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\ud83d\udcac SOCRATES: RICO has been awfully quiet, and quiet people are hiding something. RICO.",
+    "\ud83d\udcac RICO: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  SOCRATES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\u2694\ufe0f  SAGE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\u2694\ufe0f  DR. VANCE: I trust my gut and my gut says RICO. Let's vote out RICO.",
+    "\u2694\ufe0f  RICO: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\u2694\ufe0f  PIP: Something about RICO feels off \u2014 too calm when the pressure's on. My vote is RICO.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "DR. VANCE votes: RICO",
+    "SAGE votes: DR. VANCE",
+    "RICO votes: SOCRATES",
+    "SOCRATES votes: RICO",
+    "PIP votes: SAGE",
+    "\n\ud83d\udc80 RICO has been eliminated! They were: Villager",
+    "\n\n\ud83c\udf19 NIGHT 3",
+    "\n\ud83d\udc80 DR. VANCE was killed during the night! They were: Villager",
+    "\n\n\u2600\ufe0f  DAY 4 - TOWN MEETING",
+    "Alive players: SAGE, SOCRATES, PIP",
+    "\n\ud83d\udcac Opening Statements",
+    "\ud83d\udde3\ufe0f  SAGE: I trust my gut and my gut says PIP. Let's vote out PIP.",
+    "\ud83d\udde3\ufe0f  SOCRATES: Honestly? PIP. The timing of their accusations is too convenient. PIP.",
+    "\ud83d\udde3\ufe0f  PIP: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\n\u2753 Questioning Round 1/2",
+    "\ud83d\udd0d SAGE \u2192 PIP: SOCRATES has been awfully quiet, and quiet people are hiding something. SOCRATES.",
+    "\ud83d\udd0d PIP \u2192 SAGE: I've been watching SAGE dodge every direct question. I say we eliminate SAGE.",
+    "\ud83d\udd0d SOCRATES \u2192 PIP: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udcac PIP: SOCRATES flipped their story twice today. That's mafia behavior. Vote SOCRATES.",
+    "\ud83d\udcac PIP: Something about SAGE feels off \u2014 too calm when the pressure's on. My vote is SAGE.",
+    "\ud83d\udcac SAGE: I trust my gut and my gut says SOCRATES. Let's vote out SOCRATES.",
+    "\n\u2753 Questioning Round 2/2",
+    "\ud83d\udd0d PIP \u2192 SAGE: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udd0d SAGE \u2192 SOCRATES: PIP flipped their story twice today. That's mafia behavior. Vote PIP.",
+    "\ud83d\udd0d SOCRATES \u2192 PIP: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\ud83d\udcac SAGE: I've been watching SOCRATES dodge every direct question. I say we eliminate SOCRATES.",
+    "\ud83d\udcac SOCRATES: Honestly? SAGE. The timing of their accusations is too convenient. SAGE.",
+    "\ud83d\udcac PIP: SAGE has been awfully quiet, and quiet people are hiding something. SAGE.",
+    "\n\u2696\ufe0f  Final Accusations",
+    "\u2694\ufe0f  SAGE: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\u2694\ufe0f  SOCRATES: Something about PIP feels off \u2014 too calm when the pressure's on. My vote is PIP.",
+    "\u2694\ufe0f  PIP: Something about SOCRATES feels off \u2014 too calm when the pressure's on. My vote is SOCRATES.",
+    "\n\ud83d\uddf3\ufe0f  VOTING PHASE",
+    "SAGE votes: SOCRATES",
+    "PIP votes: SAGE",
+    "SOCRATES votes: SAGE",
+    "\n\ud83d\udc80 SAGE has been eliminated! They were: Doctor",
+    "\n\n\ud83c\udfc1 GAME OVER",
+    "\ud83d\ude08 MAFIA WINS! They control the town!",
+    "\n\ud83d\udccb FINAL ROLES:",
+    "  \ud83d\udc80 RICO: Villager",
+    "  \ud83d\udc80 ARIA: Detective",
+    "  \ud83d\udc80 SAGE: Doctor",
+    "  \ud83d\udc80 HOLMES: Mafia",
+    "  \ud83d\udc80 MARSHAL: Villager",
+    "  \u2705 SOCRATES: Villager",
+    "  \ud83d\udc80 DR. VANCE: Villager",
+    "  \u2705 PIP: Mafia",
+    "\n\ud83d\udcca GAME STATS:",
+    "  Days played: 4",
+    "  Night kills: 2  |  Doctor saves: 1",
+    "  Detective (ARIA): investigated ['SAGE'], found mafia: []",
+    "  Vote accuracy:",
+    "    RICO (Villager): 1/3 mafia votes correct",
+    "    ARIA (Detective): 0/1 mafia votes correct",
+    "    SAGE (Doctor): 1/4 mafia votes correct",
+    "    HOLMES (Mafia): 1/2 mafia votes correct",
+    "    MARSHAL (Villager): 1/1 mafia votes correct",
+    "    SOCRATES (Villager): 1/4 mafia votes correct",
+    "    DR. VANCE (Villager): 1/3 mafia votes correct",
+    "    PIP (Mafia): 0/4 mafia votes correct"
+  ],
+  "day": 4,
+  "stats": {
+    "days": 4,
+    "players": {
+      "RICO": {
+        "role": "Villager",
+        "survived": false,
+        "vote_accuracy": "1/3",
+        "votes": [
+          {
+            "day": 1,
+            "target": "MARSHAL",
+            "correct": false
+          },
+          {
+            "day": 2,
+            "target": "HOLMES",
+            "correct": true
+          },
+          {
+            "day": 3,
+            "target": "SOCRATES",
+            "correct": false
+          }
+        ]
+      },
+      "ARIA": {
+        "role": "Detective",
+        "survived": false,
+        "vote_accuracy": "0/1",
+        "votes": [
+          {
+            "day": 1,
+            "target": "MARSHAL",
+            "correct": false
+          }
+        ]
+      },
+      "SAGE": {
+        "role": "Doctor",
+        "survived": false,
+        "vote_accuracy": "1/4",
+        "votes": [
+          {
+            "day": 1,
+            "target": "HOLMES",
+            "correct": true
+          },
+          {
+            "day": 2,
+            "target": "SOCRATES",
+            "correct": false
+          },
+          {
+            "day": 3,
+            "target": "DR. VANCE",
+            "correct": false
+          },
+          {
+            "day": 4,
+            "target": "SOCRATES",
+            "correct": false
+          }
+        ]
+      },
+      "HOLMES": {
+        "role": "Mafia",
+        "survived": false,
+        "vote_accuracy": "1/2",
+        "votes": [
+          {
+            "day": 1,
+            "target": "PIP",
+            "correct": true
+          },
+          {
+            "day": 2,
+            "target": "DR. VANCE",
+            "correct": false
+          }
+        ]
+      },
+      "MARSHAL": {
+        "role": "Villager",
+        "survived": false,
+        "vote_accuracy": "1/1",
+        "votes": [
+          {
+            "day": 1,
+            "target": "PIP",
+            "correct": true
+          }
+        ]
+      },
+      "SOCRATES": {
+        "role": "Villager",
+        "survived": true,
+        "vote_accuracy": "1/4",
+        "votes": [
+          {
+            "day": 1,
+            "target": "MARSHAL",
+            "correct": false
+          },
+          {
+            "day": 2,
+            "target": "HOLMES",
+            "correct": true
+          },
+          {
+            "day": 3,
+            "target": "RICO",
+            "correct": false
+          },
+          {
+            "day": 4,
+            "target": "SAGE",
+            "correct": false
+          }
+        ]
+      },
+      "DR. VANCE": {
+        "role": "Villager",
+        "survived": false,
+        "vote_accuracy": "1/3",
+        "votes": [
+          {
+            "day": 1,
+            "target": "MARSHAL",
+            "correct": false
+          },
+          {
+            "day": 2,
+            "target": "PIP",
+            "correct": true
+          },
+          {
+            "day": 3,
+            "target": "RICO",
+            "correct": false
+          }
+        ]
+      },
+      "PIP": {
+        "role": "Mafia",
+        "survived": true,
+        "vote_accuracy": "0/4",
+        "votes": [
+          {
+            "day": 1,
+            "target": "MARSHAL",
+            "correct": false
+          },
+          {
+            "day": 2,
+            "target": "RICO",
+            "correct": false
+          },
+          {
+            "day": 3,
+            "target": "SAGE",
+            "correct": false
+          },
+          {
+            "day": 4,
+            "target": "SAGE",
+            "correct": false
+          }
+        ]
+      }
+    },
+    "detective": {
+      "name": "ARIA",
+      "survived": false,
+      "investigated": [
+        "SAGE"
+      ],
+      "mafia_found": []
+    },
+    "night_kills": 2,
+    "successful_saves": 1
+  }
+}
