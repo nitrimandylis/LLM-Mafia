@@ -10,6 +10,7 @@ from typing import Dict, List, Optional, Tuple
 
 from openai import OpenAI
 
+from mafia.events import EventLog, seat_color
 from mafia.game_master import GameMaster
 from mafia.game_state import build_day_summary
 from mafia.player import Player, Role, load_players_from_file
@@ -61,6 +62,7 @@ class MafiaGame:
         self.day = 0
         self.game_log = []
         self.public_log = []
+        self.events = EventLog()
         self.night_actions = {}
         self.private_notes: Dict[str, List[str]] = {}
         self.vote_history: List[Dict] = []
@@ -146,6 +148,7 @@ class MafiaGame:
         """Run day discussion phase with direct player interaction"""
         self.day += 1
         self.log(f"\n\n☀️  DAY {self.day} - TOWN MEETING", "bold")
+        self.emit("phase", day=self.day, phase="day")
 
         alive = self.get_alive_players()
         alive_names = [p.name for p in alive]
@@ -190,6 +193,7 @@ class MafiaGame:
                     player = futures[future]
                     response = future.result()
                     self.log(f"🗣️  {player.name}: {response}", "normal")
+                    self.emit("statement", day=self.day, actor=player.name, text=response)
                     self.add_private_note(player, f"Day {self.day} opening: {response}")
                     day_statements.append(f"{player.name}: {response}")
         else:
@@ -233,6 +237,7 @@ class MafiaGame:
                     player = futures[future]
                     response = future.result()
                     self.log(f"🗣️  {player.name}: {response}", "normal")
+                    self.emit("statement", day=self.day, actor=player.name, text=response)
                     self.add_private_note(player, f"Day {self.day} opening: {response}")
                     day_statements.append(f"{player.name}: {response}")
 
@@ -278,6 +283,7 @@ class MafiaGame:
                     question = future.result()
                     questions[player.name] = (target, question)
                     self.log(f"🔍 {player.name} → {target.name}: {question}", "yellow")
+                    self.emit("question", day=self.day, actor=player.name, target=target.name, text=question)
                     self.add_private_note(
                         player, f"Day {self.day}: Asked {target.name}: {question}"
                     )
@@ -297,6 +303,7 @@ class MafiaGame:
                     target, asker_name = futures[future]
                     response = future.result()
                     self.log(f"💬 {target.name}: {response}", "normal")
+                    self.emit("answer", day=self.day, actor=target.name, target=asker_name, text=response)
                     self.add_private_note(
                         target,
                         f"Day {self.day}: {asker_name} asked me, I said: {response}",
@@ -328,6 +335,8 @@ class MafiaGame:
                 player = futures[future]
                 response = future.result()
                 self.log(f"⚔️  {player.name}: {response}", "red")
+                accused = self.extract_vote(response, [n for n in alive_names if n != player.name])
+                self.emit("accusation", day=self.day, actor=player.name, target=accused, text=response)
                 day_statements.append(f"{player.name} accuses: {response}")
 
         # GM summarizes the day for injection into subsequent context
@@ -387,6 +396,8 @@ class MafiaGame:
                     votes[player.name] = vote
                     self.log(f"{player.name} votes: {vote} (default)", "yellow")
 
+                self.emit("vote", day=self.day, actor=player.name, target=vote)
+
         # Count votes
         vote_counts: Dict[str, int] = {}
         for target in votes.values():
@@ -409,6 +420,13 @@ class MafiaGame:
             "role": eliminated.role.value,
             "votes": dict(votes),
         })
+        self.emit(
+            "elimination",
+            day=self.day,
+            target=eliminated.name,
+            role=eliminated.role.value,
+            tally=dict(vote_counts),
+        )
 
         gm_elim = self.gm.narrate_elimination(eliminated.name, eliminated.role.value, vote_counts)
         if gm_elim:
@@ -424,6 +442,7 @@ class MafiaGame:
     def night_phase(self):
         """Run night phase with mafia kill, detective investigation, doctor protection"""
         self.log(f"\n\n🌙 NIGHT {self.day}", "bold")
+        self.emit("phase", day=self.day, phase="night")
 
         alive = self.get_alive_players()
         alive_names = [p.name for p in alive]
@@ -494,6 +513,8 @@ class MafiaGame:
             investigated = next(p for p in alive if p.name == detective_target)
             result = "MAFIA" if investigated.role == Role.MAFIA else "INNOCENT"
             note = f"Night {self.day}: Investigated {detective_target} - {result}"
+            self.emit("investigation", private=True, day=self.day,
+                      actor=detectives[0].name, target=detective_target, result=result)
             self.add_private_note(detectives[0], note)
             self.log(
                 f"🔍 {detectives[0].name} investigated {detective_target}: {result}",
@@ -518,6 +539,8 @@ class MafiaGame:
                 "role": victim.role.value,
                 "saved": False,
             })
+            self.emit("night_kill", day=self.day, target=victim.name,
+                      role=victim.role.value, saved=False)
             gm_kill = self.gm.narrate_night_kill(victim.name, saved=False)
             if gm_kill:
                 self.log(f"\n📜 {gm_kill}", "magenta")
@@ -530,6 +553,7 @@ class MafiaGame:
                 "role": next(p for p in self.players if p.name == mafia_target).role.value,
                 "saved": True,
             })
+            self.emit("save", day=self.day, target=mafia_target)
             gm_save = self.gm.narrate_night_kill(mafia_target, saved=True)
             if gm_save:
                 self.log(f"\n📜 {gm_save}", "magenta")
@@ -549,6 +573,21 @@ class MafiaGame:
 
         # Assign roles
         self.assign_roles()
+
+        # Structured event stream for the viewer. Roles only when spectating.
+        self.emit(
+            "game_start",
+            players=[
+                {
+                    "name": p.name,
+                    "seat": i,
+                    "color": seat_color(i),
+                    **({"role": p.role.value} if self.reveal_secrets else {}),
+                }
+                for i, p in enumerate(self.players)
+            ],
+            player_count=len(self.players),
+        )
 
         # Game loop
         max_days = 10
@@ -583,6 +622,7 @@ class MafiaGame:
         # Game over
         self.log("\n\n🏁 GAME OVER", "bold")
         survivors = [p.name for p in self.players if p.alive]
+        self.emit("game_over", winner=winner or "timeout", survivors=survivors)
         if winner in ("town", "mafia"):
             gm_end = self.gm.narrate_game_over(winner, survivors, self.day)
             if gm_end:
@@ -629,6 +669,12 @@ class MafiaGame:
         self.game_log.append(message)
         if public:
             self.public_log.append(message)
+
+    def emit(self, type: str, private: bool = False, **fields):
+        """Append a structured event. Private events are dropped unless reveal_secrets."""
+        if private and not self.reveal_secrets:
+            return
+        self.events.emit(type, **fields)
 
     def add_private_note(self, player: Player, note: str):
         self.private_notes.setdefault(player.name, []).append(note)
@@ -941,6 +987,8 @@ Here is the game history so far:
                     if response and "remains silent" not in response:
                         chat.append(f"{m.name}: {response}")
                         self.log(f"   {m.name}: {response}", "red", public=False)
+                        self.emit("mafia_chat", private=True, day=self.day,
+                                  actor=m.name, text=response)
                     else:
                         self.log(f"   {m.name}: [no response]", "red", public=False)
                 except Exception as e:

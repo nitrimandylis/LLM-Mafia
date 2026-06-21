@@ -99,6 +99,7 @@ if __name__ == "__main__":
         with open(args.output, "w") as f:
             json.dump(
                 {
+                    "events": game.events.to_list(),
                     "game_log": game.game_log,
                     "public_log": game.public_log,
                     "day": game.day,
