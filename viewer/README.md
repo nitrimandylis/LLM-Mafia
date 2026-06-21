@@ -18,8 +18,9 @@ On load it calls `/api/log`, which reads the engine's `../game_log.json` and
 falls back to the bundled `public/logs/sample.json` if no game has been played.
 The header shows the source (`● latest game` / `○ bundled sample`); **↻ Latest
 game** re-reads the file after a new run, **Load a log…** drops in any
-`game_log.json` by hand, and **Settings** sets the default style and playback
-speed (saved in your browser).
+`game_log.json` by hand, and **Settings** sets the chrome theme (Signature
+noir / Adaptive / Quiet), default style, and playback speed (saved in your
+browser).
 
 ## Generate a log to watch
 

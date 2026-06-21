@@ -1,18 +1,74 @@
 /* =====================================================================
-   CHROME — neutral dark frame. Each skin paints its own canvas inside,
-   so the shell stays quiet and consistent across all four designs.
+   CHROME — a themed frame around the skins. Three looks, chosen in
+   Settings and applied via [data-chrome] on <html> (set in page.tsx):
+     • signature — noir crime-board (the default; also the SSR fallback)
+     • adaptive  — borrows the active skin's accent ([data-skin])
+     • quiet     — restrained neutral
+   Rules below read the --shell and --brand tokens, so theming is mostly
+   a matter of overriding those tokens per theme.
    ===================================================================== */
+
+/* Base = Signature, so first paint (before JS sets data-chrome) matches
+   the default theme and there's no flash. */
 :root {
+  --shell-bg: #060607;
+  --shell-panel: #0c0c0e;
+  --shell-panel-2: #17171c;
+  --shell-line: #26262e;
+  --shell-ink: #ededf0;
+  --shell-muted: #8a8a94;
+  --brand: #e0392b;
+  --green: #69c66f;
+  --gold: #e0a000;
+
+  /* chrome-only knobs */
+  --chrome-accent-ink: #fff;
+  --chrome-label-font: var(--font-display), "Oswald", system-ui, sans-serif;
+  --chrome-label-tracking: .12em;
+  --chrome-label-transform: uppercase;
+  /* faint desaturated film grain; themes that want a clean frame null it out */
+  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Signature: explicit too, so switching back from another theme restores it. */
+:root[data-chrome="signature"] {
+  --shell-bg: #060607;
+  --shell-panel: #0c0c0e;
+  --shell-panel-2: #17171c;
+  --shell-line: #26262e;
+  --shell-ink: #ededf0;
+  --shell-muted: #8a8a94;
+  --brand: #e0392b;
+  --chrome-label-font: var(--font-display), "Oswald", system-ui, sans-serif;
+  --chrome-label-tracking: .12em;
+  --chrome-label-transform: uppercase;
+  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Quiet & Adaptive: clean neutral frame, system labels, no grain. */
+:root[data-chrome="quiet"],
+:root[data-chrome="adaptive"] {
   --shell-bg: #0a0b0d;
   --shell-panel: #101216;
   --shell-panel-2: #171b22;
   --shell-line: #232831;
   --shell-ink: #e7e9ee;
   --shell-muted: #7a818d;
-  --brand: #d8392b;
-  --green: #69c66f;
-  --gold: #e0a000;
+  --chrome-label-font: inherit;
+  --chrome-label-tracking: .04em;
+  --chrome-label-transform: none;
+  --chrome-grain: none;
 }
+
+/* Quiet keeps a restrained accent rather than the loud red. */
+:root[data-chrome="quiet"] { --brand: #5e7ca6; }
+
+/* Adaptive borrows each design's accent (matches lib/settings SKINS swatches). */
+:root[data-chrome="adaptive"] { --brand: #5b8cff; } /* fallback before data-skin set */
+:root[data-chrome="adaptive"][data-skin="chat"]       { --brand: #5b8cff; }
+:root[data-chrome="adaptive"][data-skin="casefile"]   { --brand: #c0392c; }
+:root[data-chrome="adaptive"][data-skin="transcript"] { --brand: #8e2b2b; }
+:root[data-chrome="adaptive"][data-skin="signal"]     { --brand: #0e9aa6; }
 
 * { box-sizing: border-box; }
 
@@ -33,18 +89,24 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 18px; height: 48px;
   border-bottom: 1px solid var(--shell-line);
-  background: var(--shell-panel); position: sticky; top: 0; z-index: 20;
+  background-color: var(--shell-panel); background-image: var(--chrome-grain);
+  position: sticky; top: 0; z-index: 20;
 }
 .brand {
-  display: inline-flex; align-items: baseline; gap: 8px;
-  font-weight: 800; letter-spacing: .04em; font-size: 14px; text-decoration: none;
+  display: inline-flex; align-items: baseline; gap: 9px;
+  text-decoration: none;
 }
+/* Wordmark is the display face in every theme — the one constant brand mark. */
 .brand .mark {
-  font-size: 11px; font-weight: 900; letter-spacing: .22em;
+  font-family: var(--font-display), "Oswald", system-ui, sans-serif;
+  font-size: 19px; font-weight: 400; letter-spacing: .14em; line-height: 1;
   color: var(--brand); border: 1.5px solid var(--brand);
-  padding: 2px 6px; border-radius: 3px;
+  padding: 3px 8px 1px; border-radius: 3px;
 }
-.brand .rest { color: var(--shell-muted); font-weight: 600; letter-spacing: .18em; font-size: 11px; }
+.brand .rest {
+  font-family: var(--font-display), "Oswald", system-ui, sans-serif;
+  color: var(--shell-muted); font-size: 15px; letter-spacing: .22em; line-height: 1;
+}
 .topbar nav { display: flex; gap: 4px; }
 .topbar nav a {
   font-size: 12px; color: var(--shell-muted); text-decoration: none;
@@ -66,7 +128,7 @@ a { color: inherit; }
 .menu {
   display: flex; align-items: center; gap: 14px;
   padding: 9px 16px; border-bottom: 1px solid var(--shell-line);
-  background: var(--shell-panel);
+  background-color: var(--shell-panel); background-image: var(--chrome-grain);
 }
 .skin-seg { display: flex; gap: 4px; background: var(--shell-bg); padding: 4px; border-radius: 10px; border: 1px solid var(--shell-line); }
 .skin-opt {
@@ -80,8 +142,11 @@ a { color: inherit; }
 .skin-swatch { display: flex; border-radius: 4px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.08); }
 .skin-swatch i { width: 7px; height: 18px; display: block; }
 .skin-meta { line-height: 1.1; }
-.skin-meta .nm { font-size: 12.5px; font-weight: 700; }
-.skin-meta .tg { font-size: 10px; letter-spacing: .04em; opacity: .7; }
+.skin-meta .nm {
+  font-family: var(--chrome-label-font); font-size: 13px; font-weight: 700;
+  letter-spacing: var(--chrome-label-tracking); text-transform: var(--chrome-label-transform);
+}
+.skin-meta .tg { font-size: 10px; letter-spacing: .06em; opacity: .7; }
 .menu-spacer { flex: 1; }
 .source-badge {
   font-size: 11px; color: var(--shell-muted); display: inline-flex; align-items: center; gap: 6px;
@@ -99,7 +164,8 @@ a { color: inherit; }
 /* ---- transport controls ---- */
 .controls {
   display: flex; align-items: center; gap: 14px;
-  padding: 10px 18px; border-top: 1px solid var(--shell-line); background: var(--shell-panel);
+  padding: 10px 18px; border-top: 1px solid var(--shell-line);
+  background-color: var(--shell-panel); background-image: var(--chrome-grain);
 }
 .controls button {
   background: var(--shell-panel-2); color: var(--shell-ink); border: 1px solid var(--shell-line);
@@ -117,6 +183,17 @@ a { color: inherit; }
 .notice { max-width: 560px; margin: 80px auto; text-align: center; color: var(--shell-muted); padding: 0 20px; }
 .notice h2 { color: var(--shell-ink); }
 .notice code { background: var(--shell-panel-2); padding: 2px 6px; border-radius: 4px; color: var(--gold); }
+
+/* ---- accessibility: visible focus + honour reduced motion ---- */
+.topbar a:focus-visible,
+.menu button:focus-visible,
+.controls button:focus-visible,
+.controls input:focus-visible {
+  outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
 
 @media (max-width: 720px) {
   .menu { flex-wrap: wrap; }

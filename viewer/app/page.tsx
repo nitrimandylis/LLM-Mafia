@@ -34,6 +34,20 @@ export default function Viewer() {
     setSkin(settings.skin);
   }, [settings.skin]);
 
+  // Drive chrome theming from the root element: data-chrome picks the theme,
+  // data-skin lets the Adaptive theme borrow the active design's accent. The
+  // top bar lives in layout.tsx (outside this page), so the root is the one
+  // node both can see — no context needed.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.chrome = settings.chromeTheme;
+    root.dataset.skin = skin;
+    return () => {
+      delete root.dataset.chrome;
+      delete root.dataset.skin;
+    };
+  }, [settings.chromeTheme, skin]);
+
   // Load whatever the engine last wrote (../game_log.json), else the sample.
   useEffect(() => {
     loadFromServer();
