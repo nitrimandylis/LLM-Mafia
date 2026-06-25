@@ -18,12 +18,17 @@ export function useStageScroll<T extends HTMLElement>(active: boolean, dep: numb
   const ref = useRef<T>(null);
   const saved = useRef(0);
   const wasActive = useRef(false);
+  // Whether to follow new content to the bottom. Flipped off when the user
+  // scrolls up, back on when they return to the bottom — so manual scrolling
+  // isn't yanked back on every new event.
+  const stick = useRef(true);
 
-  // Follow live content to the bottom — only for the view that's on screen.
+  // Follow live content to the bottom — only for the view that's on screen,
+  // and only while the user is parked at the bottom.
   useEffect(() => {
     if (!active) return;
     const el = ref.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (el && stick.current) el.scrollTop = el.scrollHeight;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dep]);
 
@@ -39,7 +44,10 @@ export function useStageScroll<T extends HTMLElement>(active: boolean, dep: numb
   }, [active]);
 
   const onScroll = (e: React.UIEvent<T>) => {
-    saved.current = e.currentTarget.scrollTop;
+    const el = e.currentTarget;
+    saved.current = el.scrollTop;
+    // Re-arm follow once the user is within ~40px of the bottom.
+    stick.current = el.scrollHeight - el.scrollTop - el.clientHeight < 40;
   };
 
   return { ref, onScroll };

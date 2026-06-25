@@ -1,8 +1,23 @@
 import json
+import threading
 import time
 from typing import Dict, List, Optional
 
 from openai import OpenAI
+
+# ponytail: one global min-spacing for all NVIDIA calls (players + GM share the
+# free-tier rate limit). ~1.5s ≈ 40 req/min; raise if you still see 429s.
+NVIDIA_MIN_INTERVAL = 1.5
+_nvidia_throttle = threading.Lock()
+_nvidia_last_call = [0.0]
+
+
+def nvidia_pace():
+    with _nvidia_throttle:
+        wait = NVIDIA_MIN_INTERVAL - (time.time() - _nvidia_last_call[0])
+        if wait > 0:
+            time.sleep(wait)
+        _nvidia_last_call[0] = time.time()
 
 _SYSTEM_PROMPT = """You are the Game Master of a Mafia party game. You narrate key moments with dramatic flair — eliminations, night kills, day openings, and the final outcome. You are impartial and theatrical. Keep every narration to 2-3 sentences. Never reveal hidden roles."""
 
@@ -45,6 +60,8 @@ class GameMaster:
 
         for attempt in range(3):
             try:
+                if self._use_nvidia:
+                    nvidia_pace()
                 response = self._client.chat.completions.create(**kwargs)
                 msg = response.choices[0].message
                 content = (msg.content or "").strip()

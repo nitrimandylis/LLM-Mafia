@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Tuple
 from openai import OpenAI
 
 from mafia.events import EventLog, seat_color
-from mafia.game_master import GameMaster
+from mafia.game_master import GameMaster, nvidia_pace
 from mafia.game_state import build_day_summary
 from mafia.player import Player, Role, load_players_from_file
 
@@ -683,7 +683,7 @@ class MafiaGame:
         parts = []
 
         if self.day_summaries:
-            recent = sorted(self.day_summaries.items())[-2:]
+            recent = sorted(self.day_summaries.items())  # all days; ~4 sentences each stays small enough
             summary_block = "\n".join(f"Day {d} summary: {s}" for d, s in recent)
             parts.append(
                 "=== RECENT DAY SUMMARIES ===\n" + summary_block + "\n=== END SUMMARIES ==="
@@ -867,6 +867,8 @@ Here is the game history so far:
 
         for attempt in range(5):
             try:
+                if self.use_nvidia:
+                    nvidia_pace()
                 response = self._lm_client.chat.completions.create(**kwargs)
                 msg = response.choices[0].message
                 content = (msg.content or "").strip()
@@ -880,8 +882,8 @@ Here is the game history so far:
                 return raw
             except Exception as e:
                 if "429" in str(e) and attempt < 4:
-                    wait = 2 ** attempt * 5  # 5, 10, 20, 40s
-                    self.log(f"  [429 rate limit — retrying in {wait}s]", "yellow", public=False)
+                    wait = 2 ** attempt * 5 + random.uniform(0, 5)  # jitter desyncs workers
+                    self.log(f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False)
                     time.sleep(wait)
                 else:
                     raise

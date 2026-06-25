@@ -1,164 +1,274 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
+import "./landing.css";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { GameEvent, GameLog } from "@/lib/events";
-import { useReplay } from "@/lib/useReplay";
-import { loadSettings, DEFAULTS, SKINS as SKIN_META, type SkinId } from "@/lib/settings";
-import Controls from "@/components/Controls";
-import ChatSkin from "@/components/skins/ChatSkin";
-import CaseFileSkin from "@/components/skins/CaseFileSkin";
-import TranscriptSkin from "@/components/skins/TranscriptSkin";
-import SignalSkin from "@/components/skins/SignalSkin";
-
-const SKIN_COMPONENTS = {
-  chat: ChatSkin,
-  casefile: CaseFileSkin,
-  transcript: TranscriptSkin,
-  signal: SignalSkin,
+export const metadata: Metadata = {
+  title: "LLM Mafia — every player is a language model",
+  description:
+    "Watch AI players lie, accuse, and vote each other out — replayed as a group chat, a detective's case file, a court transcript, or a live suspicion graph.",
 };
 
-export default function Viewer() {
-  // `mounted` gates localStorage reads so SSR and first client render match
-  // (both use DEFAULTS), avoiding a hydration mismatch.
-  const [mounted, setMounted] = useState(false);
-  const settings = useMemo(() => (mounted ? loadSettings() : DEFAULTS), [mounted]);
-  const [events, setEvents] = useState<GameEvent[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [source, setSource] = useState<"game" | "sample" | "upload" | null>(null);
-  const [skin, setSkin] = useState<SkinId>(DEFAULTS.skin);
-  const fileInput = useRef<HTMLInputElement>(null);
+const GITHUB = "https://github.com/nitrimandylis/LLM-Mafia";
 
-  useEffect(() => setMounted(true), []);
+// Real skins, pulled from viewer/lib/settings.ts (kept in sync with the app).
+const SKINS = [
+  {
+    name: "Group Chat",
+    blurb:
+      "A messaging thread: grouped bubbles, day/night theming, votes folded into a ballot strip, mafia in a locked side-channel.",
+  },
+  {
+    name: "Case File",
+    blurb:
+      "You're the detective. Typed testimony on manila paper, suspect ID cards, and intercepted mafia comms stamped DECLASSIFIED.",
+  },
+  {
+    name: "Transcript",
+    blurb:
+      "A line-numbered court deposition. Votes become a typeset ballot exhibit; the eliminated are stricken from the record.",
+  },
+  {
+    name: "Signal",
+    blurb:
+      "An instrument panel. A live suspicion graph wires up every accusation and vote, then ignites the mafia at the reveal.",
+  },
+];
 
-  useEffect(() => {
-    setSkin(settings.skin);
-  }, [settings.skin]);
-
-  // Load whatever the engine last wrote (../game_log.json), else the sample.
-  useEffect(() => {
-    loadFromServer();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function loadFromServer() {
-    fetch("/api/log", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data: { source: "game" | "sample"; log: GameLog }) => {
-        setSource(data.source);
-        applyLog(data.log);
-      })
-      .catch(() =>
-        setError("No game log found. Run a game (python main.py) or generate the sample.")
-      );
-  }
-
-  function applyLog(log: GameLog) {
-    if (!Array.isArray(log.events) || log.events.length === 0) {
-      setError(
-        "This log has no structured events. Re-run the game with the updated version to generate an events[] stream."
-      );
-      setEvents(null);
-      return;
-    }
-    setError(null);
-    setEvents(log.events);
-  }
-
-  function onUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    file
-      .text()
-      .then((t) => {
-        setSource("upload");
-        applyLog(JSON.parse(t));
-      })
-      .catch(() => setError("That file isn't a valid game log JSON."));
-  }
-
-  const state = useReplay(events ?? [], settings.speed);
-
+export default function Landing() {
   return (
-    <div className="stage-wrap">
-      <div className="menu">
-        <div className="skin-seg" role="tablist" aria-label="Presentation style">
-          {SKIN_META.map((m) => (
-            <button
-              key={m.id}
-              role="tab"
-              aria-selected={skin === m.id}
-              className={`skin-opt${skin === m.id ? " on" : ""}`}
-              onClick={() => setSkin(m.id)}
-              title={m.blurb}
-            >
-              <span className="skin-swatch" aria-hidden>
-                {m.swatch.map((c, j) => (
-                  <i key={j} style={{ background: c }} />
-                ))}
-              </span>
-              <span className="skin-meta">
-                <span className="nm">{m.name}</span>
-                <span className="tg">{m.tag}</span>
-              </span>
-            </button>
-          ))}
-        </div>
+    <div className="lp">
+      {/* ── HERO ── */}
+      <section className="lp-hero">
+        <div className="lp-grid" />
+        <div className="lp-glow" />
 
-        <span className="menu-spacer" />
+        <div className="lp-col">
+          <div className="lp-logo">
+            <span className="l1">LLM</span>
+            <br />
+            <span className="l2">MAFIA</span>
+          </div>
 
-        {source && (
-          <span
-            className={`source-badge${source === "game" ? " live" : ""}`}
-            title="Where this replay came from"
-          >
-            <span className="dot" />
-            {source === "game" ? "latest game" : source === "sample" ? "bundled sample" : "uploaded file"}
-          </span>
-        )}
-        <button className="menu-btn" onClick={loadFromServer} title="Reload ../game_log.json from the engine">
-          ↻ Latest game
-        </button>
-        <button className="menu-btn" onClick={() => fileInput.current?.click()}>
-          Load a log…
-        </button>
-        <input
-          ref={fileInput}
-          type="file"
-          accept="application/json,.json"
-          onChange={onUpload}
-          style={{ display: "none" }}
-        />
-      </div>
+          <div className="lp-tagline">NO HUMANS. PURE MODEL-VS-MODEL DECEPTION.</div>
 
-      {error ? (
-        <div className="notice">
-          <h2>No replay to show</h2>
-          <p>{error}</p>
-          <p>
-            Generate one with <code>python test_events.py --write</code> or load a{" "}
-            <code>game_log.json</code> above.
+          <p className="lp-desc">
+            Watch AI players lie, accuse, and vote each other out — replayed as a tense
+            group chat, a detective&apos;s case file, a court transcript, or a live
+            suspicion graph.
           </p>
+
+          <div className="lp-cta">
+            <Link href="/watch" className="lp-btn lp-btn-primary">
+              ▸ WATCH A REPLAY
+            </Link>
+            <a href={GITHUB} target="_blank" rel="noreferrer" className="lp-btn lp-btn-ghost">
+              VIEW ON GITHUB
+            </a>
+          </div>
         </div>
-      ) : !events ? (
-        <div className="notice">
-          <p>Loading…</p>
-        </div>
-      ) : (
-        <>
-          {/* All four stay mounted so each keeps its own scroll position; only
-              the selected design is shown. */}
-          {SKIN_META.map((m) => {
-            const Skin = SKIN_COMPONENTS[m.id];
-            const isActive = skin === m.id;
-            return (
-              <div key={m.id} className="skin-pane" style={{ display: isActive ? "flex" : "none" }}>
-                <Skin state={state} active={isActive} />
+
+        {/* terminal preview */}
+        <div className="lp-term-wrap">
+          <div className="lp-term">
+            <div className="lp-term-bar">
+              <div className="lp-dot on" />
+              <div className="lp-dot" />
+              <div className="lp-dot" />
+              <span className="file">game_log.json — viewer</span>
+            </div>
+            <div className="lp-term-body">
+              <div className="cmt">// replay — day 2 town meeting</div>
+              <div>
+                <span className="lp-n-red">HOLMES</span>
+                <span className="meta"> › </span>
+                <span className="said">ARIA&apos;s defense of RICO felt too rehearsed.</span>
               </div>
-            );
-          })}
-          <Controls state={state} />
-        </>
-      )}
+              <div>
+                <span className="lp-n-blue">SOCRATES</span>
+                <span className="meta"> → PIP › </span>
+                <span className="said">Why did you change your vote?</span>
+              </div>
+              <div>
+                <span className="lp-n-amber">MARSHAL</span>
+                <span className="meta"> › </span>
+                <span className="said">Voting ARIA. The pattern doesn&apos;t add up.</span>
+              </div>
+              <div>
+                <span className="lp-n-red">SAGE</span>
+                <span className="meta"> › </span>
+                <span className="said">I agree with HOLMES — something is off.</span>
+              </div>
+              <div style={{ marginTop: 4 }}>
+                <span className="meta">❯</span>
+                <span className="lp-cursor"> █</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lp-float lp-float-roles">
+            <span className="lp-n-red">● MAFIA</span>
+            <span className="lp-n-blue">● DETECTIVE</span>
+            <span style={{ color: "#6be88a" }}>● DOCTOR</span>
+            <span style={{ color: "#888" }}>● VILLAGER</span>
+          </div>
+
+          <div className="lp-float lp-float-votes">
+            <span style={{ color: "#555" }}>VOTES</span>
+            <span style={{ color: "var(--accent)", fontWeight: 700 }}>ARIA ████░ 4</span>
+            <span style={{ color: "#666" }}>PIP ██░░░ 2</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SKINS ── */}
+      <section className="lp-section">
+        <div className="lp-label">
+          <div className="lp-label-dot" />
+          <span>// Four ways to watch</span>
+        </div>
+
+        <div className="lp-skins">
+          <SkinCard skin={SKINS[0]}>
+            <div className="lp-card-preview pv-chat">
+              <div><span className="who-red">HOLMES:</span> <span className="msg">I suspect ARIA.</span></div>
+              <div><span className="who-blue">PIP:</span> <span className="msg">That&apos;s baseless.</span></div>
+              <div><span className="who-amber">MARSHAL:</span> <span className="msg">I&apos;m with HOLMES.</span></div>
+              <div><span className="who-red">SAGE:</span> <span className="msg">Let&apos;s not rush.</span></div>
+            </div>
+          </SkinCard>
+
+          <SkinCard skin={SKINS[1]}>
+            <div className="lp-card-preview pv-case">
+              <div className="stamp">DECLASSIFIED</div>
+              <div className="line">SUSPECT: <b>ARIA</b></div>
+              <div className="line">Testimony inconsistent across Day 1–2.</div>
+              <div className="line">Detective check: <b>pending</b></div>
+            </div>
+          </SkinCard>
+
+          <SkinCard skin={SKINS[2]}>
+            <div className="lp-card-preview pv-tx">
+              <div className="row"><span className="ln">041</span><span><span className="q">Q.</span> Where were you on night one?</span></div>
+              <div className="row"><span className="ln">042</span><span>A. Asleep. I have no role to hide.</span></div>
+              <div className="row"><span className="ln">043</span><span className="strike">PIP voted out — struck.</span></div>
+              <div className="row"><span className="ln">044</span><span>BALLOT EXHIBIT C — ARIA: 4</span></div>
+            </div>
+          </SkinCard>
+
+          <SkinCard skin={SKINS[3]}>
+            <div className="lp-card-preview pv-sig">
+              <svg viewBox="0 0 260 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <g stroke="#0e7c86" strokeWidth="1.2" opacity="0.55">
+                  <line x1="60" y1="40" x2="150" y2="70" />
+                  <line x1="200" y1="35" x2="150" y2="70" />
+                  <line x1="70" y1="115" x2="150" y2="70" />
+                  <line x1="205" y1="110" x2="150" y2="70" />
+                  <line x1="60" y1="40" x2="70" y2="115" />
+                </g>
+                <g fill="#0e7c86">
+                  <circle cx="60" cy="40" r="5" />
+                  <circle cx="200" cy="35" r="5" />
+                  <circle cx="70" cy="115" r="5" />
+                  <circle cx="205" cy="110" r="5" />
+                </g>
+                <circle cx="150" cy="70" r="8" fill="#c41e1e" />
+              </svg>
+              <div className="label">Suspicion graph · live</div>
+            </div>
+          </SkinCard>
+        </div>
+      </section>
+
+      {/* ── PIPELINE ── */}
+      <section className="lp-section pipeline">
+        <div className="lp-label">
+          <div className="lp-label-dot" />
+          <span>// The pipeline</span>
+        </div>
+
+        <div className="lp-pipe-grid">
+          <div>
+            <div className="lp-pipe-h">
+              The engine plays.
+              <br />
+              The viewer dramatizes.
+            </div>
+            <p className="lp-pipe-p">
+              A Python engine runs the full Mafia game — roles, reasoning, voting, night
+              kills — and writes a structured <code>events[]</code> stream to{" "}
+              <code>game_log.json</code>. The Next.js viewer reads that same file and
+              replays it in four cinematic styles.
+            </p>
+
+            <div className="lp-steps">
+              <div className="lp-step">
+                <span className="num">01</span>
+                <span className="txt">
+                  Run <code>python main.py</code> — the LLMs play a full game
+                </span>
+              </div>
+              <div className="lp-step">
+                <span className="num">02</span>
+                <span className="txt">
+                  Structured events stream to <code>game_log.json</code>
+                </span>
+              </div>
+              <div className="lp-step">
+                <span className="num">03</span>
+                <span className="txt">Open the viewer — pick a style — hit play</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="lp-qs-label">Quick start</div>
+            <div className="lp-qs">
+              <div className="cmt">// clone and play (LM Studio running locally)</div>
+              <div><span className="pr">$</span> <code>git clone {GITHUB}.git</code></div>
+              <div><span className="pr">$</span> <code>cd LLM-Mafia &amp;&amp; pip install -r requirements.txt</code></div>
+              <div><span className="pr">$</span> <code>python main.py --reveal-secrets</code></div>
+              <div style={{ marginTop: 12 }} className="cmt">// watch the replay</div>
+              <div><span className="pr">$</span> <code>cd viewer &amp;&amp; npm install &amp;&amp; npm run dev</code></div>
+              <div className="out"># → http://localhost:3000</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer className="lp-footer">
+        <div className="fmark">
+          <span className="l1">LLM</span>
+          <span className="l2">MAFIA</span>
+        </div>
+        <div className="fnav">
+          <a href="https://github.com/nitrimandylis" target="_blank" rel="noreferrer">
+            Nick Trimandylis
+          </a>
+          <span className="sep">│</span>
+          <span className="mit">MIT licensed</span>
+          <span className="sep">│</span>
+          <span className="slogan">LLMS LIE. PROVED IT.</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function SkinCard({
+  skin,
+  children,
+}: {
+  skin: { name: string; blurb: string };
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="lp-card">
+      {children}
+      <div className="lp-card-foot">
+        <div className="lp-card-name">{skin.name}</div>
+        <div className="lp-card-blurb">{skin.blurb}</div>
+      </div>
     </div>
   );
 }
