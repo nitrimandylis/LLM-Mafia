@@ -255,50 +255,33 @@ class MafiaGame:
 
             random.shuffle(alive)
 
-            # Phase 1: Ask questions in parallel
-            questions = {}
-            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                futures = {}
-                for player in alive:
-                    others = [p for p in alive if p != player]
-                    if not others:
-                        continue
-                    target = random.choice(others)
+            # Each exchange runs to completion before the next starts: the
+            # question is emitted before its answer is queried, so the answerer
+            # (and every later asker) sees it in the shared transcript. Sequential
+            # costs little real time — NVIDIA throttles globally and a single
+            # local model serializes anyway — and reads as an actual conversation.
+            for player in alive:
+                others = [p for p in alive if p != player]
+                if not others:
+                    continue
+                target = random.choice(others)
 
-                    recent_context = build_day_summary(
-                        self.day, alive_names, self.vote_history, self.night_kill_history
-                    )
-                    template = QUESTION_TEMPLATES[(round_num + abs(hash(player.name))) % len(QUESTION_TEMPLATES)]
-                    prompt = template.format(target=target.name)
-                    future = executor.submit(
-                        self.query_model, player, prompt, recent_context, min_words=3
-                    )
-                    futures[future] = (player, target)
+                recent_context = build_day_summary(
+                    self.day, alive_names, self.vote_history, self.night_kill_history
+                )
+                template = QUESTION_TEMPLATES[(round_num + abs(hash(player.name))) % len(QUESTION_TEMPLATES)]
+                question = self.query_model(
+                    player, template.format(target=target.name), recent_context, min_words=3
+                )
+                self.log(f"🔍 {player.name} → {target.name}: {question}", "yellow")
+                self.emit("question", day=self.day, actor=player.name, target=target.name, text=question)
+                day_statements.append(f"{player.name} questions {target.name}: {question}")
 
-                for future in as_completed(futures):
-                    player, target = futures[future]
-                    question = future.result()
-                    questions[player.name] = (target, question)
-                    self.log(f"🔍 {player.name} → {target.name}: {question}", "yellow")
-                    self.emit("question", day=self.day, actor=player.name, target=target.name, text=question)
-                    day_statements.append(f"{player.name} questions {target.name}: {question}")
-
-            # Phase 2: Answer questions in parallel
-            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                futures = {}
-                for player_name, (target, question) in questions.items():
-                    response_prompt = f"{player_name} just asked you: '{question}'. Respond directly in 1-2 sentences."
-                    future = executor.submit(
-                        self.query_model, target, response_prompt, recent_context
-                    )
-                    futures[future] = (target, player_name)
-
-                for future in as_completed(futures):
-                    target, asker_name = futures[future]
-                    response = future.result()
-                    self.log(f"💬 {target.name}: {response}", "normal")
-                    self.emit("answer", day=self.day, actor=target.name, target=asker_name, text=response)
-                    day_statements.append(f"{target.name} answers {asker_name}: {response}")
+                answer_prompt = f"{player.name} just asked you: '{question}'. Respond directly in 1-2 sentences."
+                answer = self.query_model(target, answer_prompt, recent_context)
+                self.log(f"💬 {target.name}: {answer}", "normal")
+                self.emit("answer", day=self.day, actor=target.name, target=player.name, text=answer)
+                day_statements.append(f"{target.name} answers {player.name}: {answer}")
 
         # FINAL ACCUSATIONS
         self.log(f"\n⚖️  Final Accusations", "cyan")
