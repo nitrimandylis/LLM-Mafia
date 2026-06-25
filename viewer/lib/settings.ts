@@ -20,7 +20,7 @@ export const SKINS: SkinMeta[] = [
     name: "Group Chat",
     tag: "the thread",
     blurb: "A messaging thread: grouped bubbles, day/night theming, votes folded into a ballot strip, mafia in a locked side-channel.",
-    swatch: ["#11131a", "#5b8cff", "#e8e8ea"],
+    swatch: ["#0a0a0a", "#c41e1e", "#e0e0e0"],
   },
   {
     id: "casefile",
@@ -41,7 +41,7 @@ export const SKINS: SkinMeta[] = [
     name: "Signal",
     tag: "the network",
     blurb: "An instrument panel. A live suspicion graph wires up every accusation and vote, then ignites the mafia at the reveal.",
-    swatch: ["#eef1f4", "#0e7c86", "#0e1419"],
+    swatch: ["#050505", "#c41e1e", "#b5b5bd"],
   },
 ];
 

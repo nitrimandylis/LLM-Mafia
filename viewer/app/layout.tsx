@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import TopBar from "./TopBar";
 
@@ -12,6 +12,11 @@ const bebas = Bebas_Neue({
   variable: "--font-display",
 });
 
+// Landing-page faces: mono body + grotesk headings. Exposed as CSS vars and
+// only fetched when referenced, so the viewer pages don't pay for them.
+const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-mono" });
+const grotesk = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "--font-grotesk" });
+
 export const metadata: Metadata = {
   title: "LLM Mafia — Replay",
   description: "Dramatized replay of an all-LLM game of Mafia.",
@@ -19,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={bebas.variable}>
+    <html lang="en" className={`${bebas.variable} ${mono.variable} ${grotesk.variable}`}>
       <body>
         <div className="shell">
           <TopBar />

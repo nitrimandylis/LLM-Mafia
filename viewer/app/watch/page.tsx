@@ -17,6 +17,32 @@ const SKIN_COMPONENTS = {
   signal: SignalSkin,
 };
 
+// One glyph per view: a speech bubble, a case folder, a deposition page, a
+// suspicion network. Stroke uses currentColor so it follows the tab's state.
+function SkinIcon({ id }: { id: SkinId }) {
+  const p = {
+    width: 18, height: 18, viewBox: "0 0 16 16", fill: "none",
+    stroke: "currentColor", strokeWidth: 1.4,
+    strokeLinecap: "round" as const, strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  switch (id) {
+    case "chat":
+      return <svg {...p}><path d="M2.5 3.5h11v6.5h-7L4 12.5V10H2.5z" /></svg>;
+    case "casefile":
+      return <svg {...p}><path d="M2 4.5h4l1.3 1.5H14v6.5H2z" /></svg>;
+    case "transcript":
+      return <svg {...p}><path d="M4 2.2h5L12 5v8.8H4z" /><path d="M6 7.5h4M6 10h3" /></svg>;
+    case "signal":
+      return (
+        <svg {...p}>
+          <path d="M4.4 4.8 8 11M11.6 5.4 8 11" />
+          <circle cx="3.5" cy="4" r="1.3" /><circle cx="12.5" cy="4.5" r="1.3" /><circle cx="8" cy="12" r="1.6" />
+        </svg>
+      );
+  }
+}
+
 export default function Viewer() {
   // `mounted` gates localStorage reads so SSR and first client render match
   // (both use DEFAULTS), avoiding a hydration mismatch.
@@ -27,6 +53,20 @@ export default function Viewer() {
   const [source, setSource] = useState<"game" | "sample" | "upload" | null>(null);
   const [skin, setSkin] = useState<SkinId>(DEFAULTS.skin);
   const fileInput = useRef<HTMLInputElement>(null);
+
+  // Drag-to-reorder the view tabs. Order is session-only; the tab list is
+  // small so a plain HTML5 drag-and-drop reorder is plenty.
+  const [tabOrder, setTabOrder] = useState<SkinId[]>(() => SKIN_META.map((m) => m.id));
+  const [draggingTab, setDraggingTab] = useState<SkinId | null>(null);
+  const dropTab = (target: SkinId) => {
+    setDraggingTab(null);
+    if (!draggingTab || draggingTab === target) return;
+    setTabOrder((order) => {
+      const next = order.filter((id) => id !== draggingTab);
+      next.splice(next.indexOf(target), 0, draggingTab);
+      return next;
+    });
+  };
 
   useEffect(() => setMounted(true), []);
 
@@ -96,26 +136,32 @@ export default function Viewer() {
     <div className="stage-wrap">
       <div className="menu">
         <div className="skin-seg" role="tablist" aria-label="Presentation style">
-          {SKIN_META.map((m) => (
+          {tabOrder.map((id) => {
+            const m = SKIN_META.find((s) => s.id === id)!;
+            return (
             <button
               key={m.id}
               role="tab"
               aria-selected={skin === m.id}
-              className={`skin-opt${skin === m.id ? " on" : ""}`}
+              className={`skin-opt${skin === m.id ? " on" : ""}${draggingTab === m.id ? " dragging" : ""}`}
               onClick={() => setSkin(m.id)}
               title={m.blurb}
+              draggable
+              onDragStart={() => setDraggingTab(m.id)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => { e.preventDefault(); dropTab(m.id); }}
+              onDragEnd={() => setDraggingTab(null)}
             >
-              <span className="skin-swatch" aria-hidden>
-                {m.swatch.map((c, j) => (
-                  <i key={j} style={{ background: c }} />
-                ))}
+              <span className="skin-icon" aria-hidden>
+                <SkinIcon id={m.id} />
               </span>
               <span className="skin-meta">
                 <span className="nm">{m.name}</span>
                 <span className="tg">{m.tag}</span>
               </span>
             </button>
-          ))}
+            );
+          })}
         </div>
 
         <span className="menu-spacer" />

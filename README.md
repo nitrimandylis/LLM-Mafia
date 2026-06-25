@@ -125,7 +125,7 @@ npm run dev            # http://localhost:3000
 Then:
 
 1. In another terminal, play a game from the repo root: `python main.py` (writes `game_log.json`).
-2. Open **http://localhost:3000** and hit **↻ Latest game** — the viewer loads what the engine just wrote.
+2. Open **http://localhost:3000**, click **▸ Watch a replay**, and hit **↻ Latest game** — the viewer loads what the engine just wrote.
 
 No game yet? The viewer ships with a bundled sample so it works immediately. You
 can also regenerate that sample without any LLM:

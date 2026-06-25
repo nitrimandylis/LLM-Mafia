@@ -14,6 +14,9 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
+`http://localhost:3000` is the landing page; the replay viewer lives at
+`/watch` (or click **▸ Watch a replay**).
+
 On load it calls `/api/log`, which reads the engine's `../game_log.json` and
 falls back to the bundled `public/logs/sample.json` if no game has been played.
 The header shows the source (`● latest game` / `○ bundled sample`); **↻ Latest
