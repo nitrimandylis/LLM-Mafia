@@ -193,7 +193,6 @@ class MafiaGame:
                     response = future.result()
                     self.log(f"🗣️  {player.name}: {response}", "normal")
                     self.emit("statement", day=self.day, actor=player.name, text=response)
-                    self.add_private_note(player, f"Day {self.day} opening: {response}")
                     day_statements.append(f"{player.name}: {response}")
         else:
             # NORMAL DAY
@@ -237,7 +236,6 @@ class MafiaGame:
                     response = future.result()
                     self.log(f"🗣️  {player.name}: {response}", "normal")
                     self.emit("statement", day=self.day, actor=player.name, text=response)
-                    self.add_private_note(player, f"Day {self.day} opening: {response}")
                     day_statements.append(f"{player.name}: {response}")
 
         # QUESTIONING ROUNDS (THIS WAS MISSING!)
@@ -257,57 +255,33 @@ class MafiaGame:
 
             random.shuffle(alive)
 
-            # Phase 1: Ask questions in parallel
-            questions = {}
-            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                futures = {}
-                for player in alive:
-                    others = [p for p in alive if p != player]
-                    if not others:
-                        continue
-                    target = random.choice(others)
+            # Each exchange runs to completion before the next starts: the
+            # question is emitted before its answer is queried, so the answerer
+            # (and every later asker) sees it in the shared transcript. Sequential
+            # costs little real time — NVIDIA throttles globally and a single
+            # local model serializes anyway — and reads as an actual conversation.
+            for player in alive:
+                others = [p for p in alive if p != player]
+                if not others:
+                    continue
+                target = random.choice(others)
 
-                    recent_context = build_day_summary(
-                        self.day, alive_names, self.vote_history, self.night_kill_history
-                    )
-                    template = QUESTION_TEMPLATES[(round_num + abs(hash(player.name))) % len(QUESTION_TEMPLATES)]
-                    prompt = template.format(target=target.name)
-                    future = executor.submit(
-                        self.query_model, player, prompt, recent_context, min_words=3
-                    )
-                    futures[future] = (player, target)
+                recent_context = build_day_summary(
+                    self.day, alive_names, self.vote_history, self.night_kill_history
+                )
+                template = QUESTION_TEMPLATES[(round_num + abs(hash(player.name))) % len(QUESTION_TEMPLATES)]
+                question = self.query_model(
+                    player, template.format(target=target.name), recent_context, min_words=3
+                )
+                self.log(f"🔍 {player.name} → {target.name}: {question}", "yellow")
+                self.emit("question", day=self.day, actor=player.name, target=target.name, text=question)
+                day_statements.append(f"{player.name} questions {target.name}: {question}")
 
-                for future in as_completed(futures):
-                    player, target = futures[future]
-                    question = future.result()
-                    questions[player.name] = (target, question)
-                    self.log(f"🔍 {player.name} → {target.name}: {question}", "yellow")
-                    self.emit("question", day=self.day, actor=player.name, target=target.name, text=question)
-                    self.add_private_note(
-                        player, f"Day {self.day}: Asked {target.name}: {question}"
-                    )
-                    day_statements.append(f"{player.name} questions {target.name}: {question}")
-
-            # Phase 2: Answer questions in parallel
-            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                futures = {}
-                for player_name, (target, question) in questions.items():
-                    response_prompt = f"{player_name} just asked you: '{question}'. Respond directly in 1-2 sentences."
-                    future = executor.submit(
-                        self.query_model, target, response_prompt, recent_context
-                    )
-                    futures[future] = (target, player_name)
-
-                for future in as_completed(futures):
-                    target, asker_name = futures[future]
-                    response = future.result()
-                    self.log(f"💬 {target.name}: {response}", "normal")
-                    self.emit("answer", day=self.day, actor=target.name, target=asker_name, text=response)
-                    self.add_private_note(
-                        target,
-                        f"Day {self.day}: {asker_name} asked me, I said: {response}",
-                    )
-                    day_statements.append(f"{target.name} answers {asker_name}: {response}")
+                answer_prompt = f"{player.name} just asked you: '{question}'. Respond directly in 1-2 sentences."
+                answer = self.query_model(target, answer_prompt, recent_context)
+                self.log(f"💬 {target.name}: {answer}", "normal")
+                self.emit("answer", day=self.day, actor=target.name, target=player.name, text=answer)
+                day_statements.append(f"{target.name} answers {player.name}: {answer}")
 
         # FINAL ACCUSATIONS
         self.log(f"\n⚖️  Final Accusations", "cyan")
@@ -676,28 +650,69 @@ class MafiaGame:
         self.events.emit(type, **fields)
 
     def add_private_note(self, player: Player, note: str):
+        """Record something only this player knows (e.g. a detective result).
+        Public actions live in the event stream — see render_public_transcript."""
         self.private_notes.setdefault(player.name, []).append(note)
+
+    # Day-phase transcript budget: keep the last N spoken lines verbatim; older
+    # history is carried by the GM day summaries. ponytail: flat cap, swap for
+    # token counting only if a real budget ever bites.
+    TRANSCRIPT_MAX_LINES = 40
+
+    def render_public_transcript(self, day: int) -> str:
+        """The current day's discussion as every player sees it, rendered from
+        the public event stream (private events never reach self.events in a
+        normal run). Capped at the last TRANSCRIPT_MAX_LINES."""
+        lines: List[str] = []
+        for e in self.events.to_list():
+            if e.get("day") != day:
+                continue
+            t = e["type"]
+            if t == "statement":
+                lines.append(f"{e['actor']}: {e['text']}")
+            elif t == "question":
+                lines.append(f"{e['actor']} → {e['target']}: {e['text']}")
+            elif t == "answer":
+                lines.append(f"{e['actor']} (to {e['target']}): {e['text']}")
+            elif t == "accusation":
+                lines.append(f"{e['actor']} accuses: {e['text']}")
+            elif t == "vote":
+                lines.append(f"{e['actor']} votes {e['target']}")
+        return "\n".join(lines[-self.TRANSCRIPT_MAX_LINES:])
 
     def build_context_for_player(self, player: Player, base_context: str) -> str:
         parts = []
 
-        if self.day_summaries:
-            recent = sorted(self.day_summaries.items())  # all days; ~4 sentences each stays small enough
-            summary_block = "\n".join(f"Day {d} summary: {s}" for d, s in recent)
+        # Earlier days: compressed GM recaps (the current day is shown live below).
+        prior = sorted((d, s) for d, s in self.day_summaries.items() if d < self.day)
+        if prior:
+            summary_block = "\n".join(f"Day {d}: {s}" for d, s in prior)
             parts.append(
-                "=== RECENT DAY SUMMARIES ===\n" + summary_block + "\n=== END SUMMARIES ==="
+                "=== EARLIER DAYS (recap) ===\n" + summary_block + "\n=== END RECAP ==="
             )
 
+        # Today's discussion, public and shared by everyone reasoning right now.
+        transcript = self.render_public_transcript(self.day)
+        if transcript:
+            parts.append(
+                "=== TODAY'S DISCUSSION (public — everyone sees this) ===\n"
+                + transcript
+                + "\n=== END DISCUSSION ==="
+            )
+
+        # Structured facts: night kills, eliminations, who's alive.
+        parts.append(base_context)
+
+        # Only this player's private knowledge (e.g. detective findings).
         notes = self.private_notes.get(player.name)
         if notes:
-            note_block = "\n".join(notes[-25:])
+            note_block = "\n".join(notes[-15:])
             parts.append(
-                "=== YOUR SECRET NOTES (use these to guide your decisions) ===\n"
+                "=== YOUR PRIVATE KNOWLEDGE (only you know this) ===\n"
                 + note_block
-                + "\n=== END SECRET NOTES ==="
+                + "\n=== END PRIVATE ==="
             )
 
-        parts.append(base_context)
         return "\n\n".join(parts)
 
     def _is_heading_line(self, line: str) -> bool:
