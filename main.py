@@ -18,7 +18,7 @@ if __name__ == "__main__":
         "--model",
         type=str,
         default=None,
-        help="Override model (default: qwen/qwen3.5-9b for LM Studio, moonshotai/kimi-k2.5 for NVIDIA)",
+        help="Override model (default: qwen/qwen3.5-9b for LM Studio, minimaxai/minimax-m3 for NVIDIA)",
     )
     parser.add_argument(
         "--lm-studio-url",
