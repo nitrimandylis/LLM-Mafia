@@ -40,6 +40,11 @@ def build_day_summary(
         lines.append("=== VOTE ELIMINATIONS ===")
         for v in reversed(vote_history[-max_events:]):
             lines.append(f"  Day {v['day']}: Town voted out {v['eliminated']} (was {v['role']})")
+            # Per-player ballot, so models cite real votes instead of confabulating them.
+            ballot = v.get("votes")
+            if ballot:
+                cast = ", ".join(f"{voter}->{tgt}" for voter, tgt in ballot.items())
+                lines.append(f"    Ballots: {cast}")
 
     # Current alive players
     lines.append(f"=== ALIVE PLAYERS ({len(alive_names)}) ===")

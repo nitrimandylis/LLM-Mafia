@@ -683,7 +683,7 @@ class MafiaGame:
         parts = []
 
         if self.day_summaries:
-            recent = sorted(self.day_summaries.items())[-2:]
+            recent = sorted(self.day_summaries.items())  # all days; ~4 sentences each stays small enough
             summary_block = "\n".join(f"Day {d} summary: {s}" for d, s in recent)
             parts.append(
                 "=== RECENT DAY SUMMARIES ===\n" + summary_block + "\n=== END SUMMARIES ==="
