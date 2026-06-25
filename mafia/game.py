@@ -1,5 +1,4 @@
 import gc
-import json
 import random
 import re
 import time
@@ -11,7 +10,7 @@ from typing import Dict, List, Optional, Tuple
 from openai import OpenAI
 
 from mafia.events import EventLog, seat_color
-from mafia.game_master import GameMaster, nvidia_pace
+from mafia.game_master import GameMaster, call_llm
 from mafia.game_state import build_day_summary
 from mafia.player import Player, Role, load_players_from_file
 
@@ -56,7 +55,7 @@ class MafiaGame:
             self._lm_client = OpenAI(base_url=lm_studio_url, api_key="lm-studio")
 
         self.players = [
-            Player(p.name, self.model, personality=p.personality)
+            Player(p.name, personality=p.personality)
             for p in base_players
         ]
         self.day = 0
@@ -841,53 +840,14 @@ Here is the game history so far:
             self.log(f"  [ERROR querying {self.model}: {e}]", "red", public=False)
             return f"*{player.name} remains silent*"
 
-    _RESPONSE_SCHEMA = {
-        "type": "json_schema",
-        "json_schema": {
-            "name": "response",
-            "strict": True,
-            "schema": {
-                "type": "object",
-                "properties": {"response": {"type": "string"}},
-                "required": ["response"],
-                "additionalProperties": False,
-            },
-        },
-    }
-
     def _call_backend(self, messages: List[Dict]) -> str:
-        kwargs: Dict = dict(
-            model=self.model,
-            messages=messages,
-            temperature=0.7,
-            max_tokens=512,
+        return call_llm(
+            self._lm_client, self.model, messages,
+            use_nvidia=self.use_nvidia, schema_key="response",
+            on_retry=lambda wait: self.log(
+                f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
+            ),
         )
-        if not self.use_nvidia:
-            kwargs["response_format"] = self._RESPONSE_SCHEMA
-
-        for attempt in range(5):
-            try:
-                if self.use_nvidia:
-                    nvidia_pace()
-                response = self._lm_client.chat.completions.create(**kwargs)
-                msg = response.choices[0].message
-                content = (msg.content or "").strip()
-                reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
-                raw = content if content else reasoning
-                if not self.use_nvidia:
-                    try:
-                        return json.loads(raw).get("response", raw)
-                    except (json.JSONDecodeError, AttributeError):
-                        return raw
-                return raw
-            except Exception as e:
-                if "429" in str(e) and attempt < 4:
-                    wait = 2 ** attempt * 5 + random.uniform(0, 5)  # jitter desyncs workers
-                    self.log(f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False)
-                    time.sleep(wait)
-                else:
-                    raise
-        return ""
 
     def extract_vote(self, response: str, valid_targets: List[str]) -> Optional[str]:
         response_lower = response.lower()
@@ -1016,21 +976,12 @@ Here is the game history so far:
 
         player_stats = {}
         for p in self.players:
-            votes = []
-            for vh in self.vote_history:
-                if p.name in vh["votes"]:
-                    target = vh["votes"][p.name]
-                    votes.append({
-                        "day": vh["day"],
-                        "target": target,
-                        "correct": target in mafia_names,
-                    })
-            correct = sum(1 for v in votes if v["correct"])
+            cast = [vh["votes"][p.name] for vh in self.vote_history if p.name in vh["votes"]]
+            correct = sum(1 for t in cast if t in mafia_names)
             player_stats[p.name] = {
                 "role": p.role.value if p.role else None,
                 "survived": p.alive,
-                "vote_accuracy": f"{correct}/{len(votes)}",
-                "votes": votes,
+                "vote_accuracy": f"{correct}/{len(cast)}",
             }
 
         detective_stats = None

@@ -1,7 +1,8 @@
 import json
+import random
 import threading
 import time
-from typing import Dict, List, Optional
+from typing import Callable, Dict, List, Optional
 
 from openai import OpenAI
 
@@ -21,19 +22,65 @@ def nvidia_pace():
 
 _SYSTEM_PROMPT = """You are the Game Master of a Mafia party game. You narrate key moments with dramatic flair — eliminations, night kills, day openings, and the final outcome. You are impartial and theatrical. Keep every narration to 2-3 sentences. Never reveal hidden roles."""
 
-_RESPONSE_SCHEMA = {
-    "type": "json_schema",
-    "json_schema": {
-        "name": "narration",
-        "strict": True,
-        "schema": {
-            "type": "object",
-            "properties": {"narration": {"type": "string"}},
-            "required": ["narration"],
-            "additionalProperties": False,
+def _schema(key: str) -> dict:
+    """Strict single-string-field JSON schema, keyed by `key`."""
+    return {
+        "type": "json_schema",
+        "json_schema": {
+            "name": key,
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": {key: {"type": "string"}},
+                "required": [key],
+                "additionalProperties": False,
+            },
         },
-    },
-}
+    }
+
+
+def call_llm(
+    client: OpenAI,
+    model: str,
+    messages: List[Dict],
+    use_nvidia: bool,
+    schema_key: str,
+    temperature: float = 0.7,
+    max_tokens: int = 512,
+    on_retry: Optional[Callable[[float], None]] = None,
+) -> str:
+    """One chat completion with 429 backoff. NVIDIA gets no response_format
+    (unsupported) and the raw text back; everyone else gets a strict
+    single-field JSON schema, unwrapped by `schema_key`. Raises on exhaustion
+    or non-429 errors — callers decide whether to swallow."""
+    kwargs: Dict = dict(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens)
+    if not use_nvidia:
+        kwargs["response_format"] = _schema(schema_key)
+
+    for attempt in range(5):
+        try:
+            if use_nvidia:
+                nvidia_pace()
+            response = client.chat.completions.create(**kwargs)
+            msg = response.choices[0].message
+            content = (msg.content or "").strip()
+            reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
+            raw = content if content else reasoning
+            if not use_nvidia:
+                try:
+                    return json.loads(raw).get(schema_key, raw)
+                except (json.JSONDecodeError, AttributeError):
+                    return raw
+            return raw
+        except Exception as e:
+            if "429" in str(e) and attempt < 4:
+                wait = 2 ** attempt * 5 + random.uniform(0, 5)  # jitter desyncs workers
+                if on_retry:
+                    on_retry(wait)
+                time.sleep(wait)
+            else:
+                raise
+    return ""
 
 
 class GameMaster:
@@ -46,39 +93,18 @@ class GameMaster:
     def _call(self, prompt: str, max_tokens: int = 150) -> str:
         if not self._enabled:
             return ""
-        kwargs = dict(
-            model=self._model,
-            messages=[
-                {"role": "system", "content": _SYSTEM_PROMPT},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.9,
-            max_tokens=max_tokens,
-        )
-        if not self._use_nvidia:
-            kwargs["response_format"] = _RESPONSE_SCHEMA
-
-        for attempt in range(3):
-            try:
-                if self._use_nvidia:
-                    nvidia_pace()
-                response = self._client.chat.completions.create(**kwargs)
-                msg = response.choices[0].message
-                content = (msg.content or "").strip()
-                reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
-                raw = content if content else reasoning
-                if not self._use_nvidia:
-                    try:
-                        return json.loads(raw).get("narration", raw)
-                    except (json.JSONDecodeError, AttributeError):
-                        return raw
-                return raw
-            except Exception as e:
-                if "429" in str(e) and attempt < 2:
-                    time.sleep(2 ** attempt * 5)
-                else:
-                    return ""
-        return ""
+        messages = [
+            {"role": "system", "content": _SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ]
+        try:
+            return call_llm(
+                self._client, self._model, messages,
+                use_nvidia=self._use_nvidia, schema_key="narration",
+                temperature=0.9, max_tokens=max_tokens,
+            )
+        except Exception:
+            return ""  # narration is optional flavor — never crash the game over it
 
     def narrate_day_start(
         self,

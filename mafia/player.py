@@ -14,30 +14,18 @@ class Role(Enum):
 @dataclass
 class Player:
     name: str
-    model: str
     role: Optional[Role] = None
     alive: bool = True
     personality: str = ""
 
 
-def load_players_from_file(
-    file_path: str = "players.json",
-    model_override: Optional[str] = None,
-) -> List[Player]:
+def load_players_from_file(file_path: str = "players.json") -> List[Player]:
     """Load player configurations from a JSON file."""
     try:
         with open(file_path, "r") as f:
             player_data = json.load(f)
-        if model_override:
-            model = model_override
-        else:
-            model = "qwen/qwen3.5-9b"
         return [
-            Player(
-                name=p["name"],
-                model=model,
-                personality=p["personality"],
-            )
+            Player(name=p["name"], personality=p["personality"])
             for p in player_data
         ]
     except (FileNotFoundError, json.JSONDecodeError) as e:
