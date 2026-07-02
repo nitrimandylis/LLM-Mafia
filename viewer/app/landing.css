@@ -5,8 +5,6 @@
 .lp {
   --accent: #c41e1e;
   --dim: rgba(196, 30, 30, 0.35);
-  --glow: rgba(196, 30, 30, 0.08);
-  --grid: rgba(196, 30, 30, 0.03);
   --subtle: rgba(196, 30, 30, 0.05);
   --border: #1e1e1e;
   --mono: var(--font-mono), ui-monospace, monospace;
@@ -35,24 +33,12 @@
   position: relative;
   overflow: hidden;
 }
-.lp-grid {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-.lp-glow {
-  position: absolute; top: 25%; left: 8%; width: 700px; height: 700px;
-  pointer-events: none;
-  background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
-}
 .lp-col { position: relative; z-index: 1; }
 
 .lp-logo {
   font-family: var(--grotesk);
-  font-size: clamp(64px, 8vw, 112px);
-  font-weight: 800; line-height: 0.88; letter-spacing: -3px;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 800; line-height: 0.88; letter-spacing: -0.04em;
   margin-bottom: 40px;
 }
 .lp-logo .l1 { color: #fff; }
@@ -73,7 +59,7 @@
   transition: all 0.2s;
 }
 .lp-btn-primary { background: var(--accent); color: #fff; }
-.lp-btn-primary:hover { opacity: 0.85; box-shadow: 0 0 40px var(--glow); }
+.lp-btn-primary:hover { opacity: 0.85; }
 .lp-btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--dim); }
 .lp-btn-ghost:hover { border-color: var(--accent); background: var(--subtle); }
 
@@ -82,7 +68,7 @@
 .lp-term {
   background: #0a0a0a; border: 1px solid var(--border); border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 120px var(--glow);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
 }
 .lp-term-bar {
   display: flex; align-items: center; gap: 8px; padding: 14px 18px;
@@ -90,10 +76,10 @@
 }
 .lp-dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
 .lp-dot.on { background: var(--accent); }
-.lp-term-bar .file { font-size: 11px; color: #444; margin-left: auto; }
+.lp-term-bar .file { font-size: 11px; color: #888; margin-left: auto; }
 .lp-term-body { padding: 24px; font-size: 12px; line-height: 2.1; }
-.lp-term-body .cmt { color: #444; }
-.lp-term-body .meta { color: #555; }
+.lp-term-body .cmt { color: #888; }
+.lp-term-body .meta { color: #888; }
 .lp-term-body .said { color: #bbb; }
 .lp-n-red { color: var(--accent); }
 .lp-n-blue { color: #6ba3e8; }
@@ -132,7 +118,7 @@
 .lp-card-preview { height: 170px; padding: 22px; overflow: hidden; }
 .lp-card-foot { padding: 20px 24px; border-top: 1px solid #1a1a1a; }
 .lp-card-name { font-family: var(--grotesk); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.lp-card-blurb { font-size: 11px; color: #666; line-height: 1.6; }
+.lp-card-blurb { font-size: 11px; color: #999; line-height: 1.6; }
 
 /* preview: group chat */
 .pv-chat { display: flex; flex-direction: column; justify-content: center; gap: 7px; font-size: 11px; line-height: 1.7; background: #0d0f15; }
@@ -172,12 +158,12 @@
 .lp-step .num { color: var(--accent); font-size: 11px; font-weight: 700; flex: none; width: 20px; }
 .lp-step .txt { font-size: 13px; color: #888; }
 .lp-step .txt code { color: #ccc; font-family: var(--mono); }
-.lp-qs-label { font-size: 11px; letter-spacing: 2px; color: #555; text-transform: uppercase; margin-bottom: 12px; }
+.lp-qs-label { font-size: 11px; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-bottom: 12px; }
 .lp-qs { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; padding: 24px; font-size: 12px; line-height: 2.2; }
-.lp-qs .cmt { color: #444; }
-.lp-qs .pr { color: #555; }
+.lp-qs .cmt { color: #888; }
+.lp-qs .pr { color: #888; }
 .lp-qs code { color: #ccc; font-family: var(--mono); }
-.lp-qs .out { color: #555; font-size: 11px; }
+.lp-qs .out { color: #888; font-size: 11px; }
 
 /* ── FOOTER ─────────────────────────────────────────── */
 .lp-footer {
@@ -188,10 +174,10 @@
 .lp-footer .fmark .l1 { color: #fff; }
 .lp-footer .fmark .l2 { color: var(--accent); }
 .lp-footer .fnav { display: flex; align-items: center; gap: 24px; font-size: 11px; }
-.lp-footer .fnav a { color: #555; letter-spacing: 1px; transition: color 0.2s; }
+.lp-footer .fnav a { color: #888; letter-spacing: 1px; transition: color 0.2s; }
 .lp-footer .fnav a:hover { color: var(--accent); }
 .lp-footer .sep { color: #222; }
-.lp-footer .mit { color: #333; }
+.lp-footer .mit { color: #888; }
 .lp-footer .slogan { color: var(--accent); letter-spacing: 1px; }
 
 /* ── RESPONSIVE ─────────────────────────────────────── */

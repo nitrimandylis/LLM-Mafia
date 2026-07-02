@@ -26,6 +26,7 @@ export default function Controls({ state }: { state: ReplayState }) {
           <button
             key={String(s.id)}
             className={speed === s.id ? "on" : ""}
+            aria-pressed={speed === s.id}
             onClick={() => controls.setSpeed(s.id)}
           >
             {s.label}
@@ -35,6 +36,7 @@ export default function Controls({ state }: { state: ReplayState }) {
 
       <input
         className="scrub"
+        aria-label="Replay position"
         type="range"
         min={0}
         max={total}

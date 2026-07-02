@@ -139,9 +139,21 @@ export default function SignalSkin({ state, active }: SkinProps) {
         <div
           className={`sg-resizer${dragging ? " dragging" : ""}`}
           onPointerDown={onResize}
+          onKeyDown={(e) => {
+            // Keyboard-operable separator: arrows nudge the divider 16px.
+            if (e.key === "ArrowLeft") setFeedW((w) => Math.min(560, w + 16));
+            else if (e.key === "ArrowRight") setFeedW((w) => Math.max(180, w - 16));
+            else return;
+            e.preventDefault();
+          }}
+          tabIndex={0}
           role="separator"
           aria-orientation="vertical"
-          title="Drag to resize the feed"
+          aria-label="Resize the signal feed"
+          aria-valuenow={feedW}
+          aria-valuemin={180}
+          aria-valuemax={560}
+          title="Drag or use arrow keys to resize the feed"
         />
 
         <aside className="sg-feed" ref={feedRef} onScroll={onScroll}>

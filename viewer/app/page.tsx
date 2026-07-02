@@ -39,9 +39,6 @@ export default function Landing() {
     <div className="lp">
       {/* ── HERO ── */}
       <section className="lp-hero">
-        <div className="lp-grid" />
-        <div className="lp-glow" />
-
         <div className="lp-col">
           <div className="lp-logo">
             <span className="l1">LLM</span>
@@ -109,13 +106,13 @@ export default function Landing() {
             <span className="lp-n-red">● MAFIA</span>
             <span className="lp-n-blue">● DETECTIVE</span>
             <span style={{ color: "#6be88a" }}>● DOCTOR</span>
-            <span style={{ color: "#888" }}>● VILLAGER</span>
+            <span style={{ color: "#999" }}>● VILLAGER</span>
           </div>
 
           <div className="lp-float lp-float-votes">
-            <span style={{ color: "#555" }}>VOTES</span>
+            <span style={{ color: "#888" }}>VOTES</span>
             <span style={{ color: "var(--accent)", fontWeight: 700 }}>ARIA ████░ 4</span>
-            <span style={{ color: "#666" }}>PIP ██░░░ 2</span>
+            <span style={{ color: "#999" }}>PIP ██░░░ 2</span>
           </div>
         </div>
       </section>
@@ -180,12 +177,8 @@ export default function Landing() {
       </section>
 
       {/* ── PIPELINE ── */}
+      {/* No eyebrow here — the big statement heading leads the section itself. */}
       <section className="lp-section pipeline">
-        <div className="lp-label">
-          <div className="lp-label-dot" />
-          <span>// The pipeline</span>
-        </div>
-
         <div className="lp-pipe-grid">
           <div>
             <div className="lp-pipe-h">

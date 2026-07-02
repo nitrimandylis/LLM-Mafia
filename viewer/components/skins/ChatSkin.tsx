@@ -13,6 +13,33 @@ type Item =
   | { kind: "phase"; e: Extract<GameEvent, { type: "phase" }>; i: number }
   | { kind: "system"; e: GameEvent; i: number };
 
+// Stroke icons in the same vocabulary as the chrome's tab glyphs — color emoji
+// render differently per platform, so the UI draws its own.
+const ICON = {
+  width: 14, height: 14, viewBox: "0 0 16 16", fill: "none",
+  stroke: "currentColor", strokeWidth: 1.4,
+  strokeLinecap: "round" as const, strokeLinejoin: "round" as const,
+  "aria-hidden": true, style: { verticalAlign: "-2px" },
+};
+const LockIcon = () => (
+  <svg {...ICON} width={16} height={16}>
+    <rect x="3.5" y="7" width="9" height="6.5" rx="1" />
+    <path d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7" />
+  </svg>
+);
+const BallotIcon = () => (
+  <svg {...ICON}>
+    <path d="M2.5 9.5h11v4h-11z" />
+    <path d="M5.5 9.5 6.5 3h3l1 6.5M6.5 11.5h3" />
+  </svg>
+);
+const SearchIcon = () => (
+  <svg {...ICON}>
+    <circle cx="7" cy="7" r="3.5" />
+    <path d="m9.7 9.7 3.3 3.3" />
+  </svg>
+);
+
 function fold(revealed: GameEvent[]): Item[] {
   const out: Item[] = [];
   for (let i = 0; i < revealed.length; i++) {
@@ -85,7 +112,7 @@ function PhaseDivider({ day, phase }: { day: number; phase: "day" | "night" }) {
   return (
     <div className="chat-divider">
       <span className="pill">
-        {phase === "day" ? "☀ Day " : "☾ Night "}
+        {phase === "day" ? "☀︎ Day " : "☾︎ Night "}
         {day}
       </span>
     </div>
@@ -113,7 +140,7 @@ function Msg({
       <div className="chat-gutter">
         {!grouped && (
           <div className="avatar" style={{ background: whisper ? "transparent" : color }}>
-            {whisper ? "🔒" : initials(e.actor)}
+            {whisper ? <LockIcon /> : initials(e.actor)}
           </div>
         )}
       </div>
@@ -149,7 +176,7 @@ function Ballot({
   const sorted = [...tally.entries()].sort((a, b) => b[1].length - a[1].length);
   return (
     <div className="chat-ballot">
-      <span className="ballot-label">🗳 Ballot</span>
+      <span className="ballot-label"><BallotIcon /> Ballot</span>
       {sorted.map(([target, voters]) => (
         <span key={target} className="ballot-chip" title={voters.join(", ")}>
           <span className="dot" style={{ background: colorOf(target) }} />
@@ -180,7 +207,7 @@ function SystemRow({ e }: { e: GameEvent }) {
     case "investigation":
       return (
         <div className="chat-event secret">
-          🔍 {e.actor} investigated {e.target} — <b>{e.result}</b>
+          <SearchIcon /> {e.actor} investigated {e.target} — <b>{e.result}</b>
         </div>
       );
     case "game_over":
