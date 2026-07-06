@@ -19,7 +19,9 @@ export type GameEvent =
   | { type: "vote"; day: number; actor: string; target: string }
   | { type: "elimination"; day: number; target: string; role: string; tally: Record<string, number> }
   | { type: "night_kill"; day: number; target: string; role: string; saved: boolean }
+  | { type: "night_no_kill"; day: number }
   | { type: "save"; day: number; target: string }
+  | { type: "protection"; day: number; actor: string; target: string }
   | { type: "mafia_chat"; day: number; actor: string; text: string }
   | { type: "investigation"; day: number; actor: string; target: string; result: string }
   | { type: "game_over"; winner: string; survivors: string[] };

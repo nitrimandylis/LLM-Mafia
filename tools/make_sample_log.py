@@ -37,7 +37,7 @@ LINES = [
 
 
 def fake_query(game):
-    def _q(player, prompt, context="", min_words=4):
+    def _q(player, prompt, context="", min_words=4, public_speech=False):
         others = [p.name for p in game.get_alive_players() if p.name != player.name]
         if not others:
             return "I have nothing left to say."
@@ -89,7 +89,9 @@ def validate(events):
 def check_schema_parity():
     """The TS event union (viewer/lib/events.ts) must list the same event types
     as the Python schema. Catches the contract silently drifting apart."""
-    ts = EVENTS_TS.read_text()
+    # Only the GameEvent union counts — helper types below it (e.g. Ballot)
+    # are viewer-side constructs, not wire events.
+    ts = EVENTS_TS.read_text().split("export type GameLog")[0]
     ts_types = set(re.findall(r'type:\s*"([a-z_]+)"', ts))
     py_types = set(REQUIRED.keys())
     only_py = py_types - ts_types

@@ -17,6 +17,7 @@ class Player:
     role: Optional[Role] = None
     alive: bool = True
     personality: str = ""
+    model: Optional[str] = None  # per-seat override; None = game default
 
 
 def load_players_from_file(file_path: str = "players.json") -> List[Player]:
@@ -25,7 +26,7 @@ def load_players_from_file(file_path: str = "players.json") -> List[Player]:
         with open(file_path, "r") as f:
             player_data = json.load(f)
         return [
-            Player(name=p["name"], personality=p["personality"])
+            Player(name=p["name"], personality=p["personality"], model=p.get("model"))
             for p in player_data
         ]
     except (FileNotFoundError, json.JSONDecodeError) as e:

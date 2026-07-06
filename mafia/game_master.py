@@ -48,6 +48,7 @@ def call_llm(
     temperature: float = 0.7,
     max_tokens: int = 512,
     on_retry: Optional[Callable[[float], None]] = None,
+    private_reasoning: bool = False,
 ) -> str:
     """One chat completion with 429 backoff. NVIDIA gets no response_format
     (unsupported) and the raw text back; everyone else gets a strict
@@ -65,7 +66,10 @@ def call_llm(
             msg = response.choices[0].message
             content = (msg.content or "").strip()
             reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
-            raw = content if content else reasoning
+            # private_reasoning: the model's thinking channel is a secret
+            # scratchpad (mafia scheming, role knowledge) — NEVER emit it,
+            # even when content is empty
+            raw = content if (content or private_reasoning) else reasoning
             if not use_nvidia:
                 try:
                     return json.loads(raw).get(schema_key, raw)

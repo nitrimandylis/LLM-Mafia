@@ -55,7 +55,7 @@ class MafiaGame:
             self._lm_client = OpenAI(base_url=lm_studio_url, api_key="lm-studio")
 
         self.players = [
-            Player(p.name, personality=p.personality)
+            Player(p.name, personality=p.personality, model=p.model)
             for p in base_players
         ]
         self.day = 0
@@ -71,6 +71,7 @@ class MafiaGame:
         self.last_doctor_target: Optional[str] = None
         self.detective_investigated: set = set()
         self.day_summaries: Dict[int, str] = {}
+        self.no_kill_nights = 0
         gm_model_resolved = gm_model or (self.model if self.use_nvidia else DEFAULT_GM_MODEL)
         self.gm = GameMaster(
             client=self._lm_client,
@@ -178,6 +179,10 @@ class MafiaGame:
                 futures = {}
                 for player in alive:
                     others = [n for n in alive_names if n != player.name]
+                    if player.role == Role.MAFIA:
+                        # Never force mafia to open on a teammate
+                        partners = {p.name for p in self.get_mafia()}
+                        others = [n for n in others if n not in partners] or others
                     prompt = f"This is Day 1. No one has died yet. Based purely on first impressions, who seems suspicious? Pick ONE name from: {', '.join(random.sample(others, min(3, len(others))))}. Give a brief gut feeling (1 sentence). Do NOT reference past events or history."
                     future = executor.submit(
                         self.query_model,
@@ -185,6 +190,7 @@ class MafiaGame:
                         prompt,
                         "Day 1: No previous events. First discussion.",
                         min_words=5,
+                        public_speech=True,
                     )
                     futures[future] = player
 
@@ -227,7 +233,8 @@ class MafiaGame:
                     others = [n for n in alive_names if n != player.name]
                     prompt = f"KEY FACTS: {key_facts}Day {self.day}. {eliminated_str}. Given these new facts, who among the ALIVE players is most suspicious? Reference specific past behavior from: {', '.join(others[:5])}."
                     future = executor.submit(
-                        self.query_model, player, prompt, recent_context
+                        self.query_model, player, prompt, recent_context,
+                        public_speech=True,
                     )
                     futures[future] = player
 
@@ -271,14 +278,22 @@ class MafiaGame:
                 )
                 template = QUESTION_TEMPLATES[(round_num + abs(hash(player.name))) % len(QUESTION_TEMPLATES)]
                 question = self.query_model(
-                    player, template.format(target=target.name), recent_context, min_words=3
+                    player, template.format(target=target.name), recent_context,
+                    min_words=3, public_speech=True,
                 )
+                if question == f"*{player.name} remains silent*":
+                    # Failed generation — skip the exchange, don't publish it
+                    self.log(f"🔍 {player.name} has no question for {target.name}", "yellow", public=False)
+                    continue
                 self.log(f"🔍 {player.name} → {target.name}: {question}", "yellow")
                 self.emit("question", day=self.day, actor=player.name, target=target.name, text=question)
                 day_statements.append(f"{player.name} questions {target.name}: {question}")
 
                 answer_prompt = f"{player.name} just asked you: '{question}'. Respond directly in 1-2 sentences."
-                answer = self.query_model(target, answer_prompt, recent_context)
+                answer = self.query_model(target, answer_prompt, recent_context, public_speech=True)
+                if answer == f"*{target.name} remains silent*":
+                    self.log(f"💬 {target.name} does not answer", "normal", public=False)
+                    continue
                 self.log(f"💬 {target.name}: {answer}", "normal")
                 self.emit("answer", day=self.day, actor=target.name, target=player.name, text=answer)
                 day_statements.append(f"{target.name} answers {player.name}: {answer}")
@@ -300,7 +315,8 @@ class MafiaGame:
                 others = [n for n in alive_names if n != player.name]
                 prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence)."
                 future = executor.submit(
-                    self.query_model, player, prompt, build_day_summary(self.day, alive_names, self.vote_history, self.night_kill_history)
+                    self.query_model, player, prompt, build_day_summary(self.day, alive_names, self.vote_history, self.night_kill_history),
+                    public_speech=True,
                 )
                 futures[future] = player
 
@@ -496,6 +512,8 @@ class MafiaGame:
             )
 
         if doctor_target:
+            self.emit("protection", private=True, day=self.day,
+                      actor=doctors[0].name, target=doctor_target)
             self.log(
                 f"🏥 {doctors[0].name} protected {doctor_target}",
                 "green",
@@ -519,7 +537,7 @@ class MafiaGame:
                 self.log(f"\n📜 {gm_kill}", "magenta")
             else:
                 self.log(f"\n💀 {victim.name} was killed during the night! They were: {victim.role.value}", "red")
-        elif mafia_target == doctor_target:
+        elif mafia_target and mafia_target == doctor_target:
             self.night_kill_history.append({
                 "night": self.day,
                 "victim": mafia_target,
@@ -533,6 +551,8 @@ class MafiaGame:
             else:
                 self.log(f"\n✨ The doctor's protection saved {doctor_target}!", "green")
         else:
+            self.no_kill_nights += 1
+            self.emit("night_no_kill", day=self.day)
             gm_quiet = self.gm.narrate_no_kill()
             if gm_quiet:
                 self.log(f"\n📜 {gm_quiet}", "magenta")
@@ -694,6 +714,14 @@ class MafiaGame:
         # Today's discussion, public and shared by everyone reasoning right now.
         transcript = self.render_public_transcript(self.day)
         if transcript:
+            # Mark the player's own lines so they don't mistake them for
+            # someone else's opinion (HOLMES once recycled an anti-HOLMES
+            # statement as his own opening)
+            transcript = re.sub(
+                rf"(?m)^{re.escape(player.name)}\b",
+                f"{player.name} (YOU)",
+                transcript,
+            )
             parts.append(
                 "=== TODAY'S DISCUSSION (public — everyone sees this) ===\n"
                 + transcript
@@ -782,7 +810,12 @@ class MafiaGame:
         text = " ".join(text.split())
 
         # KEEP COMPLETE SENTENCES - don't cut off at 3
-        sentences = re.split(r"(?<=[.!?])\s+", text)
+        # Honorifics (DR. VANCE, Mr., Mrs., Ms., St.) are not sentence ends
+        sentences = re.split(
+            r"(?<!\bdr\.)(?<!\bmr\.)(?<!\bms\.)(?<!\bst\.)(?<!\bmrs\.)(?<=[.!?])\s+",
+            text,
+            flags=re.IGNORECASE,
+        )
 
         # Only limit if we have TOO many sentences (>5)
         if len(sentences) > 5:
@@ -790,13 +823,39 @@ class MafiaGame:
 
         return text
 
+    # Enforcement for the "NEVER reveal your role" rule: explicit first-person
+    # self-labels only, scoped to the speaker's real role so persona speech
+    # ("as a scientist", DR. VANCE's honorific) never trips it.
+    ROLE_LEAK_PATTERNS = {
+        Role.MAFIA: re.compile(
+            r"\bas (?:a|the) mafia(?: member)?\b|\bi(?:'m| am) (?:a |the )?mafia\b"
+            r"|\bmy fellow mafia\b|\bwe mafia\b|\bmy role is mafia\b"
+            r"|\bmy mafia (?:partner|ally|allies|teammates?)\b",
+            re.IGNORECASE,
+        ),
+        Role.DETECTIVE: re.compile(
+            r"\bas (?:a|the) detective\b|\bi(?:'m| am) the detective\b"
+            r"|\bmy role is detective\b",
+            re.IGNORECASE,
+        ),
+        Role.DOCTOR: re.compile(
+            r"\bas (?:a|the) doctor\b|\bi(?:'m| am) the doctor\b"
+            r"|\bmy role is doctor\b",
+            re.IGNORECASE,
+        ),
+    }
+
     def query_model(
-        self, player: Player, prompt: str, context: str = "", min_words: int = 4
+        self,
+        player: Player,
+        prompt: str,
+        context: str = "",
+        min_words: int = 4,
+        public_speech: bool = False,
     ) -> str:
         context = self.build_context_for_player(player, context)
 
-        system_prompt = f"""/no_think
-{self.universal_prompt}
+        system_prompt = f"""{self.universal_prompt}
 
 ### YOUR PERSONALITY
 You are {player.name}. {player.personality}
@@ -814,11 +873,12 @@ Here is the game history so far:
             {"role": "user", "content": f"Current task: {prompt}"},
         ]
 
+        seat_model = player.model or self.model
         try:
-            self.log(f"  [Querying {self.model}... ]", "cyan", public=False)
+            self.log(f"  [Querying {seat_model}... ]", "cyan", public=False)
             start_time = time.time()
 
-            response_text = self._call_backend(messages)
+            response_text = self._call_backend(messages, model=seat_model)
 
             elapsed = time.time() - start_time
             tokens = len(response_text.split()) * 1.3
@@ -844,21 +904,42 @@ Here is the game history so far:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": f"Current task: {prompt}\n\n{retry_suffix}"},
                 ]
-                response_text = self._call_backend(retry_messages)
+                response_text = self._call_backend(retry_messages, model=seat_model)
                 response_text = self.sanitize_response(player, response_text)
+
+            leak_re = self.ROLE_LEAK_PATTERNS.get(player.role) if public_speech else None
+            if leak_re and response_text and leak_re.search(response_text):
+                self.log(
+                    f"  [role leak by {player.name} — re-querying]", "red", public=False
+                )
+                retry_messages = [
+                    {"role": "system", "content": system_prompt},
+                    {
+                        "role": "user",
+                        "content": f"Current task: {prompt}\n\nIMPORTANT: Your previous reply revealed your secret role. NEVER state your own role. Rewrite your reply without any mention of your role.",
+                    },
+                ]
+                response_text = self.sanitize_response(
+                    player, self._call_backend(retry_messages, model=seat_model)
+                )
+                if not response_text or leak_re.search(response_text):
+                    response_text = f"*{player.name} mumbles something noncommittal*"
 
             if not response_text:
                 response_text = f"*{player.name} remains silent*"
             return response_text
 
         except Exception as e:
-            self.log(f"  [ERROR querying {self.model}: {e}]", "red", public=False)
+            self.log(f"  [ERROR querying {seat_model}: {e}]", "red", public=False)
             return f"*{player.name} remains silent*"
 
-    def _call_backend(self, messages: List[Dict]) -> str:
+    def _call_backend(self, messages: List[Dict], model: Optional[str] = None) -> str:
+        # Reasoning is on (no /no_think): the budget must fit thinking AND the
+        # spoken reply, and the thinking channel must stay private.
         return call_llm(
-            self._lm_client, self.model, messages,
+            self._lm_client, model or self.model, messages,
             use_nvidia=self.use_nvidia, schema_key="response",
+            max_tokens=1200, private_reasoning=True,
             on_retry=lambda wait: self.log(
                 f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
             ),
@@ -873,6 +954,7 @@ Here is the game history so far:
             r"\bvot(?:e|ing|ed)(?:\s+(?:for|out|to\s+eliminate))?\s+([\w][^\n,\.!?]{0,40})",
             r"\beliminate\s+([\w][^\n,\.!?]{0,40})",
             r"\bmy\s+vote\s+(?:is\s+)?(?:for\s+)?([\w][^\n,\.!?]{0,40})",
+            r"\b([\w][^\n,\.!?]{0,40}?)\s+(?:is|gets)\s+my\s+vote\b",
             r"\bi\s+(?:would\s+)?(?:pick|choose|select|nominate)\s+(?:to\s+eliminate\s+)?([\w][^\n,\.!?]{0,40})",
         ]
         explicit_hits: List[Tuple[int, str]] = []
@@ -902,22 +984,17 @@ Here is the game history so far:
         response: str,
         valid_targets: List[str],
     ) -> Optional[str]:
+        # A named target always wins: "CHEN — no one suspects her" is a kill
+        # on CHEN, not a NO_KILL
+        target = self.extract_vote(response, valid_targets)
+        if target:
+            return target
         rl = response.strip().lower()
-        no_kill_markers = [
-            "no kill",
-            "no_kill",
-            "nokill",
-            "skip",
-            "pass",
-            "nobody",
-            "no one",
-            "none",
-            "dont kill",
-            "don't kill",
-        ]
-        if any(m in rl for m in no_kill_markers):
+        if re.search(
+            r"\b(?:no[ _]?kill|nokill|skip|pass|nobody|no one|none|don'?t kill)\b", rl
+        ):
             return "no_kill"
-        return self.extract_vote(response, valid_targets)
+        return None
 
     def mafia_conversation_and_choose_target(
         self, mafia: List[Player], alive_names: List[str], context: str
@@ -935,9 +1012,11 @@ Here is the game history so far:
             prompt = f"It's night. You are Mafia.\nChoose EXACTLY ONE of these targets: {', '.join(valid_targets)}\nOr choose NO_KILL.\nReply with ONLY the target name or NO_KILL."
             for attempt in range(3):
                 resp = self.query_model(m, prompt, context, min_words=1)
+                self.log(f"   (night reply: {resp[:120]})", "red", public=False)
                 choice = self.parse_mafia_choice(resp, valid_targets)
                 if choice:
                     if choice == "no_kill":
+                        self.log("🌙 Mafia chose NO_KILL tonight", "red", public=False)
                         return None
                     return choice
             return random.choice(valid_targets)
@@ -976,6 +1055,7 @@ Here is the game history so far:
         final_votes: Dict[str, int] = {}
         for m in mafia:
             response = self.query_model(m, final_prompt, "\n".join(chat), min_words=1)
+            self.log(f"   ({m.name} final night vote: {response[:120]})", "red", public=False)
             voted_for = self.extract_vote(response, valid_targets)
             if voted_for:
                 final_votes[voted_for] = final_votes.get(voted_for, 0) + 1
@@ -1018,4 +1098,5 @@ Here is the game history so far:
             "detective": detective_stats,
             "night_kills": len(kills),
             "successful_saves": len(saves),
+            "no_kill_nights": self.no_kill_nights,
         }

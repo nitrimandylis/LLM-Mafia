@@ -27,7 +27,9 @@ REQUIRED: Dict[str, List[str]] = {
     "vote":          ["day", "actor", "target"],
     "elimination":   ["day", "target", "role", "tally"],
     "night_kill":    ["day", "target", "role", "saved"],
+    "night_no_kill": ["day"],
     "save":          ["day", "target"],
+    "protection":    ["day", "actor", "target"],   # private (reveal-secrets only)
     "mafia_chat":    ["day", "actor", "text"],     # private (reveal-secrets only)
     "investigation": ["day", "actor", "target", "result"],  # private
     "game_over":     ["winner", "survivors"],
