@@ -16,6 +16,24 @@
   font-family: var(--mono);
   position: relative;
 }
+/* Aura: one continuous layer over the whole page, so no wash is ever clipped
+   at a section boundary (that clipping reads as a hard line). Positions use
+   vh so each glow lands near its red source: wordmark/CTA, terminal, cases.
+   Neon treatment: a hot saturated core with a short falloff, not a wide wash. */
+.lp::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    /* wordmark/CTA — the sign over the door */
+    radial-gradient(460px 320px at 16% 40vh, rgba(255, 42, 42, 0.26), rgba(196, 30, 30, 0.10) 45%, transparent 72%),
+    /* terminal side answer */
+    radial-gradient(360px 260px at 88% 70vh, rgba(255, 42, 42, 0.13), transparent 66%),
+    /* case files */
+    radial-gradient(400px 300px at 12% 138vh, rgba(255, 42, 42, 0.15), transparent 66%),
+    /* deep-page ember */
+    radial-gradient(380px 280px at 85% 230vh, rgba(255, 42, 42, 0.11), transparent 66%);
+}
+/* Keep all page content painting above the aura layer. */
+.lp > * { position: relative; }
 .lp ::selection { background: rgba(196, 30, 30, 0.35); color: #fff; }
 .lp a { text-decoration: none; }
 
@@ -32,15 +50,6 @@
   gap: clamp(32px, 4vw, 80px);
   position: relative;
   overflow: hidden;
-}
-/* Aura: soft red light bleeding off the wordmark/CTA side, with a dimmer
-   answer behind the terminal — the page glows where the brand is. */
-.lp-hero::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(1000px 700px at 16% 40%, rgba(196, 30, 30, 0.17), transparent 62%),
-    radial-gradient(800px 600px at 88% 78%, rgba(196, 30, 30, 0.08), transparent 68%),
-    radial-gradient(1400px 500px at 50% 108%, rgba(196, 30, 30, 0.06), transparent 70%);
 }
 .lp-col { position: relative; z-index: 1; }
 
@@ -110,13 +119,6 @@
 
 /* ── SECTION LABEL ──────────────────────────────────── */
 .lp-section { padding: 120px clamp(40px, 6vw, 96px); position: relative; }
-/* Each section carries a faint aura rising from its label dot, so the page
-   never falls back to flat black between the red moments. */
-.lp-section::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(900px 480px at 12% 0%, rgba(196, 30, 30, 0.07), transparent 65%);
-}
-.lp-section > * { position: relative; }
 .lp-section.pipeline { padding: 80px clamp(40px, 6vw, 96px) 120px; }
 .lp-label { display: flex; align-items: center; gap: 12px; margin-bottom: 56px; }
 .lp-label-dot { width: 8px; height: 8px; background: var(--accent); animation: lp-pulse 2s ease-in-out infinite; }
