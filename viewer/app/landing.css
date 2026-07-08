@@ -13,9 +13,8 @@
   --grotesk: var(--font-grotesk), system-ui, sans-serif;
 
   min-height: 100vh;
-  /* Manhattan, 3 a.m.: a cold blue-black night sky settling into the street.
-     Never flat black — the dark has a temperature. */
-  background: linear-gradient(180deg, #070a14 0%, #05070e 22%, #04050a 55%, #030408 100%);
+  /* Manhattan, 3 a.m.: near-black night with only a whisper of cold in it. */
+  background: linear-gradient(180deg, #050609 0%, #040507 30%, #030305 65%, #020203 100%);
   color: #e0e0e0;
   font-family: var(--mono);
   position: relative;
