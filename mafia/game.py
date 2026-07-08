@@ -10,7 +10,7 @@ from typing import Dict, List, Optional, Tuple
 from openai import OpenAI
 
 from mafia.events import EventLog, seat_color
-from mafia.game_master import GameMaster, call_llm
+from mafia.game_master import GameMaster, call_llm, episode_inputs_from_events
 from mafia.game_state import build_day_summary
 from mafia.player import Player, Role, load_players_from_file
 
@@ -72,6 +72,7 @@ class MafiaGame:
         self.detective_investigated: set = set()
         self.day_summaries: Dict[int, str] = {}
         self.no_kill_nights = 0
+        self.episode: Dict[str, str] = {}
         gm_model_resolved = gm_model or (self.model if self.use_nvidia else DEFAULT_GM_MODEL)
         self.gm = GameMaster(
             client=self._lm_client,
@@ -636,6 +637,13 @@ class MafiaGame:
             gm_end = self.gm.narrate_game_over(winner, survivors, self.day)
             if gm_end:
                 self.log(f"\n📜 {gm_end}", "magenta")
+            # Episode packaging for the replay viewer: title/tagline/recap
+            # written by the GM, saved top-level in the log by main.py.
+            inputs = episode_inputs_from_events(self.events.to_list())
+            if inputs:
+                self.episode = self.gm.write_episode(**inputs)
+                if self.episode.get("title"):
+                    self.log(f"\n🎬 Episode: {self.episode['title']}", "magenta")
         if winner == "town":
             self.log("🎉 TOWN WINS! All mafia eliminated!", "green")
         elif winner == "mafia":
