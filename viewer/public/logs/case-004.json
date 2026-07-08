@@ -276,7 +276,7 @@
    "day": 1,
    "actor": "HOLMES",
    "target": "MARSHAL",
-   "text": "MARSHAL, you said you flagged RICO's behavior based on an established pattern but didn't name the exact deviation\u2014what precise statement did RICO make that you consider abnormal? MARSHAL"
+   "text": "MARSHAL, you said you flagged RICO's behavior based on an established pattern but didn't name the exact deviation\u2014what precise statement did RICO make that you consider abnormal?"
   },
   {
    "type": "answer",
@@ -561,7 +561,7 @@
    "type": "statement",
    "day": 2,
    "actor": "HOLMES",
-   "text": "If we consider that MARSHAL spent the day giving overly detailed analyses of social cues and tried to position himself as the rational voice, while others simply followed the vote pattern, his behavior deviates from the norm and may be a cover. ARIA and SAGE each voted in line with the majority without extra exposition, and PIP\u2019s vote for SOCRATES seems aimed at shifting focus. Therefore my suspicion is highest on MARSHAL MARSHAL"
+   "text": "If we consider that MARSHAL spent the day giving overly detailed analyses of social cues and tried to position himself as the rational voice, while others simply followed the vote pattern, his behavior deviates from the norm and may be a cover. ARIA and SAGE each voted in line with the majority without extra exposition, and PIP\u2019s vote for SOCRATES seems aimed at shifting focus. Therefore my suspicion is highest on MARSHAL."
   },
   {
    "type": "statement",
@@ -876,7 +876,7 @@
    "type": "mafia_chat",
    "day": 2,
    "actor": "HOLMES",
-   "text": "Ambassador Silva\u2019s vague \u201cinvestigation\u201d claim is the strongest indicator he is the Detective, and his ability to protect himself or expose us makes him the biggest threat. The other players have not shown comparable investigative power or influence. Eliminating Silva will remove the most dangerous obstacle to our coordination. AMBASSADOR SILVA"
+   "text": "Ambassador Silva\u2019s vague \u201cinvestigation\u201d claim is the strongest indicator he is the Detective, and his ability to protect himself or expose us makes him the biggest threat. The other players have not shown comparable investigative power or influence. Eliminating Silva will remove the most dangerous obstacle to our coordination."
   },
   {
    "type": "mafia_chat",
@@ -935,7 +935,7 @@
    "type": "statement",
    "day": 3,
    "actor": "HOLMES",
-   "text": "If SAGE\u2019s claim that Silva\u2019s night\u2011target was \u201ctoo convenient\u201d is genuine, she either knows the doctor\u2019s identity or is steering us toward a false lead, which is classic detective behaviour; additionally, her early focus on Silva after the save mirrors her Day 2 suspicion of ARIA, showing a pattern of targeting high\u2011visibility players. MARSHAL\u2019s over\u2011analytical style and reliance on Silva\u2019s clearance could be a cover, but he has not yet pushed a narrative that endangers the town as directly as SAGE does. Given the need to neutralise a likely investigative mind, my suspicion is highest on SAGE. SAGE"
+   "text": "If SAGE\u2019s claim that Silva\u2019s night\u2011target was \u201ctoo convenient\u201d is genuine, she either knows the doctor\u2019s identity or is steering us toward a false lead, which is classic detective behaviour; additionally, her early focus on Silva after the save mirrors her Day 2 suspicion of ARIA, showing a pattern of targeting high\u2011visibility players. MARSHAL\u2019s over\u2011analytical style and reliance on Silva\u2019s clearance could be a cover, but he has not yet pushed a narrative that endangers the town as directly as SAGE does. Given the need to neutralise a likely investigative mind, my suspicion is highest on SAGE."
   },
   {
    "type": "statement",
@@ -1185,7 +1185,7 @@
    "day": 3,
    "actor": "SOCRATES",
    "target": null,
-   "text": "The user is asking me to vote for who should be eliminated today from the alive players. I need to think about this carefully based on the game state and discussion."
+   "text": "Before we vote, examine the shape of this day: SAGE, SILVA and MARSHAL each arrived at HOLMES independently, for different reasons \u2014 and HOLMES answers not by refuting them but by redirecting us toward SAGE. Why would an innocent man spend his defense building a case against his accuser? When the question answers itself, I stop questioning."
   },
   {
    "type": "vote",
@@ -1310,7 +1310,7 @@
    "type": "statement",
    "day": 4,
    "actor": "SOCRATES",
-   "text": "The user is asking me to analyze the current game state as SOCRATES (a Villager) and identify who among the alive players is most suspicious. Let me review the key facts:"
+   "text": "Ask yourselves: why SAGE, and why now? The mafia does not kill at random \u2014 they silenced the one voice whose reasoning had already cost them HOLMES. So examine who profited from steering our attention elsewhere yesterday, and who profits from her silence today. Answer that honestly, and the pattern will name the remaining wolf among us."
   },
   {
    "type": "statement",
