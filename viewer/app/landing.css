@@ -106,6 +106,56 @@
 .lp-label-dot { width: 8px; height: 8px; background: var(--accent); animation: lp-pulse 2s ease-in-out infinite; }
 .lp-label span { font-size: 11px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; }
 
+/* ── EPISODES — the case files ──────────────────────── */
+/* The featured case is a wide dossier banner; earlier cases file underneath
+   as smaller posters. Card copy is spoiler-free (GM tagline, no winner). */
+.lp-ep-featured {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 4vw, 64px);
+  background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px;
+  padding: clamp(28px, 4vw, 48px); margin-bottom: 24px;
+  transition: border-color 0.2s; position: relative; overflow: hidden;
+}
+.lp-ep-featured::after {
+  /* faint red wash bleeding from the corner — the "tonight's feature" glow */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(600px 300px at 100% 0%, rgba(196, 30, 30, 0.09), transparent 70%);
+}
+.lp-ep-featured:hover { border-color: var(--dim); }
+.lp-ep-no { font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 14px; }
+.lp-ep-no em { font-style: normal; color: #888; }
+.lp-ep-title {
+  font-family: var(--grotesk); font-weight: 800; color: #fff;
+  font-size: clamp(26px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em;
+  margin: 0 0 14px; text-wrap: balance;
+}
+.lp-ep-tag { font-size: 13px; color: #a8a8a8; line-height: 1.7; margin: 0 0 22px; max-width: 52ch; text-wrap: pretty; }
+.lp-ep-watch {
+  display: inline-block; padding: 12px 24px; background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+}
+.lp-ep-featured:hover .lp-ep-watch { opacity: 0.85; }
+.lp-ep-right { display: flex; flex-direction: column; justify-content: center; gap: 18px; position: relative; }
+.lp-ep-castlist { display: flex; flex-wrap: wrap; gap: 8px; }
+.lp-ep-cast-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid #1e1e1e; padding: 5px 10px; border-radius: 3px;
+  font-size: 10px; letter-spacing: 1px; color: #aaa;
+}
+.lp-ep-cast-chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.lp-ep-meta { font-size: 10px; letter-spacing: 2px; color: #888; }
+
+.lp-ep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.lp-ep {
+  display: block; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px;
+  padding: 26px 26px 22px; transition: border-color 0.2s;
+}
+.lp-ep:hover { border-color: var(--dim); }
+.lp-ep .lp-ep-title { font-size: 20px; }
+.lp-ep .lp-ep-tag {
+  font-size: 12px; margin-bottom: 18px;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
 /* ── SKINS ──────────────────────────────────────────── */
 .lp-skins {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
@@ -186,4 +236,9 @@
   .lp-term-wrap { display: none; }
   .lp-skins { grid-template-columns: 1fr; }
   .lp-pipe-grid { grid-template-columns: 1fr; gap: 40px; }
+  .lp-ep-featured { grid-template-columns: 1fr; }
+  .lp-ep-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 861px) and (max-width: 1180px) {
+  .lp-ep-grid { grid-template-columns: repeat(2, 1fr); }
 }
