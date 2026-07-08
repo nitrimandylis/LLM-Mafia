@@ -33,6 +33,15 @@
   position: relative;
   overflow: hidden;
 }
+/* Aura: soft red light bleeding off the wordmark/CTA side, with a dimmer
+   answer behind the terminal — the page glows where the brand is. */
+.lp-hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(1000px 700px at 16% 40%, rgba(196, 30, 30, 0.17), transparent 62%),
+    radial-gradient(800px 600px at 88% 78%, rgba(196, 30, 30, 0.08), transparent 68%),
+    radial-gradient(1400px 500px at 50% 108%, rgba(196, 30, 30, 0.06), transparent 70%);
+}
 .lp-col { position: relative; z-index: 1; }
 
 .lp-logo {
@@ -101,6 +110,13 @@
 
 /* ── SECTION LABEL ──────────────────────────────────── */
 .lp-section { padding: 120px clamp(40px, 6vw, 96px); position: relative; }
+/* Each section carries a faint aura rising from its label dot, so the page
+   never falls back to flat black between the red moments. */
+.lp-section::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(900px 480px at 12% 0%, rgba(196, 30, 30, 0.07), transparent 65%);
+}
+.lp-section > * { position: relative; }
 .lp-section.pipeline { padding: 80px clamp(40px, 6vw, 96px) 120px; }
 .lp-label { display: flex; align-items: center; gap: 12px; margin-bottom: 56px; }
 .lp-label-dot { width: 8px; height: 8px; background: var(--accent); animation: lp-pulse 2s ease-in-out infinite; }
