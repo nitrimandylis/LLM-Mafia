@@ -1,5 +1,6 @@
 import json
 import random
+import re
 import threading
 import time
 from typing import Callable, Dict, List, Optional
@@ -77,7 +78,9 @@ def call_llm(
                     return raw
             return raw
         except Exception as e:
-            if "429" in str(e) and attempt < 4:
+            # 429 = rate limit, 5xx = gateway flake (504s seen when reasoning
+            # runs long) — both are transient, both get the backoff
+            if re.search(r"\b(429|5\d\d)\b", str(e)) and attempt < 4:
                 wait = 2 ** attempt * 5 + random.uniform(0, 5)  # jitter desyncs workers
                 if on_retry:
                     on_retry(wait)

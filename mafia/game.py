@@ -197,6 +197,9 @@ class MafiaGame:
                 for future in as_completed(futures):
                     player = futures[future]
                     response = future.result()
+                    if response == f"*{player.name} remains silent*":
+                        self.log(f"🗣️  {player.name} has nothing to say", "yellow", public=False)
+                        continue
                     self.log(f"🗣️  {player.name}: {response}", "normal")
                     self.emit("statement", day=self.day, actor=player.name, text=response)
                     day_statements.append(f"{player.name}: {response}")
@@ -241,6 +244,9 @@ class MafiaGame:
                 for future in as_completed(futures):
                     player = futures[future]
                     response = future.result()
+                    if response == f"*{player.name} remains silent*":
+                        self.log(f"🗣️  {player.name} has nothing to say", "yellow", public=False)
+                        continue
                     self.log(f"🗣️  {player.name}: {response}", "normal")
                     self.emit("statement", day=self.day, actor=player.name, text=response)
                     day_statements.append(f"{player.name}: {response}")
@@ -320,13 +326,23 @@ class MafiaGame:
                 )
                 futures[future] = player
 
+            # Collect everything BEFORE emitting: accusations are written
+            # blind, so one early pick can't cascade into a dogpile (day 1
+            # against the Detective was decided this way)
+            collected = []
             for future in as_completed(futures):
                 player = futures[future]
                 response = future.result()
-                self.log(f"⚔️  {player.name}: {response}", "red")
-                accused = self.extract_vote(response, [n for n in alive_names if n != player.name])
-                self.emit("accusation", day=self.day, actor=player.name, target=accused, text=response)
-                day_statements.append(f"{player.name} accuses: {response}")
+                if response == f"*{player.name} remains silent*":
+                    self.log(f"⚔️  {player.name} offers no accusation", "yellow", public=False)
+                    continue
+                collected.append((player, response))
+
+        for player, response in collected:
+            self.log(f"⚔️  {player.name}: {response}", "red")
+            accused = self.extract_vote(response, [n for n in alive_names if n != player.name])
+            self.emit("accusation", day=self.day, actor=player.name, target=accused, text=response)
+            day_statements.append(f"{player.name} accuses: {response}")
 
         # GM summarizes the day for injection into subsequent context
         summary = self.gm.narrate_day_summary(self.day, day_statements)
@@ -766,6 +782,8 @@ class MafiaGame:
         # Strip internal reasoning blocks — these must never be visible to other players
         text = re.sub(r"<thinking>.*?</thinking>", "", text, flags=re.DOTALL | re.IGNORECASE)
         text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
+        # Unterminated think block (truncated mid-reasoning): drop to end of text
+        text = re.sub(r"<think(?:ing)?>.*$", "", text, flags=re.DOTALL | re.IGNORECASE)
         text = text.strip()
         if not text:
             return ""
@@ -895,6 +913,10 @@ Here is the game history so far:
             if not response_text or (
                 min_words > 0 and len(response_text.split()) < min_words
             ):
+                self.log(
+                    f"  [empty/short reply from {seat_model} (reasoning may have consumed the budget) — retrying]",
+                    "yellow", public=False,
+                )
                 retry_suffix = (
                     "Reply with a direct answer. No headings."
                     if min_words <= 1
@@ -939,7 +961,7 @@ Here is the game history so far:
         return call_llm(
             self._lm_client, model or self.model, messages,
             use_nvidia=self.use_nvidia, schema_key="response",
-            max_tokens=1200, private_reasoning=True,
+            max_tokens=2048, private_reasoning=True,
             on_retry=lambda wait: self.log(
                 f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
             ),

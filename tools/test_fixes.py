@@ -62,6 +62,10 @@ ctx = g.build_context_for_player(player, "facts")
 assert "RICO (YOU):" in ctx, ctx
 assert "CHEN → RICO:" in ctx, ctx  # RICO as target stays untagged
 
+# unterminated <think> (truncated reasoning) must never reach the transcript
+assert g.sanitize_response(player, "SAGE is lying. <think>I'm mafia so I should") == "SAGE is lying."
+assert g.sanitize_response(player, "<think>I am the mafia, plan: deflect") == ""
+
 # extract_vote: reversed vote phrasing beats "last name mentioned" fallback
 assert g.extract_vote("CHEN is my vote — that call-out of HOLMES reeked of setup.", targets) == "CHEN"
 assert g.extract_vote("SAGE gets my vote today, not RICO.", targets) == "SAGE"
