@@ -376,8 +376,8 @@ a { color: inherit; }
 .chat-presence.night { color: #9aa0aa; text-shadow: 0 0 10px rgba(154, 160, 170, 0.25); }
 .chat-status-day { font-weight: 700; color: #c9cfdb; }
 .chat-status-alive { margin-left: auto; opacity: .8; }
-.chat-scroll { flex: 1; overflow-y: auto; padding: 18px; min-height: 0; }
-.chat-inner { max-width: 720px; margin: 0 auto; }
+.chat-scroll { flex: 1; overflow-y: auto; padding: 18px clamp(18px, 4vw, 48px); min-height: 0; }
+.chat-inner { max-width: 960px; margin: 0 auto; }
 /* Phase dividers are act breaks: hairlines sweep in from both sides and the
    night card wears the neon. */
 .chat-divider { display: flex; align-items: center; gap: 16px; margin: 30px 0 20px; }
@@ -403,8 +403,14 @@ a { color: inherit; }
 .chat-stack .who { font-size: 11px; color: #8b93a3; margin: 0 0 3px 2px; }
 .chat-stack .who-accuse { color: #ff9a9a; font-weight: 600; }
 .chat-stack .who-to { color: #8b93a3; }
-.bubble { background: var(--c-bubble); border-radius: 4px 13px 13px 13px; padding: 8px 12px; font-size: 14px; line-height: 1.45; max-width: 78%; color: #e7e9ee; }
+.bubble { background: var(--c-bubble); border-radius: 4px 13px 13px 13px; padding: 8px 12px; font-size: 14px; line-height: 1.45; max-width: min(78%, 620px); color: #e7e9ee; }
 .chat-row.grouped .bubble { border-radius: 13px; }
+/* Two-sided thread: odd seats mirror to the right (see ChatSkin flipOf). */
+.chat-row.flip { flex-direction: row-reverse; }
+.chat-row.flip .chat-stack { text-align: right; }
+.chat-row.flip .bubble { border-radius: 13px 4px 13px 13px; margin-left: auto; text-align: left; }
+.chat-row.flip.grouped .bubble { border-radius: 13px; }
+.chat-row.flip .who { margin: 0 2px 3px 0; }
 .bubble.accuse {
   background: #371519; border: 1px solid #8a2a34;
   box-shadow: 0 0 16px rgba(196, 30, 30, 0.14);
@@ -426,7 +432,7 @@ a { color: inherit; }
   box-shadow: 0 0 14px rgba(122, 47, 51, 0.2), inset 0 0 12px rgba(122, 47, 51, 0.1);
 }
 .chat-row.side .who { color: #b5888a; margin: 0 2px 3px 0; }
-.chat-ballot { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 6px 0 14px 42px; }
+.chat-ballot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 7px; margin: 10px auto 16px; }
 .chat-ballot .ballot-label { font-size: 11px; letter-spacing: .12em; color: #8b93a3; text-transform: uppercase; }
 .chat-ballot .ballot-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09); border-radius: 14px; padding: 3px 9px; font-size: 12px; }
 .chat-ballot .ballot-chip .dot { width: 8px; height: 8px; border-radius: 50%; }

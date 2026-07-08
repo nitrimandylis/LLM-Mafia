@@ -63,6 +63,10 @@ export default function ChatSkin({ state, active }: SkinProps) {
   const { revealed, pending, players, phase, day, alive } = state;
   const { ref: scroller, onScroll } = useStageScroll<HTMLDivElement>(active, state.cursor);
   const colorOf = (name: string) => players.find((p) => p.name === name)?.color ?? "#888";
+  // Two-sided thread: odd seats speak from the right, even from the left, so
+  // the conversation ping-pongs like a real group chat instead of a monologue.
+  const flipOf = (name: string) =>
+    ((players.find((p) => p.name === name)?.seat ?? 0) % 2) === 1;
 
   const items = fold(revealed);
 
@@ -90,7 +94,15 @@ export default function ChatSkin({ state, active }: SkinProps) {
               it.e.type !== "accusation" &&
               it.e.type !== "mafia_chat" &&
               prev.e.type !== "mafia_chat";
-            return <Msg key={idx} e={it.e} color={colorOf(isSpeech(it.e) ? it.e.actor : "")} grouped={grouped} />;
+            return (
+              <Msg
+                key={idx}
+                e={it.e}
+                color={colorOf(isSpeech(it.e) ? it.e.actor : "")}
+                grouped={grouped}
+                flip={isSpeech(it.e) && flipOf(it.e.actor)}
+              />
+            );
           })}
 
           {pending && isSpeech(pending) && (
@@ -99,6 +111,7 @@ export default function ChatSkin({ state, active }: SkinProps) {
               e={pending}
               color={colorOf(pending.actor)}
               grouped={false}
+              flip={flipOf(pending.actor)}
               typing
             />
           )}
@@ -123,11 +136,13 @@ function Msg({
   e,
   color,
   grouped,
+  flip,
   typing,
 }: {
   e: GameEvent;
   color: string;
   grouped: boolean;
+  flip?: boolean;
   typing?: boolean;
 }) {
   if (!isSpeech(e)) return null;
@@ -136,7 +151,7 @@ function Msg({
   const target = "target" in e ? e.target : undefined;
 
   return (
-    <div className={`chat-row${whisper ? " side" : ""}${grouped ? " grouped" : ""}`}>
+    <div className={`chat-row${whisper ? " side" : ""}${flip && !whisper ? " flip" : ""}${grouped ? " grouped" : ""}`}>
       <div className="chat-gutter">
         {!grouped && (
           <div className="avatar" style={{ background: whisper ? "transparent" : color }}>
