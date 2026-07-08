@@ -174,11 +174,20 @@ function Ballot({
     tally.get(v.target)!.push(v.actor);
   }
   const sorted = [...tally.entries()].sort((a, b) => b[1].length - a[1].length);
+  // Heat up the frontrunner's chip — only when they're strictly ahead.
+  const leading =
+    sorted.length > 0 && (sorted.length === 1 || sorted[0][1].length > sorted[1][1].length)
+      ? sorted[0][0]
+      : null;
   return (
     <div className="chat-ballot">
       <span className="ballot-label"><BallotIcon /> Ballot</span>
       {sorted.map(([target, voters]) => (
-        <span key={target} className="ballot-chip" title={voters.join(", ")}>
+        <span
+          key={target}
+          className={`ballot-chip${target === leading ? " lead" : ""}`}
+          title={voters.join(", ")}
+        >
           <span className="dot" style={{ background: colorOf(target) }} />
           {target}
           <b>{voters.length}</b>
