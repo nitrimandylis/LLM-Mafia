@@ -9,6 +9,9 @@ export type EpisodeCard = {
   cast: { name: string; color: string }[];
   days: number;
   deaths: number;
+  // true when the game was recorded with --reveal-secrets (mafia comms and
+  // detective checks are in the replay)
+  revealed?: boolean;
 };
 
 // GM-written packaging baked into each published log. The recap spoils —

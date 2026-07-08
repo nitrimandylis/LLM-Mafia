@@ -79,6 +79,11 @@ def manifest_entry(log: dict, slug: str) -> dict:
         1 for e in events
         if e["type"] == "elimination" or (e["type"] == "night_kill" and not e.get("saved"))
     )
+    # --reveal-secrets logs carry private events and roles in game_start; the
+    # homepage tags them so viewers know they'll see the mafia's side-channel.
+    revealed = any(
+        e["type"] in ("mafia_chat", "investigation", "protection") for e in events
+    ) or any(p.get("role") for p in start["players"])
     return {
         "slug": slug,
         "title": log["episode"]["title"],
@@ -86,6 +91,7 @@ def manifest_entry(log: dict, slug: str) -> dict:
         "cast": [{"name": p["name"], "color": p["color"]} for p in start["players"]],
         "days": log.get("day") or max((e.get("day") or 1) for e in events),
         "deaths": deaths,
+        "revealed": revealed,
     }
 
 

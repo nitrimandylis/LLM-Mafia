@@ -133,6 +133,7 @@ export default function Landing() {
             <div className="lp-ep-left">
               <div className="lp-ep-no">
                 {caseNumber(FEATURED.slug)} <em>· LATEST</em>
+                {FEATURED.revealed && <RevealedTag />}
               </div>
               <h3 className="lp-ep-title">{FEATURED.title}</h3>
               <p className="lp-ep-tag">{FEATURED.tagline}</p>
@@ -157,7 +158,10 @@ export default function Landing() {
             .reverse()
             .map((ep) => (
               <Link key={ep.slug} href={`/watch/${ep.slug}`} className="lp-ep">
-                <div className="lp-ep-no">{caseNumber(ep.slug)}</div>
+                <div className="lp-ep-no">
+                  {caseNumber(ep.slug)}
+                  {ep.revealed && <RevealedTag />}
+                </div>
                 <h3 className="lp-ep-title">{ep.title}</h3>
                 <p className="lp-ep-tag">{ep.tagline}</p>
                 <EpisodeMetaLine ep={ep} />
@@ -294,6 +298,19 @@ export default function Landing() {
         </div>
       </footer>
     </div>
+  );
+}
+
+// Recorded with --reveal-secrets: the replay includes the mafia's private
+// chat and the detective's checks.
+function RevealedTag() {
+  return (
+    <span
+      className="lp-ep-revealed"
+      title="Recorded with secrets revealed: you watch the mafia's private chat and the detective's checks."
+    >
+      SECRETS REVEALED
+    </span>
   );
 }
 

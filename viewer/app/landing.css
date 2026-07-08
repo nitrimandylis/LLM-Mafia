@@ -203,8 +203,15 @@
   background: radial-gradient(600px 300px at 100% 0%, rgba(196, 30, 30, 0.09), transparent 70%);
 }
 .lp-ep-featured:hover { border-color: var(--dim); }
-.lp-ep-no { font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 14px; }
+.lp-ep-no { font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .lp-ep-no em { font-style: normal; color: #888; }
+/* --reveal-secrets stamp: this replay includes the mafia side-channel. */
+.lp-ep-revealed {
+  font-size: 9px; letter-spacing: 2px; color: #e0a9ad;
+  border: 1px solid rgba(196, 30, 30, 0.5); border-radius: 2px;
+  padding: 2px 7px; background: rgba(196, 30, 30, 0.1);
+  box-shadow: 0 0 10px rgba(196, 30, 30, 0.15);
+}
 .lp-ep-title {
   font-family: var(--grotesk); font-weight: 800; color: #fff;
   font-size: clamp(26px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em;
