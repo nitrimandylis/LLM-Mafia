@@ -92,6 +92,7 @@ def manifest_entry(log: dict, slug: str) -> dict:
         "days": log.get("day") or max((e.get("day") or 1) for e in events),
         "deaths": deaths,
         "revealed": revealed,
+        **({"provider": start["provider"]} if start.get("provider") else {}),
     }
 
 

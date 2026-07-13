@@ -12,6 +12,15 @@ export type EpisodeCard = {
   // true when the game was recorded with --reveal-secrets (mafia comms and
   // detective checks are in the replay)
   revealed?: boolean;
+  // which backend played the game ("nvidia" | "claude" | "lm-studio")
+  provider?: string;
+};
+
+// Each provider's signature neon, tuned for the noir chrome.
+export const PROVIDER_COLORS: Record<string, string> = {
+  nvidia: "#76b900",
+  claude: "#d97757",
+  "lm-studio": "#8a7ff0",
 };
 
 // GM-written packaging baked into each published log. The recap spoils —

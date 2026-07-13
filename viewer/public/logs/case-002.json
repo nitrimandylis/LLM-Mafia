@@ -7,64 +7,75 @@
      "name": "RICO",
      "seat": 0,
      "color": "#7cc4ff",
-     "role": "Mafia"
+     "role": "Mafia",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "ARIA",
      "seat": 1,
      "color": "#ff9a9a",
-     "role": "Villager"
+     "role": "Villager",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "SAGE",
      "seat": 2,
      "color": "#b9f6ca",
-     "role": "Villager"
+     "role": "Villager",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "HOLMES",
      "seat": 3,
      "color": "#ffd180",
-     "role": "Villager"
+     "role": "Villager",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "MARSHAL",
      "seat": 4,
      "color": "#ce93d8",
-     "role": "Mafia"
+     "role": "Mafia",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "SOCRATES",
      "seat": 5,
      "color": "#80deea",
-     "role": "Villager"
+     "role": "Villager",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "DR. VANCE",
      "seat": 6,
      "color": "#ffab91",
-     "role": "Doctor"
+     "role": "Doctor",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "PIP",
      "seat": 7,
      "color": "#c5e1a5",
-     "role": "Detective"
+     "role": "Detective",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "CHEN",
      "seat": 8,
      "color": "#f48fb1",
-     "role": "Villager"
+     "role": "Villager",
+     "model": "minimaxai/minimax-m3"
     },
     {
      "name": "AMBASSADOR SILVA",
      "seat": 9,
      "color": "#9fa8da",
-     "role": "Mafia"
+     "role": "Mafia",
+     "model": "minimaxai/minimax-m3"
     }
    ],
-   "player_count": 10
+   "player_count": 10,
+   "provider": "nvidia"
   },
   {
    "type": "phase",

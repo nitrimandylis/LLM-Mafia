@@ -63,6 +63,10 @@ export default function ChatSkin({ state, active }: SkinProps) {
   const { revealed, pending, players, phase, day, alive } = state;
   const { ref: scroller, onScroll } = useStageScroll<HTMLDivElement>(active, state.cursor);
   const colorOf = (name: string) => players.find((p) => p.name === name)?.color ?? "#888";
+  // Short model tag ("deepseek-ai/deepseek-v4-pro" → "deepseek-v4-pro");
+  // absent in logs from before model stamping.
+  const modelOf = (name: string) =>
+    players.find((p) => p.name === name)?.model?.split("/").pop();
   // Two-sided thread: odd seats speak from the right, even from the left, so
   // the conversation ping-pongs like a real group chat instead of a monologue.
   const flipOf = (name: string) =>
@@ -99,6 +103,7 @@ export default function ChatSkin({ state, active }: SkinProps) {
                 key={idx}
                 e={it.e}
                 color={colorOf(isSpeech(it.e) ? it.e.actor : "")}
+                model={isSpeech(it.e) ? modelOf(it.e.actor) : undefined}
                 grouped={grouped}
                 flip={isSpeech(it.e) && flipOf(it.e.actor)}
               />
@@ -110,6 +115,7 @@ export default function ChatSkin({ state, active }: SkinProps) {
               key="typing"
               e={pending}
               color={colorOf(pending.actor)}
+              model={modelOf(pending.actor)}
               grouped={false}
               flip={flipOf(pending.actor)}
               typing
@@ -135,12 +141,14 @@ function PhaseDivider({ day, phase }: { day: number; phase: "day" | "night" }) {
 function Msg({
   e,
   color,
+  model,
   grouped,
   flip,
   typing,
 }: {
   e: GameEvent;
   color: string;
+  model?: string;
   grouped: boolean;
   flip?: boolean;
   typing?: boolean;
@@ -163,6 +171,7 @@ function Msg({
         {!grouped && (
           <div className="who">
             {whisper ? `${e.actor} · mafia side-channel` : e.actor}
+            {model && <span className="who-model">{model}</span>}
             {accuse && target && <span className="who-accuse"> accuses {target}</span>}
             {!accuse && !whisper && target && <span className="who-to"> → {target}</span>}
           </div>
