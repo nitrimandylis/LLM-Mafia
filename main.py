@@ -81,9 +81,10 @@ if __name__ == "__main__":
 
     print("🎭 INITIALIZING LLM MAFIA GAME...\n")
     if args.claude:
-        model = args.model or DEFAULT_CLAUDE_MODEL
+        model = args.model  # None → seats cycle haiku/sonnet/opus, GM on sonnet
         max_workers = args.max_workers
-        print(f"🔌 Backend: Claude CLI  |  Model: {model}  |  Workers: {max_workers}\n")
+        seat_desc = model or "haiku/sonnet/opus mix"
+        print(f"🔌 Backend: Claude CLI  |  Model: {seat_desc}  |  Workers: {max_workers}\n")
     elif args.nvidia:
         model = args.model or DEFAULT_NVIDIA_MODEL
         max_workers = args.max_workers if args.max_workers != 4 else 2

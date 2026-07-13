@@ -20,6 +20,9 @@ NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1"
 DEFAULT_MODEL = "qwen/qwen3.5-9b"
 DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m3"
 DEFAULT_CLAUDE_MODEL = "sonnet"
+# one shared model made all seats reason alike (bandwagon town, twin mafia
+# arguments) — mixing tiers restores the dissent mixed-model games had
+CLAUDE_SEAT_MODELS = ["haiku", "sonnet", "opus"]
 DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
 
 
@@ -60,10 +63,21 @@ class MafiaGame:
             self.model = model_override or DEFAULT_MODEL
             self._lm_client = OpenAI(base_url=lm_studio_url, api_key="lm-studio")
 
-        self.players = [
-            Player(p.name, personality=p.personality, model=p.model)
-            for p in base_players
-        ]
+        if self.use_claude:
+            # --model forces one model everywhere; otherwise cycle the tiers
+            self.players = [
+                Player(
+                    p.name,
+                    personality=p.personality,
+                    model=model_override or CLAUDE_SEAT_MODELS[i % len(CLAUDE_SEAT_MODELS)],
+                )
+                for i, p in enumerate(base_players)
+            ]
+        else:
+            self.players = [
+                Player(p.name, personality=p.personality, model=p.model)
+                for p in base_players
+            ]
         self.day = 0
         self.game_log = []
         self.public_log = []
@@ -900,8 +914,7 @@ Here is the game history so far:
             {"role": "user", "content": f"Current task: {prompt}"},
         ]
 
-        # players.json pins LM Studio/NVIDIA model IDs — meaningless to claude
-        seat_model = self.model if self.use_claude else (player.model or self.model)
+        seat_model = player.model or self.model
         try:
             self.log(f"  [Querying {seat_model}... ]", "cyan", public=False)
             start_time = time.time()
