@@ -4,23 +4,82 @@
 
 .lp {
   --accent: #c41e1e;
+  --neon: #ff2a2a;
   --dim: rgba(196, 30, 30, 0.35);
   --subtle: rgba(196, 30, 30, 0.05);
-  --border: #1e1e1e;
+  --border: #1b1d26;
+  --panel: #0a0b10;
   --mono: var(--font-mono), ui-monospace, monospace;
   --grotesk: var(--font-grotesk), system-ui, sans-serif;
 
   min-height: 100vh;
-  background: #050505;
+  /* Manhattan, 3 a.m.: near-black night with only a whisper of cold in it. */
+  background: linear-gradient(180deg, #050609 0%, #040507 30%, #030305 65%, #020203 100%);
   color: #e0e0e0;
   font-family: var(--mono);
   position: relative;
 }
+
+/* ── NEON NOIR ATMOSPHERE ───────────────────────────────
+   Layer 1 (.lp::before): the lights. Hot red neon signage glow over the
+   wordmark/CTA and the case files, answered by one cold gas-lamp wash on the
+   terminal side — the classic two-tone neon-noir key/fill. One continuous
+   page layer so nothing clips at section boundaries.
+   Layer 2 (.lp::after): the tube. A fixed CRT pass — scanlines, phosphor
+   grain, vignette, and a faint mains flicker — over the whole broadcast. */
+.lp::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    /* the sign over the door */
+    radial-gradient(520px 360px at 16% 38vh, rgba(255, 42, 42, 0.30), rgba(196, 30, 30, 0.11) 45%, transparent 72%),
+    /* cold light through the window, answering the sign */
+    radial-gradient(560px 420px at 86% 62vh, rgba(96, 138, 210, 0.10), transparent 68%),
+    /* case files under the second sign */
+    radial-gradient(420px 320px at 12% 138vh, rgba(255, 42, 42, 0.17), transparent 66%),
+    /* deep-page ember */
+    radial-gradient(400px 300px at 85% 230vh, rgba(255, 42, 42, 0.12), transparent 66%),
+    /* far streetlight, barely there */
+    radial-gradient(520px 400px at 20% 320vh, rgba(96, 138, 210, 0.06), transparent 68%);
+}
+.lp::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 3;
+  background:
+    /* phosphor grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    /* scanlines */
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0 1px, transparent 1px 3px),
+    /* tube vignette */
+    radial-gradient(130% 110% at 50% 42%, transparent 58%, rgba(0, 0, 0, 0.42) 100%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lp::after { animation: lp-crt-flicker 9s linear infinite; }
+}
+/* Mains hum: near-invisible dips, never a strobe. */
+@keyframes lp-crt-flicker {
+  0%, 100% { opacity: 1; }
+  93.4% { opacity: 1; }
+  93.6% { opacity: 0.86; }
+  93.8% { opacity: 1; }
+  97.1% { opacity: 1; }
+  97.3% { opacity: 0.92; }
+  97.5% { opacity: 1; }
+}
+/* Keep all page content painting above the light layer, below the tube. */
+.lp > * { position: relative; }
 .lp ::selection { background: rgba(196, 30, 30, 0.35); color: #fff; }
 .lp a { text-decoration: none; }
 
 @keyframes lp-blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
 @keyframes lp-pulse { 0%, 100% { opacity: 0.4 } 50% { opacity: 1 } }
+/* Neon tube buzz: the sign dims for a breath every few seconds. */
+@keyframes lp-neon-buzz {
+  0%, 100% { opacity: 1; }
+  88.8% { opacity: 1; }
+  89% { opacity: 0.78; }
+  89.4% { opacity: 0.94; }
+  89.8% { opacity: 0.82; }
+  90.2% { opacity: 1; }
+}
 
 /* ── HERO ───────────────────────────────────────────── */
 .lp-hero {
@@ -41,11 +100,25 @@
   font-weight: 800; line-height: 0.88; letter-spacing: -0.04em;
   margin-bottom: 40px;
 }
-.lp-logo .l1 { color: #fff; }
-.lp-logo .l2 { color: var(--accent); }
+/* The wordmark is a neon sign: cold white tube over a hot red one. */
+.lp-logo .l1 {
+  color: #fff;
+  text-shadow: 0 0 14px rgba(190, 210, 255, 0.28), 0 0 44px rgba(190, 210, 255, 0.12);
+}
+.lp-logo .l2 {
+  color: var(--neon);
+  text-shadow:
+    0 0 8px rgba(255, 42, 42, 0.55),
+    0 0 26px rgba(255, 42, 42, 0.38),
+    0 0 70px rgba(196, 30, 30, 0.30);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lp-logo .l2 { animation: lp-neon-buzz 7s linear infinite; }
+}
 .lp-tagline {
   font-size: clamp(11px, 1.2vw, 14px); letter-spacing: 3px;
-  color: var(--accent); text-transform: uppercase; margin-bottom: 24px;
+  color: var(--neon); text-transform: uppercase; margin-bottom: 24px;
+  text-shadow: 0 0 12px rgba(255, 42, 42, 0.4);
 }
 .lp-desc {
   font-family: var(--grotesk);
@@ -58,21 +131,30 @@
   font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
   transition: all 0.2s;
 }
-.lp-btn-primary { background: var(--accent); color: #fff; }
-.lp-btn-primary:hover { opacity: 0.85; }
-.lp-btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--dim); }
-.lp-btn-ghost:hover { border-color: var(--accent); background: var(--subtle); }
+.lp-btn-primary {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 0 18px rgba(255, 42, 42, 0.35), 0 0 50px rgba(196, 30, 30, 0.18);
+}
+.lp-btn-primary:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 0 24px rgba(255, 42, 42, 0.5), 0 0 70px rgba(196, 30, 30, 0.25);
+}
+.lp-btn-ghost { background: transparent; color: var(--neon); border: 1px solid var(--dim); }
+.lp-btn-ghost:hover {
+  border-color: var(--neon); background: var(--subtle);
+  box-shadow: 0 0 16px rgba(255, 42, 42, 0.22);
+}
 
 /* Terminal preview */
 .lp-term-wrap { position: relative; z-index: 1; }
 .lp-term {
-  background: #0a0a0a; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
 }
 .lp-term-bar {
   display: flex; align-items: center; gap: 8px; padding: 14px 18px;
-  background: #0e0e0e; border-bottom: 1px solid #1a1a1a;
+  background: #0d0f16; border-bottom: 1px solid var(--border);
 }
 .lp-dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
 .lp-dot.on { background: var(--accent); }
@@ -87,7 +169,7 @@
 .lp-cursor { animation: lp-blink 1s step-end infinite; color: #888; }
 
 .lp-float {
-  position: absolute; background: #0e0e0e; border: 1px solid var(--border);
+  position: absolute; background: #0d0f16; border: 1px solid var(--border);
   border-radius: 4px; font-size: 10px; z-index: 2;
 }
 .lp-float-roles {
@@ -103,20 +185,77 @@
 .lp-section { padding: 120px clamp(40px, 6vw, 96px); position: relative; }
 .lp-section.pipeline { padding: 80px clamp(40px, 6vw, 96px) 120px; }
 .lp-label { display: flex; align-items: center; gap: 12px; margin-bottom: 56px; }
-.lp-label-dot { width: 8px; height: 8px; background: var(--accent); animation: lp-pulse 2s ease-in-out infinite; }
-.lp-label span { font-size: 11px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; }
+.lp-label-dot { width: 8px; height: 8px; background: var(--neon); box-shadow: 0 0 10px rgba(255, 42, 42, 0.7); animation: lp-pulse 2s ease-in-out infinite; }
+.lp-label span { font-size: 11px; letter-spacing: 4px; color: var(--neon); text-transform: uppercase; text-shadow: 0 0 10px rgba(255, 42, 42, 0.35); }
+
+/* ── EPISODES — the case files ──────────────────────── */
+/* The featured case is a wide dossier banner; earlier cases file underneath
+   as smaller posters. Card copy is spoiler-free (GM tagline, no winner). */
+.lp-ep-featured {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 4vw, 64px);
+  background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+  padding: clamp(28px, 4vw, 48px); margin-bottom: 24px;
+  transition: border-color 0.2s; position: relative; overflow: hidden;
+}
+.lp-ep-featured::after {
+  /* faint red wash bleeding from the corner — the "tonight's feature" glow */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(600px 300px at 100% 0%, rgba(196, 30, 30, 0.09), transparent 70%);
+}
+.lp-ep-featured:hover { border-color: var(--dim); }
+.lp-ep-no { font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.lp-ep-no em { font-style: normal; color: #888; }
+/* --reveal-secrets stamp: this replay includes the mafia side-channel. */
+.lp-ep-revealed {
+  font-size: 9px; letter-spacing: 2px; color: #e0a9ad;
+  border: 1px solid rgba(196, 30, 30, 0.5); border-radius: 2px;
+  padding: 2px 7px; background: rgba(196, 30, 30, 0.1);
+  box-shadow: 0 0 10px rgba(196, 30, 30, 0.15);
+}
+.lp-ep-title {
+  font-family: var(--grotesk); font-weight: 800; color: #fff;
+  font-size: clamp(26px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em;
+  margin: 0 0 14px; text-wrap: balance;
+}
+.lp-ep-tag { font-size: 13px; color: #a8a8a8; line-height: 1.7; margin: 0 0 22px; max-width: 52ch; text-wrap: pretty; }
+.lp-ep-watch {
+  display: inline-block; padding: 12px 24px; background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+}
+.lp-ep-featured:hover .lp-ep-watch { opacity: 0.85; }
+.lp-ep-right { display: flex; flex-direction: column; justify-content: center; gap: 18px; position: relative; }
+.lp-ep-castlist { display: flex; flex-wrap: wrap; gap: 8px; }
+.lp-ep-cast-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid #1e1e1e; padding: 5px 10px; border-radius: 3px;
+  font-size: 10px; letter-spacing: 1px; color: #aaa;
+}
+.lp-ep-cast-chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.lp-ep-meta { font-size: 10px; letter-spacing: 2px; color: #888; }
+
+.lp-ep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.lp-ep {
+  display: block; background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+  padding: 26px 26px 22px; transition: border-color 0.2s;
+}
+.lp-ep:hover { border-color: var(--dim); }
+.lp-ep .lp-ep-title { font-size: 20px; }
+.lp-ep .lp-ep-tag {
+  font-size: 12px; margin-bottom: 18px;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
 
 /* ── SKINS ──────────────────────────────────────────── */
 .lp-skins {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
 }
 .lp-card {
-  background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
   overflow: hidden; transition: border-color 0.2s;
 }
 .lp-card:hover { border-color: var(--dim); }
 .lp-card-preview { height: 170px; padding: 22px; overflow: hidden; }
-.lp-card-foot { padding: 20px 24px; border-top: 1px solid #1a1a1a; }
+.lp-card-foot { padding: 20px 24px; border-top: 1px solid var(--border); }
 .lp-card-name { font-family: var(--grotesk); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
 .lp-card-blurb { font-size: 11px; color: #999; line-height: 1.6; }
 
@@ -159,7 +298,7 @@
 .lp-step .txt { font-size: 13px; color: #888; }
 .lp-step .txt code { color: #ccc; font-family: var(--mono); }
 .lp-qs-label { font-size: 11px; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-bottom: 12px; }
-.lp-qs { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; padding: 24px; font-size: 12px; line-height: 2.2; }
+.lp-qs { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 24px; font-size: 12px; line-height: 2.2; }
 .lp-qs .cmt { color: #888; }
 .lp-qs .pr { color: #888; }
 .lp-qs code { color: #ccc; font-family: var(--mono); }
@@ -167,7 +306,7 @@
 
 /* ── FOOTER ─────────────────────────────────────────── */
 .lp-footer {
-  border-top: 1px solid #111; padding: 48px clamp(40px, 6vw, 96px);
+  border-top: 1px solid #12141c; padding: 48px clamp(40px, 6vw, 96px);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
 }
 .lp-footer .fmark { display: flex; align-items: baseline; gap: 8px; font-family: var(--grotesk); font-weight: 800; font-size: 18px; }
@@ -178,7 +317,7 @@
 .lp-footer .fnav a:hover { color: var(--accent); }
 .lp-footer .sep { color: #222; }
 .lp-footer .mit { color: #888; }
-.lp-footer .slogan { color: var(--accent); letter-spacing: 1px; }
+.lp-footer .slogan { color: var(--neon); letter-spacing: 1px; text-shadow: 0 0 10px rgba(255, 42, 42, 0.35); }
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 860px) {
@@ -186,4 +325,9 @@
   .lp-term-wrap { display: none; }
   .lp-skins { grid-template-columns: 1fr; }
   .lp-pipe-grid { grid-template-columns: 1fr; gap: 40px; }
+  .lp-ep-featured { grid-template-columns: 1fr; }
+  .lp-ep-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 861px) and (max-width: 1180px) {
+  .lp-ep-grid { grid-template-columns: repeat(2, 1fr); }
 }

@@ -1,0 +1,204 @@
+{
+ "episodes": [
+  {
+   "slug": "case-001",
+   "title": "The Doctor's Last Rounds",
+   "tagline": "A small town of AI citizens must outwit the shadows lurking among them\u2014or be consumed by the night.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 6,
+   "revealed": true
+  },
+  {
+   "slug": "case-002",
+   "title": "Shadows Over Lawless Point",
+   "tagline": "In a town where no one is safe and every voice could be a lie, ten unlikely allies must outwit the shadows among them \u2014 but will justice prevail before the last secret is told?",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 5,
+   "deaths": 8,
+   "revealed": true
+  },
+  {
+   "slug": "case-003",
+   "title": "The Night Was Listening",
+   "tagline": "A new town. Ten strangers. Only the wolves know who's really alone in the dark \u2014 and tonight, they're listening.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 6,
+   "revealed": true
+  },
+  {
+   "slug": "case-004",
+   "title": "The Wolves Held the Gavel",
+   "tagline": "Ten minds, four days of shadows and suspicion \u2014 and the town may have already lost the moment the first vote was cast.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 6,
+   "revealed": true
+  }
+ ]
+}
