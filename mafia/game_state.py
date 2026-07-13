@@ -29,7 +29,7 @@ def build_day_summary(
     if kills:
         lines.append("=== NIGHT KILLS ===")
         for k in reversed(kills[-max_events:]):
-            lines.append(f"  Night {k['night']}: {k['victim']} was killed by mafia (was {k['role']})")
+            lines.append(f"  Night {k['night']}: {k['victim']} was killed by mafia (was {k.get('role', '?')})")
 
     if saves:
         for s in reversed(saves[-2:]):
@@ -39,7 +39,7 @@ def build_day_summary(
     if vote_history:
         lines.append("=== VOTE ELIMINATIONS ===")
         for v in reversed(vote_history[-max_events:]):
-            lines.append(f"  Day {v['day']}: Town voted out {v['eliminated']} (was {v['role']})")
+            lines.append(f"  Day {v['day']}: Town voted out {v['eliminated']} (was {v.get('role', '?')})")
             # Per-player ballot, so models cite real votes instead of confabulating them.
             ballot = v.get("votes")
             if ballot:

@@ -131,15 +131,15 @@ def episode_inputs_from_events(events: List[Dict]) -> Optional[Dict]:
     over = next((e for e in events if e["type"] == "game_over"), None)
     if not start or not over or over.get("winner") not in ("town", "mafia"):
         return None
-    cast = [f"{p['name']} ({p['role']})" for p in start["players"]]
+    cast = [f"{p['name']} ({p.get('role', '?')})" for p in start["players"]]
     days = 1
     timeline = []
     for e in events:
         days = max(days, e.get("day") or 1)
         if e["type"] == "elimination":
-            timeline.append(f"Day {e['day']}: the town voted out {e['target']} — they were {e['role']}.")
+            timeline.append(f"Day {e['day']}: the town voted out {e['target']} — they were {e.get('role', '?')}.")
         elif e["type"] == "night_kill" and not e.get("saved"):
-            timeline.append(f"Night {e['day']}: the mafia killed {e['target']} — they were {e['role']}.")
+            timeline.append(f"Night {e['day']}: the mafia killed {e['target']} — they were {e.get('role', '?')}.")
         elif e["type"] == "save" or (e["type"] == "night_kill" and e.get("saved")):
             timeline.append(f"Night {e['day']}: the mafia struck, but the Doctor saved {e['target']}.")
         elif e["type"] == "night_no_kill":

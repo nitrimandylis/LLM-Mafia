@@ -247,10 +247,10 @@ class MafiaGame:
                 if last_kill["saved"]:
                     key_facts_parts.append(f"Last night: {last_kill['victim']} was targeted by mafia but SAVED by the doctor.")
                 else:
-                    key_facts_parts.append(f"Last night: {last_kill['victim']} was killed (they were {last_kill['role']}).")
+                    key_facts_parts.append(f"Last night: {last_kill['victim']} was killed (they were {last_kill.get('role', '?')}).")
             if self.vote_history:
                 last_vote = self.vote_history[-1]
-                key_facts_parts.append(f"Yesterday: Town voted out {last_vote['eliminated']} (they were {last_vote['role']}).")
+                key_facts_parts.append(f"Yesterday: Town voted out {last_vote['eliminated']} (they were {last_vote.get('role', '?')}).")
 
             key_facts = (" ".join(key_facts_parts) + " ") if key_facts_parts else ""
 
@@ -692,7 +692,7 @@ class MafiaGame:
             self.log(f"  Detective ({d['name']}): investigated {d['investigated']}, found mafia: {d['mafia_found']}", "cyan")
         self.log("  Vote accuracy:", "cyan")
         for name, ps in stats["players"].items():
-            self.log(f"    {name} ({ps['role']}): {ps['vote_accuracy']} mafia votes correct", "cyan")
+            self.log(f"    {name} ({ps.get('role', '?')}): {ps['vote_accuracy']} mafia votes correct", "cyan")
 
     def log(self, message: str, style: str = "normal", public: bool = True):
         """Print and store game events"""
