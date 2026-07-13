@@ -45,7 +45,12 @@ def call_claude(model: str, messages: List[Dict]) -> str:
     """One `claude -p` subprocess call, billed to the Claude subscription.
     Fully isolated: no tools, no settings/CLAUDE.md/hooks, no MCP — a pure
     text generator. Raises on nonzero exit; callers decide whether to swallow."""
-    system = messages[0]["content"]
+    # haiku sometimes replied with just a header like "**Discussion:**",
+    # tripping the empty/short retry — ban markdown outright
+    system = messages[0]["content"] + (
+        "\n\nNever use markdown formatting: no headers, no bold, no bullet points. "
+        "Reply in plain sentences only."
+    )
     user = messages[-1]["content"]
     # ponytail: temperature/max_tokens have no CLI equivalent — prompts
     # already ask for short replies, good enough for the experiment

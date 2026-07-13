@@ -19,7 +19,7 @@ LM_STUDIO_URL = "http://localhost:1234/v1"
 NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1"
 DEFAULT_MODEL = "qwen/qwen3.5-9b"
 DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m3"
-DEFAULT_CLAUDE_MODEL = "haiku"
+DEFAULT_CLAUDE_MODEL = "sonnet"
 DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
 
 
