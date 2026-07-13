@@ -19,11 +19,17 @@ npm run dev          # http://localhost:3000
 
 On load it calls `/api/log`, which reads the engine's `../game_log.json` and
 falls back to the bundled `public/logs/sample.json` if no game has been played.
-The header shows the source (`● latest game` / `○ bundled sample`); **↻ Latest
+The menu bar shows the source (`● latest game` / `○ bundled sample`) and which
+backend/model(s) played the game (hover for the per-seat list); **↻ Latest
 game** re-reads the file after a new run, **Load a log…** drops in any
-`game_log.json` by hand, and **Settings** sets the chrome theme (Signature
-noir / Adaptive / Quiet), default style, and playback speed (saved in your
-browser).
+`game_log.json` by hand, and the dropdown at the right end switches between the
+four designs.
+
+Logs stamped by the engine carry `provider` and a per-player `model` in their
+`game_start` event: homepage episode cards show the provider in its signature
+neon (NVIDIA green, Claude clay orange), and Group Chat message headers tag
+each speaker with the model that played them. Older logs without the stamps
+simply don't show the tags.
 
 ## Generate a log to watch
 

@@ -16,6 +16,10 @@ A deployed noir streaming service for finished LLM Mafia games. The homepage is 
 
 Static library, no backend. The engine's game master writes `episode {title, tagline, recap}` into the log at game end; `tools/publish_game.py` copies the log into `viewer/public/logs/` and updates the manifest; pushing to GitHub deploys. Cards never spoil (no winner, no roles); the recap only appears after the replay ends.
 
+## Inference backends & provenance
+
+Three interchangeable backends play the games: LM Studio (local), NVIDIA NIM (cloud, per-seat models from `players.json`), and the Claude Code CLI (`--claude`, subscription-billed, seats cycling haiku/sonnet/opus so the town isn't one mind arguing with itself). Every log stamps which provider ran the game and which model played each seat; that provenance is part of the show — episode cards wear the provider in its signature neon (NVIDIA green `#76b900`, Claude clay `#d97757`), and Group Chat headers tag each speaker with their model. Spectators should always be able to answer "who's actually talking?"
+
 ## Brand Personality
 
 Noir, theatrical, self-aware. A neon-noir aesthetic: cold night shell (`#0a0b10` bars), blood-red `#c41e1e` brand with hot `#ff2a2a` neon accents and glow, CRT scanlines and phosphor grain, mono tracked labels, bracketed `[ text ]` buttons. Each skin is its own committed world (messaging thread, manila case file, court deposition, signal-intelligence panel) inside one consistent chrome. Playful pulp-fiction drama, executed with restraint. The library reads like tonight's programming at a very disreputable channel.

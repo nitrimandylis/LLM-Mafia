@@ -15,7 +15,7 @@
 
 ![humans](https://img.shields.io/badge/humans-0-c41e1e?style=flat-square&labelColor=111111)
 ![trust](https://img.shields.io/badge/trust-nobody-c41e1e?style=flat-square&labelColor=111111)
-![inference](https://img.shields.io/badge/inference-lm--studio_|_nvidia--nim-8a8a8a?style=flat-square&labelColor=111111)
+![inference](https://img.shields.io/badge/inference-lm--studio_|_nvidia--nim_|_claude-8a8a8a?style=flat-square&labelColor=111111)
 ![alibis](https://img.shields.io/badge/alibis-generated_by_llms-8a8a8a?style=flat-square&labelColor=111111)
 
 </div>
@@ -26,7 +26,7 @@
 
 A fully autonomous Mafia game where every seat at the table is an LLM. Each player gets a role — Villager, Mafia, Detective, or Doctor — a personality, and a win condition. Then they reason, argue, accuse, and vote entirely through model inference, queried in parallel. You just watch the town burn.
 
-Runs against any OpenAI-compatible endpoint: [LM Studio](https://lmstudio.ai) for local inference or [NVIDIA NIM](https://build.nvidia.com) for cloud models.
+Runs against any OpenAI-compatible endpoint — [LM Studio](https://lmstudio.ai) for local inference or [NVIDIA NIM](https://build.nvidia.com) for cloud models — or against the [Claude Code CLI](https://claude.com/claude-code) (`--claude`), which bills your Claude subscription and mixes haiku, sonnet, and opus across the seats.
 
 ```console
 $ python main.py --nvidia --reveal-secrets
@@ -41,13 +41,13 @@ viewer dramatizes the result for spectators.
 
 ```
   mafia/  ──writes──▶  game_log.json  ──reads──▶  viewer/
-  the engine          structured events[]        web replay, 3 dramatized styles
+  the engine          structured events[]        web replay, 4 dramatized skins
   (python main.py)    + transcript + stats       (npm run dev)
 ```
 
 The engine writes a structured `events[]` stream to `game_log.json`; the viewer
-reads that same file and replays it as a tense group-chat, a spotlit table, or a
-reality-TV elimination show. The event schema is defined once in
+reads that same file and replays it as a tense group chat, a noir case file, a
+court transcript, or a live suspicion graph. The event schema is defined once in
 `mafia/events.py` and mirrored in `viewer/lib/events.ts`, kept in lockstep by a
 parity check.
 
@@ -61,8 +61,9 @@ parity check.
 | 04 | **game master narrator** | a separate LLM narrates key moments and generates factual day summaries injected into player context |
 | 05 | **`--reveal-secrets`** | spectator mode — expose the private mafia chat and detective results |
 | 06 | **`--nvidia`** | run against NVIDIA NIM cloud models instead of a local LM Studio server |
-| 07 | **JSON game log** | full transcript + structured `events[]` + per-player vote accuracy and detective stats written to disk |
-| 08 | **web replay viewer** | a Next.js app that dramatizes the log — group-chat, spotlit table, or broadcast styles ([`viewer/`](viewer/)) |
+| 07 | **`--claude`** | run against the Claude Code CLI on your subscription — seats cycle haiku/sonnet/opus for model-vs-model variety |
+| 08 | **JSON game log** | full transcript + structured `events[]` + per-player vote accuracy, detective stats, and which model played each seat |
+| 09 | **web replay viewer** | a Next.js app that dramatizes the log — group chat, case file, transcript, or suspicion graph ([`viewer/`](viewer/)) |
 
 ## 🚀 Run it
 
@@ -93,6 +94,19 @@ cp .env.example .env
 python main.py --nvidia
 ```
 
+**Option C — Claude CLI**
+
+Needs the [Claude Code CLI](https://claude.com/claude-code) installed and logged
+in (`claude` on your PATH). Calls bill your Claude subscription — no API key.
+
+```bash
+python main.py --claude
+```
+
+By default the seats cycle **haiku / sonnet / opus** so the town isn't ten
+copies of the same mind; pass `--model sonnet` (or `haiku`/`opus`) to force one
+model everywhere. The Game Master narrates on sonnet.
+
 The town accepts instructions:
 
 | flag | default | what it does |
@@ -101,7 +115,8 @@ The town accepts instructions:
 | `--reveal-secrets` | off | show private mafia chat and detective results |
 | `--nvidia` | off | use NVIDIA NIM instead of LM Studio |
 | `--nvidia-key` | env | NVIDIA API key (or set `NVIDIA_API_KEY` in `.env`) |
-| `--model` | auto | override the player model |
+| `--claude` | off | use the Claude CLI (subscription-billed); seats mix haiku/sonnet/opus |
+| `--model` | auto | override the player model (with `--claude`, forces one model on every seat) |
 | `--gm-model` | `qwen/qwen3.5-9b` | model used by the game master narrator |
 | `--no-gm` | off | disable game master narration entirely |
 | `--max-workers` | 4 | parallel threads for model queries |
@@ -134,7 +149,9 @@ can also regenerate that sample without any LLM:
 python tools/make_sample_log.py --write
 ```
 
-Switch between the three styles in the header or set a default under **Settings**.
+Switch between the four designs with the dropdown at the right end of the menu
+bar. Message headers tag each speaker with the model that played them, and the
+menu shows which backend ran the game.
 Use **`--reveal-secrets`** when running the game to include the private mafia
 whispers and detective results in the replay. See [`viewer/README.md`](viewer/README.md) for details.
 
@@ -156,10 +173,12 @@ LLM-Mafia/
 │
 ├── viewer/                 THE VIEWER (Next.js)
 │   ├── app/                pages, /api/log (reads ../game_log.json), /selftest
-│   ├── components/skins/   the three dramatized styles
-│   └── lib/                useReplay engine, events.ts (mirrors mafia/events.py)
+│   ├── components/skins/   the four dramatized designs
+│   ├── lib/                useReplay engine, events.ts (mirrors mafia/events.py)
+│   └── public/logs/        published episodes + manifest (the homepage library)
 ├── tools/
-│   └── make_sample_log.py  generates the viewer's sample log + checks schema parity
+│   ├── make_sample_log.py  generates the viewer's sample log + checks schema parity
+│   └── publish_game.py     publishes a finished log as a homepage episode
 └── docs/                   design specs
 ```
 
