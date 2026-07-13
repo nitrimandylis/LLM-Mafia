@@ -1,23 +1,30 @@
 /* =====================================================================
    CHROME — a themed frame around the skins. Three looks, chosen in
    Settings and applied via [data-chrome] on <html> (set in page.tsx):
-     • signature — noir crime-board (the default; also the SSR fallback)
+     • signature — neon noir (the default; also the SSR fallback):
+       cold night bars, hot neon accents, phosphor grain + scanlines —
+       the same language as the landing page and the chat night skin
      • adaptive  — borrows the active skin's accent ([data-skin])
      • quiet     — restrained neutral
    Rules below read the --shell and --brand tokens, so theming is mostly
-   a matter of overriding those tokens per theme.
+   a matter of overriding those tokens per theme. Glow effects read
+   --neon / --chrome-glow, which Quiet & Adaptive null out — one rule set,
+   no per-theme selectors on components.
    ===================================================================== */
 
 /* Base = Signature, so first paint (before JS sets data-chrome) matches
    the default theme and there's no flash. */
 :root {
-  --shell-bg: #050505;
-  --shell-panel: #0a0a0a;
-  --shell-panel-2: #141418;
-  --shell-line: #1e1e1e;
-  --shell-ink: #e0e0e0;
-  --shell-muted: #8a8a8a;
+  --shell-bg: #050609;
+  --shell-panel: #0a0b10;
+  --shell-panel-2: #12141c;
+  --shell-line: #1b1d26;
+  --shell-ink: #e7e9ee;
+  --shell-muted: #8b8f9c;
   --brand: #c41e1e;
+  --neon: #ff2a2a;
+  --chrome-glow: rgba(255, 42, 42, .35);
+  --chrome-glow-soft: rgba(196, 30, 30, .18);
   --green: #69c66f;
   --gold: #e0a000;
 
@@ -26,26 +33,31 @@
   --chrome-label-font: var(--font-mono), ui-monospace, monospace;
   --chrome-label-tracking: .2em;
   --chrome-label-transform: uppercase;
-  /* faint desaturated film grain; themes that want a clean frame null it out */
-  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  /* the tube: phosphor grain + scanlines; clean themes null it out */
+  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .12) 0 1px, transparent 1px 3px);
 }
 
 /* Signature: explicit too, so switching back from another theme restores it. */
 :root[data-chrome="signature"] {
-  --shell-bg: #050505;
-  --shell-panel: #0a0a0a;
-  --shell-panel-2: #141418;
-  --shell-line: #1e1e1e;
-  --shell-ink: #e0e0e0;
-  --shell-muted: #8a8a8a;
+  --shell-bg: #050609;
+  --shell-panel: #0a0b10;
+  --shell-panel-2: #12141c;
+  --shell-line: #1b1d26;
+  --shell-ink: #e7e9ee;
+  --shell-muted: #8b8f9c;
   --brand: #c41e1e;
+  --neon: #ff2a2a;
+  --chrome-glow: rgba(255, 42, 42, .35);
+  --chrome-glow-soft: rgba(196, 30, 30, .18);
   --chrome-label-font: var(--font-mono), ui-monospace, monospace;
   --chrome-label-tracking: .2em;
   --chrome-label-transform: uppercase;
-  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .12) 0 1px, transparent 1px 3px);
 }
 
-/* Quiet & Adaptive: clean neutral frame, system labels, no grain. */
+/* Quiet & Adaptive: clean neutral frame, system labels, no grain, no glow. */
 :root[data-chrome="quiet"],
 :root[data-chrome="adaptive"] {
   --shell-bg: #0a0b0d;
@@ -54,6 +66,9 @@
   --shell-line: #232831;
   --shell-ink: #e7e9ee;
   --shell-muted: #7a818d;
+  --neon: var(--brand);
+  --chrome-glow: transparent;
+  --chrome-glow-soft: transparent;
   --chrome-label-font: inherit;
   --chrome-label-tracking: .04em;
   --chrome-label-transform: none;
@@ -96,12 +111,27 @@ a { color: inherit; }
   display: inline-flex; align-items: baseline; gap: 9px;
   text-decoration: none;
 }
-/* Wordmark is the display face in every theme — the one constant brand mark. */
+/* Wordmark is the display face in every theme — the one constant brand mark.
+   In Signature it's a small neon sign: hot tube text in a glowing housing. */
 .brand .mark {
   font-family: var(--font-display), "Oswald", system-ui, sans-serif;
   font-size: 19px; font-weight: 400; letter-spacing: .14em; line-height: 1;
-  color: var(--brand); border: 1.5px solid var(--brand);
+  color: var(--neon); border: 1.5px solid var(--brand);
   padding: 3px 8px 1px;
+  text-shadow: 0 0 8px var(--chrome-glow), 0 0 22px var(--chrome-glow-soft);
+  box-shadow: 0 0 12px var(--chrome-glow-soft), inset 0 0 10px var(--chrome-glow-soft);
+}
+/* Neon tube buzz: the sign dims for a breath every few seconds. */
+@keyframes chrome-neon-buzz {
+  0%, 100% { opacity: 1; }
+  88.8% { opacity: 1; }
+  89% { opacity: .78; }
+  89.4% { opacity: .94; }
+  89.8% { opacity: .82; }
+  90.2% { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-chrome="signature"] .brand .mark { animation: chrome-neon-buzz 7s linear infinite; }
 }
 .brand .rest {
   font-family: var(--font-display), "Oswald", system-ui, sans-serif;
@@ -113,7 +143,10 @@ a { color: inherit; }
   padding: 6px 2px; letter-spacing: .02em; border-bottom: 2px solid transparent;
 }
 .topbar nav a:hover { color: var(--shell-ink); }
-.topbar nav a.active { color: var(--shell-ink); border-bottom-color: var(--brand); }
+.topbar nav a.active {
+  color: var(--shell-ink); border-bottom-color: var(--brand);
+  box-shadow: 0 8px 14px -10px var(--chrome-glow);
+}
 
 /* Viewer stage = exactly the space under the 48px top bar. The menu (top) and
    transport controls (bottom) are pinned; only the skin pane scrolls. */
@@ -144,7 +177,11 @@ a { color: inherit; }
 .skin-opt:active { cursor: grabbing; }
 .skin-opt.dragging { opacity: .4; }
 .skin-opt:hover { color: var(--shell-ink); }
-.skin-opt.on { color: var(--shell-ink); border-bottom-color: var(--brand); }
+/* Active tab underline glows like a lit tube under the label. */
+.skin-opt.on {
+  color: var(--shell-ink); border-bottom-color: var(--brand);
+  box-shadow: 0 10px 16px -10px var(--chrome-glow);
+}
 .skin-icon { display: flex; align-items: center; color: inherit; opacity: .5; transition: opacity .15s; }
 .skin-opt:hover .skin-icon, .skin-opt.on .skin-icon { opacity: 1; }
 .skin-opt.on .skin-icon { color: var(--brand); }
@@ -184,11 +221,14 @@ a { color: inherit; }
   cursor: pointer; letter-spacing: .02em;
 }
 .controls button:hover { color: var(--shell-ink); }
-/* Primary action keeps the brand colour and wears its brackets in red. */
-.controls button.primary { color: var(--brand); font-weight: 700; }
+/* Primary action is the hot neon element of the transport. */
+.controls button.primary {
+  color: var(--neon); font-weight: 700;
+  text-shadow: 0 0 10px var(--chrome-glow);
+}
 .controls button.primary::before { content: "[ "; }
 .controls button.primary::after  { content: " ]"; }
-.controls button.primary:hover { color: var(--brand); filter: brightness(1.2); }
+.controls button.primary:hover { color: var(--neon); filter: brightness(1.2); }
 .controls .speeds { display: flex; gap: 12px; }
 .controls .speeds button.on { color: var(--shell-ink); border-bottom-color: var(--brand); font-weight: 700; }
 .controls .scrub { flex: 1; }
@@ -209,7 +249,10 @@ a { color: inherit; }
   border-radius: 2px; padding: 14px 16px; cursor: pointer; color: var(--shell-ink);
   font-size: 14px;
 }
-.opt-card.on { background: var(--shell-panel-2); border-color: var(--brand); }
+.opt-card.on {
+  background: var(--shell-panel-2); border-color: var(--brand);
+  box-shadow: 0 0 16px var(--chrome-glow-soft), inset 0 0 14px var(--chrome-glow-soft);
+}
 .opt-card .swatch { display: flex; overflow: hidden; flex: 0 0 auto; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.08); }
 .opt-card .swatch span { width: 12px; height: 34px; }
 .opt-card .opt-name { font-weight: 700; display: block; }
@@ -257,7 +300,7 @@ a { color: inherit; }
    ===================================================================== */
 .stage-wrap { position: relative; }
 .ep-mark { font-size: 12px; color: var(--shell-muted); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px; }
-.ep-mark b { color: var(--brand); letter-spacing: .12em; margin-right: 6px; }
+.ep-mark b { color: var(--neon); letter-spacing: .12em; margin-right: 6px; text-shadow: 0 0 10px var(--chrome-glow); }
 .ep-home { text-decoration: none; }
 
 /* Cold open + recap share one full-stage curtain. */
@@ -298,8 +341,9 @@ a { color: inherit; }
   display: inline-block; background: var(--brand); color: #fff; border: 0; cursor: pointer;
   padding: 14px 30px; font-size: 13px; font-weight: 700; letter-spacing: .14em;
   font-family: var(--chrome-label-font); text-decoration: none;
+  box-shadow: 0 0 18px var(--chrome-glow), 0 0 50px var(--chrome-glow-soft);
 }
-.ep-begin:hover { filter: brightness(1.15); }
+.ep-begin:hover { filter: brightness(1.15); box-shadow: 0 0 24px var(--chrome-glow), 0 0 70px var(--chrome-glow-soft); }
 .ep-begin:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .ep-open-hint { margin-top: 16px; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #8a91a0; animation: lp-pulse-soft 2.4s ease-in-out infinite; }
 @keyframes lp-pulse-soft { 0%, 100% { opacity: .45; } 50% { opacity: .9; } }
@@ -335,8 +379,8 @@ a { color: inherit; }
 .ep-role-chip b.mafia { color: var(--brand); }
 .ep-recap-meta { font-size: 11px; letter-spacing: .26em; color: #6b7382; margin-bottom: 28px; }
 .ep-recap-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; }
-.ep-begin.ep-next { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
-.ep-begin.ep-next:hover { background: rgba(196, 30, 30, .12); filter: none; }
+.ep-begin.ep-next { background: transparent; color: var(--brand); border: 1px solid var(--brand); box-shadow: 0 0 14px var(--chrome-glow-soft); }
+.ep-begin.ep-next:hover { background: rgba(196, 30, 30, .12); filter: none; box-shadow: 0 0 18px var(--chrome-glow-soft); }
 .ep-dismiss {
   background: transparent; border: 0; cursor: pointer; color: var(--shell-muted);
   font-size: 12px; letter-spacing: .04em; padding: 6px 4px;

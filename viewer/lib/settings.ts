@@ -20,7 +20,7 @@ export const SKINS: SkinMeta[] = [
     name: "Group Chat",
     tag: "the thread",
     blurb: "A messaging thread: grouped bubbles, day/night theming, votes folded into a ballot strip, mafia in a locked side-channel.",
-    swatch: ["#0a0a0a", "#c41e1e", "#e0e0e0"],
+    swatch: ["#0a0b10", "#c41e1e", "#e0e0e0"],
   },
   {
     id: "casefile",
@@ -62,8 +62,8 @@ export const CHROME_THEMES: ChromeThemeMeta[] = [
   {
     id: "signature",
     name: "Signature",
-    blurb: "The house style: a noir crime-board frame — near-black bars, blood-red accent, a Bebas Neue wordmark, and a faint dossier grain.",
-    swatch: ["#0a0a0b", "#d8392b", "#e7e9ee"],
+    blurb: "The house style: a neon-noir frame — cold night bars, a buzzing red neon wordmark, scanlines, and a faint phosphor grain.",
+    swatch: ["#0a0b10", "#ff2a2a", "#e7e9ee"],
   },
   {
     id: "adaptive",
