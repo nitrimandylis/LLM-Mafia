@@ -5,7 +5,7 @@ import type { GameEvent, GameLog } from "@/lib/events";
 import { useReplay } from "@/lib/useReplay";
 import { SKINS as SKIN_META, type SkinId } from "@/lib/settings";
 import Controls from "@/components/Controls";
-import SkinIcon from "@/components/SkinIcon";
+import SkinMenu from "@/components/SkinMenu";
 import { SKIN_COMPONENTS } from "@/components/EpisodePlayer";
 
 export default function Viewer() {
@@ -14,20 +14,6 @@ export default function Viewer() {
   const [source, setSource] = useState<"game" | "sample" | "upload" | null>(null);
   const [skin, setSkin] = useState<SkinId>("chat");
   const fileInput = useRef<HTMLInputElement>(null);
-
-  // Drag-to-reorder the view tabs. Order is session-only; the tab list is
-  // small so a plain HTML5 drag-and-drop reorder is plenty.
-  const [tabOrder, setTabOrder] = useState<SkinId[]>(() => SKIN_META.map((m) => m.id));
-  const [draggingTab, setDraggingTab] = useState<SkinId | null>(null);
-  const dropTab = (target: SkinId) => {
-    setDraggingTab(null);
-    if (!draggingTab || draggingTab === target) return;
-    setTabOrder((order) => {
-      const next = order.filter((id) => id !== draggingTab);
-      next.splice(next.indexOf(target), 0, draggingTab);
-      return next;
-    });
-  };
 
   // Load whatever the engine last wrote (../game_log.json), else the sample.
   useEffect(() => {
@@ -76,35 +62,6 @@ export default function Viewer() {
   return (
     <div className="stage-wrap">
       <div className="menu">
-        <div className="skin-seg" role="tablist" aria-label="Presentation style">
-          {tabOrder.map((id) => {
-            const m = SKIN_META.find((s) => s.id === id)!;
-            return (
-            <button
-              key={m.id}
-              role="tab"
-              aria-selected={skin === m.id}
-              className={`skin-opt${skin === m.id ? " on" : ""}${draggingTab === m.id ? " dragging" : ""}`}
-              onClick={() => setSkin(m.id)}
-              title={m.blurb}
-              draggable
-              onDragStart={() => setDraggingTab(m.id)}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => { e.preventDefault(); dropTab(m.id); }}
-              onDragEnd={() => setDraggingTab(null)}
-            >
-              <span className="skin-icon" aria-hidden>
-                <SkinIcon id={m.id} />
-              </span>
-              <span className="skin-meta">
-                <span className="nm">{m.name}</span>
-                <span className="tg">{m.tag}</span>
-              </span>
-            </button>
-            );
-          })}
-        </div>
-
         <span className="menu-spacer" />
 
         {source && (
@@ -129,6 +86,7 @@ export default function Viewer() {
           onChange={onUpload}
           style={{ display: "none" }}
         />
+        <SkinMenu skin={skin} onChange={setSkin} />
       </div>
 
       {error ? (

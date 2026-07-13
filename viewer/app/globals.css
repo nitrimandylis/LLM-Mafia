@@ -86,42 +86,55 @@ a { color: inherit; }
 .skin-pane { flex: 1; min-height: 0; flex-direction: column; }
 
 /* =====================================================================
-   MENU — the design switcher. Each option previews its world's palette,
-   so the menu itself advertises the four looks.
+   MENU — the bar over the stage. The design switcher is a dropdown at
+   its right end; the open list previews all four looks.
    ===================================================================== */
 .menu {
   display: flex; align-items: center; gap: 14px;
   padding: 9px 16px; border-bottom: 1px solid var(--shell-line);
   background-color: var(--shell-panel); background-image: var(--chrome-grain);
 }
-/* Flat editorial tabs (no pill), each marked active by a thin accent rule. */
-.skin-seg { display: flex; align-self: stretch; }
-.skin-opt {
-  display: flex; align-items: center; gap: 10px;
-  background: transparent; border: 0; border-bottom: 2px solid transparent;
-  color: var(--shell-muted); padding: 0 16px; margin-bottom: -10px; padding-bottom: 10px;
-  cursor: pointer; text-align: left;
-  transition: color .15s, border-color .15s;
-}
-.skin-opt + .skin-opt { border-left: 1px solid var(--shell-line); }
-.skin-opt { cursor: grab; }
-.skin-opt:active { cursor: grabbing; }
-.skin-opt.dragging { opacity: .4; }
-.skin-opt:hover { color: var(--shell-ink); }
-/* Active tab underline glows like a lit tube under the label. */
-.skin-opt.on {
-  color: var(--shell-ink); border-bottom-color: var(--brand);
-  box-shadow: 0 10px 16px -10px var(--chrome-glow);
-}
 .skin-icon { display: flex; align-items: center; color: inherit; opacity: .5; transition: opacity .15s; }
-.skin-opt:hover .skin-icon, .skin-opt.on .skin-icon { opacity: 1; }
-.skin-opt.on .skin-icon { color: var(--brand); }
 .skin-meta { display: flex; flex-direction: column; line-height: 1.2; }
 .skin-meta .nm {
   font-family: var(--chrome-label-font); font-size: 13px; font-weight: 700;
   letter-spacing: var(--chrome-label-tracking); text-transform: var(--chrome-label-transform);
 }
 .skin-meta .tg { font-size: 10px; letter-spacing: .08em; opacity: .65; text-transform: uppercase; }
+
+/* ---- design switcher dropdown ---- */
+.skin-menu { position: relative; }
+.skin-menu-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: transparent; border: 1px solid var(--shell-line); border-radius: 2px;
+  color: var(--shell-ink); padding: 5px 10px; cursor: pointer; text-align: left;
+  transition: border-color .15s;
+}
+.skin-menu-btn:hover, .skin-menu-btn.open { border-color: var(--brand); }
+.skin-menu-btn .skin-icon { color: var(--brand); opacity: 1; }
+.skin-caret { color: var(--shell-muted); font-size: 10px; transition: transform .15s; }
+.skin-menu-btn.open .skin-caret { transform: rotate(180deg); }
+/* The open list drops over the stage; nothing above it but the overlays. */
+.skin-menu-list {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 20;
+  min-width: 236px; display: grid; gap: 2px; padding: 6px;
+  background-color: var(--shell-panel-2); background-image: var(--chrome-grain);
+  border: 1px solid var(--shell-line); border-radius: 3px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 24px var(--chrome-glow-soft);
+  animation: pop .15s ease;
+}
+.skin-menu-opt {
+  display: flex; align-items: center; gap: 10px; text-align: left;
+  background: transparent; border: 0; border-radius: 2px;
+  color: var(--shell-muted); padding: 8px 10px; cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.skin-menu-opt:hover { color: var(--shell-ink); background: rgba(255, 255, 255, .04); }
+.skin-menu-opt:hover .skin-icon { opacity: 1; }
+/* The current design wears the neon. */
+.skin-menu-opt.on { color: var(--shell-ink); }
+.skin-menu-opt.on .skin-icon { color: var(--neon); opacity: 1; filter: drop-shadow(0 0 5px var(--chrome-glow)); }
+.skin-menu-opt.on .nm { text-shadow: 0 0 10px var(--chrome-glow); }
 .menu-spacer { flex: 1; }
 .source-badge {
   font-size: 11px; color: var(--shell-muted); display: inline-flex; align-items: center; gap: 6px;
@@ -186,8 +199,7 @@ a { color: inherit; }
 
 @media (max-width: 720px) {
   .menu { flex-wrap: wrap; }
-  .skin-opt .skin-meta { display: none; }
-  .skin-opt { padding: 6px 9px; }
+  .skin-menu-btn .skin-meta .tg { display: none; }
 }
 
 @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }

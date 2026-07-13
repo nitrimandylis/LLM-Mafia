@@ -9,7 +9,7 @@ import type { EpisodeCard, EpisodeMeta } from "@/lib/episodes";
 import { caseNumber } from "@/lib/episodes";
 import { sting, unlockAudio, soundMuted, setSoundMuted } from "@/lib/sound";
 import Controls from "@/components/Controls";
-import SkinIcon from "@/components/SkinIcon";
+import SkinMenu from "@/components/SkinMenu";
 import ChatSkin from "@/components/skins/ChatSkin";
 import CaseFileSkin from "@/components/skins/CaseFileSkin";
 import TranscriptSkin from "@/components/skins/TranscriptSkin";
@@ -107,32 +107,12 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
   return (
     <div className="stage-wrap">
       <div className="menu">
-        <div className="skin-seg" role="tablist" aria-label="Presentation style">
-          {SKIN_META.map((m) => (
-            <button
-              key={m.id}
-              role="tab"
-              aria-selected={skin === m.id}
-              className={`skin-opt${skin === m.id ? " on" : ""}`}
-              onClick={() => setSkin(m.id)}
-              title={m.blurb}
-            >
-              <span className="skin-icon" aria-hidden>
-                <SkinIcon id={m.id} />
-              </span>
-              <span className="skin-meta">
-                <span className="nm">{m.name}</span>
-                <span className="tg">{m.tag}</span>
-              </span>
-            </button>
-          ))}
-        </div>
-
-        <span className="menu-spacer" />
-
         <span className="ep-mark" title={episode.tagline}>
           <b>{caseNumber(card.slug)}</b> {episode.title}
         </span>
+
+        <span className="menu-spacer" />
+
         <button
           className="menu-btn"
           onClick={toggleMute}
@@ -144,6 +124,7 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
         <Link href="/" className="menu-btn ep-home">
           all cases
         </Link>
+        <SkinMenu skin={skin} onChange={setSkin} />
       </div>
 
       {/* All four stay mounted so each keeps its own scroll position. */}
