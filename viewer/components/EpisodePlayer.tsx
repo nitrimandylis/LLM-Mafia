@@ -48,17 +48,6 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
 
   useEffect(() => setMuted(soundMuted()), []);
 
-  // Episode pages always wear the signature noir chrome.
-  useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.chrome = "signature";
-    root.dataset.skin = skin;
-    return () => {
-      delete root.dataset.chrome;
-      delete root.dataset.skin;
-    };
-  }, [skin]);
-
   // Drama beats: react to the event that just revealed, only during live
   // playback (never while scrubbing or skipping).
   useEffect(() => {

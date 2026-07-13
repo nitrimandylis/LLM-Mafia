@@ -1,22 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { GameEvent, GameLog } from "@/lib/events";
 import { useReplay } from "@/lib/useReplay";
-import { loadSettings, DEFAULTS, SKINS as SKIN_META, type SkinId } from "@/lib/settings";
+import { SKINS as SKIN_META, type SkinId } from "@/lib/settings";
 import Controls from "@/components/Controls";
 import SkinIcon from "@/components/SkinIcon";
 import { SKIN_COMPONENTS } from "@/components/EpisodePlayer";
 
 export default function Viewer() {
-  // `mounted` gates localStorage reads so SSR and first client render match
-  // (both use DEFAULTS), avoiding a hydration mismatch.
-  const [mounted, setMounted] = useState(false);
-  const settings = useMemo(() => (mounted ? loadSettings() : DEFAULTS), [mounted]);
   const [events, setEvents] = useState<GameEvent[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [source, setSource] = useState<"game" | "sample" | "upload" | null>(null);
-  const [skin, setSkin] = useState<SkinId>(DEFAULTS.skin);
+  const [skin, setSkin] = useState<SkinId>("chat");
   const fileInput = useRef<HTMLInputElement>(null);
 
   // Drag-to-reorder the view tabs. Order is session-only; the tab list is
@@ -32,26 +28,6 @@ export default function Viewer() {
       return next;
     });
   };
-
-  useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    setSkin(settings.skin);
-  }, [settings.skin]);
-
-  // Drive chrome theming from the root element: data-chrome picks the theme,
-  // data-skin lets the Adaptive theme borrow the active design's accent. The
-  // top bar lives in layout.tsx (outside this page), so the root is the one
-  // node both can see — no context needed.
-  useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.chrome = settings.chromeTheme;
-    root.dataset.skin = skin;
-    return () => {
-      delete root.dataset.chrome;
-      delete root.dataset.skin;
-    };
-  }, [settings.chromeTheme, skin]);
 
   // Load whatever the engine last wrote (../game_log.json), else the sample.
   useEffect(() => {
@@ -95,7 +71,7 @@ export default function Viewer() {
       .catch(() => setError("That file isn't a valid game log JSON."));
   }
 
-  const state = useReplay(events ?? [], settings.speed);
+  const state = useReplay(events ?? [], 1);
 
   return (
     <div className="stage-wrap">

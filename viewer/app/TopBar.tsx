@@ -17,9 +17,6 @@ export default function TopBar() {
         <Link href="/watch" className={path.startsWith("/watch") ? "active" : ""}>
           Viewer
         </Link>
-        <Link href="/settings" className={path === "/settings" ? "active" : ""}>
-          Settings
-        </Link>
       </nav>
     </header>
   );
