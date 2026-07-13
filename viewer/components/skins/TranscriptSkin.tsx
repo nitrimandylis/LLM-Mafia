@@ -134,6 +134,12 @@ function Line({ e, no }: { e: GameEvent | Ballot; no?: number }) {
       );
     case "save":
       return <div className="tr-finding">NOTED — an attempt upon {e.target} was prevented.</div>;
+    case "detective_will":
+      return (
+        <div className="tr-finding">
+          POSTHUMOUS EXHIBIT — the notes of {e.actor} record {e.target} as <b>{e.result}</b>.
+        </div>
+      );
     default:
       return null;
   }

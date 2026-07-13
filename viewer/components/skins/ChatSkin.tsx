@@ -237,6 +237,12 @@ function SystemRow({ e }: { e: GameEvent }) {
       );
     case "save":
       return <div className="chat-event save">The doctor saved <b>{e.target}</b></div>;
+    case "detective_will":
+      return (
+        <div className="chat-event save">
+          {e.actor}&apos;s final notes were found: investigated {e.target} — <b>{e.result}</b>
+        </div>
+      );
     case "investigation":
       return (
         <div className="chat-event secret">

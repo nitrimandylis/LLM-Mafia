@@ -20,6 +20,7 @@ export type GameEvent =
   | { type: "vote"; day: number; actor: string; target: string }
   | { type: "elimination"; day: number; target: string; role: string; tally: Record<string, number> }
   | { type: "night_kill"; day: number; target: string; role: string; saved: boolean }
+  | { type: "detective_will"; day: number; actor: string; target: string; result: string }
   | { type: "night_no_kill"; day: number }
   | { type: "save"; day: number; target: string }
   | { type: "protection"; day: number; actor: string; target: string }

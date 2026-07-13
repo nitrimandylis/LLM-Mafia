@@ -123,6 +123,13 @@ function CaseRow({ e }: { e: GameEvent | Ballot }) {
       return e.saved ? null : <Verdict label="FOUND SLAIN AT DAWN" name={e.target} role={e.role} />;
     case "save":
       return <div className="cf-report foiled">ATTEMPT ON {e.target} FOILED — subject survives</div>;
+    case "detective_will":
+      return (
+        <div className="cf-report">
+          POSTHUMOUS EVIDENCE — {e.actor}&apos;s notes name {e.target}:{" "}
+          <b className={e.result.toUpperCase() === "INNOCENT" ? "ok" : "bad"}>{e.result}</b>
+        </div>
+      );
     default:
       return null;
   }

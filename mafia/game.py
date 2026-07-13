@@ -90,6 +90,8 @@ class MafiaGame:
         self.max_workers = max_workers
         self.last_doctor_target: Optional[str] = None
         self.detective_investigated: set = set()
+        # Latest (target, result) — revealed as a public "will" if the detective dies
+        self.last_investigation: Optional[Tuple[str, str]] = None
         self.day_summaries: Dict[int, str] = {}
         self.no_kill_nights = 0
         self.episode: Dict[str, str] = {}
@@ -248,6 +250,10 @@ class MafiaGame:
                     key_facts_parts.append(f"Last night: {last_kill['victim']} was targeted by mafia but SAVED by the doctor.")
                 else:
                     key_facts_parts.append(f"Last night: {last_kill['victim']} was killed (they were {last_kill.get('role', '?')}).")
+                    if last_kill.get("will"):
+                        key_facts_parts.append(
+                            f"{last_kill['victim']}'s final notes were found: {last_kill['will']}. This information is PUBLIC and CONFIRMED."
+                        )
             if self.vote_history:
                 last_vote = self.vote_history[-1]
                 key_facts_parts.append(f"Yesterday: Town voted out {last_vote['eliminated']} (they were {last_vote.get('role', '?')}).")
@@ -364,7 +370,9 @@ class MafiaGame:
 
         for player, response in collected:
             self.log(f"⚔️  {player.name}: {response}", "red")
-            accused = self.extract_vote(response, [n for n in alive_names if n != player.name])
+            accused = self.extract_vote(
+                response, [n for n in alive_names if n != player.name], prefer_first=True
+            )
             self.emit("accusation", day=self.day, actor=player.name, target=accused, text=response)
             day_statements.append(f"{player.name} accuses: {response}")
 
@@ -403,7 +411,8 @@ class MafiaGame:
                 ]  # CANNOT VOTE FOR SELF
                 prompt = f"Vote to eliminate ONE player. {eliminated_str}. You CANNOT vote for yourself. Available: {', '.join(valid_targets)}. Reply with their name ONLY."
                 future = executor.submit(
-                    self.query_model, player, prompt, recent_context, min_words=1
+                    self.query_model, player, prompt, recent_context, min_words=1,
+                    max_tokens=512,
                 )
                 futures[future] = (player, valid_targets)
 
@@ -541,6 +550,7 @@ class MafiaGame:
             self.detective_investigated.add(detective_target)
             investigated = next(p for p in alive if p.name == detective_target)
             result = "MAFIA" if investigated.role == Role.MAFIA else "INNOCENT"
+            self.last_investigation = (detective_target, result)
             note = f"Night {self.day}: Investigated {detective_target} - {result}"
             self.emit("investigation", private=True, day=self.day,
                       actor=detectives[0].name, target=detective_target, result=result)
@@ -564,19 +574,34 @@ class MafiaGame:
         if mafia_target and mafia_target != doctor_target:
             victim = next(p for p in alive if p.name == mafia_target)
             victim.alive = False
-            self.night_kill_history.append({
+            kill_entry = {
                 "night": self.day,
                 "victim": victim.name,
                 "role": victim.role.value,
                 "saved": False,
-            })
+            }
+            # Detective's will: their last investigation goes public with the
+            # body, so killing the detective no longer buries confirmed info
+            if victim.role == Role.DETECTIVE and self.last_investigation:
+                will_target, will_result = self.last_investigation
+                kill_entry["will"] = f"investigated {will_target} — {will_result}"
+            self.night_kill_history.append(kill_entry)
             self.emit("night_kill", day=self.day, target=victim.name,
                       role=victim.role.value, saved=False)
+            if kill_entry.get("will"):
+                self.emit("detective_will", day=self.day, actor=victim.name,
+                          target=self.last_investigation[0],
+                          result=self.last_investigation[1])
             gm_kill = self.gm.narrate_night_kill(victim.name, saved=False)
             if gm_kill:
                 self.log(f"\n📜 {gm_kill}", "magenta")
             else:
                 self.log(f"\n💀 {victim.name} was killed during the night! They were: {victim.role.value}", "red")
+            if kill_entry.get("will"):
+                self.log(
+                    f"📜 {victim.name}'s final notes were found: {kill_entry['will']}",
+                    "blue",
+                )
         elif mafia_target and mafia_target == doctor_target:
             self.night_kill_history.append({
                 "night": self.day,
@@ -831,6 +856,13 @@ class MafiaGame:
 
         text = "\n".join(lines).strip()
 
+        # Strip prompt-template labels the model echoed ("Discussion: MARSHAL...")
+        text = re.sub(
+            r"(?i)^(?:discussion|statement|answer|accusation|vote|response|reply)\s*:\s*",
+            "",
+            text,
+        ).strip()
+
         # Remove self-referential prefixes
         name = re.escape(player.name)
         prefix_patterns = [
@@ -903,6 +935,7 @@ class MafiaGame:
         context: str = "",
         min_words: int = 4,
         public_speech: bool = False,
+        max_tokens: int = 2048,
     ) -> str:
         context = self.build_context_for_player(player, context)
 
@@ -929,7 +962,9 @@ Here is the game history so far:
             self.log(f"  [Querying {seat_model}... ]", "cyan", public=False)
             start_time = time.time()
 
-            response_text = self._call_backend(messages, model=seat_model)
+            response_text = self._call_backend(
+                messages, model=seat_model, max_tokens=max_tokens
+            )
 
             elapsed = time.time() - start_time
             tokens = len(response_text.split()) * 1.3
@@ -988,20 +1023,31 @@ Here is the game history so far:
             self.log(f"  [ERROR querying {seat_model}: {e}]", "red", public=False)
             return f"*{player.name} remains silent*"
 
-    def _call_backend(self, messages: List[Dict], model: Optional[str] = None) -> str:
+    def _call_backend(
+        self, messages: List[Dict], model: Optional[str] = None, max_tokens: int = 2048
+    ) -> str:
         # Reasoning is on (no /no_think): the budget must fit thinking AND the
-        # spoken reply, and the thinking channel must stay private.
+        # spoken reply, and the thinking channel must stay private. Retries in
+        # query_model deliberately use the full default budget — if a capped
+        # name-only call truncated, the retry must not truncate again.
+        # (Claude CLI backend has no max_tokens knob; the cap applies to the
+        # OpenAI-compatible backends only.)
         return call_llm(
             self._lm_client, model or self.model, messages,
             use_nvidia=self.use_nvidia, schema_key="response",
-            max_tokens=2048, private_reasoning=True,
+            max_tokens=max_tokens, private_reasoning=True,
             use_claude=self.use_claude,
             on_retry=lambda wait: self.log(
                 f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
             ),
         )
 
-    def extract_vote(self, response: str, valid_targets: List[str]) -> Optional[str]:
+    def extract_vote(
+        self, response: str, valid_targets: List[str], prefer_first: bool = False
+    ) -> Optional[str]:
+        # prefer_first: accusations and kill suggestions lead with the name
+        # ("MARSHAL, ... keeps redirecting to SAGE" accuses MARSHAL), so take
+        # the first hit; vote replies trail with it, so default stays last.
         response_lower = response.lower()
         name_map = {n.lower(): n for n in valid_targets}
 
@@ -1023,16 +1069,16 @@ Here is the game history so far:
                         break
         if explicit_hits:
             explicit_hits.sort(key=lambda x: x[0])
-            return explicit_hits[-1][1]
+            return explicit_hits[0][1] if prefer_first else explicit_hits[-1][1]
 
-        # Fallback: last name mentioned anywhere in response
+        # Fallback: first/last name mentioned anywhere in response
         all_hits: List[Tuple[int, str]] = []
         for key, name in name_map.items():
             for hit in re.finditer(rf"\b{re.escape(key)}\b", response_lower):
                 all_hits.append((hit.start(), name))
         if all_hits:
             all_hits.sort(key=lambda x: x[0])
-            return all_hits[-1][1]
+            return all_hits[0][1] if prefer_first else all_hits[-1][1]
         return None
 
     def parse_mafia_choice(
@@ -1067,7 +1113,7 @@ Here is the game history so far:
             m = mafia[0]
             prompt = f"It's night. You are Mafia.\nChoose EXACTLY ONE of these targets: {', '.join(valid_targets)}\nOr choose NO_KILL.\nReply with ONLY the target name or NO_KILL."
             for attempt in range(3):
-                resp = self.query_model(m, prompt, context, min_words=1)
+                resp = self.query_model(m, prompt, context, min_words=1, max_tokens=512)
                 self.log(f"   (night reply: {resp[:120]})", "red", public=False)
                 choice = self.parse_mafia_choice(resp, valid_targets)
                 if choice:
@@ -1083,6 +1129,7 @@ Here is the game history so far:
 
         for r in range(rounds):
             self.log(f"   (round {r + 1}/{rounds})", "red", public=False)
+            round_choices: List[Optional[str]] = []
             for m in mafia:
                 chat_context = (
                     context
@@ -1101,16 +1148,37 @@ Here is the game history so far:
                         self.log(f"   {m.name}: {response}", "red", public=False)
                         self.emit("mafia_chat", private=True, day=self.day,
                                   actor=m.name, text=response)
+                        round_choices.append(
+                            self.extract_vote(response, valid_targets, prefer_first=True)
+                        )
                     else:
                         self.log(f"   {m.name}: [no response]", "red", public=False)
+                        round_choices.append(None)
                 except Exception as e:
                     self.log(f"   {m.name}: [error: {e}]", "red", public=False)
+                    round_choices.append(None)
+
+            # Unanimous after round 1: skip the confirmation round and the
+            # final vote — 6 fewer LLM calls on the common no-debate night
+            if (
+                r == 0
+                and len(round_choices) == len(mafia)
+                and round_choices[0] is not None
+                and all(c == round_choices[0] for c in round_choices)
+            ):
+                self.log(
+                    f"   (unanimous on {round_choices[0]} — skipping confirmation round)",
+                    "red", public=False,
+                )
+                return round_choices[0]
 
         # Final decision
         final_prompt = f"Final mafia vote. Choose ONE target from: {', '.join(valid_targets)}. Reply with the name ONLY."
         final_votes: Dict[str, int] = {}
         for m in mafia:
-            response = self.query_model(m, final_prompt, "\n".join(chat), min_words=1)
+            response = self.query_model(
+                m, final_prompt, "\n".join(chat), min_words=1, max_tokens=512
+            )
             self.log(f"   ({m.name} final night vote: {response[:120]})", "red", public=False)
             voted_for = self.extract_vote(response, valid_targets)
             if voted_for:

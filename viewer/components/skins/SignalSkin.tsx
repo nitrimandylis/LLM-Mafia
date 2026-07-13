@@ -204,6 +204,7 @@ function summarize(e: GameEvent): string {
     case "elimination": return `${e.target} eliminated — ${e.role}`;
     case "night_kill": return e.saved ? `attack on ${e.target} failed` : `${e.target} killed — ${e.role}`;
     case "save": return `${e.target} saved`;
+    case "detective_will": return `${e.actor}'s notes found: ${e.target} is ${e.result}`;
     case "game_over": return `${e.winner.toUpperCase()} WINS`;
     default: return "";
   }

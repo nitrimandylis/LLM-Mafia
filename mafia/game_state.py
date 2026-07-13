@@ -30,6 +30,8 @@ def build_day_summary(
         lines.append("=== NIGHT KILLS ===")
         for k in reversed(kills[-max_events:]):
             lines.append(f"  Night {k['night']}: {k['victim']} was killed by mafia (was {k.get('role', '?')})")
+            if k.get("will"):
+                lines.append(f"    {k['victim']}'s final notes were found: {k['will']}")
 
     if saves:
         for s in reversed(saves[-2:]):

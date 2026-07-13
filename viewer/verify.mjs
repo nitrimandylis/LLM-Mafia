@@ -11,7 +11,8 @@ assert(Array.isArray(events) && events.length > 0, "events[] present");
 // Event types every skin's render switch handles (game_start carries data, not a row).
 const RENDERED = new Set([
   "game_start", "phase", "statement", "question", "answer", "accusation",
-  "vote", "elimination", "night_kill", "save", "mafia_chat", "investigation", "game_over",
+  "vote", "elimination", "night_kill", "detective_will", "save", "mafia_chat",
+  "investigation", "game_over",
 ]);
 
 // 1. Boundaries.

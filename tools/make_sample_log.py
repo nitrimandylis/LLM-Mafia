@@ -37,7 +37,7 @@ LINES = [
 
 
 def fake_query(game):
-    def _q(player, prompt, context="", min_words=4, public_speech=False):
+    def _q(player, prompt, context="", min_words=4, public_speech=False, max_tokens=2048):
         others = [p.name for p in game.get_alive_players() if p.name != player.name]
         if not others:
             return "I have nothing left to say."

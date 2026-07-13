@@ -16,6 +16,7 @@ const DELAY: Record<GameEvent["type"], number> = {
   vote: 650,
   elimination: 2400,
   night_kill: 2400,
+  detective_will: 2400,
   night_no_kill: 2000,
   save: 2000,
   protection: 1200,
