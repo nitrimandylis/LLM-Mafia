@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import type { GameEvent, GameLog } from "@/lib/events";
 import { useReplay } from "@/lib/useReplay";
 import { SKINS as SKIN_META, type SkinId } from "@/lib/settings";
@@ -62,6 +63,10 @@ export default function Viewer() {
   return (
     <div className="stage-wrap">
       <div className="menu">
+        <Link href="/" className="brand">
+          <span className="mark">MAFIA</span>
+          <span className="rest">LLM REPLAY</span>
+        </Link>
         <span className="menu-spacer" />
 
         {source && (

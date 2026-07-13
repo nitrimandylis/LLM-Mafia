@@ -41,14 +41,7 @@ a { color: inherit; }
 
 .shell { display: flex; flex-direction: column; min-height: 100vh; }
 
-/* ---- top bar: wordmark + nav ---- */
-.topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 18px; height: 48px;
-  border-bottom: 1px solid var(--shell-line);
-  background-color: var(--shell-panel); background-image: var(--chrome-grain);
-  position: sticky; top: 0; z-index: 20;
-}
+/* ---- brand mark (lives at the left end of the menu bar) ---- */
 .brand {
   display: inline-flex; align-items: baseline; gap: 9px;
   text-decoration: none;
@@ -79,9 +72,9 @@ a { color: inherit; }
   font-family: var(--font-display), "Oswald", system-ui, sans-serif;
   color: var(--shell-muted); font-size: 15px; letter-spacing: .22em; line-height: 1;
 }
-/* Viewer stage = exactly the space under the 48px top bar. The menu (top) and
-   transport controls (bottom) are pinned; only the skin pane scrolls. */
-.stage-wrap { height: calc(100dvh - 48px); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+/* Viewer stage = the full viewport. The menu (top) and transport controls
+   (bottom) are pinned; only the skin pane scrolls. */
+.stage-wrap { height: 100dvh; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
 /* One per design; kept mounted, shown one at a time (display toggled inline). */
 .skin-pane { flex: 1; min-height: 0; flex-direction: column; }
 
@@ -185,7 +178,7 @@ a { color: inherit; }
 .notice code { background: var(--shell-panel-2); padding: 2px 6px; color: var(--gold); }
 
 /* ---- accessibility: visible focus + honour reduced motion ---- */
-.topbar a:focus-visible,
+.menu a:focus-visible,
 .menu button:focus-visible,
 .controls button:focus-visible,
 .controls input:focus-visible,
@@ -199,6 +192,7 @@ a { color: inherit; }
 
 @media (max-width: 720px) {
   .menu { flex-wrap: wrap; }
+  .brand .rest { display: none; }
   .skin-menu-btn .skin-meta .tg { display: none; }
 }
 

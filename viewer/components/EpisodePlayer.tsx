@@ -107,6 +107,10 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
   return (
     <div className="stage-wrap">
       <div className="menu">
+        <Link href="/" className="brand">
+          <span className="mark">MAFIA</span>
+          <span className="rest">LLM REPLAY</span>
+        </Link>
         <span className="ep-mark" title={episode.tagline}>
           <b>{caseNumber(card.slug)}</b> {episode.title}
         </span>
