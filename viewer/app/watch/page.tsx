@@ -69,6 +69,14 @@ export default function Viewer() {
         </Link>
         <span className="menu-spacer" />
 
+        {state.provider && (
+          <span
+            className="provider-badge"
+            title={state.players.map((p) => `${p.name}: ${p.model ?? "?"}`).join("\n")}
+          >
+            {state.provider} · {[...new Set(state.players.map((p) => p.model).filter(Boolean))].join(", ") || "unknown model"}
+          </span>
+        )}
         {source && (
           <span
             className={`source-badge${source === "game" ? " live" : ""}`}

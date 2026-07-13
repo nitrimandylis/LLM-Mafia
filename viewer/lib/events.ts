@@ -6,11 +6,12 @@ export type Player = {
   name: string;
   seat: number;
   color: string;
+  model?: string; // absent in logs from before model stamping
   role?: string; // only present in spectator (reveal-secrets) logs
 };
 
 export type GameEvent =
-  | { type: "game_start"; players: Player[]; player_count: number }
+  | { type: "game_start"; players: Player[]; player_count: number; provider?: string }
   | { type: "phase"; day: number; phase: "day" | "night" }
   | { type: "statement"; day: number; actor: string; text: string }
   | { type: "question"; day: number; actor: string; target: string; text: string }

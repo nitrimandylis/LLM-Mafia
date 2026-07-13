@@ -232,6 +232,8 @@
 }
 .lp-ep-cast-chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
 .lp-ep-meta { font-size: 10px; letter-spacing: 2px; color: #888; }
+/* Provider wears its own neon: color set inline per brand, glow follows it. */
+.lp-ep-provider { text-shadow: 0 0 8px currentColor; font-weight: 700; }
 
 .lp-ep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .lp-ep {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EPISODES, FEATURED, caseNumber, type EpisodeCard } from "@/lib/episodes";
+import { EPISODES, FEATURED, caseNumber, PROVIDER_COLORS, type EpisodeCard } from "@/lib/episodes";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -319,6 +319,18 @@ function EpisodeMetaLine({ ep }: { ep: EpisodeCard }) {
   return (
     <div className="lp-ep-meta">
       {ep.cast.length} PLAYERS · {ep.days} DAYS · {ep.deaths} DEAD
+      {ep.provider && (
+        <>
+          {" · "}
+          <span
+            className="lp-ep-provider"
+            style={{ color: PROVIDER_COLORS[ep.provider] ?? "#888" }}
+            title="Which backend played this game"
+          >
+            {ep.provider.replace("-", " ").toUpperCase()}
+          </span>
+        </>
+      )}
     </div>
   );
 }

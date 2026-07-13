@@ -7,6 +7,7 @@ export type DerivedState = {
   phase: "day" | "night";
   day: number;
   winner?: string;
+  provider?: string;
 };
 
 // Fold the revealed events into the current game state. Pure — shared by the
@@ -18,11 +19,13 @@ export function deriveState(revealed: GameEvent[]): DerivedState {
   let phase: "day" | "night" = "day";
   let day = 0;
   let winner: string | undefined;
+  let provider: string | undefined;
 
   for (const e of revealed) {
     switch (e.type) {
       case "game_start":
         players = e.players;
+        provider = e.provider;
         for (const p of e.players) alive.add(p.name);
         break;
       case "phase":
@@ -44,5 +47,5 @@ export function deriveState(revealed: GameEvent[]): DerivedState {
         break;
     }
   }
-  return { players, alive, deaths, phase, day, winner };
+  return { players, alive, deaths, phase, day, winner, provider };
 }

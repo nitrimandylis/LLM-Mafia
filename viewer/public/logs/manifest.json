@@ -48,7 +48,8 @@
    ],
    "days": 4,
    "deaths": 6,
-   "revealed": true
+   "revealed": true,
+   "provider": "nvidia"
   },
   {
    "slug": "case-002",
@@ -98,7 +99,8 @@
    ],
    "days": 5,
    "deaths": 8,
-   "revealed": true
+   "revealed": true,
+   "provider": "nvidia"
   },
   {
    "slug": "case-003",
@@ -148,7 +150,8 @@
    ],
    "days": 4,
    "deaths": 6,
-   "revealed": true
+   "revealed": true,
+   "provider": "nvidia"
   },
   {
    "slug": "case-004",
@@ -198,7 +201,8 @@
    ],
    "days": 4,
    "deaths": 6,
-   "revealed": true
+   "revealed": true,
+   "provider": "nvidia"
   }
  ]
 }

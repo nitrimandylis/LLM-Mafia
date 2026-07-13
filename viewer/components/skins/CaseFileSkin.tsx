@@ -28,6 +28,7 @@ export default function CaseFileSkin({ state, active }: SkinProps) {
               <div className="cf-mug" style={{ background: p.color }}>{initials(p.name)}</div>
               <div className="cf-id">
                 <div className="cf-name">{p.name}</div>
+                {p.model && <div className="cf-model">{p.model}</div>}
                 {dead ? (
                   <div className={`cf-stamp-sm${mafia ? " mafia" : ""}`}>{role ?? "DECEASED"}</div>
                 ) : (
