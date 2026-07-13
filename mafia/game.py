@@ -1051,9 +1051,13 @@ Here is the game history so far:
         response_lower = response.lower()
         name_map = {n.lower(): n for n in valid_targets}
 
-        # Explicit vote-intent patterns tried first so "vote X because Y mentions Z" picks X not Z
+        # Explicit vote-intent patterns tried first so "vote X because Y mentions Z" picks X not Z.
+        # Vote/go-with must be first-person ("I'm voting X"): discussing someone
+        # ELSE'S ballot ("he voted HOLMES instead") is not intent and once
+        # hijacked a whole day of accusation targets.
         explicit_patterns = [
-            r"\bvot(?:e|ing|ed)(?:\s+(?:for|out|to\s+eliminate))?\s+([\w][^\n,\.!?]{0,40})",
+            r"\bi\b[^\n,\.!?]{0,15}?\bvot(?:e|ing|ed)(?:\s+(?:for|out|to\s+eliminate))?\s+([\w][^\n,\.!?]{0,40})",
+            r"\bi\b[^\n,\.!?]{0,15}?\bgo(?:ing)?\s+with\s+([\w][^\n,\.!?]{0,40})",
             r"\beliminate\s+([\w][^\n,\.!?]{0,40})",
             r"\bmy\s+vote\s+(?:is\s+)?(?:for\s+)?([\w][^\n,\.!?]{0,40})",
             r"\b([\w][^\n,\.!?]{0,40}?)\s+(?:is|gets)\s+my\s+vote\b",
@@ -1063,10 +1067,15 @@ Here is the game history so far:
         for pat in explicit_patterns:
             for m in re.finditer(pat, response_lower):
                 candidate = m.group(1).strip()
+                # Earliest name in the captured window wins — dict order once
+                # picked RICO out of "go with MARSHAL — ...against RICO's"
+                best = None
                 for key, name in name_map.items():
-                    if re.search(rf"\b{re.escape(key.split()[0])}\b", candidate):
-                        explicit_hits.append((m.start(), name))
-                        break
+                    hit = re.search(rf"\b{re.escape(key.split()[0])}\b", candidate)
+                    if hit and (best is None or hit.start() < best[0]):
+                        best = (hit.start(), name)
+                if best:
+                    explicit_hits.append((m.start(), best[1]))
         if explicit_hits:
             explicit_hits.sort(key=lambda x: x[0])
             return explicit_hits[0][1] if prefer_first else explicit_hits[-1][1]

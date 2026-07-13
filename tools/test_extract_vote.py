@@ -43,6 +43,40 @@ ACCUSATIONS = [
     # Explicit vote phrasing must still win over an earlier mention
     ("MARSHAL remains the clearest unresolved contradiction today. I'm voting "
      "MARSHAL.", "MARSHAL"),
+    # Game 2, day 2: third-person ballot talk ("he voted HOLMES instead") must
+    # not read as vote intent — the accused leads the sentence
+    ("MARSHAL, since his unexplained divergence between building the case "
+     "against RICO and then voting HOLMES instead remains the biggest "
+     "unresolved contradiction on the table.", "MARSHAL"),
+    ("I've confirmed through my own investigation that MARSHAL is Mafia, and "
+     "the table's independent reasoning about his abandoned \"quick accuser\" "
+     "logic and his divergent vote for HOLMES lines up perfectly with that "
+     "read, so the evidence and my private knowledge converge cleanly today. "
+     "MARSHAL.", "MARSHAL"),
+    ("MARSHAL — his own \"quick accuser\" logic against RICO never got applied "
+     "to himself, and he still hasn't given a real reason for abandoning it to "
+     "vote HOLMES instead.", "MARSHAL"),
+    ("MARSHAL — his own logic against RICO's timing was sound enough to "
+     "convict, yet he voted HOLMES instead, and his explanation about "
+     "\"withholding\" doesn't outweigh the case he built himself; that "
+     "unresolved contradiction is the strongest data point on the table.", "MARSHAL"),
+    ("Okay, um, I think I have to go with MARSHAL — his own logic against "
+     "RICO's \"quick accuser\" pattern should've pointed him to RICO, but he "
+     "voted HOLMES instead and never really cleared that up for me. AMBASSADOR "
+     "SILVA and DR. VANCE both landed there too, so that's not just me being "
+     "swayed this time, I think? MARSHAL, that's my vote.", "MARSHAL"),
+    # ...but first-person intent still beats a leading mention of someone else
+    ("I'm voting HOLMES today. The pattern of his calm non-commitment on Day 1 "
+     "combined with his own vote landing exactly where mine and SAGE's did, "
+     "plus his refusal to give a real read early on, still outweighs the "
+     "unresolved gap in my own vote that others keep circling back to. "
+     "Procedure says the biggest unknown gets scrutinized first, and that's "
+     "HOLMES.", "HOLMES"),
+    ("Given the momentum, the table is converging hard on MARSHAL, but that "
+     "reasoning rests entirely on a vote-pattern coincidence while HOLMES has "
+     "an actual documented deflection in his own words at 2:47. I'll push to "
+     "eliminate HOLMES today since his rationalized non-commitment is a "
+     "content-based red flag, not just a ballot artifact like MARSHAL's.", "HOLMES"),
 ]
 
 # Vote replies keep the default last-mention behavior
