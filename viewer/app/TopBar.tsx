@@ -13,11 +13,6 @@ export default function TopBar() {
         <span className="mark">MAFIA</span>
         <span className="rest">LLM REPLAY</span>
       </Link>
-      <nav>
-        <Link href="/watch" className={path.startsWith("/watch") ? "active" : ""}>
-          Viewer
-        </Link>
-      </nav>
     </header>
   );
 }
