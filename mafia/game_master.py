@@ -123,6 +123,31 @@ def call_llm(
     return ""
 
 
+def episode_inputs_from_events(events: List[Dict]) -> Optional[Dict]:
+    """Derive write_episode kwargs from a finished game's event list.
+    Shared by the live game and tools/publish_game.py (backfilling old logs).
+    Returns None when the log isn't a completed town/mafia game."""
+    start = next((e for e in events if e["type"] == "game_start"), None)
+    over = next((e for e in events if e["type"] == "game_over"), None)
+    if not start or not over or over.get("winner") not in ("town", "mafia"):
+        return None
+    cast = [f"{p['name']} ({p['role']})" for p in start["players"]]
+    days = 1
+    timeline = []
+    for e in events:
+        days = max(days, e.get("day") or 1)
+        if e["type"] == "elimination":
+            timeline.append(f"Day {e['day']}: the town voted out {e['target']} — they were {e['role']}.")
+        elif e["type"] == "night_kill" and not e.get("saved"):
+            timeline.append(f"Night {e['day']}: the mafia killed {e['target']} — they were {e['role']}.")
+        elif e["type"] == "save" or (e["type"] == "night_kill" and e.get("saved")):
+            timeline.append(f"Night {e['day']}: the mafia struck, but the Doctor saved {e['target']}.")
+        elif e["type"] == "night_no_kill":
+            timeline.append(f"Night {e['day']}: nobody died.")
+    timeline.append(f"The {over['winner']} won. Survivors: {', '.join(over['survivors'])}.")
+    return {"winner": over["winner"], "days": days, "cast": cast, "timeline": timeline}
+
+
 class GameMaster:
     def __init__(self, client: OpenAI, model: str, use_nvidia: bool = False, enabled: bool = True, use_claude: bool = False):
         self._client = client
@@ -222,6 +247,34 @@ class GameMaster:
             f"Statements from this day:\n{condensed}"
         )
         return self._call(prompt, max_tokens=300)
+
+    def write_episode(self, winner: str, days: int, cast: List[str], timeline: List[str]) -> Dict[str, str]:
+        """Episode packaging for the replay viewer, written at game end.
+        `cast` is "NAME (Role)" strings, `timeline` is short beat lines.
+        Returns {} when the GM is disabled or every call comes back empty."""
+        base = (
+            f"A finished Mafia party game played entirely by AI players. "
+            f"It lasted {days} day(s) and the {winner} won.\n"
+            f"Cast: {', '.join(cast)}.\n"
+            f"What happened:\n" + "\n".join(timeline)
+        )
+        title = self._call(
+            "Write a pulpy noir episode title for this game: 2-5 words, no quotes, "
+            "no colons, don't reveal the winner.\n\n" + base,
+            max_tokens=150,
+        )
+        tagline = self._call(
+            "Write ONE teaser sentence for this game, shown before anyone watches it. "
+            "STRICTLY spoiler-free: do not reveal who wins, who dies, or anyone's role.\n\n" + base,
+            max_tokens=200,
+        )
+        recap = self._call(
+            "Write a 3-5 sentence dramatic recap of this game, shown AFTER viewers finish "
+            "watching. Spoilers welcome: name the mafia, the turning point, and how it ended.\n\n" + base,
+            max_tokens=300,
+        )
+        episode = {"title": title, "tagline": tagline, "recap": recap}
+        return episode if any(episode.values()) else {}
 
     def narrate_game_over(self, winner: str, survivors: List[str], day: int) -> str:
         if winner == "town":

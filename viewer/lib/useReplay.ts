@@ -52,16 +52,21 @@ export type ReplayState = {
   };
 };
 
-export function useReplay(events: GameEvent[], initialSpeed: Speed = 1): ReplayState {
+export function useReplay(
+  events: GameEvent[],
+  initialSpeed: Speed = 1,
+  autoplay = true // false = wait for an explicit play() (episode cold open)
+): ReplayState {
   const [cursor, setCursor] = useState(0);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(autoplay);
   const [speed, setSpeed] = useState<Speed>(initialSpeed);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Reset when the log changes.
   useEffect(() => {
     setCursor(0);
-    setPlaying(true);
+    setPlaying(autoplay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events]);
 
   // Adopt the saved default speed once it resolves client-side.

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import TopBar from "./TopBar";
 
 // Condensed display face for the wordmark + (in Signature) the chrome labels.
 // Self-hosted by next/font; exposed to CSS as --font-display.
@@ -26,10 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${bebas.variable} ${mono.variable} ${grotesk.variable}`}>
       <body>
-        <div className="shell">
-          <TopBar />
-          {children}
-        </div>
+        <div className="shell">{children}</div>
       </body>
     </html>
   );

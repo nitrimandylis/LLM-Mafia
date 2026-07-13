@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EPISODES, FEATURED, caseNumber, type EpisodeCard } from "@/lib/episodes";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -55,7 +56,10 @@ export default function Landing() {
           </p>
 
           <div className="lp-cta">
-            <Link href="/watch" className="lp-btn lp-btn-primary">
+            <Link
+              href={FEATURED ? `/watch/${FEATURED.slug}` : "/watch"}
+              className="lp-btn lp-btn-primary"
+            >
               ▸ WATCH A REPLAY
             </Link>
             <a href={GITHUB} target="_blank" rel="noreferrer" className="lp-btn lp-btn-ghost">
@@ -114,6 +118,55 @@ export default function Landing() {
             <span style={{ color: "var(--accent)", fontWeight: 700 }}>ARIA ████░ 4</span>
             <span style={{ color: "#999" }}>PIP ██░░░ 2</span>
           </div>
+        </div>
+      </section>
+
+      {/* ── EPISODES — the case files ── */}
+      <section className="lp-section" id="cases">
+        <div className="lp-label">
+          <div className="lp-label-dot" />
+          <span>// the case files — {EPISODES.length} on record</span>
+        </div>
+
+        {FEATURED && (
+          <Link href={`/watch/${FEATURED.slug}`} className="lp-ep-featured">
+            <div className="lp-ep-left">
+              <div className="lp-ep-no">
+                {caseNumber(FEATURED.slug)} <em>· LATEST</em>
+                {FEATURED.revealed && <RevealedTag />}
+              </div>
+              <h3 className="lp-ep-title">{FEATURED.title}</h3>
+              <p className="lp-ep-tag">{FEATURED.tagline}</p>
+              <span className="lp-ep-watch">▸ WATCH THE CASE</span>
+            </div>
+            <div className="lp-ep-right">
+              <div className="lp-ep-castlist">
+                {FEATURED.cast.map((p) => (
+                  <span key={p.name} className="lp-ep-cast-chip">
+                    <span className="dot" style={{ background: p.color }} />
+                    {p.name}
+                  </span>
+                ))}
+              </div>
+              <EpisodeMetaLine ep={FEATURED} />
+            </div>
+          </Link>
+        )}
+
+        <div className="lp-ep-grid">
+          {EPISODES.slice(0, -1)
+            .reverse()
+            .map((ep) => (
+              <Link key={ep.slug} href={`/watch/${ep.slug}`} className="lp-ep">
+                <div className="lp-ep-no">
+                  {caseNumber(ep.slug)}
+                  {ep.revealed && <RevealedTag />}
+                </div>
+                <h3 className="lp-ep-title">{ep.title}</h3>
+                <p className="lp-ep-tag">{ep.tagline}</p>
+                <EpisodeMetaLine ep={ep} />
+              </Link>
+            ))}
         </div>
       </section>
 
@@ -244,6 +297,28 @@ export default function Landing() {
           <span className="slogan">LLMS LIE. PROVED IT.</span>
         </div>
       </footer>
+    </div>
+  );
+}
+
+// Recorded with --reveal-secrets: the replay includes the mafia's private
+// chat and the detective's checks.
+function RevealedTag() {
+  return (
+    <span
+      className="lp-ep-revealed"
+      title="Recorded with secrets revealed: you watch the mafia's private chat and the detective's checks."
+    >
+      SECRETS REVEALED
+    </span>
+  );
+}
+
+// Spoiler-free by design: days, body count, cast size — never the winner.
+function EpisodeMetaLine({ ep }: { ep: EpisodeCard }) {
+  return (
+    <div className="lp-ep-meta">
+      {ep.cast.length} PLAYERS · {ep.days} DAYS · {ep.deaths} DEAD
     </div>
   );
 }

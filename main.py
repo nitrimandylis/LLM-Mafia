@@ -118,6 +118,7 @@ if __name__ == "__main__":
                     "public_log": game.public_log,
                     "day": game.day,
                     "stats": stats,
+                    "episode": game.episode,
                 },
                 f,
                 indent=2,

@@ -1,23 +1,19 @@
 /* =====================================================================
-   CHROME — a themed frame around the skins. Three looks, chosen in
-   Settings and applied via [data-chrome] on <html> (set in page.tsx):
-     • signature — noir crime-board (the default; also the SSR fallback)
-     • adaptive  — borrows the active skin's accent ([data-skin])
-     • quiet     — restrained neutral
-   Rules below read the --shell and --brand tokens, so theming is mostly
-   a matter of overriding those tokens per theme.
+   CHROME — the neon-noir frame around the skins: cold night bars, hot
+   neon accents, phosphor grain + scanlines — the same language as the
+   landing page and the chat night skin.
    ===================================================================== */
-
-/* Base = Signature, so first paint (before JS sets data-chrome) matches
-   the default theme and there's no flash. */
 :root {
-  --shell-bg: #050505;
-  --shell-panel: #0a0a0a;
-  --shell-panel-2: #141418;
-  --shell-line: #1e1e1e;
-  --shell-ink: #e0e0e0;
-  --shell-muted: #8a8a8a;
+  --shell-bg: #050609;
+  --shell-panel: #0a0b10;
+  --shell-panel-2: #12141c;
+  --shell-line: #1b1d26;
+  --shell-ink: #e7e9ee;
+  --shell-muted: #8b8f9c;
   --brand: #c41e1e;
+  --neon: #ff2a2a;
+  --chrome-glow: rgba(255, 42, 42, .35);
+  --chrome-glow-soft: rgba(196, 30, 30, .18);
   --green: #69c66f;
   --gold: #e0a000;
 
@@ -26,49 +22,10 @@
   --chrome-label-font: var(--font-mono), ui-monospace, monospace;
   --chrome-label-tracking: .2em;
   --chrome-label-transform: uppercase;
-  /* faint desaturated film grain; themes that want a clean frame null it out */
-  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  /* the tube: phosphor grain + scanlines */
+  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .12) 0 1px, transparent 1px 3px);
 }
-
-/* Signature: explicit too, so switching back from another theme restores it. */
-:root[data-chrome="signature"] {
-  --shell-bg: #050505;
-  --shell-panel: #0a0a0a;
-  --shell-panel-2: #141418;
-  --shell-line: #1e1e1e;
-  --shell-ink: #e0e0e0;
-  --shell-muted: #8a8a8a;
-  --brand: #c41e1e;
-  --chrome-label-font: var(--font-mono), ui-monospace, monospace;
-  --chrome-label-tracking: .2em;
-  --chrome-label-transform: uppercase;
-  --chrome-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-}
-
-/* Quiet & Adaptive: clean neutral frame, system labels, no grain. */
-:root[data-chrome="quiet"],
-:root[data-chrome="adaptive"] {
-  --shell-bg: #0a0b0d;
-  --shell-panel: #101216;
-  --shell-panel-2: #171b22;
-  --shell-line: #232831;
-  --shell-ink: #e7e9ee;
-  --shell-muted: #7a818d;
-  --chrome-label-font: inherit;
-  --chrome-label-tracking: .04em;
-  --chrome-label-transform: none;
-  --chrome-grain: none;
-}
-
-/* Quiet keeps a restrained accent rather than the loud red. */
-:root[data-chrome="quiet"] { --brand: #5e7ca6; }
-
-/* Adaptive borrows each design's accent (matches lib/settings SKINS swatches). */
-:root[data-chrome="adaptive"] { --brand: #5b8cff; } /* fallback before data-skin set */
-:root[data-chrome="adaptive"][data-skin="chat"]       { --brand: #c41e1e; }
-:root[data-chrome="adaptive"][data-skin="casefile"]   { --brand: #c0392c; }
-:root[data-chrome="adaptive"][data-skin="transcript"] { --brand: #8e2b2b; }
-:root[data-chrome="adaptive"][data-skin="signal"]     { --brand: #c41e1e; }
 
 * { box-sizing: border-box; }
 
@@ -84,76 +41,93 @@ a { color: inherit; }
 
 .shell { display: flex; flex-direction: column; min-height: 100vh; }
 
-/* ---- top bar: wordmark + nav ---- */
-.topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 18px; height: 48px;
-  border-bottom: 1px solid var(--shell-line);
-  background-color: var(--shell-panel); background-image: var(--chrome-grain);
-  position: sticky; top: 0; z-index: 20;
-}
+/* ---- brand mark (lives at the left end of the menu bar) ---- */
 .brand {
   display: inline-flex; align-items: baseline; gap: 9px;
   text-decoration: none;
 }
-/* Wordmark is the display face in every theme — the one constant brand mark. */
+/* Wordmark is the display face in every theme — the one constant brand mark.
+   In Signature it's a small neon sign: hot tube text in a glowing housing. */
 .brand .mark {
   font-family: var(--font-display), "Oswald", system-ui, sans-serif;
   font-size: 19px; font-weight: 400; letter-spacing: .14em; line-height: 1;
-  color: var(--brand); border: 1.5px solid var(--brand);
+  color: var(--neon); border: 1.5px solid var(--brand);
   padding: 3px 8px 1px;
+  text-shadow: 0 0 8px var(--chrome-glow), 0 0 22px var(--chrome-glow-soft);
+  box-shadow: 0 0 12px var(--chrome-glow-soft), inset 0 0 10px var(--chrome-glow-soft);
+}
+/* Neon tube buzz: the sign dims for a breath every few seconds. */
+@keyframes chrome-neon-buzz {
+  0%, 100% { opacity: 1; }
+  88.8% { opacity: 1; }
+  89% { opacity: .78; }
+  89.4% { opacity: .94; }
+  89.8% { opacity: .82; }
+  90.2% { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .brand .mark { animation: chrome-neon-buzz 7s linear infinite; }
 }
 .brand .rest {
   font-family: var(--font-display), "Oswald", system-ui, sans-serif;
   color: var(--shell-muted); font-size: 15px; letter-spacing: .22em; line-height: 1;
 }
-.topbar nav { display: flex; gap: 16px; }
-.topbar nav a {
-  font-size: 12px; color: var(--shell-muted); text-decoration: none;
-  padding: 6px 2px; letter-spacing: .02em; border-bottom: 2px solid transparent;
-}
-.topbar nav a:hover { color: var(--shell-ink); }
-.topbar nav a.active { color: var(--shell-ink); border-bottom-color: var(--brand); }
-
-/* Viewer stage = exactly the space under the 48px top bar. The menu (top) and
-   transport controls (bottom) are pinned; only the skin pane scrolls. */
-.stage-wrap { height: calc(100dvh - 48px); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+/* Viewer stage = the full viewport. The menu (top) and transport controls
+   (bottom) are pinned; only the skin pane scrolls. */
+.stage-wrap { height: 100dvh; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
 /* One per design; kept mounted, shown one at a time (display toggled inline). */
 .skin-pane { flex: 1; min-height: 0; flex-direction: column; }
 
 /* =====================================================================
-   MENU — the design switcher. Each option previews its world's palette,
-   so the menu itself advertises the four looks.
+   MENU — the bar over the stage. The design switcher is a dropdown at
+   its right end; the open list previews all four looks.
    ===================================================================== */
 .menu {
   display: flex; align-items: center; gap: 14px;
   padding: 9px 16px; border-bottom: 1px solid var(--shell-line);
   background-color: var(--shell-panel); background-image: var(--chrome-grain);
 }
-/* Flat editorial tabs (no pill), each marked active by a thin accent rule. */
-.skin-seg { display: flex; align-self: stretch; }
-.skin-opt {
-  display: flex; align-items: center; gap: 10px;
-  background: transparent; border: 0; border-bottom: 2px solid transparent;
-  color: var(--shell-muted); padding: 0 16px; margin-bottom: -10px; padding-bottom: 10px;
-  cursor: pointer; text-align: left;
-  transition: color .15s, border-color .15s;
-}
-.skin-opt + .skin-opt { border-left: 1px solid var(--shell-line); }
-.skin-opt { cursor: grab; }
-.skin-opt:active { cursor: grabbing; }
-.skin-opt.dragging { opacity: .4; }
-.skin-opt:hover { color: var(--shell-ink); }
-.skin-opt.on { color: var(--shell-ink); border-bottom-color: var(--brand); }
 .skin-icon { display: flex; align-items: center; color: inherit; opacity: .5; transition: opacity .15s; }
-.skin-opt:hover .skin-icon, .skin-opt.on .skin-icon { opacity: 1; }
-.skin-opt.on .skin-icon { color: var(--brand); }
 .skin-meta { display: flex; flex-direction: column; line-height: 1.2; }
 .skin-meta .nm {
   font-family: var(--chrome-label-font); font-size: 13px; font-weight: 700;
   letter-spacing: var(--chrome-label-tracking); text-transform: var(--chrome-label-transform);
 }
 .skin-meta .tg { font-size: 10px; letter-spacing: .08em; opacity: .65; text-transform: uppercase; }
+
+/* ---- design switcher dropdown ---- */
+.skin-menu { position: relative; }
+.skin-menu-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: transparent; border: 1px solid var(--shell-line); border-radius: 2px;
+  color: var(--shell-ink); padding: 5px 10px; cursor: pointer; text-align: left;
+  transition: border-color .15s;
+}
+.skin-menu-btn:hover, .skin-menu-btn.open { border-color: var(--brand); }
+.skin-menu-btn .skin-icon { color: var(--brand); opacity: 1; }
+.skin-caret { color: var(--shell-muted); font-size: 10px; transition: transform .15s; }
+.skin-menu-btn.open .skin-caret { transform: rotate(180deg); }
+/* The open list drops over the stage; nothing above it but the overlays. */
+.skin-menu-list {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 20;
+  min-width: 236px; display: grid; gap: 2px; padding: 6px;
+  background-color: var(--shell-panel-2); background-image: var(--chrome-grain);
+  border: 1px solid var(--shell-line); border-radius: 3px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 24px var(--chrome-glow-soft);
+  animation: pop .15s ease;
+}
+.skin-menu-opt {
+  display: flex; align-items: center; gap: 10px; text-align: left;
+  background: transparent; border: 0; border-radius: 2px;
+  color: var(--shell-muted); padding: 8px 10px; cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.skin-menu-opt:hover { color: var(--shell-ink); background: rgba(255, 255, 255, .04); }
+.skin-menu-opt:hover .skin-icon { opacity: 1; }
+/* The current design wears the neon. */
+.skin-menu-opt.on { color: var(--shell-ink); }
+.skin-menu-opt.on .skin-icon { color: var(--neon); opacity: 1; filter: drop-shadow(0 0 5px var(--chrome-glow)); }
+.skin-menu-opt.on .nm { text-shadow: 0 0 10px var(--chrome-glow); }
 .menu-spacer { flex: 1; }
 .source-badge {
   font-size: 11px; color: var(--shell-muted); display: inline-flex; align-items: center; gap: 6px;
@@ -190,44 +164,19 @@ a { color: inherit; }
   cursor: pointer; letter-spacing: .02em;
 }
 .controls button:hover { color: var(--shell-ink); }
-/* Primary action keeps the brand colour and wears its brackets in red. */
-.controls button.primary { color: var(--brand); font-weight: 700; }
+/* Primary action is the hot neon element of the transport. */
+.controls button.primary {
+  color: var(--neon); font-weight: 700;
+  text-shadow: 0 0 10px var(--chrome-glow);
+}
 .controls button.primary::before { content: "[ "; }
 .controls button.primary::after  { content: " ]"; }
-.controls button.primary:hover { color: var(--brand); filter: brightness(1.2); }
+.controls button.primary:hover { color: var(--neon); filter: brightness(1.2); }
 .controls .speeds { display: flex; gap: 12px; }
 .controls .speeds button.on { color: var(--shell-ink); border-bottom-color: var(--brand); font-weight: 700; }
 .controls .scrub { flex: 1; }
 .controls input[type="range"] { width: 100%; accent-color: var(--brand); }
 .controls .count { font-size: 12px; color: var(--shell-muted); min-width: 84px; text-align: right; }
-
-/* ---- settings ---- */
-.settings { max-width: 640px; margin: 32px auto; padding: 0 20px 48px; }
-.settings h1 { font-size: 20px; letter-spacing: .02em; }
-.settings h3 { margin-top: 28px; }
-.settings .hint { color: var(--shell-muted); font-size: 13px; margin: 4px 0 12px; }
-.opt-list { display: grid; gap: 12px; }
-/* Option rows share the chrome's flat vocabulary: hairline border, brand
-   accent for the current choice — same selection language as the tabs. */
-.opt-card {
-  display: flex; align-items: center; gap: 14px; text-align: left;
-  background: var(--shell-panel); border: 1px solid var(--shell-line);
-  border-radius: 2px; padding: 14px 16px; cursor: pointer; color: var(--shell-ink);
-  font-size: 14px;
-}
-.opt-card.on { background: var(--shell-panel-2); border-color: var(--brand); }
-.opt-card .swatch { display: flex; overflow: hidden; flex: 0 0 auto; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.08); }
-.opt-card .swatch span { width: 12px; height: 34px; }
-.opt-card .opt-name { font-weight: 700; display: block; }
-.opt-card .opt-name .tag { color: var(--shell-muted); font-weight: 400; }
-.opt-card .opt-blurb { color: var(--shell-muted); font-size: 13px; margin-top: 4px; display: block; }
-.speed-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.speed-btn {
-  background: var(--shell-panel-2); color: var(--shell-ink);
-  border: 1px solid var(--shell-line); border-radius: 2px;
-  padding: 8px 14px; cursor: pointer; font-size: 13px;
-}
-.speed-btn.on { border-color: var(--brand); color: var(--brand); font-weight: 700; }
 
 /* ---- empty / error ---- */
 .notice { max-width: 560px; margin: 80px auto; text-align: center; color: var(--shell-muted); padding: 0 20px; }
@@ -235,11 +184,10 @@ a { color: inherit; }
 .notice code { background: var(--shell-panel-2); padding: 2px 6px; color: var(--gold); }
 
 /* ---- accessibility: visible focus + honour reduced motion ---- */
-.topbar a:focus-visible,
+.menu a:focus-visible,
 .menu button:focus-visible,
 .controls button:focus-visible,
 .controls input:focus-visible,
-.settings button:focus-visible,
 .sg-resizer:focus-visible {
   outline: 2px solid var(--brand); outline-offset: 2px;
 }
@@ -250,29 +198,158 @@ a { color: inherit; }
 
 @media (max-width: 720px) {
   .menu { flex-wrap: wrap; }
-  .skin-opt .skin-meta { display: none; }
-  .skin-opt { padding: 6px 9px; }
+  .brand .rest { display: none; }
+  .skin-menu-btn .skin-meta .tg { display: none; }
 }
 
 @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* =====================================================================
+   EPISODE — the drama layer over a published replay (/watch/[slug]):
+   cold open, death beats, end recap. Overlays sit on the stage, above the
+   skin pane but below nothing else (the stage is the whole show here).
+   ===================================================================== */
+.stage-wrap { position: relative; }
+.ep-mark { font-size: 12px; color: var(--shell-muted); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px; }
+.ep-mark b { color: var(--neon); letter-spacing: .12em; margin-right: 6px; text-shadow: 0 0 10px var(--chrome-glow); }
+.ep-home { text-decoration: none; }
+
+/* Cold open + recap share one full-stage curtain. */
+.ep-open {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    var(--chrome-grain),
+    radial-gradient(ellipse at 50% 30%, #16090b, #050505 75%);
+  overflow-y: auto; padding: 24px;
+  animation: ep-fade .5s ease;
+}
+@keyframes ep-fade { from { opacity: 0; } to { opacity: 1; } }
+.ep-open-inner { max-width: 640px; text-align: center; margin: auto; }
+.ep-open-kicker {
+  font-family: var(--chrome-label-font); font-size: 11px; letter-spacing: .3em;
+  color: var(--brand); margin-bottom: 18px;
+}
+.ep-open-title {
+  font-family: var(--font-display), "Oswald", system-ui, sans-serif;
+  font-weight: 400; font-size: clamp(40px, 7vw, 76px); line-height: .95;
+  letter-spacing: .03em; color: #f2f2f2; margin: 0 0 16px; text-wrap: balance;
+}
+.ep-open-title.red { color: var(--brand); }
+.ep-open-tagline { font-size: 15px; line-height: 1.65; color: #b9bec9; margin: 0 auto 26px; max-width: 46ch; font-style: italic; text-wrap: pretty; }
+.ep-open-premise { font-size: 13.5px; line-height: 1.7; color: #9aa0ac; max-width: 52ch; margin: 0 auto 26px; }
+.ep-open-premise p { margin: 0 0 10px; }
+.ep-open-premise b { color: #e0e0e0; }
+.ep-open-premise b.red { color: var(--brand); }
+.ep-open-cast { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.ep-cast-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid #26262c; border-radius: 3px; padding: 5px 10px;
+  font-size: 11px; letter-spacing: .08em; color: #b9bec9;
+}
+.ep-cast-chip .dot, .ep-role-chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.ep-begin {
+  display: inline-block; background: var(--brand); color: #fff; border: 0; cursor: pointer;
+  padding: 14px 30px; font-size: 13px; font-weight: 700; letter-spacing: .14em;
+  font-family: var(--chrome-label-font); text-decoration: none;
+  box-shadow: 0 0 18px var(--chrome-glow), 0 0 50px var(--chrome-glow-soft);
+}
+.ep-begin:hover { filter: brightness(1.15); box-shadow: 0 0 24px var(--chrome-glow), 0 0 70px var(--chrome-glow-soft); }
+.ep-begin:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ep-open-hint { margin-top: 16px; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #8a91a0; animation: lp-pulse-soft 2.4s ease-in-out infinite; }
+@keyframes lp-pulse-soft { 0%, 100% { opacity: .45; } 50% { opacity: .9; } }
+
+/* Death beat: a card that rides the kill event's dwell time. */
+.ep-beat {
+  position: absolute; inset: 0; z-index: 9; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: rgba(4, 2, 2, .82); backdrop-filter: blur(2px);
+  animation: ep-beat-in .35s ease;
+}
+@keyframes ep-beat-in { from { opacity: 0; } to { opacity: 1; } }
+.ep-beat-name {
+  font-family: var(--font-display), "Oswald", system-ui, sans-serif;
+  font-size: clamp(38px, 6vw, 64px); letter-spacing: .04em; color: #f2f2f2; line-height: 1;
+}
+.ep-beat-how { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #9aa0ac; }
+.ep-beat-role { margin-top: 10px; font-size: 14px; font-weight: 700; letter-spacing: .18em; color: #9ff0ae; animation: ep-role-in .3s ease .8s backwards; }
+.ep-beat-role.mafia { color: var(--brand); }
+@keyframes ep-role-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Recap additions */
+.ep-recap-text { font-size: 14px; line-height: 1.75; color: #c3c8d2; text-align: left; margin: 0 auto 24px; max-width: 60ch; }
+.ep-recap-roles { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.ep-role-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid #26262c; border-radius: 3px; padding: 5px 10px;
+  font-size: 11px; letter-spacing: .06em; color: #b9bec9;
+}
+.ep-role-chip.dead { opacity: .55; }
+.ep-role-chip.dead .dot { background: #444 !important; }
+.ep-role-chip b { letter-spacing: .1em; color: #9aa0ac; font-size: 10px; }
+.ep-role-chip b.mafia { color: var(--brand); }
+.ep-recap-meta { font-size: 11px; letter-spacing: .26em; color: #6b7382; margin-bottom: 28px; }
+.ep-recap-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; }
+.ep-begin.ep-next { background: transparent; color: var(--brand); border: 1px solid var(--brand); box-shadow: 0 0 14px var(--chrome-glow-soft); }
+.ep-begin.ep-next:hover { background: rgba(196, 30, 30, .12); filter: none; box-shadow: 0 0 18px var(--chrome-glow-soft); }
+.ep-dismiss {
+  background: transparent; border: 0; cursor: pointer; color: var(--shell-muted);
+  font-size: 12px; letter-spacing: .04em; padding: 6px 4px;
+}
+.ep-dismiss::before { content: "[ "; color: var(--shell-line); }
+.ep-dismiss::after { content: " ]"; color: var(--shell-line); }
+.ep-dismiss:hover { color: var(--shell-ink); }
+.ep-dismiss:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+@media (max-width: 720px) {
+  .ep-mark { display: none; }
+}
+
+/* =====================================================================
    A · GROUP CHAT — a messaging thread, in the signature noir palette.
    ===================================================================== */
-.chat { --c-bubble: #17171c; --c-accent: #c41e1e; flex: 1; display: flex; flex-direction: column; min-height: 0; background: #0a0a0a; transition: background .8s; }
-.chat.night { background: radial-gradient(ellipse at top, #1c0c0e, #050505); }
+.chat { --c-bubble: #17171c; --c-accent: #c41e1e; flex: 1; display: flex; flex-direction: column; min-height: 0; background: #0a0b10; transition: background .8s; position: relative; }
+.chat.night { background: radial-gradient(ellipse at top, #1a0b0e, #030304); }
+/* Atmosphere: vignette behind the thread so the room has depth; the night
+   version closes in tighter and redder. Sits behind content (children are
+   positioned), so text never dims. */
+.chat::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 95% at 50% 0%, transparent 52%, rgba(0, 0, 0, 0.4) 100%);
+  transition: background .8s;
+}
+.chat.night::before {
+  background: radial-gradient(115% 85% at 50% 0%, transparent 40%, rgba(16, 3, 5, 0.6) 100%);
+}
+.chat > * { position: relative; }
 .chat-status {
   display: flex; align-items: center; gap: 12px; padding: 8px 18px;
-  border-bottom: 1px solid rgba(255,255,255,.06); font-size: 12px; color: #8b93a3;
+  border-bottom: 1px solid rgba(255,255,255,.06); font-size: 11px; color: #8b93a3;
+  text-transform: uppercase; letter-spacing: .14em;
 }
-.chat-presence { font-weight: 700; color: #c41e1e; }
-.chat-presence.night { color: #9aa0aa; }
+.chat-presence { font-weight: 700; color: #ff2a2a; text-shadow: 0 0 10px rgba(255, 42, 42, 0.35); }
+.chat-presence.night { color: #9aa0aa; text-shadow: 0 0 10px rgba(154, 160, 170, 0.25); }
 .chat-status-day { font-weight: 700; color: #c9cfdb; }
 .chat-status-alive { margin-left: auto; opacity: .8; }
-.chat-scroll { flex: 1; overflow-y: auto; padding: 18px; min-height: 0; }
-.chat-inner { max-width: 720px; margin: 0 auto; }
-.chat-divider { text-align: center; margin: 22px 0 16px; }
-.chat-divider .pill { background: rgba(255,255,255,.06); padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,.08); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #aab2c2; }
+.chat-scroll { flex: 1; overflow-y: auto; padding: 18px clamp(18px, 4vw, 48px); min-height: 0; }
+.chat-inner { max-width: 960px; margin: 0 auto; }
+/* Phase dividers are act breaks: hairlines sweep in from both sides and the
+   night card wears the neon. */
+.chat-divider { display: flex; align-items: center; gap: 16px; margin: 30px 0 20px; }
+.chat-divider::before, .chat-divider::after { content: ""; flex: 1; height: 1px; }
+.chat-divider::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,.16)); }
+.chat-divider::after { background: linear-gradient(90deg, rgba(255,255,255,.16), transparent); }
+.chat-divider .pill {
+  background: transparent; padding: 6px 18px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.16); font-size: 11px;
+  letter-spacing: .26em; text-transform: uppercase; color: #c3cad8; white-space: nowrap;
+}
+.chat.night .chat-divider .pill {
+  border-color: rgba(196, 30, 30, 0.45); color: #e0a9ad;
+  box-shadow: 0 0 16px rgba(196, 30, 30, 0.18), inset 0 0 10px rgba(196, 30, 30, 0.08);
+}
+.chat.night .chat-divider::before { background: linear-gradient(90deg, transparent, rgba(196,30,30,.3)); }
+.chat.night .chat-divider::after { background: linear-gradient(90deg, rgba(196,30,30,.3), transparent); }
 .chat-row { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; animation: pop .25s ease; }
 .chat-row.grouped { margin-bottom: 3px; }
 .chat-gutter { width: 32px; flex: 0 0 auto; }
@@ -281,9 +358,18 @@ a { color: inherit; }
 .chat-stack .who { font-size: 11px; color: #8b93a3; margin: 0 0 3px 2px; }
 .chat-stack .who-accuse { color: #ff9a9a; font-weight: 600; }
 .chat-stack .who-to { color: #8b93a3; }
-.bubble { background: var(--c-bubble); border-radius: 4px 13px 13px 13px; padding: 8px 12px; font-size: 14px; line-height: 1.45; max-width: 78%; color: #e7e9ee; }
+.bubble { background: var(--c-bubble); border-radius: 4px 13px 13px 13px; padding: 8px 12px; font-size: 14px; line-height: 1.45; max-width: min(78%, 620px); color: #e7e9ee; }
 .chat-row.grouped .bubble { border-radius: 13px; }
-.bubble.accuse { background: #371519; border: 1px solid #7a2630; }
+/* Two-sided thread: odd seats mirror to the right (see ChatSkin flipOf). */
+.chat-row.flip { flex-direction: row-reverse; }
+.chat-row.flip .chat-stack { text-align: right; }
+.chat-row.flip .bubble { border-radius: 13px 4px 13px 13px; margin-left: auto; text-align: left; }
+.chat-row.flip.grouped .bubble { border-radius: 13px; }
+.chat-row.flip .who { margin: 0 2px 3px 0; }
+.bubble.accuse {
+  background: #371519; border: 1px solid #8a2a34;
+  box-shadow: 0 0 16px rgba(196, 30, 30, 0.14);
+}
 .bubble.typing { color: #8b93a3; }
 .bubble .dots { display: inline-flex; gap: 4px; padding: 2px 0; }
 .bubble .dots i { width: 6px; height: 6px; border-radius: 50%; background: #6b7382; animation: blink 1.2s infinite; }
@@ -295,19 +381,50 @@ a { color: inherit; }
 .chat-row.side .chat-gutter { width: 24px; }
 .chat-row.side .avatar { background: transparent; font-size: 14px; color: #b5888a; }
 .chat-row.side .chat-stack { text-align: right; }
-.chat-row.side .bubble { background: #1f0f11; border: 1px dashed #7a2f33; color: #e6c2c2; border-radius: 13px 4px 13px 13px; }
+.chat-row.side .bubble {
+  background: #1f0f11; border: 1px dashed #8a3438; color: #e6c2c2;
+  border-radius: 13px 4px 13px 13px;
+  box-shadow: 0 0 14px rgba(122, 47, 51, 0.2), inset 0 0 12px rgba(122, 47, 51, 0.1);
+}
 .chat-row.side .who { color: #b5888a; margin: 0 2px 3px 0; }
-.chat-ballot { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 6px 0 14px 42px; }
+.chat-ballot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 7px; margin: 10px auto 16px; }
 .chat-ballot .ballot-label { font-size: 11px; letter-spacing: .12em; color: #8b93a3; text-transform: uppercase; }
 .chat-ballot .ballot-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09); border-radius: 14px; padding: 3px 9px; font-size: 12px; }
 .chat-ballot .ballot-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
-.chat-ballot .ballot-chip b { color: #c41e1e; }
+.chat-ballot .ballot-chip b { color: #ff5b5b; }
+/* The frontrunner's chip heats up as their tally grows. */
+.chat-ballot .ballot-chip.lead {
+  background: rgba(196, 30, 30, 0.14); border-color: rgba(255, 42, 42, 0.45);
+  box-shadow: 0 0 12px rgba(196, 30, 30, 0.25);
+}
+.chat-ballot .ballot-chip.lead b { text-shadow: 0 0 8px rgba(255, 42, 42, 0.5); }
 .chat-event { text-align: center; margin: 16px auto; padding: 10px 14px; max-width: 480px; border-radius: 10px; font-size: 14px; font-weight: 600; animation: pop .3s ease; }
-.chat-event.death { background: #2a0d0d; border: 1px solid var(--brand); color: #ff9a9a; }
-.chat-event.save { background: #0d2417; border: 1px solid var(--green); color: #9ff0ae; }
+/* A death in the thread is the beat card in miniature: it lands hot and the
+   glow settles as the room absorbs it. */
+.chat-event.death {
+  background: #200a0c; border: 1px solid #7a2630; color: #ffb3b3;
+  padding: 14px 20px;
+  box-shadow: 0 0 22px rgba(196, 30, 30, 0.22), inset 0 0 18px rgba(196, 30, 30, 0.08);
+  animation: pop .3s ease, chat-death-settle 1.8s ease .1s backwards;
+}
+.chat-event.death b {
+  color: #fff; font-size: 16px; letter-spacing: .04em;
+  text-shadow: 0 0 12px rgba(255, 42, 42, 0.4);
+}
+@keyframes chat-death-settle {
+  from { box-shadow: 0 0 46px rgba(255, 42, 42, 0.45), inset 0 0 26px rgba(196, 30, 30, 0.16); }
+  to { box-shadow: 0 0 22px rgba(196, 30, 30, 0.22), inset 0 0 18px rgba(196, 30, 30, 0.08); }
+}
+.chat-event.save { background: #0d2417; border: 1px solid var(--green); color: #9ff0ae; box-shadow: 0 0 16px rgba(105, 198, 111, 0.15); }
 .chat-event.secret { background: #161620; border: 1px dashed #44445a; color: #9aa3b5; font-weight: 500; }
-.chat-event .role { color: #c41e1e; }
-.chat-event.gameover { background: var(--brand); color: #fff; font-size: 18px; font-weight: 800; letter-spacing: .08em; }
+.chat-event .role {
+  color: #ff5b5b; font-weight: 800; text-transform: uppercase; letter-spacing: .1em;
+  text-shadow: 0 0 10px rgba(255, 42, 42, 0.5);
+}
+.chat-event.gameover {
+  background: var(--brand); color: #fff; font-size: 18px; font-weight: 800; letter-spacing: .08em;
+  box-shadow: 0 0 34px rgba(255, 42, 42, 0.4);
+}
 
 /* =====================================================================
    B · CASE FILE — manila paper, typed testimony, redacted intercepts.
