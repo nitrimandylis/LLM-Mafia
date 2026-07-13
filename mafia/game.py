@@ -614,11 +614,13 @@ class MafiaGame:
                     "name": p.name,
                     "seat": i,
                     "color": seat_color(i),
+                    "model": p.model or self.model,
                     **({"role": p.role.value} if self.reveal_secrets else {}),
                 }
                 for i, p in enumerate(self.players)
             ],
             player_count=len(self.players),
+            provider="claude" if self.use_claude else ("nvidia" if self.use_nvidia else "lm-studio"),
         )
 
         # Game loop

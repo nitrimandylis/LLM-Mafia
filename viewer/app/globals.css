@@ -161,6 +161,12 @@ a { color: inherit; }
 }
 .source-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--shell-muted); }
 .source-badge.live .dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+/* Which backend and model(s) played this game; hover for the per-seat list. */
+.provider-badge {
+  font-size: 11px; color: var(--shell-muted); letter-spacing: .02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px;
+  cursor: help;
+}
 /* Text buttons: bare label flanked by dim literal brackets that light on hover. */
 .menu-btn {
   background: transparent; color: var(--shell-muted); border: 0;
@@ -324,6 +330,10 @@ a { color: inherit; }
 .cf-id { min-width: 0; }
 .cf-name { font-weight: 700; font-size: 13px; letter-spacing: .04em; }
 .cf-status { font-size: 10px; letter-spacing: .14em; color: var(--faint); }
+.cf-model {
+  font-size: 9px; letter-spacing: .06em; color: var(--faint); opacity: .8;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px;
+}
 .cf-stamp-sm { display: inline-block; font-size: 9.5px; font-weight: 800; letter-spacing: .12em; color: #3a5a40; border: 1.5px solid #3a5a40; padding: 1px 5px; border-radius: 2px; transform: rotate(-3deg); }
 .cf-stamp-sm.mafia { color: var(--evidence); border-color: var(--evidence); }
 .cf-file { flex: 1; overflow-y: auto; padding: 26px 34px 48px; min-width: 0; }

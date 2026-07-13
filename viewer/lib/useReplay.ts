@@ -39,6 +39,7 @@ export type ReplayState = {
   alive: Set<string>;
   deaths: Map<string, string>; // name -> role, in death order of reveal
   winner?: string;
+  provider?: string;
   playing: boolean;
   speed: Speed;
   controls: {
