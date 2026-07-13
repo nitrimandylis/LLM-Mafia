@@ -1,6 +1,7 @@
 import json
 import random
 import re
+import subprocess
 import threading
 import time
 from typing import Callable, Dict, List, Optional
@@ -40,6 +41,30 @@ def _schema(key: str) -> dict:
     }
 
 
+def call_claude(model: str, messages: List[Dict]) -> str:
+    """One `claude -p` subprocess call, billed to the Claude subscription.
+    Fully isolated: no tools, no settings/CLAUDE.md/hooks, no MCP — a pure
+    text generator. Raises on nonzero exit; callers decide whether to swallow."""
+    system = messages[0]["content"]
+    user = messages[-1]["content"]
+    # ponytail: temperature/max_tokens have no CLI equivalent — prompts
+    # already ask for short replies, good enough for the experiment
+    result = subprocess.run(
+        [
+            "claude", "-p", user,
+            "--model", model,
+            "--system-prompt", system,
+            "--tools", "",
+            "--setting-sources", "",
+            "--strict-mcp-config",
+        ],
+        capture_output=True, text=True, timeout=180,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.strip() or f"claude exited {result.returncode}")
+    return result.stdout.strip()
+
+
 def call_llm(
     client: OpenAI,
     model: str,
@@ -50,11 +75,14 @@ def call_llm(
     max_tokens: int = 512,
     on_retry: Optional[Callable[[float], None]] = None,
     private_reasoning: bool = False,
+    use_claude: bool = False,
 ) -> str:
     """One chat completion with 429 backoff. NVIDIA gets no response_format
     (unsupported) and the raw text back; everyone else gets a strict
     single-field JSON schema, unwrapped by `schema_key`. Raises on exhaustion
     or non-429 errors — callers decide whether to swallow."""
+    if use_claude:
+        return call_claude(model, messages)
     kwargs: Dict = dict(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens)
     if not use_nvidia:
         kwargs["response_format"] = _schema(schema_key)
@@ -91,10 +119,11 @@ def call_llm(
 
 
 class GameMaster:
-    def __init__(self, client: OpenAI, model: str, use_nvidia: bool = False, enabled: bool = True):
+    def __init__(self, client: OpenAI, model: str, use_nvidia: bool = False, enabled: bool = True, use_claude: bool = False):
         self._client = client
         self._model = model
         self._use_nvidia = use_nvidia
+        self._use_claude = use_claude
         self._enabled = enabled
 
     def _call(self, prompt: str, max_tokens: int = 150) -> str:
@@ -109,6 +138,7 @@ class GameMaster:
                 self._client, self._model, messages,
                 use_nvidia=self._use_nvidia, schema_key="narration",
                 temperature=0.9, max_tokens=max_tokens,
+                use_claude=self._use_claude,
             )
         except Exception:
             return ""  # narration is optional flavor — never crash the game over it

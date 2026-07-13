@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 from dotenv import load_dotenv
-from mafia.game import MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_GM_MODEL
+from mafia.game import MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_CLAUDE_MODEL, DEFAULT_GM_MODEL
 
 load_dotenv()
 
@@ -38,6 +38,11 @@ if __name__ == "__main__":
         help="NVIDIA API key (or set NVIDIA_API_KEY env var)",
     )
     parser.add_argument(
+        "--claude",
+        action="store_true",
+        help=f"Use the claude CLI (subscription-billed) instead of LM Studio (default model: {DEFAULT_CLAUDE_MODEL})",
+    )
+    parser.add_argument(
         "--gm-model",
         type=str,
         default=None,
@@ -63,6 +68,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    if args.claude and args.nvidia:
+        print("❌ --claude and --nvidia are mutually exclusive")
+        raise SystemExit(1)
+
     nvidia_key = None
     if args.nvidia:
         nvidia_key = args.nvidia_key or os.environ.get("NVIDIA_API_KEY")
@@ -70,15 +79,18 @@ if __name__ == "__main__":
             print("❌ --nvidia requires an API key via --nvidia-key or NVIDIA_API_KEY env var")
             raise SystemExit(1)
 
-    if args.nvidia:
+    print("🎭 INITIALIZING LLM MAFIA GAME...\n")
+    if args.claude:
+        model = args.model or DEFAULT_CLAUDE_MODEL
+        max_workers = args.max_workers
+        print(f"🔌 Backend: Claude CLI  |  Model: {model}  |  Workers: {max_workers}\n")
+    elif args.nvidia:
         model = args.model or DEFAULT_NVIDIA_MODEL
         max_workers = args.max_workers if args.max_workers != 4 else 2
-        print("🎭 INITIALIZING LLM MAFIA GAME...\n")
         print(f"🔌 Backend: NVIDIA NIM  |  Model: {model}  |  Workers: {max_workers}\n")
     else:
         model = args.model or DEFAULT_MODEL
         max_workers = args.max_workers
-        print("🎭 INITIALIZING LLM MAFIA GAME...\n")
         print(f"🔌 Backend: LM Studio ({args.lm_studio_url})  |  Model: {model}\n")
 
     game = MafiaGame(
@@ -90,6 +102,7 @@ if __name__ == "__main__":
         nvidia_api_key=nvidia_key,
         gm_model=args.gm_model,
         gm_enabled=not args.no_gm,
+        use_claude=args.claude,
     )
 
     try:

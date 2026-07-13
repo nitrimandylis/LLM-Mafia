@@ -19,6 +19,7 @@ LM_STUDIO_URL = "http://localhost:1234/v1"
 NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1"
 DEFAULT_MODEL = "qwen/qwen3.5-9b"
 DEFAULT_NVIDIA_MODEL = "minimaxai/minimax-m3"
+DEFAULT_CLAUDE_MODEL = "haiku"
 DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
 
 
@@ -33,6 +34,7 @@ class MafiaGame:
         nvidia_api_key: Optional[str] = None,
         gm_model: Optional[str] = None,
         gm_enabled: bool = True,
+        use_claude: bool = False,
     ):
         _root = Path(__file__).parent.parent
         base_players = load_players_from_file(str(_root / "players.json"))
@@ -47,7 +49,11 @@ class MafiaGame:
             base_players = base_players[:count]
 
         self.use_nvidia = nvidia_api_key is not None
-        if self.use_nvidia:
+        self.use_claude = use_claude
+        if self.use_claude:
+            self.model = model_override or DEFAULT_CLAUDE_MODEL
+            self._lm_client = None  # claude backend shells out, no HTTP client
+        elif self.use_nvidia:
             self.model = model_override or DEFAULT_NVIDIA_MODEL
             self._lm_client = OpenAI(base_url=NVIDIA_API_URL, api_key=nvidia_api_key)
         else:
@@ -72,12 +78,15 @@ class MafiaGame:
         self.detective_investigated: set = set()
         self.day_summaries: Dict[int, str] = {}
         self.no_kill_nights = 0
-        gm_model_resolved = gm_model or (self.model if self.use_nvidia else DEFAULT_GM_MODEL)
+        gm_model_resolved = gm_model or (
+            self.model if (self.use_nvidia or self.use_claude) else DEFAULT_GM_MODEL
+        )
         self.gm = GameMaster(
             client=self._lm_client,
             model=gm_model_resolved,
             use_nvidia=self.use_nvidia,
             enabled=gm_enabled,
+            use_claude=self.use_claude,
         )
 
         try:
@@ -891,7 +900,8 @@ Here is the game history so far:
             {"role": "user", "content": f"Current task: {prompt}"},
         ]
 
-        seat_model = player.model or self.model
+        # players.json pins LM Studio/NVIDIA model IDs — meaningless to claude
+        seat_model = self.model if self.use_claude else (player.model or self.model)
         try:
             self.log(f"  [Querying {seat_model}... ]", "cyan", public=False)
             start_time = time.time()
@@ -901,7 +911,7 @@ Here is the game history so far:
             elapsed = time.time() - start_time
             tokens = len(response_text.split()) * 1.3
             tps = tokens / elapsed if elapsed > 0 else 0
-            backend = "NVIDIA" if self.use_nvidia else "LM Studio"
+            backend = "Claude" if self.use_claude else ("NVIDIA" if self.use_nvidia else "LM Studio")
             self.log(
                 f"  [{backend}: {elapsed:.1f}s, ~{tps:.0f} tok/s]",
                 "cyan",
@@ -962,6 +972,7 @@ Here is the game history so far:
             self._lm_client, model or self.model, messages,
             use_nvidia=self.use_nvidia, schema_key="response",
             max_tokens=2048, private_reasoning=True,
+            use_claude=self.use_claude,
             on_retry=lambda wait: self.log(
                 f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
             ),
