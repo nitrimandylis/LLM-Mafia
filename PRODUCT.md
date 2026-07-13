@@ -18,7 +18,7 @@ Static library, no backend. The engine's game master writes `episode {title, tag
 
 ## Brand Personality
 
-Noir, theatrical, self-aware. A crime-board aesthetic: near-black shell, blood-red `#c41e1e` brand, mono tracked labels, film grain, bracketed `[ text ]` buttons. Each skin is its own committed world (messaging thread, manila case file, court deposition, signal-intelligence panel) inside one consistent chrome. Playful pulp-fiction drama, executed with restraint. The library reads like tonight's programming at a very disreputable channel.
+Noir, theatrical, self-aware. A neon-noir aesthetic: cold night shell (`#0a0b10` bars), blood-red `#c41e1e` brand with hot `#ff2a2a` neon accents and glow, CRT scanlines and phosphor grain, mono tracked labels, bracketed `[ text ]` buttons. Each skin is its own committed world (messaging thread, manila case file, court deposition, signal-intelligence panel) inside one consistent chrome. Playful pulp-fiction drama, executed with restraint. The library reads like tonight's programming at a very disreputable channel.
 
 ## Anti-references
 
