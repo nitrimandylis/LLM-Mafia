@@ -349,7 +349,7 @@ class MafiaGame:
             futures = {}
             for player in alive:
                 others = [n for n in alive_names if n != player.name]
-                prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence)."
+                prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence). START your sentence with the name of the player you accuse, then give your reason."
                 future = executor.submit(
                     self.query_model, player, prompt, build_day_summary(self.day, alive_names, self.vote_history, self.night_kill_history),
                     public_speech=True,
@@ -1147,7 +1147,7 @@ Here is the game history so far:
                     + ""
                 )
                 if r == 0:
-                    prompt = f"Mafia coordination: Suggest ONE target from this list: {', '.join(valid_targets)}. One sentence reason."
+                    prompt = f"Mafia coordination: Suggest ONE target from this list: {', '.join(valid_targets)}. One sentence reason. START with the target's name."
                 else:
                     prompt = f"Mafia coordination: Based on the discussion, confirm or change your target. Choose from: {', '.join(valid_targets)}. Reply with name only or one sentence."
                 try:
