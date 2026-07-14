@@ -26,6 +26,7 @@ REQUIRED: Dict[str, List[str]] = {
     "accusation":    ["day", "actor", "target", "text"],
     "vote":          ["day", "actor", "target"],
     "elimination":   ["day", "target", "role", "tally"],
+    "no_elimination": ["day", "tally"],           # tied vote — no one lynched
     "night_kill":    ["day", "target", "role", "saved"],
     "detective_will": ["day", "actor", "target", "result"],  # public reveal on detective death
     "night_no_kill": ["day"],

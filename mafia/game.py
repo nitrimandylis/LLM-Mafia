@@ -38,6 +38,7 @@ class MafiaGame:
         gm_model: Optional[str] = None,
         gm_enabled: bool = True,
         use_claude: bool = False,
+        mafia_count: int = 2,
     ):
         _root = Path(__file__).parent.parent
         base_players = load_players_from_file(str(_root / "players.json"))
@@ -88,6 +89,7 @@ class MafiaGame:
         self.night_kill_history: List[Dict] = []
         self.reveal_secrets = reveal_secrets
         self.max_workers = max_workers
+        self.mafia_count = mafia_count
         self.last_doctor_target: Optional[str] = None
         self.detective_investigated: set = set()
         # Latest (target, result) — revealed as a public "will" if the detective dies
@@ -117,13 +119,10 @@ class MafiaGame:
         """Assign roles to players"""
         player_count = len(self.players)
 
-        # Role distribution based on player count
-        if player_count >= 10:
-            mafia_count = 3
-        elif player_count >= 7:
-            mafia_count = 2
-        else:
-            mafia_count = 1
+        # Requested via --mafia (default 2 — 3 wolves at 10 players left town
+        # with almost no margin for mislynches); clamped so mafia never start
+        # at or above parity
+        mafia_count = max(1, min(self.mafia_count, (player_count - 1) // 2))
 
         # Shuffle and assign
         shuffled = self.players.copy()
@@ -165,7 +164,9 @@ class MafiaGame:
         if not mafia:
             return "town"
 
-        if len(mafia) >= len(alive) - len(mafia):
+        # Strictly outnumber: at parity the town still gets one last day to
+        # lynch a wolf instead of losing on the spot
+        if len(mafia) > len(alive) - len(mafia):
             return "mafia"
 
         return None
@@ -448,8 +449,17 @@ class MafiaGame:
         max_votes = max(vote_counts.values())
         tied = [name for name, count in vote_counts.items() if count == max_votes]
 
-        eliminated_name = random.choice(tied) if len(tied) > 1 else tied[0]
-        eliminated = next(p for p in alive if p.name == eliminated_name)
+        if len(tied) > 1:
+            # Standard rules: a tied vote lynches no one. A coin flip here once
+            # decided a wolf's fate — games shouldn't hinge on RNG.
+            self.log(
+                f"\n⚖️  The vote is tied between {', '.join(tied)} — no one is eliminated today.",
+                "yellow",
+            )
+            self.emit("no_elimination", day=self.day, tally=dict(vote_counts))
+            return None
+
+        eliminated = next(p for p in alive if p.name == tied[0])
 
         eliminated.alive = False
         self.vote_history.append({
@@ -1049,7 +1059,22 @@ Here is the game history so far:
         # ("MARSHAL, ... keeps redirecting to SAGE" accuses MARSHAL), so take
         # the first hit; vote replies trail with it, so default stays last.
         response_lower = response.lower()
-        name_map = {n.lower(): n for n in valid_targets}
+        # Aliases: the full name plus each distinctive word, so a bare "SILVA"
+        # hits AMBASSADOR SILVA and "VANCE" hits DR. VANCE (full-name-only
+        # matching once recorded PIP's accusation of SILVA as targeting RICO).
+        # An alias shared by two players identifies neither and is dropped.
+        name_map: Dict[str, str] = {}
+        ambiguous = set()
+        for name in valid_targets:
+            keys = {name.lower()} | {
+                w for w in re.findall(r"[a-z]+", name.lower()) if len(w) >= 3
+            }
+            for key in keys:
+                if name_map.get(key, name) != name:
+                    ambiguous.add(key)
+                name_map[key] = name
+        for key in ambiguous:
+            del name_map[key]
 
         # Explicit vote-intent patterns tried first so "vote X because Y mentions Z" picks X not Z.
         # Vote/go-with must be first-person ("I'm voting X"): discussing someone
@@ -1071,7 +1096,7 @@ Here is the game history so far:
                 # picked RICO out of "go with MARSHAL — ...against RICO's"
                 best = None
                 for key, name in name_map.items():
-                    hit = re.search(rf"\b{re.escape(key.split()[0])}\b", candidate)
+                    hit = re.search(rf"\b{re.escape(key)}\b", candidate)
                     if hit and (best is None or hit.start() < best[0]):
                         best = (hit.start(), name)
                 if best:

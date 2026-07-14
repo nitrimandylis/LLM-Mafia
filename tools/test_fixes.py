@@ -74,5 +74,27 @@ assert g.extract_vote("My vote is for RICO because CHEN cleared himself.", targe
 # new night events pass schema validation
 g.events.emit("protection", day=1, actor="SAGE", target="CHEN")
 g.events.emit("night_no_kill", day=1)
+g.events.emit("no_elimination", day=1, tally={"RICO": 2, "CHEN": 2})
+
+# win condition: mafia must STRICTLY outnumber town — parity plays on
+def town(n): return SimpleNamespace(role=Role.VILLAGER, alive=True, name=f"T{n}")
+def wolf(n): return SimpleNamespace(role=Role.MAFIA, alive=True, name=f"W{n}")
+g.players = [wolf(1), wolf(2), town(1), town(2)]        # 2v2 parity
+assert g.check_win_condition() is None
+g.players = [wolf(1), wolf(2), town(1)]                 # 2v1
+assert g.check_win_condition() == "mafia"
+g.players = [town(1), town(2)]                          # no wolves left
+assert g.check_win_condition() == "town"
+
+# assign_roles: --mafia is clamped below parity, never below 1
+g.mafia_count = 5
+g.players = [SimpleNamespace(role=None, name=f"P{n}") for n in range(6)]
+g.log = lambda *a, **k: None
+g.assign_roles()
+assert sum(1 for p in g.players if p.role == Role.MAFIA) == 2  # (6-1)//2
+g.mafia_count = 0
+for p in g.players: p.role = None
+g.assign_roles()
+assert sum(1 for p in g.players if p.role == Role.MAFIA) == 1
 
 print("ok")

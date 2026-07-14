@@ -79,6 +79,22 @@ ACCUSATIONS = [
      "content-based red flag, not just a ballot artifact like MARSHAL's.", "HOLMES"),
 ]
 
+# Game 3, day 1: bare surnames must resolve — "SILVA" alone previously matched
+# nothing, so PIP's accusation of SILVA was recorded as targeting RICO and
+# ARIA's as targeting no one
+ACCUSATIONS += [
+    ("SILVA is my pick since she dodged two direct questions in a row and only "
+     "produced a name after being repeatedly pressured by RICO, which by SAGE "
+     "and MARSHAL's own tracked criteria of specifics over redirects is the "
+     "clearest concrete behavioral pattern on the board today.", "AMBASSADOR SILVA"),
+    ("SILVA is the clear pick today since she's the only player with two "
+     "unanswered direct questions plus three separate redirects before finally "
+     "landing on a name, and that name only came under repeated pressure "
+     "rather than volunteered.", "AMBASSADOR SILVA"),
+    ("VANCE keeps deflecting every direct question, and RICO already showed "
+     "us his answer pattern holds up.", "DR. VANCE"),
+]
+
 # Vote replies keep the default last-mention behavior
 VOTES = [
     ("I've thought about MARSHAL all day, but my vote is SAGE.", "SAGE"),

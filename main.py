@@ -57,6 +57,12 @@ if __name__ == "__main__":
         "--player-count", type=int, default=10, help="Number of players (4-10)"
     )
     parser.add_argument(
+        "--mafia",
+        type=int,
+        default=2,
+        help="Number of mafia players (default: 2, clamped below parity)",
+    )
+    parser.add_argument(
         "--max-workers",
         type=int,
         default=4,
@@ -97,6 +103,7 @@ if __name__ == "__main__":
     game = MafiaGame(
         reveal_secrets=args.reveal_secrets,
         player_count=args.player_count,
+        mafia_count=args.mafia,
         max_workers=max_workers,
         model_override=model,
         lm_studio_url=args.lm_studio_url,
