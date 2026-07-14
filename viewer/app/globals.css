@@ -15,6 +15,9 @@
   --chrome-glow: rgba(255, 42, 42, .35);
   --chrome-glow-soft: rgba(196, 30, 30, .18);
   --green: #69c66f;
+  --win: #3dff6e;
+  --win-glow: rgba(61, 255, 110, .35);
+  --win-glow-soft: rgba(61, 255, 110, .16);
   --gold: #e0a000;
 
   /* chrome-only knobs */
@@ -301,6 +304,19 @@ a { color: inherit; }
 .ep-dismiss:hover { color: var(--shell-ink); }
 .ep-dismiss:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 
+/* Town victory wears neon green; mafia keeps the red. */
+.ep-recap.town {
+  background:
+    var(--chrome-grain),
+    radial-gradient(ellipse at 50% 30%, #09160d, #050505 75%);
+}
+.ep-recap.town .ep-open-kicker { color: var(--win); }
+.ep-recap.town .ep-open-title { color: var(--win); text-shadow: 0 0 20px var(--win-glow), 0 0 60px var(--win-glow-soft); }
+.ep-recap.town .ep-begin { background: var(--win); color: #04140a; box-shadow: 0 0 18px var(--win-glow), 0 0 50px var(--win-glow-soft); }
+.ep-recap.town .ep-begin.ep-next { background: transparent; color: var(--win); border-color: var(--win); }
+.ep-recap.town .ep-begin.ep-next:hover { background: rgba(61, 255, 110, .12); }
+.ep-recap.town .ep-begin:focus-visible, .ep-recap.town .ep-dismiss:focus-visible { outline-color: var(--win); }
+
 @media (max-width: 720px) {
   .ep-mark { display: none; }
 }
@@ -354,6 +370,8 @@ a { color: inherit; }
 .chat-row.grouped { margin-bottom: 3px; }
 .chat-gutter { width: 32px; flex: 0 0 auto; }
 .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #111; }
+/* Pixel-art mugshot variant of .avatar / .cf-mug (see skins/Mug.tsx). */
+img.mug { object-fit: cover; background: #2e3644; }
 .chat-stack { min-width: 0; }
 .chat-stack .who { font-size: 11px; color: #8b93a3; margin: 0 0 3px 2px; }
 .chat-stack .who-model {

@@ -2,7 +2,8 @@
 
 import type { GameEvent } from "@/lib/events";
 import { isSpeech } from "@/lib/events";
-import { initials, useStageScroll, type SkinProps } from "./types";
+import { useStageScroll, type SkinProps } from "./types";
+import Mug from "./Mug";
 
 // Fold the flat event stream into chat items: consecutive votes collapse into
 // one ballot, everything else passes through. Speaker grouping (hiding a
@@ -161,11 +162,14 @@ function Msg({
   return (
     <div className={`chat-row${whisper ? " side" : ""}${flip && !whisper ? " flip" : ""}${grouped ? " grouped" : ""}`}>
       <div className="chat-gutter">
-        {!grouped && (
-          <div className="avatar" style={{ background: whisper ? "transparent" : color }}>
-            {whisper ? <LockIcon /> : initials(e.actor)}
-          </div>
-        )}
+        {!grouped &&
+          (whisper ? (
+            <div className="avatar" style={{ background: "transparent" }}>
+              <LockIcon />
+            </div>
+          ) : (
+            <Mug name={e.actor} color={color} className="avatar" />
+          ))}
       </div>
       <div className="chat-stack">
         {!grouped && (

@@ -2,7 +2,8 @@
 
 import type { GameEvent, Ballot } from "@/lib/events";
 import { withBallots, tallyVotes } from "@/lib/events";
-import { initials, useStageScroll, type SkinProps } from "./types";
+import { useStageScroll, type SkinProps } from "./types";
+import Mug from "./Mug";
 
 // Noir investigation board: you're the detective reading the case as it builds.
 // Signature move — intercepted mafia comms render as a DECLASSIFIED redaction
@@ -25,7 +26,7 @@ export default function CaseFileSkin({ state, active }: SkinProps) {
           return (
             <div key={p.name} className={`cf-card${dead ? " closed" : ""}`}>
               <span className="cf-clip" />
-              <div className="cf-mug" style={{ background: p.color }}>{initials(p.name)}</div>
+              <Mug name={p.name} color={p.color} className="cf-mug" />
               <div className="cf-id">
                 <div className="cf-name">{p.name}</div>
                 {p.model && <div className="cf-model">{p.model}</div>}

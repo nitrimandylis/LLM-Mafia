@@ -195,7 +195,11 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
       )}
 
       {showRecap && (
-        <div className="ep-open ep-recap" role="dialog" aria-label="Episode recap">
+        <div
+          className={`ep-open ep-recap${state.winner === "town" ? " town" : ""}`}
+          role="dialog"
+          aria-label="Episode recap"
+        >
           <div className="ep-open-inner">
             <div className="ep-open-kicker">{caseNumber(card.slug)} · CLOSED</div>
             <h1 className={`ep-open-title${state.winner === "mafia" ? " red" : ""}`}>
