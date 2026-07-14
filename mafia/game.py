@@ -209,7 +209,7 @@ class MafiaGame:
                         # Never force mafia to open on a teammate
                         partners = {p.name for p in self.get_mafia()}
                         others = [n for n in others if n not in partners] or others
-                    prompt = f"This is Day 1. No one has died yet. Based purely on first impressions, who seems suspicious? Pick ONE name from: {', '.join(random.sample(others, min(3, len(others))))}. Give a brief gut feeling (1 sentence). Do NOT reference past events or history."
+                    prompt = f"This is Day 1. No one has died yet and no one has done anything. Pick ONE player from: {', '.join(random.sample(others, min(3, len(others))))} whose behavior you most want to probe today, and say what you want to see or hear from them (1 sentence). A player's name, title, or manner of speaking is NOT evidence — do not call anyone suspicious because of it. Do NOT reference past events or history."
                     future = executor.submit(
                         self.query_model,
                         player,
@@ -349,7 +349,7 @@ class MafiaGame:
             futures = {}
             for player in alive:
                 others = [n for n in alive_names if n != player.name]
-                prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence). START your sentence with the name of the player you accuse, then give your reason."
+                prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence). START your sentence with the name of the player you accuse, then give your reason. Your reason must cite a recorded action (a vote, claim, or contradiction) — personality and speaking style are not evidence."
                 future = executor.submit(
                     self.query_model, player, prompt, build_day_summary(self.day, alive_names, self.vote_history, self.night_kill_history),
                     public_speech=True,
