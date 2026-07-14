@@ -86,6 +86,11 @@ assert g.check_win_condition() == "mafia"
 g.players = [town(1), town(2)]                          # no wolves left
 assert g.check_win_condition() == "town"
 
+# published_titles: reads the viewer manifest so the GM can avoid repeats
+from mafia.game_master import published_titles
+titles = published_titles()
+assert "The Record Lied First" in titles, titles
+
 # assign_roles: --mafia is clamped below parity, never below 1
 g.mafia_count = 5
 g.players = [SimpleNamespace(role=None, name=f"P{n}") for n in range(6)]

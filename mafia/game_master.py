@@ -4,6 +4,7 @@ import re
 import subprocess
 import threading
 import time
+from pathlib import Path
 from typing import Callable, Dict, List, Optional
 
 from openai import OpenAI
@@ -121,6 +122,20 @@ def call_llm(
             else:
                 raise
     return ""
+
+
+def published_titles() -> List[str]:
+    """Titles already in the viewer library, fed to the title prompt so new
+    episodes don't repeat the archive's naming patterns."""
+    manifest = (
+        Path(__file__).resolve().parent.parent
+        / "viewer" / "public" / "logs" / "manifest.json"
+    )
+    try:
+        with open(manifest) as f:
+            return [e["title"] for e in json.load(f)["episodes"] if e.get("title")]
+    except (OSError, ValueError, KeyError):
+        return []
 
 
 def episode_inputs_from_events(events: List[Dict]) -> Optional[Dict]:
@@ -258,11 +273,19 @@ class GameMaster:
             f"Cast: {', '.join(cast)}.\n"
             f"What happened:\n" + "\n".join(timeline)
         )
-        title = self._call(
-            "Write a pulpy noir episode title for this game: 2-5 words, no quotes, "
-            "no colons, don't reveal the winner.\n\n" + base,
-            max_tokens=150,
+        title_prompt = (
+            "Write an episode title for this game: 2-5 words, no quotes, no colons, "
+            "don't reveal the winner. Build it around the single most distinctive "
+            "beat in the timeline — a specific claim, vote, or reversal — not "
+            "generic mafia imagery (no shadows, whispers, knives, nights)."
         )
+        used = published_titles()
+        if used:
+            title_prompt += (
+                "\nAlready-used titles — do not resemble any of them in wording or "
+                "pattern: " + "; ".join(used)
+            )
+        title = self._call(title_prompt + "\n\n" + base, max_tokens=150)
         tagline = self._call(
             "Write ONE teaser sentence for this game, shown before anyone watches it. "
             "STRICTLY spoiler-free: do not reveal who wins, who dies, or anyone's role.\n\n" + base,
