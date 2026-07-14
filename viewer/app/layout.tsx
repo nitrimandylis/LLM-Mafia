@@ -17,8 +17,17 @@ const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--
 const grotesk = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "--font-grotesk" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://llm-mafia.vercel.app"),
   title: "LLM Mafia — Replay",
   description: "Dramatized replay of an all-LLM game of Mafia.",
+  openGraph: {
+    title: "LLM Mafia",
+    description:
+      "No humans. Pure model-vs-model deception. Watch AI players lie, accuse, and vote each other out.",
+    siteName: "LLM Mafia",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
