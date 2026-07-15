@@ -117,6 +117,7 @@ if __name__ == "__main__":
         game.run()
 
         stats = game.compute_stats()
+        os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
         with open(args.output, "w") as f:
             json.dump(
                 {
