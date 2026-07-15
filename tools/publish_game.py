@@ -71,8 +71,19 @@ def backfill_episode(log: dict, args: argparse.Namespace, slug: str) -> dict:
     return episode
 
 
+def mafia_count(log: dict) -> int:
+    """How many mafia the game was set up with. Reads roles from stats (or a
+    revealed game_start); returns 0 when the log hides roles entirely."""
+    players = log.get("stats", {}).get("players")
+    if players:
+        return sum(1 for p in players.values() if p.get("role") == "Mafia")
+    start = next(e for e in log["events"] if e["type"] == "game_start")
+    return sum(1 for p in start["players"] if p.get("role") == "Mafia")
+
+
 def manifest_entry(log: dict, slug: str) -> dict:
-    """Spoiler-free card data: never the winner, never anyone's role."""
+    """Spoiler-free card data: never the winner, never anyone's role.
+    Mafia *count* is difficulty, not a spoiler — 3+ mafia earns a HARD tag."""
     events = log["events"]
     start = next(e for e in events if e["type"] == "game_start")
     deaths = sum(
@@ -92,6 +103,7 @@ def manifest_entry(log: dict, slug: str) -> dict:
         "days": log.get("day") or max((e.get("day") or 1) for e in events),
         "deaths": deaths,
         "revealed": revealed,
+        **({"hard": True} if mafia_count(log) >= 3 else {}),
         **({"provider": start["provider"]} if start.get("provider") else {}),
     }
 

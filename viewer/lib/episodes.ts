@@ -12,6 +12,8 @@ export type EpisodeCard = {
   // true when the game was recorded with --reveal-secrets (mafia comms and
   // detective checks are in the replay)
   revealed?: boolean;
+  // true when the game ran with 3+ mafia — a harder setup for the town
+  hard?: boolean;
   // which backend played the game ("nvidia" | "claude" | "lm-studio")
   provider?: string;
 };

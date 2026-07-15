@@ -133,6 +133,7 @@ export default function Landing() {
             <div className="lp-ep-left">
               <div className="lp-ep-no">
                 {caseNumber(FEATURED.slug)} <em>· LATEST</em>
+                {FEATURED.hard && <HardTag />}
                 {FEATURED.revealed && <RevealedTag />}
               </div>
               <h3 className="lp-ep-title">{FEATURED.title}</h3>
@@ -160,6 +161,7 @@ export default function Landing() {
               <Link key={ep.slug} href={`/watch/${ep.slug}`} className="lp-ep">
                 <div className="lp-ep-no">
                   {caseNumber(ep.slug)}
+                  {ep.hard && <HardTag />}
                   {ep.revealed && <RevealedTag />}
                 </div>
                 <h3 className="lp-ep-title">{ep.title}</h3>
@@ -310,6 +312,18 @@ function RevealedTag() {
       title="Recorded with secrets revealed: you watch the mafia's private chat and the detective's checks."
     >
       SECRETS REVEALED
+    </span>
+  );
+}
+
+// Ran with 3+ mafia — the town starts further behind than the usual two.
+function HardTag() {
+  return (
+    <span
+      className="lp-ep-hard"
+      title="Hard mode: three mafia instead of the usual two. The town has far less room to misfire."
+    >
+      HARD MODE
     </span>
   );
 }

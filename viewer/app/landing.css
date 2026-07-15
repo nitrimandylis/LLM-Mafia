@@ -212,6 +212,12 @@
   padding: 2px 7px; background: rgba(196, 30, 30, 0.1);
   box-shadow: 0 0 10px rgba(196, 30, 30, 0.15);
 }
+.lp-ep-hard {
+  font-size: 9px; letter-spacing: 2px; color: #f0b866;
+  border: 1px solid rgba(240, 168, 60, 0.5); border-radius: 2px;
+  padding: 2px 7px; background: rgba(240, 168, 60, 0.1);
+  box-shadow: 0 0 10px rgba(240, 168, 60, 0.15);
+}
 .lp-ep-title {
   font-family: var(--grotesk); font-weight: 800; color: #fff;
   font-size: clamp(26px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em;
