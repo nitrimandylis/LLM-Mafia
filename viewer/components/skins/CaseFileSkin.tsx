@@ -8,12 +8,11 @@ import Mug from "./Mug";
 // Noir investigation board: you're the detective reading the case as it builds.
 // Signature move — intercepted mafia comms render as a DECLASSIFIED redaction
 // memo, the dramatic irony of a spectator log made literal.
-export default function CaseFileSkin({ state, active }: SkinProps) {
+export default function CaseFileSkin({ state, active, title, caseNo }: SkinProps) {
   const { players, revealed, alive, deaths, phase, day, winner } = state;
   const { ref: scroller, onScroll } = useStageScroll<HTMLElement>(active, state.cursor);
 
   const items = withBallots(revealed);
-  const caseNo = String(1000 + (players.length || 0) * 7);
 
   return (
     <div className={`casefile ${phase}`}>
@@ -43,8 +42,8 @@ export default function CaseFileSkin({ state, active }: SkinProps) {
 
       <main className="cf-file" ref={scroller} onScroll={onScroll}>
         <header className="cf-header">
-          <div className="cf-no">CASE №{caseNo}</div>
-          <div className="cf-title">THE TOWN MURDERS</div>
+          <div className="cf-no">{caseNo ?? "CASE FILE"}</div>
+          <div className="cf-title">{title ?? "THE TOWN MURDERS"}</div>
           <div className={`cf-sub ${phase}`}>
             {phase === "day" ? "▣ DAY" : "☾ NIGHT"} {day || 1} — {phase === "day" ? "IN SESSION" : "AFTER DARK"}
           </div>

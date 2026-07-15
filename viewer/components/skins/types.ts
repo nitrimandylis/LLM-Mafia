@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { ReplayState } from "@/lib/useReplay";
 
-export type SkinProps = { state: ReplayState; active: boolean };
+export type SkinProps = { state: ReplayState; active: boolean; title?: string; caseNo?: string };
 
 export function initials(name: string): string {
   // "DR. VANCE" -> "DV", "HOLMES" -> "H"

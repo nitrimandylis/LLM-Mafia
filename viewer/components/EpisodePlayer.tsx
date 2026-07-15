@@ -137,7 +137,7 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
         const isActive = skin === m.id;
         return (
           <div key={m.id} className="skin-pane" style={{ display: isActive ? "flex" : "none" }}>
-            <Skin state={state} active={isActive} />
+            <Skin state={state} active={isActive} title={episode.title} caseNo={caseNumber(card.slug)} />
           </div>
         );
       })}
