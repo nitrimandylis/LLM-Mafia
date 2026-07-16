@@ -699,7 +699,10 @@ class MafiaGame:
                 self.log(f"\n📜 {gm_end}", "magenta")
             # Episode packaging for the replay viewer: title/tagline/recap
             # written by the GM, saved top-level in the log by main.py.
-            inputs = episode_inputs_from_events(self.events.to_list())
+            inputs = episode_inputs_from_events(
+                self.events.to_list(),
+                roles={p.name: p.role.value for p in self.players},
+            )
             if inputs:
                 self.episode = self.gm.write_episode(**inputs)
                 if self.episode.get("title"):

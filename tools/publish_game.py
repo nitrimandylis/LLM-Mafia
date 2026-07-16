@@ -46,7 +46,9 @@ def fallback_episode(inputs: dict, slug: str) -> dict:
 
 
 def backfill_episode(log: dict, args: argparse.Namespace, slug: str) -> dict:
-    inputs = episode_inputs_from_events(log["events"])
+    stats_players = log.get("stats", {}).get("players") or {}
+    roles = {name: p["role"] for name, p in stats_players.items() if p.get("role")}
+    inputs = episode_inputs_from_events(log["events"], roles=roles or None)
     if inputs is None:
         raise SystemExit("Log has no finished game (missing game_start/game_over).")
 

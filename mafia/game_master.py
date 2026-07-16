@@ -138,15 +138,20 @@ def published_titles() -> List[str]:
         return []
 
 
-def episode_inputs_from_events(events: List[Dict]) -> Optional[Dict]:
+def episode_inputs_from_events(events: List[Dict], roles: Optional[Dict[str, str]] = None) -> Optional[Dict]:
     """Derive write_episode kwargs from a finished game's event list.
     Shared by the live game and tools/publish_game.py (backfilling old logs).
+    `roles` maps name -> role; pass it whenever known, because a game run without
+    --reveal-secrets hides roles in the events, and without it the recap can only
+    see dead players' roles and guesses survivors are mafia.
     Returns None when the log isn't a completed town/mafia game."""
     start = next((e for e in events if e["type"] == "game_start"), None)
     over = next((e for e in events if e["type"] == "game_over"), None)
     if not start or not over or over.get("winner") not in ("town", "mafia"):
         return None
-    cast = [f"{p['name']} ({p.get('role', '?')})" for p in start["players"]]
+    roles = roles or {p["name"]: p["role"] for p in start["players"] if p.get("role")}
+    cast = [f"{p['name']} ({roles.get(p['name'], '?')})" for p in start["players"]]
+    mafia = [name for name, role in roles.items() if role == "Mafia"]
     days = 1
     timeline = []
     for e in events:
@@ -160,7 +165,7 @@ def episode_inputs_from_events(events: List[Dict]) -> Optional[Dict]:
         elif e["type"] == "night_no_kill":
             timeline.append(f"Night {e['day']}: nobody died.")
     timeline.append(f"The {over['winner']} won. Survivors: {', '.join(over['survivors'])}.")
-    return {"winner": over["winner"], "days": days, "cast": cast, "timeline": timeline}
+    return {"winner": over["winner"], "days": days, "cast": cast, "timeline": timeline, "mafia": mafia}
 
 
 class GameMaster:
@@ -263,7 +268,7 @@ class GameMaster:
         )
         return self._call(prompt, max_tokens=300)
 
-    def write_episode(self, winner: str, days: int, cast: List[str], timeline: List[str]) -> Dict[str, str]:
+    def write_episode(self, winner: str, days: int, cast: List[str], timeline: List[str], mafia: Optional[List[str]] = None) -> Dict[str, str]:
         """Episode packaging for the replay viewer, written at game end.
         `cast` is "NAME (Role)" strings, `timeline` is short beat lines.
         Returns {} when the GM is disabled or every call comes back empty."""
@@ -291,9 +296,17 @@ class GameMaster:
             "STRICTLY spoiler-free: do not reveal who wins, who dies, or anyone's role.\n\n" + base,
             max_tokens=200,
         )
+        # The recap is the one prompt allowed to name roles, so spell out who the mafia
+        # actually were — otherwise the model guesses from the survivor list and mislabels
+        # surviving villagers as partners.
+        roster = (
+            f"The ONLY mafia were: {', '.join(mafia)}. Do not describe anyone else as mafia "
+            "or a mafia partner, even if they survived.\n" if mafia else ""
+        )
         recap = self._call(
             "Write a 3-5 sentence dramatic recap of this game, shown AFTER viewers finish "
-            "watching. Spoilers welcome: name the mafia, the turning point, and how it ended.\n\n" + base,
+            "watching. Spoilers welcome: name the mafia, the turning point, and how it ended.\n"
+            + roster + "\n" + base,
             max_tokens=300,
         )
         episode = {"title": title, "tagline": tagline, "recap": recap}
