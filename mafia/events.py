@@ -82,6 +82,12 @@ def demo() -> None:
             raise AssertionError("expected ValueError")
 
     assert seat_color(0) == seat_color(len(PALETTE))  # wraps
+
+    # A real vote carries no `defaulted` key; a random fallback flags itself.
+    real = log.emit("vote", day=1, actor="HOLMES", target="RICO")
+    fallback = log.emit("vote", day=1, actor="PIP", target="RICO", defaulted=True)
+    assert "defaulted" not in real
+    assert fallback["defaulted"] is True
     print("events.py demo OK")
 
 

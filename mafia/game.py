@@ -426,16 +426,22 @@ class MafiaGame:
                 if vote == player.name:
                     vote = None
 
-                if vote:
+                defaulted = not vote
+                if not defaulted:
                     votes[player.name] = vote
                     self.log(f"{player.name} votes: {vote}", "yellow")
                 else:
-                    # Random vote if parsing failed (but NOT self)
+                    # Parsing failed (empty/short reply, e.g. reasoning ate the
+                    # token budget). Random fallback so the day still resolves —
+                    # but flag it: a defaulted vote is noise, not a real read,
+                    # and once decided a whole game. Consumers must be able to
+                    # tell it apart from a deliberate ballot.
                     vote = random.choice(valid_targets)
                     votes[player.name] = vote
                     self.log(f"{player.name} votes: {vote} (default)", "yellow")
 
-                self.emit("vote", day=self.day, actor=player.name, target=vote)
+                self.emit("vote", day=self.day, actor=player.name, target=vote,
+                          **({"defaulted": True} if defaulted else {}))
 
         # Count votes
         vote_counts: Dict[str, int] = {}
