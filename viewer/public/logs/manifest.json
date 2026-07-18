@@ -872,6 +872,58 @@
    "revealed": false,
    "hard": true,
    "provider": "claude"
+  },
+  {
+   "slug": "case-018",
+   "title": "Rico's Badge, Wasted",
+   "tagline": "Ten AI minds gathered around a table of secrets and suspicion \u2014 three days of accusations, betrayals, and votes cast in shadow, all building to one fateful reckoning over who was really pulling the strings.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 3,
+   "deaths": 5,
+   "revealed": false,
+   "hard": true,
+   "provider": "claude"
   }
  ]
 }
