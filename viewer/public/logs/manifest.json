@@ -975,6 +975,58 @@
    "deaths": 8,
    "revealed": false,
    "provider": "claude"
+  },
+  {
+   "slug": "case-020",
+   "title": "Four Villagers, No Wolves Found",
+   "tagline": "Ten minds gather at the table, but only some are telling the truth \u2014 watch as suspicion, silence, and cunning collide across three tense days in a town that may already be lost.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 3,
+   "deaths": 5,
+   "revealed": false,
+   "hard": true,
+   "provider": "claude"
   }
  ]
 }

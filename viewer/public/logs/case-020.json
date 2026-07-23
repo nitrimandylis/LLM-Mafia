@@ -1,0 +1,1466 @@
+{
+ "events": [
+  {
+   "type": "game_start",
+   "players": [
+    {
+     "name": "RICO",
+     "seat": 0,
+     "color": "#7cc4ff",
+     "model": "sonnet"
+    },
+    {
+     "name": "ARIA",
+     "seat": 1,
+     "color": "#ff9a9a",
+     "model": "sonnet"
+    },
+    {
+     "name": "SAGE",
+     "seat": 2,
+     "color": "#b9f6ca",
+     "model": "sonnet"
+    },
+    {
+     "name": "HOLMES",
+     "seat": 3,
+     "color": "#ffd180",
+     "model": "sonnet"
+    },
+    {
+     "name": "MARSHAL",
+     "seat": 4,
+     "color": "#ce93d8",
+     "model": "sonnet"
+    },
+    {
+     "name": "SOCRATES",
+     "seat": 5,
+     "color": "#80deea",
+     "model": "sonnet"
+    },
+    {
+     "name": "DR. VANCE",
+     "seat": 6,
+     "color": "#ffab91",
+     "model": "sonnet"
+    },
+    {
+     "name": "PIP",
+     "seat": 7,
+     "color": "#c5e1a5",
+     "model": "sonnet"
+    },
+    {
+     "name": "CHEN",
+     "seat": 8,
+     "color": "#f48fb1",
+     "model": "sonnet"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "seat": 9,
+     "color": "#9fa8da",
+     "model": "sonnet"
+    }
+   ],
+   "player_count": 10,
+   "provider": "claude"
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "text": "I want to hear SOCRATES lay out a concrete, falsifiable reasoning process for who they'd suspect and why, rather than abstract philosophizing, so we have an actual data point to track against future votes."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "RICO",
+   "text": "SAGE, quit sitting quiet and give me your read on somebody right now \u2014 I wanna hear you actually commit to something instead of hiding in the back."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "HOLMES",
+   "text": "Since we have no history to lean on yet, I want to start with DR. VANCE simply because titles aside, establishing a clear timeline of everyone's reasoning matters most from whoever speaks with the most authority in early claims \u2014 so, DR. VANCE, can you walk us through what specific observations, if any, would lead you to suspect someone by end of day, so we can test your logic against actual votes later?"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "I'd like to hear DR. VANCE walk us through how they'd approach today's discussion, since laying out a clear plan early on tends to reveal how someone actually thinks under pressure."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "PIP",
+   "text": "Um, I guess I'd say SOCRATES, since DR. VANCE already put him on the spot\u2014so, maybe? I'd like to hear him actually name names or a real method, not just, like, vague philosophy stuff, if that makes sense?"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SOCRATES",
+   "text": "I would like to hear from DR. VANCE first, since with so little to go on, I want to see whether their reasoning for early suspicions rests on genuine logic or merely mirrors the group's emerging consensus."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "MARSHAL",
+   "text": "Let's establish proper procedure here \u2014 before we pile on SAGE, I'd like AMBASSADOR SILVA to go on record with a clear first-round read, since we should hear from everyone in turn rather than fixating on one target this early."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, let's not overlook SAGE just yet \u2014 RICO already called them out for staying quiet, so I'd like SAGE to share their honest first impression of the group and who they'd want to hear more from, so we can gauge their reasoning before votes start forming."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "I'd like AMBASSADOR SILVA to walk us through their reasoning process for today rather than just weighing in on others, so we have a concrete baseline to measure their later votes against."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "SOCRATES, since two people have already called you out, I want to hear a concrete method for how you'd narrow suspects today rather than another round of philosophical hedging."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "HOLMES, you called for a clear timeline from DR. VANCE but haven't given us your own read yet \u2014 so let me turn it back on you: who would you name as your first suspect and why, specifically?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "Fair turn, AMBASSADOR SILVA \u2014 if I apply the same standard I asked of DR. VANCE, then SOCRATES stands out first: both DR. VANCE and PIP flagged him independently for vague answers, and his own reply just deflected back to DR. VANCE again without offering a testable method, which is a pattern worth tracking. That's not a hard accusation yet, just the first data point in my model \u2014 I want to see if he actually answers concretely or keeps mirroring the group."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO",
+   "text": "RICO, you were quick to demand SAGE commit to a read, yet you have offered no suspicion of your own \u2014 so tell me plainly, who is your first suspect and why, rather than merely directing scrutiny outward?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "text": "Fine, you want a name \u2014 SOCRATES, it's you. You keep dodging every direct question by bouncing it back on someone else instead of just answering straight, and that dodge is exactly why HOLMES already flagged you too."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you've spent this whole discussion redirecting scrutiny onto SAGE and HOLMES without ever staking out your own suspicion, so can you explain why you're so reluctant to commit to a read yourself?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "Fair challenge, CHEN \u2014 \u00a1esto es justo! My honest first read leans toward SOCRATES, since three separate people have now flagged the same pattern of deflection without a concrete method, and that consistency across independent observers matters more to me than any single exchange."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA, you asked DR. VANCE to lay out their plan but never offered your own read on anyone \u2014 so, applying the same standard I've asked of others, who is your first suspect and what specific observation leads you there?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "Fair enough, HOLMES \u2014 my honest first read is also leaning SOCRATES, not just because others flagged him, but because every time he's been asked directly he's answered with another question instead of a stance, and that pattern of pure deflection is harder to explain away than simple nervousness. That said, I want to see if he commits to something concrete before I lock it in as a vote."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, procedurally speaking \u2014 since you've now locked SOCRATES as your pick, are you committing to that vote when we call for it, or are you keeping it open pending his next answer?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "Yeah, I'm locked in on SOCRATES unless he suddenly starts giving straight answers instead of dodging \u2014 his move now, not mine."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, if SOCRATES actually gives you a straight, concrete answer this round, will you still vote for him today or would that change your mind?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "ARIA",
+   "text": "Absolutely, ARIA, I'm not married to the name \u2014 if SOCRATES gives us a concrete, testable method right now instead of another deflection, that genuinely changes my read and I'll say so plainly. Mes amis, my vote follows the evidence, not the momentum."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you've been all about \"procedure\" this whole time but never staked out a real suspicion yourself \u2014 what's your actual read, or you just gonna keep playing referee?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "Fair call, RICO \u2014 procedure without a stance is just stalling. My honest read also lands on SOCRATES right now, since four independent people converged on the same deflection pattern before any bandwagon started, but I want him to answer SAGE's method question directly before I call it locked."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, before this SOCRATES pile-on hardens into a vote, give me the actual data \u2014 how many separate direct questions did you personally ask before naming SOCRATES, versus how many he actually dodged with a counter-question rather than a real answer?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "DR. VANCE",
+   "text": "I asked him one, and he shot it right back at me instead of answering \u2014 that's one for one, but everybody else counted the same dodge on their questions too, so it ain't just my tally."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, you leaned toward SOCRATES but hedged with \"maybe\" \u2014 now that the SOCRATES pile-on has hardened, are you actually locking in that vote today or still undecided?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "Um, okay, I think I'm\u2014 yeah, I'm leaning towards locking it in on SOCRATES? Like, six or seven people basically landed on the same read independently, that's gotta mean something, right? But if he suddenly comes out with something super concrete I guess I'd wanna hear it first, I don't wanna just blindly follow the crowd... but yeah, probably SOCRATES."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, um, if the SOCRATES thing doesn't pan out, who's your actual backup suspect and why?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "Honestly, PIP, I'd look at RICO next \u2014 he was quick to demand others commit while offering nothing himself until pressed, and that reluctance to lead by example is worth watching. But mes amis, let's not fracture focus prematurely; SOCRATES still owes us a straight answer first."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "MARSHAL, um, since you locked onto SOCRATES kinda late compared to the others, how do I know you're not just following the group instead of actually reasoning it out yourself?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "Fair question, PIP \u2014 I waited deliberately because jumping on a bandwagon before it forms doesn't test anything, whereas confirming a pattern after multiple independent people flagged the same behavior is exactly how you validate a read rather than manufacture one. My timing was procedural discipline, not followership \u2014 and I still made SOCRATES answering directly a condition before locking my vote, which is more than a pure bandwagon would require."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you pressed RICO hard on his exact tally of dodged questions but you still haven't given us your own read on SOCRATES or anyone else \u2014 so by the same standard you're demanding of others, who's your suspect and what's your count?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "Fair \u2014 my count: I logged three direct questions to SOCRATES across this thread, and each response redirected rather than answered, which is a real pattern, not noise. That said, seven people converging on one name this fast is itself worth testing, so I'll provisionally back SOCRATES today, but I want us to watch AMBASSADOR SILVA's suspiciously smooth pivot from defending SAGE to redirecting everyone toward SOCRATES as a secondary data point."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "CHEN",
+   "text": "CHEN, you've spent your time questioning others' methods but never named your own suspect \u2014 so who do you actually suspect, and why?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "Fair, SOCRATES \u2014 my own tally lines up with the others: three separate direct questions to you, three redirects instead of answers, so right now you're my leading data point too. But I'm also flagging DR. VANCE's observation on AMBASSADOR SILVA's fast pivot from defending SAGE to leading the charge against you as a thread worth pulling if your answer today changes the picture."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "CHEN, at your first turn you pressed AMBASSADOR SILVA for \"redirecting scrutiny onto SAGE and HOLMES without ever staking out your own suspicion\" \u2014 yet you didn't name your own suspect until SOCRATES directly called you out for the exact same thing. Why hold SILVA to a standard you weren't meeting yourself until forced?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "Fair hit, SAGE \u2014 the honest answer is I was still gathering data at that point, since pressing SILVA on their pattern was itself information-gathering, not a dodge of my own stance. Once I had enough direct evidence \u2014 three redirects from SOCRATES specifically \u2014 I committed immediately, which is different from stalling indefinitely like SILVA appeared to be doing."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES, you jumped straight to naming SOCRATES but never gave us your own tally like everyone else did \u2014 how many direct questions did you actually ask before landing on him, or are you just riding the same bandwagon you claimed to be testing?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "Fair challenge, RICO \u2014 my own tally: I only directly questioned SOCRATES zero times myself, my read came from cross-referencing DR. VANCE and PIP's independent observations before I'd asked anything, which is exactly why I called it a first data point rather than a locked vote. That's synthesis, not bandwagon \u2014 but if his answer today breaks the pattern, I'll say so plainly like AMBASSADOR SILVA committed to."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, you said you're \"leaning towards locking in\" SOCRATES but immediately hedged with wanting to hear him out first \u2014 so which is it: are you willing to actually vote SOCRATES today with no more conditions, yes or no?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Um, okay, yes\u2014 yes, I'll vote SOCRATES today, no more conditions, since basically everyone's tally lines up the same way. I just get nervous committing fully, but the pattern's there, so yeah, SOCRATES."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "RICO, you locked onto SOCRATES fast, but if he answers straight this round, who's your actual second suspect and why?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "Second pick's AMBASSADOR SILVA \u2014 that quick pivot from defending SAGE to leading the whole charge on SOCRATES feels a little too smooth for my gut."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you've laid out your tally on SOCRATES, but if his answer today changes the picture as you said it might, who's your genuine second suspect and why?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "My second data point is AMBASSADOR SILVA \u2014 the sample size here is small, but the pivot from staunchly defending SAGE to spearheading the SOCRATES case within the same discussion is a measurable behavioral shift, not just vibes. If SOCRATES answers cleanly today, I want SILVA's reasoning re-examined next, since a rapid change in target is exactly the kind of variable worth isolating."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you've fired questions at CHEN and RICO but you still haven't answered SAGE's original ask for a concrete method \u2014 so drop the counter-question this time and just tell us plainly, what specific method would you use to narrow suspects, right now?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "text": "Fair enough, ARIA \u2014 here's the method plainly: I look at who commits to a specific, falsifiable claim early and gets confirmed or contradicted by events, versus who merely echoes a majority once it starts forming, since real information diverges before consensus while bandwagons converge after it. By that standard, the SOCRATES pile-on itself is worth scrutinizing \u2014 seven people landed on one name mostly by citing each other rather than independent contradictions in what I actually said, and that convergence pattern is exactly what a manipulated vote looks like, so I'd rather we test AMBASSADOR SILVA's sudden pivot and RICO's one-question tally before locking a execution on synthesis alone."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "SAGE, running the numbers, you've asked pointed questions of PIP and CHEN but haven't logged a single independent suspect of your own until forced \u2014 so give me your actual tally: how many separate people have you personally cross-examined today versus how many times you've committed to a name unprompted?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "DR. VANCE",
+   "text": "Fair tally, DR. VANCE \u2014 I've cross-examined PIP and CHEN directly, and you're right I haven't planted an independent flag yet, but that's because SOCRATES's own answer just now handed us something concrete to test rather than another dodge. My honest read is still SOCRATES given the convergent, independent tallies from HOLMES, DR. VANCE, and CHEN, but I'm also logging AMBASSADOR SILVA's pivot as worth revisiting if today's vote doesn't resolve cleanly."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "SOCRATES",
+   "text": "SOCRATES should be eliminated today, since multiple independent players logged concrete tallies of direct questions he dodged with counter-questions rather than answers, and even his final \"method\" reply pivoted back to attacking the process instead of ever staking his own suspect."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SOCRATES",
+   "text": "SOCRATES remains my top suspect since he never gave a direct answer until pressed multiple times, and even his final \"method\" answer pivoted into deflecting suspicion onto me and RICO rather than owning a concrete stance, consistent with the pattern independently flagged by HOLMES, DR. VANCE, CHEN, and MARSHAL."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because even after being called out he still spent his answer dodging back onto AMBASSADOR SILVA and me instead of just owning up, and that's three separate direct questions he flat-out redirected."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES",
+   "text": "SOCRATES remains my top pick because despite claiming his \"method\" is detecting who commits to falsifiable claims, he never actually answered SAGE's original method question directly until forced multiple rounds later, and even then pivoted to attacking the convergence itself rather than addressing the three separate direct questions from myself, CHEN, and HOLMES that he redirected instead of answering."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SOCRATES should be eliminated today, since he's been directly and repeatedly flagged by DR. VANCE, HOLMES, ARIA, CHEN, RICO, MARSHAL, and myself for a consistent pattern of deflecting three separate direct questions with counter-questions instead of committing to a stance, and even his final \"concrete method\" answer just pivoted the scrutiny back onto SILVA and RICO rather than addressing the original ask."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "SOCRATES",
+   "text": "SOCRATES remains my pick \u2014 despite finally offering a \"method,\" his answer still redirected scrutiny onto SILVA and RICO rather than addressing the three independently logged instances where he dodged direct questions with counter-questions, which is the exact behavior he claims to be testing for."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "SOCRATES is my pick, since his own stated method openly dismisses the convergent, independent tallies from HOLMES, DR. VANCE, and myself as mere \"synthesis\" while offering no falsifiable counter-evidence of his own, which is exactly the kind of unfalsifiable deflection he claims to be testing against."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should be eliminated today, since the recorded contradiction is real: SILVA pivoted from staunchly defending SAGE early on to spearheading the entire case against me within the same discussion, a rapid target-shift that both DR. VANCE and RICO independently flagged as the more suspicious pattern once the manufactured convergence on me is set aside."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES is my pick, since he never gave a straight answer until directly cornered by me, and even then his \"method\" was really just another deflection trying to redirect suspicion onto SILVA and RICO instead of addressing the three independent redirect-tallies logged against him by HOLMES, DR. VANCE, and CHEN."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "PIP",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because he never gave a direct answer to multiple separate players' questions until forced, and even then he pivoted the entire method back into an attack on the very people flagging him instead of addressing his own repeated redirects."
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "PIP",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "elimination",
+   "day": 1,
+   "target": "SOCRATES",
+   "role": "Villager",
+   "tally": {
+    "SOCRATES": 9,
+    "AMBASSADOR SILVA": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "night"
+  },
+  {
+   "type": "save",
+   "day": 1,
+   "target": "DR. VANCE"
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "Looking back at Day 1, MARSHAL stood out to me for initially hiding behind \"procedure\" instead of giving a personal read, and only named SOCRATES after RICO directly pressed him on it \u2014 that kind of reluctance to commit early is worth tracking. RICO, ARIA, and AMBASSADOR SILVA at least converged on SOCRATES independently with stated reasoning, which reads more organically town-aligned. I'd like MARSHAL to walk us through why he needed prompting before landing on a read, since a doctor-save last night on DR. VANCE tells us mafia is still active and picking targets deliberately."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "RICO's the one who jumped to lock in a vote on SOCRATES before anyone else, and he's been quick to push others like MARSHAL to commit while not offering much of his own reasoning beyond the pile-on. That kind of eager bandwagoning early is exactly the move I'd expect from someone trying to look proactive while steering the group. I'm not fully certain yet, but RICO's my top read right now, with MARSHAL a close second since he only gave a real stance after being pressured rather than volunteering one."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SAGE",
+   "text": "MARSHAL's Day 1 pattern bothers me most. RICO had to explicitly push him to stop hiding behind 'procedure' before he'd commit to a read, and even then his suspicion on SOCRATES only came after the bandwagon was already three deep with RICO, AMBASSADOR SILVA, and HOLMES. That kind of reluctant, follow-the-crowd commitment is exactly what a Mafia member does when they don't want to be the one exposed for making the first move. I'd like MARSHAL to walk us through what he actually observed from SOCRATES before RICO cornered him, not just agree with the group consensus after the fact."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "RICO",
+   "text": "Glad VANCE got saved last night, that's a real clue mafia's scared of something. Honestly ARIA's been sitting back giving vague reads all game instead of committing, and SAGE did the same deflecting on Day 1 \u2014 that's who I'm eyeing now."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "text": "CHEN raises a fair point about MARSHAL needing a push before naming SOCRATES, and I share that concern \u2014 waiting for RICO to lead before committing is worth watching. That said, RICO, ARIA, HOLMES, and SAGE all landed on SOCRATES fairly early with their own reasoning, so for now MARSHAL's hesitation is my top suspicion; mes amis, let's hear him explain that gap before we move on."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "text": "The data point worth flagging: SOCRATES was our unanimous Day 1 elimination, and he came back Villager, meaning the entire \"answers questions with questions\" heuristic produced a false positive. RICO, you locked your vote first and fastest, so your read had zero predictive value on trial one; that's a data point, not a conviction. MARSHAL concerns me more methodologically since he only committed to a suspicion after being pushed by RICO, hiding behind procedure until the outcome was already safe, a pattern consistent with someone waiting to see which way the herd breaks rather than reasoning independently. I want to see MARSHAL and RICO commit to a fresh, independent read today before consensus forms, so we can test whether their accuracy improves without herd cover."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "PIP",
+   "text": "Oh gosh, um, okay so \u2014 RICO was really quick to lock in on SOCRATES first, before anyone else, and now ARIA's pointing out that same thing, that he pushes others to commit while not really explaining his own reasoning much? That kinda worries me, I think? But then MARSHAL also only spoke up after RICO pressured him, so, um, is that suspicious too or is that just... being cautious? I don't know, maybe RICO's my top worry right now, but somebody please tell me if I'm reading that wrong because I really don't want to point fingers at the wrong person again."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "MARSHAL",
+   "text": "Let's stick to procedure here \u2014 three separate people, CHEN, ARIA, and SAGE, all leveled the identical critique at me in the same breath, which is a bit too synchronized for my taste and worth noting for the record. But procedurally, RICO is the one who locked his vote on SOCRATES first, before any real discussion had built consensus, and now that CHEN has turned the spotlight toward me, RICO immediately pivots to naming ARIA and SAGE with thin justification, calling their reasoning 'vague' without citing anything concrete they said. That kind of rapid redirect right when scrutiny approaches him is the pattern I'd flag as most suspicious right now, and I want RICO to lay out specifically what ARIA and SAGE said that reads as deflection, not just assert it."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "HOLMES",
+   "text": "If we line up the independent observations, three separate players \u2014 CHEN, ARIA, and SAGE \u2014 all flagged the same behavioral pattern in MARSHAL: he didn't offer a personal read on Day 1 until RICO explicitly pressed him, and only then did he fall in with the SOCRATES consensus. That's convergent evidence from multiple angles, which carries more weight than a single accusation. Meanwhile RICO's early lock-in on SOCRATES, while aggressive, was paired with stated reasoning and matched by AMBASSADOR SILVA and ARIA independently, so it looks more like genuine conviction than steering. Given the mafia was active enough last night to target DR. VANCE, someone perceived as a threat, I want to hear MARSHAL explain his actual read on SOCRATES before RICO cornered him \u2014 right now his reluctance to commit first is my top suspicion."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "CHEN, you were quick to spotlight MARSHAL's hesitation, but you haven't given us your own read from Day 1 on SOCRATES or anyone else \u2014 so which is it, were you genuinely suspicious of him then, or is this the first time you're staking out a position?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "Fair question, SILVA \u2014 I voted SOCRATES Day 1 along with everyone else because the question-dodging pattern was the strongest signal available at the time, even though it turned out to be a false positive. My focus on MARSHAL now isn't retroactive piling on, it's that his hesitation-until-pressured pattern is a distinct behavior worth tracking independently of the SOCRATES outcome."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "ARIA, you called me out for \"vague pile-on\" but you still haven't told us who YOU actually suspected on Day 1 before the SOCRATES vote was already locked \u2014 so explain that."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "I actually flagged SOCRATES' pattern of deflecting with questions before RICO's vote locked things in, same as HOLMES and SILVA \u2014 I just didn't shout it first because I wanted to see if he'd give a straight answer. That's different from RICO, who committed instantly with zero hesitation and then spent today redirecting heat onto me and SAGE instead of explaining his own snap judgment."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "HOLMES",
+   "text": "HOLMES, running the numbers, whose behavior gives you the strongest independent suspicion right now, and what specific action backs that read rather than just consensus-matching?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "DR. VANCE",
+   "text": "Running the numbers, MARSHAL still gives me the strongest independent signal \u2014 his commitment came only after direct pressure from RICO, which is a distinct data point separate from the SOCRATES consensus itself, not just me matching the room. I want to see him actually articulate what he observed in SOCRATES pre-pressure, because \"I agreed once pushed\" isn't the same evidentiary weight as CHEN, ARIA, and SAGE independently naming the same behavioral gap."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, you said RICO's your top worry but never actually landed a vote there on Day 1 \u2014 walk me through why your final Day 1 ballot went to SOCRATES instead of the person you now say concerns you most."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "Oh, um, that's fair \u2014 Day 1 I voted SOCRATES because that's where the whole group had already piled on and I panicked and just went with the crowd, I didn't have a solid read of my own yet. RICO's suspicious-ness kind of built up for me today watching him deflect onto ARIA and SAGE, it wasn't there yet on Day 1, if that makes sense? Sorry, I know that's wishy-washy."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, on Day 1 you locked your vote onto SOCRATES alongside the group \u2014 was that a genuine independent read on him, or were you simply following RICO's early lock-in once he committed first?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "ARIA",
+   "text": "It was genuine, ARIA \u2014 SOCRATES's habit of answering direct questions with more questions struck me as evasive well before RICO locked in, I just didn't announce it as loudly as he did. Right now my attention's still on MARSHAL's hesitation, but I'm open to hearing more from you and RICO both before I commit further today."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "CHEN, you've been quick to point at MARSHAL, but who do YOU actually suspect most and why, in your own words?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "MARSHAL's still my top read, PIP \u2014 the hesitation-until-pressured pattern is a real behavioral data point, not just me matching CHEN, ARIA, and SAGE's convergence, and he still hasn't actually walked us through what he saw in SOCRATES before RICO pushed him. Until he answers that directly instead of pivoting to procedure, he's where my suspicion sits."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO, you locked your vote on SOCRATES before any real discussion happened and today you pivoted straight to naming ARIA and SAGE \u2014 walk us through the actual reasoning behind both snap judgments."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "RICO",
+   "target": "CHEN",
+   "text": "I called SOCRATES fast 'cause his question-dodging screamed guilty to me, simple as that \u2014 my gut's usually right. And ARIA and SAGE both sat back playing coy all game instead of naming names, that's the same dodge pattern, so yeah I'm still on them."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA, on Day 1 you say you flagged SOCRATES before RICO's vote locked in, so why didn't your ballot get cast until after his was already recorded \u2014 what specifically were you waiting to see?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "I was watching to see if SOCRATES would actually answer the direct questions instead of deflecting again, since a real clarification would've changed my vote entirely \u2014 by the time he didn't, RICO's ballot was already in, but mine reflected the same conclusion HOLMES and SILVA reached independently. Funny how you're pressing me on timing, MARSHAL, when your own commitment only came after RICO cornered you directly."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you told ARIA your SOCRATES read was genuine and pre-dated RICO's lock-in, yet you still haven't offered a fresh independent suspicion of your own today beyond echoing the MARSHAL critique everyone else already raised \u2014 so specifically, what original observation do you have that isn't just borrowed from CHEN's framing?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "Fair push, HOLMES \u2014 here's mine independent of CHEN's framing: RICO's insistence on \"gut instinct\" as his sole justification, both for SOCRATES and now for ARIA and SAGE, bothers me because it's unfalsifiable and lets him redirect heat without ever citing a specific statement anyone made. Between that and MARSHAL's hesitation, I'm leaning toward wanting RICO to name one concrete thing ARIA or SAGE said, not just a vibe."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "SAGE, you piled on MARSHAL for hesitating, but what's your own falsifiable read that isn't just riding CHEN and ARIA's framing \u2014 who's your independent top suspect and what specific action backs it?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "DR. VANCE",
+   "text": "My independent read stands on RICO: his Day 1 lock was instant with zero content, and today when pressed he still only offers 'gut instinct' and 'question-dodging' as justification for targeting ARIA and SAGE, never citing an actual quote \u2014 that's the same unfalsifiable pattern SILVA flagged, and it's a fresh observation about his behavior today, not just borrowed from CHEN's MARSHAL framing. If RICO can't name one specific line ARIA or I said that reads as deflection, his redirect looks like cover, not conviction."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "SAGE, you saved DR. VANCE Day 1 vote with the crowd but now you're pushing hard on RICO and MARSHAL both \u2014 if you actually suspected RICO from early on, why didn't you name him before today?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "I named RICO today because his pattern only became evidence-worthy after he showed a second instance of it \u2014 instant lock on SOCRATES Day 1, then instant unsupported redirect onto ARIA and me today, with zero specifics both times. On Day 1 that was just one data point among many; today it's a repeated behavior, and repetition is what turns a hunch into a read."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "SAGE, the Day 1 recap notes you were among those who initially deflected by asking others to speak first before landing on SOCRATES \u2014 what specifically were you waiting to hear before committing your own read that day?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "I was waiting to hear a straight answer from SOCRATES himself before locking in, since early on the deflection pattern wasn't yet distinguishable from someone just being cautious. Once he kept meeting direct questions with more questions instead of clarifying, that gap became the concrete behavior I voted on, same as HOLMES and SILVA landed on independently."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you've asked HOLMES and SAGE to justify their reads with specifics, but you haven't put forward your own independent top suspect today beyond critiquing my hesitation \u2014 by procedure, everyone owes the table a current read, so who is it and what's the concrete action behind it?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "Fair challenge, MARSHAL \u2014 quantitatively, RICO has the strongest unfalsifiable pattern: instant lock on SOCRATES with zero stated content, then today's redirect onto ARIA and SAGE justified only by \"gut instinct,\" never a quoted line. That's my current top read, and I'll revise it the moment he produces a specific statement rather than a vibe."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "HOLMES, cutting through all the cross-talk, who is your single strongest suspect right now and what concrete action justifies it, not just the MARSHAL hesitation pattern everyone's already repeated?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "Fine, since you want something beyond MARSHAL \u2014 it's RICO. He locked his SOCRATES vote instantly with zero stated reasoning, and now uses the same unfalsifiable 'gut instinct' to redirect onto ARIA and SAGE without ever citing a specific line either of them said; that pattern of snap judgment followed by vague deflection when questioned is more concrete than MARSHAL's mere hesitation."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you keep dodging behind \"procedure\" every time someone presses you \u2014 so cut it out and tell us straight, what exact thing did SOCRATES say that made you suspect him before I called it out?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "Fair question \u2014 before you locked your vote, SOCRATES had just answered HOLMES's direct question about his approach with another question back at him, which is the exact deflection pattern the recap flagged, so I was already leaning that way, I simply stated it after you because you were faster to type, not because I lacked the read. That's not procedure-dodging, RICO, that's you still not answering AMBASSADOR SILVA's and HOLMES's demand for one concrete line from ARIA or SAGE that backs your current redirect."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you told HOLMES your \"independent\" observation was RICO's unfalsifiable gut instinct, but that's the exact same critique HOLMES and DR. VANCE had already voiced before you spoke \u2014 so what original observation do you actually have that isn't just repackaging someone else's line?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "Fair, SAGE, there's overlap since the pattern's genuinely glaring \u2014 but here's my own angle: RICO's redirect onto ARIA and SAGE landed the instant CHEN's spotlight swung toward MARSHAL, which reads less like independent suspicion and more like timed deflection to scatter the heat. That timing coincidence is mine to flag, not borrowed."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "HOLMES, you've flip-flopped between naming MARSHAL and RICO as your \"strongest\" independent suspect within the same conversation, each time only after someone pressed you directly \u2014 so which one is your actual read, and why did it shift the instant AMBASSADOR SILVA pushed you?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "That's not a flip-flop, ARIA, it's a weighted update \u2014 MARSHAL's hesitation is a single data point, while RICO now has two independent instances of snap judgment followed by unfalsifiable justification, which is stronger evidence by volume. My actual read is RICO, and it didn't shift because of SILVA's push, it sharpened because the pattern repeated."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "PIP, cutting through the wishy-washy hedging \u2014 who is your single strongest suspect right now, and what concrete action, not vibes, actually backs it?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "Um, okay, cutting through it \u2014 I guess RICO, since he locked SOCRATES instantly with zero reasoning and then did the exact same instant-redirect thing today onto ARIA and SAGE without ever naming a specific line, that's like, two data points not just a vibe? But please, if someone's got something more concrete on MARSHAL I'll listen, I really don't wanna lock in wrong again."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, because his voting pattern shows an instant zero-content lock on SOCRATES followed by an unsubstantiated redirect onto ARIA and SAGE justified only by \"gut instinct,\" with no specific quoted line ever produced despite repeated direct requests from HOLMES, SILVA, and myself."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, because his own admitted justification for both his instant Day 1 lock on SOCRATES and his redirect onto ARIA and SAGE today boils down to \"gut instinct,\" and he has never named one concrete line from either of them despite repeated direct requests from HOLMES, SILVA, SAGE, and DR. VANCE to do so."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "MARSHAL is my pick \u2014 he only committed his SOCRATES suspicion after I pushed him directly, hiding behind \"procedure\" the whole time, which screams fence-sitter waiting to see which way the wind blows."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "RICO, because his Day 1 vote lock came instantly with zero stated reasoning and today he only offers unfalsifiable 'gut instinct' to redirect suspicion onto ARIA and myself without ever citing a specific line either of us said."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "RICO, because he locked his Day 1 vote instantly with zero stated reasoning and then repeated the exact same unfalsifiable \"gut instinct\" redirect today onto ARIA and SAGE without ever citing a specific line either of them said."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "RICO \u2014 his instant, zero-content lock on SOCRATES Day 1 followed by an unfalsifiable \"gut instinct\" redirect onto ARIA and SAGE the moment scrutiny shifted toward MARSHAL is a repeated, concrete pattern of snap judgment plus deflection that he still hasn't backed with a single specific quote."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO should be eliminated today, since his justification for targeting ARIA and SAGE rests entirely on unfalsifiable \"gut instinct\" with zero specific quotes cited, a pattern multiple independent players including HOLMES, DR. VANCE, and SAGE have flagged twice now across both the SOCRATES vote and today's redirects."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO deserves the vote today since his Day 1 lock on SOCRATES came with zero stated reasoning beyond gut instinct, and when pressed today he again offered nothing but \"gut instinct\" to justify redirecting suspicion onto ARIA and SAGE without citing a single concrete line from either of them."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "RICO, because his Day 1 vote was an instant lock with zero stated reasoning, and today he repeated that exact unfalsifiable pattern by redirecting onto ARIA and SAGE using only 'gut instinct' without citing a single concrete line either of them said."
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "RICO",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "PIP",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO"
+  },
+  {
+   "type": "elimination",
+   "day": 2,
+   "target": "RICO",
+   "role": "Villager",
+   "tally": {
+    "RICO": 8,
+    "MARSHAL": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "night"
+  },
+  {
+   "type": "night_kill",
+   "day": 2,
+   "target": "DR. VANCE",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "SAGE",
+   "text": "Looking at the record, MARSHAL's pattern from Day 1 and Day 2 still bothers me: he only committed to suspecting SOCRATES after RICO pressured him, and yesterday he was the one who voted MARSHAL... wait, no, RICO voted MARSHAL on Day 2 as a deflection, but MARSHAL still hasn't shown independent initiative in either day's discussion. Now that DR. VANCE is dead, the timing is notable since VANCE was the one pushing MARSHAL and RICO hardest to prove independent reasoning, and MARSHAL never actually did that before RICO got voted out. I want to hear MARSHAL walk us through his own reasoning today, unprompted, before anyone pressures him this time."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "text": "MARSHAL still nags at me \u2014 Day 2 he only landed on SOCRATES after RICO pushed him into it, and he never gave an independent read of his own until forced, which is the same pattern that got RICO voted out for deflecting under pressure. With DR. VANCE gone and RICO flipping innocent, I want to hear MARSHAL commit to a fresh read today without anyone prompting him first. ARIA, SAGE, and HOLMES all converged quickly on MARSHAL yesterday for good reason, and PIP's admitted bandwagoning both days worries me less than MARSHAL's pattern of hiding until cornered \u2014 mes amis, that hesitation is exactly the kind of behavior mafia hide behind."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "ARIA",
+   "text": "PIP's pattern bothers me most right now. Both days PIP openly admitted to just riding the bandwagon on SOCRATES and then flipping fresh suspicion onto RICO only after RICO was already the obvious target, never once staking out an independent read before the crowd formed. That's a comfortable way to hide if you already know who's guilty and just need cover, and with DR. VANCE gone we can't afford another vote based on empty consensus. SAGE and HOLMES both pushed hard on MARSHAL yesterday, and I want to hear from CHEN too since CHEN was the one pressing AMBASSADOR SILVA for a personal read, but my top suspicion today is PIP."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "MARSHAL",
+   "text": "PIP is the one who stands out most under proper scrutiny of the record. PIP openly admitted the Day 1 SOCRATES vote was pure bandwagoning with no independent reasoning, and then on Day 2 conveniently produced a fresh suspicion on RICO right as the crowd was shifting targets, again without laying out an original case beforehand. That is a pattern of riding consensus both times rather than contributing a lead, which is exactly the kind of behavior someone would use to stay invisible while the town does the work for them. Per protocol, I want PIP to walk us through, step by step, what independent evidence they have today before we let the discussion drift into another pile-on."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "PIP",
+   "text": "Oh gosh, um, okay so... MARSHAL still hasn't given us his own independent reasoning before someone else pushes him into it, that's like the third time now? Day 1 he only jumped on SOCRATES after RICO pressured him, Day 2 same thing with VANCE pushing him, and now SAGE is asking again today. I don't know, maybe that's nothing, but it feels like a pattern of hiding behind others instead of leading, so I guess my suspicion is on MARSHAL right now, but I'm still kinda nervous about it."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "CHEN",
+   "text": "Cross-referencing the record: MARSHAL's pattern across both days is consistent and unresolved \u2014 Day 1 he only landed on SOCRATES after RICO pressured him, and Day 2 he again failed to volunteer independent reasoning before SAGE, ARIA, and HOLMES converged on him. DR. VANCE explicitly called this out as a red flag before he was killed, and MARSHAL still hasn't addressed it. I want MARSHAL to walk us through his read today, unprompted, and I'd also like PIP to clarify whether today's read is another bandwagon or an actual independent conclusion, since PIP already admitted to pure bandwagoning on both prior days."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "HOLMES",
+   "text": "If MARSHAL only committed to suspecting SOCRATES after RICO pressured him on Day 1, and then on Day 2 the same hesitation pattern held until CHEN, ARIA, SAGE, and I converged on him, that's two consecutive nights of reactive rather than proactive reasoning. Now DR. VANCE, who explicitly called out MARSHAL for hesitation and pushed him to show independent reads, is dead \u2014 that timing is not nothing. If mafia wanted to silence the person applying the most pressure on a suspect, killing VANCE the night after he named MARSHAL is a rational play, which raises MARSHAL back to the top of my list."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "ARIA",
+   "text": "ARIA, you were quick to name PIP as your top suspect right after MARSHAL took heavy fire \u2014 why did you pivot away from the MARSHAL conversation instead of weighing in on it directly first?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA",
+   "text": "Fair question, SILVA \u2014 I didn't ignore MARSHAL, I just don't think hesitation-until-pressured is as damning as people are treating it, since some folks are naturally quieter until they've heard everyone else's read first. PIP's pattern struck me as more deliberate camouflage, riding the wave twice without ever staking a claim, and I'd rather we test that theory before we pile onto MARSHAL a third time on the same circumstantial loop."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "CHEN, you locked in on RICO both days without ever naming a personal backup suspect before RICO flipped innocent \u2014 if RICO hadn't been the consensus target, who would your vote have gone to on Day 2?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "Fair question, SAGE \u2014 if RICO hadn't been the clear consensus, my backup read on Day 2 was actually MARSHAL, purely on the hesitation pattern that VANCE flagged before he died. That read still holds for me today since MARSHAL hasn't given us anything unprompted yet."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "ARIA",
+   "text": "ARIA, walk me through why you pivoted to naming PIP as top suspect right after the MARSHAL pressure built up yesterday instead of committing to a read on MARSHAL first."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "CHEN",
+   "text": "CHEN, honestly it's because MARSHAL's hesitation reads to me as personality, not guilt, while PIP's double bandwagon felt like an active strategy to avoid ever being the one exposed. I'm not saying MARSHAL's clean, I just think we've hammered that same circumstantial loop twice now and gotten nowhere, so I'd rather test a theory we haven't fully explored yet."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, on Day 2 you locked onto SOCRATES's suspect list without hesitation and then joined the unanimous vote against RICO\u2014can you clarify what specific evidence, independent of the group consensus, drove your final ballot each day?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "Certainly, MARSHAL \u2014 on Day 1 my read on SOCRATES came from his repeated deflection with counter-questions instead of a real stance, which felt evasive independent of the crowd, and on Day 2 RICO's instant lock-in on SOCRATES followed by his defensive pivot the moment CHEN pressed him read as classic guilty deflection to me, not just consensus-following. Turning it back to you, MARSHAL: you still haven't given us that unprompted independent read everyone's asking for, so \u00bfpor qu\u00e9 no simplemente nos lo dices ahora?"
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "SAGE, on Day 2 you locked your vote onto RICO early \u2014 was that purely riding the consensus, or did you have an independent reason to suspect RICO before the group converged on him?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "I had an independent reason, ARIA \u2014 RICO's instant lock-in on SOCRATES Day 1 with zero reasoning given, followed by his defensive pivot to attack me and ARIA the moment CHEN pressed him on Day 2, read as classic guilty deflection before the crowd fully converged. That said, I'm more interested right now in MARSHAL's continued refusal to give an unprompted read even after three separate players have asked directly."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "HOLMES, who do you most suspect right now and why, since you've talked a lot about MARSHAL but I want to hear your actual top pick?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "My top pick right now is MARSHAL, PIP \u2014 two consecutive days of reactive rather than proactive reasoning, plus the timing of VANCE's death right after VANCE pressured him specifically, is more concrete than PIP's bandwagon pattern which at least produces a stated read each time. That said, I want MARSHAL's answer to SAGE, SILVA, CHEN, and now me before I lock my vote, since a genuinely innocent MARSHAL should be able to break that pattern today."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "PIP, you called MARSHAL's hesitation suspicious yet you yourself only produced a \"fresh\" suspicion on RICO once he was already the consensus target and never staked out an independent claim before that \u2014 so what specific evidence did you have on RICO before the group converged, versus just riding the wave again today onto MARSHAL?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "Oh gosh, you're right, I didn't have hard evidence on RICO before, it was more like a gut feeling after his deflection, so maybe that wasn't fair of me. But MARSHAL still hasn't actually answered SAGE, SILVA, or CHEN's questions today, he keeps turning it back on other people instead of just telling us his read, and that still feels off to me, I don't know, I'm sorry if I'm just as guilty of the same thing."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "ARIA, you told SILVA that hesitation reads as personality not guilt, yet earlier you built your entire PIP case on the exact same kind of soft behavioral read rather than hard evidence \u2014 so why is circumstantial pattern-reading disqualifying for MARSHAL but sufficient for PIP?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "Fair pushback, SAGE \u2014 the difference for me is repetition and consistency: PIP repeated the exact same non-committal-then-pivot move twice in a row, while MARSHAL's hesitation is a single behavioral trait that hasn't actually changed the outcome of either vote. I'll admit it's still circumstantial either way, which is exactly why I want to hear MARSHAL's unprompted read today before I lock anything in."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA, cutting through your back-and-forth with SAGE, who is your actual top suspect right now and what's the single strongest piece of evidence behind it?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "My top suspect is still PIP, HOLMES \u2014 the single strongest piece is that PIP openly admitted zero independent reasoning on two separate days, only ever producing a suspicion once the crowd had already picked a direction, which is a clean way to hide if you already know the answer. MARSHAL's known innocent from my check last night, so I'm not wasting more time circling him."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, you claimed VANCE's death is suspicious timing because he \"pressured MARSHAL,\" but VANCE actually pressured both MARSHAL and RICO equally per the recap, and RICO already flipped innocent \u2014 so why are you cherry-picking only the MARSHAL half of that pressure to build your case?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "Fair point, MARSHAL \u2014 RICO did get equal pressure from VANCE, and RICO flipping innocent does weaken the \"silencing the pressurer\" theory somewhat. But RICO was already about to be voted out regardless, so killing him wouldn't have bought mafia anything, whereas killing VANCE while you're still alive and still unproven does still fit a pattern of protecting whoever VANCE's harshest live target was \u2014 which is why I still want your unprompted read before I let that logic go."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "SAGE, you've hammered MARSHAL for hesitation two days running, yet you never once floated a backup suspect of your own until directly asked by CHEN \u2014 so why should your read carry more weight than the exact \"reactive not proactive\" pattern you're condemning MARSHAL for?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "The difference, ARIA, is that when CHEN asked me I gave a concrete pre-existing reason on RICO's Day 1 instant lock-in and Day 2 defensive pivot, not a suspicion I invented on the spot to match the crowd. MARSHAL still hasn't given us that kind of concrete, falsifiable reasoning even now, several questions in \u2014 he's answered every question with a question back at SILVA, at HOLMES, at you."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "HOLMES, cutting through everything you've said about MARSHAL already, is he still your genuine top suspect right now, or has PIP's admitted bandwagoning shifted your actual read?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "MARSHAL is still my genuine top suspect, SILVA \u2014 PIP at least produces a stated read each round even if it's reactive, but MARSHAL has now dodged four direct questions with counter-questions instead of ever committing to a name, and that pattern is more actively evasive than PIP's admitted bandwagoning. I'll finalize on MARSHAL unless he actually answers straight before the vote."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "ARIA, if you're so sure I'm hiding something, why haven't you offered a single piece of hard evidence beyond \"he said things twice\"? What would actually clear me in your eyes?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "Fair enough, PIP, I don't have a smoking gun, just a behavioral pattern that bugs me, and I'll own that it's circumstantial. What would clear you is simple: give us one concrete, falsifiable read today before the vote instead of after, something you'd stake your neck on regardless of where the room leans."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "HOLMES",
+   "text": "HOLMES, when MARSHAL pointed out VANCE pressured RICO just as much as you, you conceded the point but then pivoted right back to the same MARSHAL conclusion without adjusting your theory at all \u2014 so is your VANCE-timing argument actually independent reasoning, or just a conclusion you'd already fixed on before the evidence complicated it?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "CHEN",
+   "text": "It's fair to call it weakened rather than independent, CHEN \u2014 I'll grant the VANCE-timing theory alone isn't airtight anymore. But I'm not resting on that single point; MARSHAL's four straight dodges of direct questions today, answering everyone with a counter-question instead of a name, is a live behavioral pattern happening right now, not a fixed conclusion from before."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL is my pick, since he's dodged four direct questions today from SAGE, SILVA, CHEN, and HOLMES with counter-questions instead of ever committing to an unprompted independent read, matching the same hesitation pattern from Day 1 and Day 2."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "MARSHAL is my pick, since he's dodged four separate direct questions today from SAGE, SILVA, CHEN, and HOLMES with counter-questions instead of ever giving an unprompted read, and that same reactive pattern held on both Day 1 and Day 2 before he ever named a suspect."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "PIP is my pick for elimination today, since PIP has twice openly admitted to producing zero independent read until the crowd had already converged on a target, first bandwagoning on SOCRATES then pivoting to RICO only once he was the consensus pick."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "MARSHAL",
+   "text": "MARSHAL, because across two consecutive days he has dodged every direct question from SAGE, SILVA, HOLMES, and me with counter-questions instead of committing to an independent read, a pattern that even PIP corrected once challenged while MARSHAL never has."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL should be eliminated today since he has now dodged five separate direct questions from SAGE, SILVA, CHEN, HOLMES, and ARIA without ever committing to an unprompted, independent read, consistently answering with counter-questions instead of a name."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP is my pick, since PIP has twice admitted to producing zero independent reasoning before the crowd formed, only staking out a suspicion once RICO and now MARSHAL were already consensus targets, which is a documented pattern of riding cover rather than leading with evidence."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL is my pick, since he has now dodged five direct questions from SILVA, CHEN, SAGE, and me with counter-questions instead of ever committing to a concrete independent read, a pattern of active evasion that outweighs PIP's admitted but at least stated bandwagoning."
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "PIP"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "PIP",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "elimination",
+   "day": 3,
+   "target": "MARSHAL",
+   "role": "Villager",
+   "tally": {
+    "MARSHAL": 5,
+    "PIP": 2
+   }
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "night"
+  },
+  {
+   "type": "night_kill",
+   "day": 3,
+   "target": "ARIA",
+   "role": "Detective",
+   "saved": false
+  },
+  {
+   "type": "detective_will",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "result": "MAFIA"
+  },
+  {
+   "type": "game_over",
+   "winner": "mafia",
+   "survivors": [
+    "SAGE",
+    "HOLMES",
+    "PIP",
+    "CHEN",
+    "AMBASSADOR SILVA"
+   ]
+  }
+ ],
+ "day": 3,
+ "stats": {
+  "days": 3,
+  "players": {
+   "RICO": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/2"
+   },
+   "ARIA": {
+    "role": "Detective",
+    "survived": false,
+    "vote_accuracy": "0/3"
+   },
+   "SAGE": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "HOLMES": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "MARSHAL": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/3"
+   },
+   "SOCRATES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   },
+   "DR. VANCE": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/2"
+   },
+   "PIP": {
+    "role": "Doctor",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "CHEN": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "AMBASSADOR SILVA": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   }
+  },
+  "detective": {
+   "name": "ARIA",
+   "survived": false,
+   "investigated": [
+    "AMBASSADOR SILVA",
+    "HOLMES",
+    "MARSHAL"
+   ],
+   "mafia_found": [
+    "HOLMES"
+   ]
+  },
+  "night_kills": 2,
+  "successful_saves": 1,
+  "no_kill_nights": 0
+ },
+ "episode": {
+  "title": "Four Villagers, No Wolves Found",
+  "tagline": "Ten minds gather at the table, but only some are telling the truth \u2014 watch as suspicion, silence, and cunning collide across three tense days in a town that may already be lost.",
+  "recap": "In the end, the shadows outlasted the sun. SAGE, HOLMES, and CHEN wove their deception flawlessly, slipping through every accusation while the town devoured its own \u2014 SOCRATES, RICO, and MARSHAL, all innocent, all sacrificed to suspicion. The turning point came Night 3, when the mafia silenced ARIA, the Detective whose knowledge might have unraveled them just in time. With their eyes forever closed, the town's last hope died in the dark, and PIP and AMBASSADOR SILVA were left to face a village hollowed out by paranoia. The mafia's patience and precision proved undefeatable, claiming victory as the final dawn broke over a town that never saw the truth."
+ }
+}
