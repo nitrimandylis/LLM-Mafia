@@ -25,6 +25,7 @@ export const SKIN_COMPONENTS = {
 type Props = {
   events: GameEvent[];
   episode: EpisodeMeta;
+  roles: Record<string, string>; // final roles by name, from the log's stats
   card: EpisodeCard;
   next?: EpisodeCard;
 };
@@ -33,7 +34,7 @@ type Props = {
 // (useReplay holds 2400ms on kills), so the beat costs no extra engine logic.
 type DeathBeat = { name: string; role: string; how: "voted out" | "killed in the night" };
 
-export default function EpisodePlayer({ events, episode, card, next }: Props) {
+export default function EpisodePlayer({ events, episode, roles, card, next }: Props) {
   // Group Chat is the flagship episode experience; the other skins stay one
   // click away for the curious.
   const [skin, setSkin] = useState<SkinId>("chat");
@@ -106,13 +107,7 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
     state.controls.restart();
   }
 
-  const mafiaCount = state.events.reduce((n, e) => {
-    if (e.type === "game_start") {
-      return e.players.filter((p) => p.role === "Mafia").length;
-    }
-    return n;
-  }, 0);
-
+  const mafiaCount = Object.values(roles).filter((r) => r === "Mafia").length;
   const showRecap = began && done && !!state.winner && !recapDismissed;
 
   return (
@@ -240,11 +235,12 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
             <div className="ep-recap-roles" aria-label="Final roles">
               {state.players.map((p) => {
                 const dead = !state.alive.has(p.name);
+                const role = roles[p.name] ?? p.role ?? "?";
                 return (
                   <span key={p.name} className={`ep-role-chip${dead ? " dead" : ""}`}>
                     <span className="dot" style={{ background: p.color }} />
                     {p.name}
-                    <b className={p.role === "Mafia" ? "mafia" : ""}>{p.role ?? "?"}</b>
+                    <b className={role === "Mafia" ? "mafia" : ""}>{role}</b>
                   </span>
                 );
               })}

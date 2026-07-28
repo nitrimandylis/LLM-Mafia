@@ -25,13 +25,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-async function loadLog(slug: string): Promise<{ events: GameEvent[]; episode: EpisodeMeta } | null> {
+async function loadLog(
+  slug: string
+): Promise<{ events: GameEvent[]; episode: EpisodeMeta; roles: Record<string, string> } | null> {
   try {
     const p = path.join(process.cwd(), "public", "logs", `${slug}.json`);
     const log = JSON.parse(await readFile(p, "utf8"));
     if (!Array.isArray(log.events) || log.events.length === 0) return null;
+    // Every log records the final roles in stats, revealed or not. game_start
+    // only carries them on --reveal-secrets runs, so read stats instead: the
+    // cold open can state the difficulty and the recap can name everybody.
+    const stats: Record<string, { role?: string }> = log.stats?.players ?? {};
+    const roles = Object.fromEntries(
+      Object.entries(stats).map(([name, p]) => [name, p.role ?? "?"])
+    );
     return {
       events: log.events,
+      roles,
       episode: {
         title: log.episode?.title ?? slug,
         tagline: log.episode?.tagline ?? "",
@@ -53,6 +63,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ slug: 
     <EpisodePlayer
       events={log.events}
       episode={log.episode}
+      roles={log.roles}
       card={card}
       next={episodeAfter(slug)}
     />
