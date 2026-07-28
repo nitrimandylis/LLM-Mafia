@@ -278,6 +278,7 @@ a { color: inherit; }
 }
 .ep-begin:hover { filter: brightness(1.15); box-shadow: 0 0 24px var(--chrome-glow), 0 0 70px var(--chrome-glow-soft); }
 .ep-begin:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ep-open-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .ep-open-rules {
   /* Own line under the button: inline-block let it flow beside it. */
   display: block; width: fit-content; margin: 18px auto 0; font-size: 12px; color: #8a91a0;

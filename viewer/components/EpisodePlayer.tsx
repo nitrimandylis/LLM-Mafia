@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import type { GameEvent } from "@/lib/events";
+import { PRIVATE_TYPES, type GameEvent } from "@/lib/events";
 import { useReplay } from "@/lib/useReplay";
 import { SKINS as SKIN_META, type SkinId } from "@/lib/settings";
 import type { EpisodeCard, EpisodeMeta } from "@/lib/episodes";
@@ -41,9 +41,19 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
   const [beat, setBeat] = useState<DeathBeat | null>(null);
   const [recapDismissed, setRecapDismissed] = useState(false);
   const [muted, setMuted] = useState(true); // resolved from localStorage after mount
+  // Revealed cases default to the honest whodunit; the cold open's second
+  // button opts into the mafia's side-channel. Chosen once, before playback.
+  const [secrets, setSecrets] = useState(false);
   const beatTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const state = useReplay(events, 1, false /* wait for the cold open */);
+  const shown = useMemo(
+    () => (secrets ? events : events.filter((e) => !PRIVATE_TYPES.has(e.type))),
+    [events, secrets]
+  );
+
+  // autoplay=began so that flipping `secrets` at the cold open (a new array,
+  // which resets the engine) starts playing instead of stalling.
+  const state = useReplay(shown, 1, began);
   const done = state.cursor >= state.total;
 
   useEffect(() => setMuted(soundMuted()), []);
@@ -75,8 +85,9 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.cursor]);
 
-  function begin() {
+  function begin(withSecrets: boolean) {
     unlockAudio();
+    setSecrets(withSecrets);
     setBegan(true);
     state.controls.play();
     sting("begin");
@@ -183,9 +194,16 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
               ))}
             </div>
 
-            <button className="ep-begin" onClick={begin} autoFocus>
-              ▸ BEGIN THE REPLAY
-            </button>
+            <div className="ep-open-actions">
+              <button className="ep-begin" onClick={() => begin(false)} autoFocus>
+                ▸ BEGIN THE REPLAY
+              </button>
+              {card.revealed && (
+                <button className="ep-begin ep-next" onClick={() => begin(true)}>
+                  ▸ WITH SECRETS REVEALED
+                </button>
+              )}
+            </div>
             {/* New tab on purpose: reading the rules must not throw away the replay. */}
             <a className="ep-open-rules" href="/rules" target="_blank" rel="noreferrer">
               new to Mafia? read the rules →

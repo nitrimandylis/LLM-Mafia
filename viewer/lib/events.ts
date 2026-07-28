@@ -44,6 +44,11 @@ export const SPEECH_TYPES = new Set([
   "mafia_chat",
 ]);
 
+// Only present in --reveal-secrets logs, and marked `# private` in
+// mafia/events.py. The cold open drops these so a revealed case can be watched
+// the way the town played it.
+export const PRIVATE_TYPES = new Set(["mafia_chat", "investigation", "protection"]);
+
 export function isSpeech(
   e: GameEvent
 ): e is Extract<GameEvent, { actor: string; text: string }> {

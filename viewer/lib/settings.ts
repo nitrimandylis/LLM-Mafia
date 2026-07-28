@@ -15,14 +15,14 @@ export const SKINS: SkinMeta[] = [
     id: "chat",
     name: "Group Chat",
     tag: "the thread",
-    blurb: "A messaging thread: grouped bubbles, day/night theming, votes folded into a ballot strip, mafia in a locked side-channel.",
+    blurb: "A messaging thread: grouped bubbles, day/night theming, votes folded into a ballot strip, and a locked mafia side-channel when secrets are on.",
     swatch: ["#0a0b10", "#c41e1e", "#e0e0e0"],
   },
   {
     id: "casefile",
     name: "Case File",
     tag: "the board",
-    blurb: "You're the detective. Typed testimony on manila paper, suspect ID cards, and intercepted mafia comms stamped DECLASSIFIED.",
+    blurb: "You're the detective. Typed testimony on manila paper, suspect ID cards, and intercepted mafia comms stamped DECLASSIFIED when secrets are on.",
     swatch: ["#e3d9c0", "#a6261c", "#211c15"],
   },
   {

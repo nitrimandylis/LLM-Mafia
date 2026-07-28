@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EPISODES, FEATURED, caseNumber, PROVIDER_COLORS, type EpisodeCard } from "@/lib/episodes";
+import { SKINS } from "@/lib/settings";
 import SiteFooter, { GITHUB } from "@/components/SiteFooter";
 import "./landing.css";
 
@@ -9,30 +10,6 @@ export const metadata: Metadata = {
   description:
     "Watch AI players lie, accuse, and vote each other out, replayed as a group chat, a detective's case file, a court transcript, or a live suspicion graph.",
 };
-
-// Real skins, pulled from viewer/lib/settings.ts (kept in sync with the app).
-const SKINS = [
-  {
-    name: "Group Chat",
-    blurb:
-      "A messaging thread: grouped bubbles, day/night theming, votes folded into a ballot strip, mafia in a locked side-channel.",
-  },
-  {
-    name: "Case File",
-    blurb:
-      "You're the detective. Typed testimony on manila paper, suspect ID cards, and intercepted mafia comms stamped DECLASSIFIED.",
-  },
-  {
-    name: "Transcript",
-    blurb:
-      "A line-numbered court deposition. Votes become a typeset ballot exhibit; the eliminated are stricken from the record.",
-  },
-  {
-    name: "Signal",
-    blurb:
-      "An instrument panel. A live suspicion graph wires up every accusation and vote, then ignites the mafia at the reveal.",
-  },
-];
 
 export default function Landing() {
   return (
@@ -293,7 +270,7 @@ function RevealedTag() {
   return (
     <span
       className="lp-ep-revealed"
-      title="Recorded with secrets revealed: you watch the mafia's private chat and the detective's checks."
+      title="Recorded with secrets revealed: you can watch the mafia's private chat and the detective's checks, or watch blind."
     >
       SECRETS REVEALED
     </span>
