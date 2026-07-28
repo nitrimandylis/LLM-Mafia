@@ -95,6 +95,15 @@ ACCUSATIONS += [
      "us his answer pattern holds up.", "DR. VANCE"),
 ]
 
+# case-021, day 1: "my vote" without a connector is talk about a ballot, not
+# vote intent — this was logged as an accusation of MARSHAL, not SILVA
+ACCUSATIONS += [
+    ("AMBASSADOR SILVA — I asked him for a reason to move my vote and instead "
+     "of just naming MARSHAL he spent the same breath shielding RICO from a "
+     "swing nobody had even proposed, which is spending credit on someone "
+     "rather than answering me, so I'm staying where I am.", "AMBASSADOR SILVA"),
+]
+
 # Vote replies keep the default last-mention behavior
 VOTES = [
     ("I've thought about MARSHAL all day, but my vote is SAGE.", "SAGE"),

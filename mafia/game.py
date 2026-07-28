@@ -1149,7 +1149,9 @@ Here is the game history so far:
             r"\bi\b[^\n,\.!?]{0,15}?\bvot(?:e|ing|ed)(?:\s+(?:for|out|to\s+eliminate))?\s+([\w][^\n,\.!?]{0,40})",
             r"\bi\b[^\n,\.!?]{0,15}?\bgo(?:ing)?\s+with\s+([\w][^\n,\.!?]{0,40})",
             r"\beliminate\s+([\w][^\n,\.!?]{0,40})",
-            r"\bmy\s+vote\s+(?:is\s+)?(?:for\s+)?([\w][^\n,\.!?]{0,40})",
+            # "my vote" needs a real connector: "move my vote and instead of
+            # naming MARSHAL" is talk about a ballot, not a ballot.
+            r"\bmy\s+vote\s+(?:is|goes\s+to|stays?\s+(?:on|with)|remains)\s+(?:for\s+)?([\w][^\n,\.!?]{0,40})",
             r"\b([\w][^\n,\.!?]{0,40}?)\s+(?:is|gets)\s+my\s+vote\b",
             r"\bi\s+(?:would\s+)?(?:pick|choose|select|nominate)\s+(?:to\s+eliminate\s+)?([\w][^\n,\.!?]{0,40})",
         ]
