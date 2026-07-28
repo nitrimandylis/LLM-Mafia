@@ -110,10 +110,29 @@ def manifest_entry(log: dict, slug: str) -> dict:
     }
 
 
+def next_slug(episodes) -> str:
+    """The slug after the highest one already published, e.g. case-022.
+    Counts up from the maximum rather than from the number of episodes, so a
+    gap in the library never causes a slug to be handed out twice."""
+    highest = 0
+    for episode in episodes:
+        digits = "".join(ch for ch in episode["slug"] if ch.isdigit())
+        if digits and int(digits) > highest:
+            highest = int(digits)
+    return f"case-{highest + 1:03d}"
+
+
+def read_manifest() -> dict:
+    manifest_path = LOGS_DIR / "manifest.json"
+    if manifest_path.exists():
+        return json.load(open(manifest_path))
+    return {"episodes": []}
+
+
 def main():
     parser = argparse.ArgumentParser(description="Publish a game log as a viewer episode")
     parser.add_argument("log", help="Path to a finished game_log.json")
-    parser.add_argument("--slug", required=True, help="Episode slug, e.g. case-001")
+    parser.add_argument("--slug", default=None, help="Episode slug (default: the next free one)")
     parser.add_argument("--nvidia", action="store_true", help="Backfill metadata via NVIDIA NIM")
     parser.add_argument("--nvidia-key", default=None)
     parser.add_argument("--lm-studio-url", default=LM_STUDIO_URL)
@@ -122,6 +141,11 @@ def main():
     args = parser.parse_args()
 
     load_dotenv()
+    manifest = read_manifest()
+    if args.slug is None:
+        args.slug = next_slug(manifest["episodes"])
+        print(f"🔖 Slug: {args.slug}")
+
     log = json.load(open(args.log))
 
     if not log.get("episode", {}).get("title"):
@@ -138,7 +162,6 @@ def main():
         json.dump(published, f, indent=1)
 
     manifest_path = LOGS_DIR / "manifest.json"
-    manifest = json.load(open(manifest_path)) if manifest_path.exists() else {"episodes": []}
     manifest["episodes"] = [e for e in manifest["episodes"] if e["slug"] != args.slug]
     manifest["episodes"].append(manifest_entry(published, args.slug))
     manifest["episodes"].sort(key=lambda e: e["slug"])
