@@ -1,11 +1,23 @@
-// The four wallpaper designs, each in two palettes and two device layouts.
+// The five wallpaper designs, each in two palettes and two device layouts.
 // Rendered by the route next door; see tools/wallpapers.py for how the PNGs
 // get saved. Palettes are copied from globals.css so the wallpapers stay in
 // step with the skins they quote.
 
 export type Device = "mac" | "iphone";
-export type Design = "terminal" | "transcript" | "poster" | "mugshots";
-export type Palette = "shell" | "skin";
+export type Design = "terminal" | "transcript" | "poster" | "mugshots" | "chat";
+export type Palette = "shell" | "skin" | "day" | "night";
+
+// Which palettes each design actually has. Four designs pair the shell's
+// red-on-black against the skin they quote; chat instead reuses the skin's own
+// day/night duality, since a shell-versus-chat pair would be two near-identical
+// near-black fields. The route and tools/wallpapers.py both walk this map.
+export const PALETTES: Record<Design, Palette[]> = {
+  terminal: ["shell", "skin"],
+  transcript: ["shell", "skin"],
+  poster: ["shell", "skin"],
+  mugshots: ["shell", "skin"],
+  chat: ["day", "night"],
+};
 
 /** One cast member: the inlined avatar SVG and the name printed under it. */
 export type Face = { src: string; name: string };
@@ -65,6 +77,28 @@ const SIGNAL = { bg: "#050505", ink: "#e0e0e0", muted: "#b5b5bd", brand: "#c41e1
 const BONE = { bg: "#f2ede3", ink: "#22201b", muted: "#6b614a", brand: "#6e1a1a", seal: "#9a6b1e" };
 const MANILA = { bg: "#e4dac1", ink: "#211c15", muted: "#675c43", brand: "#a6261c" };
 const WALL = { bg: "#2e3644", line: "#3a4356", ink: "#e7e9ee", muted: "#9aa3b4", brand: "#c41e1e" };
+
+// The two chat palettes, taken from the `.chat` and `.chat.night` rules.
+const CHAT_DAY = {
+  bg: "#0a0b10",
+  card: "#17171c",
+  border: "rgba(255,255,255,.09)",
+  ink: "#c9cfdb",
+  muted: "#8b93a3",
+  brand: "#c41e1e",
+  presence: "#ff2a2a",
+  presenceGlow: "0 0 20px rgba(255,42,42,.45)",
+};
+const CHAT_NIGHT = {
+  bg: "#030304",
+  card: "#17171c",
+  border: "rgba(196,30,30,.18)",
+  ink: "#c9cfdb",
+  muted: "#8b93a3",
+  brand: "#c41e1e",
+  presence: "#9aa0aa",
+  presenceGlow: "none",
+};
 
 const NEON_GLOW = "0 0 30px rgba(255,42,42,.55), 0 0 80px rgba(196,30,30,.4)";
 
@@ -254,13 +288,110 @@ function mugshots(device: Device, palette: Palette, faces: Face[]) {
   );
 }
 
+// A collapsed iOS notification stack: the wallpaper pretends the game is
+// messaging you. Not a screenshot of the thread, which is the densest thing in
+// the skin and would fill the frame the other four designs deliberately clear.
+function chat(device: Device, palette: Palette, faces: Face[]) {
+  const t = TYPE[device];
+  const c = palette === "night" ? CHAT_NIGHT : CHAT_DAY;
+
+  const width = device === "mac" ? 1500 : 990;
+  const pad = t.mono * 0.55;
+  const gap = t.mono * 0.35;
+  const inset = t.mono * 0.9; // how much narrower each card behind the front one is, per side
+  const peek = t.mono * 0.45; // how far the back card shows below the middle one
+  const iconSize = t.mono * 1.6;
+  const radius = t.mono * 1.1;
+
+  /** One notification card: sender mugshot, app name, timestamp, one message.
+   *  Heights are left to the content, so nothing here has to be measured. */
+  function card(indent: number, who: string, said: string, stamp: string, front: boolean) {
+    const face = faces.find((f) => f.name.endsWith(who));
+    return (
+      <div
+        style={{
+          marginTop: front ? 0 : gap,
+          marginLeft: indent,
+          width: width - indent * 2,
+          display: "flex",
+          flexDirection: "column",
+          padding: pad,
+          borderRadius: radius,
+          background: c.card,
+          border: `${Math.round(t.mono / 18)}px solid ${c.border}`,
+          opacity: front ? 1 : 0.78,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={face.src} width={iconSize} height={iconSize} alt={who} style={{ borderRadius: iconSize / 4 }} />
+          )}
+          <div style={{ display: "flex", marginLeft: pad * 0.6, fontSize: t.mono * 0.72, letterSpacing: t.mono / 8, color: c.ink }}>
+            LLM MAFIA
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginLeft: "auto",
+              fontSize: t.mono * 0.62,
+              color: front ? c.presence : c.muted,
+              textShadow: front ? c.presenceGlow : "none",
+            }}
+          >
+            {stamp}
+          </div>
+        </div>
+
+        <div style={{ display: "flex", marginTop: t.mono * 0.45, marginLeft: iconSize + pad * 0.6 }}>
+          <div style={{ display: "flex", fontSize: t.mono, color: c.brand, marginRight: t.mono / 2 }}>{who}:</div>
+          <div style={{ display: "flex", fontSize: t.mono, color: c.ink }}>{said}</div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {palette === "night" && (
+        <div style={{ ...FILL, display: "flex", background: "radial-gradient(ellipse at top, #1a0b0e, #030304)" }} />
+      )}
+
+      <div style={cluster(device)}>
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", width }}>
+          {/* The third card comes first in the DOM so the other two paint over
+              it: all that shows is its rounded edge below the middle card. */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: -peek,
+              left: inset * 2,
+              width: width - inset * 4,
+              height: peek * 3,
+              display: "flex",
+              borderRadius: peek,
+              background: c.card,
+              opacity: 0.5,
+            }}
+          />
+          {card(0, "SILVA", "that is not a denial.", "now", true)}
+          {card(inset, "MARSHAL", "about what.", "2m", false)}
+        </div>
+      </div>
+    </>
+  );
+}
+
 // ------------------------------------------------------------------ render
 
-const BACKGROUNDS: Record<Design, Record<Palette, string>> = {
+// Keyed by the palettes each design actually has, so the value type is a plain
+// string map rather than one that would demand every palette name everywhere.
+const BACKGROUNDS: Record<Design, Record<string, string>> = {
   terminal: { shell: SHELL.bg, skin: SIGNAL.bg },
   transcript: { shell: SHELL.bg, skin: BONE.bg },
   poster: { shell: SHELL.bg, skin: MANILA.bg },
   mugshots: { shell: SHELL.bg, skin: WALL.bg },
+  chat: { day: CHAT_DAY.bg, night: CHAT_NIGHT.bg },
 };
 
 export function wallpaper(design: Design, palette: Palette, device: Device, faces: Face[]) {
@@ -271,6 +402,7 @@ export function wallpaper(design: Design, palette: Palette, device: Device, face
     design === "terminal" ? terminal(device, palette)
     : design === "transcript" ? transcript(device, palette)
     : design === "poster" ? poster(device, palette)
+    : design === "chat" ? chat(device, palette, faces)
     : mugshots(device, palette, faces);
 
   return (

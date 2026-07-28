@@ -1,14 +1,11 @@
 import { readFile } from "fs/promises";
 import { join } from "path";
 import { ImageResponse } from "next/og";
-import { SIZES, wallpaper, type Design, type Device, type Palette } from "../../../designs";
+import { PALETTES, SIZES, wallpaper, type Design, type Device, type Palette } from "../../../designs";
 
 // Wallpaper generator. Rendered locally by tools/wallpapers.py, which fetches
 // these URLs off `bun run dev` and saves the PNGs into public/wallpapers/ to be
 // committed. Nothing in production links here; the site serves the files.
-
-const DESIGNS = ["terminal", "transcript", "poster", "mugshots"];
-const PALETTES = ["shell", "skin"];
 
 /** Avatar file for a cast name, the same rule Mug.tsx uses: "DR. VANCE" -> vance.svg. */
 function slug(name: string) {
@@ -34,7 +31,9 @@ export async function GET(
   { params }: { params: Promise<{ design: string; palette: string; device: string }> }
 ) {
   const { design, palette, device } = await params;
-  if (!DESIGNS.includes(design) || !PALETTES.includes(palette) || !(device in SIZES)) {
+  // Each design has its own palette names, so validate against its own list.
+  const palettes = PALETTES[design as Design];
+  if (!palettes || !palettes.includes(palette as Palette) || !(device in SIZES)) {
     return new Response("unknown variant", { status: 404 });
   }
 
@@ -42,7 +41,8 @@ export async function GET(
   const grotesk = await readFile(join(process.cwd(), "assets/SpaceGrotesk-Bold.ttf"));
 
   let faces: Awaited<ReturnType<typeof loadCast>> = [];
-  if (design === "mugshots") {
+  // Chat uses mugshots as its notification icons, so it needs the cast too.
+  if (design === "mugshots" || design === "chat") {
     try {
       faces = await loadCast();
     } catch {

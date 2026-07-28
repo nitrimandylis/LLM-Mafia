@@ -12,8 +12,16 @@ from PIL import Image
 BASE = "http://localhost:3000/wallpapers"
 OUT = Path(__file__).resolve().parent.parent / "viewer" / "public" / "wallpapers"
 
-DESIGNS = ["terminal", "transcript", "poster", "mugshots"]
-PALETTES = ["shell", "skin"]
+# Each design and the palettes it has. Four designs pair the shell's
+# red-on-black against the skin they quote; chat instead reuses the skin's own
+# day/night duality. Must match PALETTES in viewer/app/wallpapers/designs.tsx.
+PALETTES = {
+    "terminal": ["shell", "skin"],
+    "transcript": ["shell", "skin"],
+    "poster": ["shell", "skin"],
+    "mugshots": ["shell", "skin"],
+    "chat": ["day", "night"],
+}
 DEVICES = ["mac", "iphone"]
 
 SIZES = {"mac": (3840, 2160), "iphone": (1170, 2532)}
@@ -39,7 +47,9 @@ def texture_period(im, pitch):
     """
     px = im.convert("RGB").load()
     x = im.width - 40  # right edge, past every design's content and its glow
-    rows = [px[x, y][0] for y in range(200, 200 + pitch * 8)]
+    # Sum the channels rather than read one: chat's night field is #030304, dark
+    # enough that a 28%-black bar over it rounds away in red but not in blue.
+    rows = [sum(px[x, y]) for y in range(200, 200 + pitch * 8)]
     if min(rows) == max(rows):
         return 0  # flat field: the texture did not render
     # Measure between light-to-dark transitions, not between every dark row: a
@@ -56,8 +66,9 @@ def texture_period(im, pitch):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     total = 0
-    for design in DESIGNS:
-        for palette in PALETTES:
+    file_count = 0
+    for design, palettes in PALETTES.items():
+        for palette in palettes:
             for device in DEVICES:
                 url = f"{BASE}/{design}/{palette}/{device}"
                 try:
@@ -74,8 +85,9 @@ def main():
                 want = expected_pitch(design, palette)
                 got = texture_period(im, want)
                 assert got == want, f"{path.name}: texture period {got}, want {want}"
+                file_count += 1
                 print(f"{path.name:44} {im.width}x{im.height}  {len(data) // 1024} KB")
-    print(f"\n{len(DESIGNS) * len(PALETTES) * len(DEVICES)} files, {total // 1024} KB total")
+    print(f"\n{file_count} files, {total // 1024} KB total")
 
 
 if __name__ == "__main__":
