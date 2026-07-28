@@ -1,6 +1,12 @@
 """Smoke check for the --claude backend: one real claude -p call."""
+import shutil
 import sys
 from pathlib import Path
+
+# CI has no claude CLI, and this test spends real tokens, so skip it there.
+if shutil.which("claude") is None:
+    print("SKIP — claude CLI not on PATH")
+    sys.exit(0)
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
