@@ -1,6 +1,6 @@
 /* =====================================================================
-   CHROME — the neon-noir frame around the skins: cold night bars, hot
-   neon accents, phosphor grain + scanlines — the same language as the
+   CHROME: the neon-noir frame around the skins: cold night bars, hot
+   neon accents, phosphor grain + scanlines, the same language as the
    landing page and the chat night skin.
    ===================================================================== */
 :root {
@@ -49,7 +49,7 @@ a { color: inherit; }
   display: inline-flex; align-items: baseline; gap: 9px;
   text-decoration: none;
 }
-/* Wordmark is the display face in every theme — the one constant brand mark.
+/* Wordmark is the display face in every theme, the one constant brand mark.
    In Signature it's a small neon sign: hot tube text in a glowing housing. */
 .brand .mark {
   font-family: var(--font-display), "Oswald", system-ui, sans-serif;
@@ -82,7 +82,7 @@ a { color: inherit; }
 .skin-pane { flex: 1; min-height: 0; flex-direction: column; }
 
 /* =====================================================================
-   MENU — the bar over the stage. The design switcher is a dropdown at
+   MENU: the bar over the stage. The design switcher is a dropdown at
    its right end; the open list previews all four looks.
    ===================================================================== */
 .menu {
@@ -181,7 +181,7 @@ a { color: inherit; }
 .controls input[type="range"] { width: 100%; accent-color: var(--brand); }
 .controls .count { font-size: 12px; color: var(--shell-muted); min-width: 84px; text-align: right; }
 
-/* On a phone the scrubber can't share a row — it collapses to a bare thumb.
+/* On a phone the scrubber can't share a row, it collapses to a bare thumb.
    Give it the full width up top; buttons + counter sit on the row below. */
 @media (max-width: 720px) {
   .controls { flex-wrap: wrap; gap: 8px 14px; }
@@ -227,7 +227,7 @@ a { color: inherit; }
 @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* =====================================================================
-   EPISODE — the drama layer over a published replay (/watch/[slug]):
+   EPISODE: the drama layer over a published replay (/watch/[slug]):
    cold open, death beats, end recap. Overlays sit on the stage, above the
    skin pane but below nothing else (the stage is the whole show here).
    ===================================================================== */
@@ -348,7 +348,7 @@ a { color: inherit; }
 }
 
 /* =====================================================================
-   A · GROUP CHAT — a messaging thread, in the signature noir palette.
+   A · GROUP CHAT: a messaging thread, in the signature noir palette.
    ===================================================================== */
 .chat { --c-bubble: #17171c; --c-accent: #c41e1e; flex: 1; display: flex; flex-direction: column; min-height: 0; background: #0a0b10; transition: background .8s; position: relative; }
 .chat.night { background: radial-gradient(ellipse at top, #1a0b0e, #030304); }
@@ -476,7 +476,7 @@ img.mug { object-fit: cover; background: #2e3644; }
 }
 
 /* =====================================================================
-   B · CASE FILE — manila paper, typed testimony, redacted intercepts.
+   B · CASE FILE: manila paper, typed testimony, redacted intercepts.
    ===================================================================== */
 .casefile {
   --paper: #e4dac1; --ink: #211c15; --faint: #675c43; --evidence: #a6261c;
@@ -539,7 +539,7 @@ img.mug { object-fit: cover; background: #2e3644; }
 .cf-closed-stamp span { font-size: 12px; letter-spacing: .14em; }
 
 /* =====================================================================
-   C · TRANSCRIPT — line-numbered court deposition, typography-led.
+   C · TRANSCRIPT: line-numbered court deposition, typography-led.
    ===================================================================== */
 .transcript {
   --bone: #f2ede3; --oxblood: #6e1a1a; --graphite: #22201b; --seal: #9a6b1e;
@@ -579,7 +579,7 @@ img.mug { object-fit: cover; background: #2e3644; }
 .tr-verdict-sub { font-size: 12px; color: #6b614a; margin-top: 6px; font-style: italic; }
 
 /* =====================================================================
-   D · SIGNAL — instrument panel + suspicion network, signature noir palette.
+   D · SIGNAL: instrument panel + suspicion network, signature noir palette.
    ===================================================================== */
 .signal {
   --sg-ink: #e0e0e0; --sg-edge: #50505a; --sg-mafia: #c41e1e; --sg-cyan: #b5b5bd; --sg-susp: #c8762e;

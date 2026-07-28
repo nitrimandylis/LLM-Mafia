@@ -1,4 +1,4 @@
-# LLM Mafia — Replay Viewer
+# LLM Mafia Replay Viewer
 
 A web interface that dramatizes a finished LLM Mafia game. It reads the
 `events[]` stream from a game log and plays it back with dramatic pacing in one
@@ -68,4 +68,4 @@ mafia/events.py ─▶ ../game_log.json ─▶ app/api/log ─▶ lib/useReplay.
 
 `lib/useReplay.ts` is the shared engine (event cursor, pacing, play/pause,
 derived alive/dead). The four skins in `components/skins/` are pure
-presentation over the same engine — see `docs/superpowers/specs/` for the design.
+presentation over the same engine; see `docs/superpowers/specs/` for the design.

@@ -14,7 +14,7 @@ type Item =
   | { kind: "phase"; e: Extract<GameEvent, { type: "phase" }>; i: number }
   | { kind: "system"; e: GameEvent; i: number };
 
-// Stroke icons in the same vocabulary as the chrome's tab glyphs — color emoji
+// Stroke icons in the same vocabulary as the chrome's tab glyphs, color emoji
 // render differently per platform, so the UI draws its own.
 const ICON = {
   width: 14, height: 14, viewBox: "0 0 16 16", fill: "none",
@@ -195,14 +195,14 @@ function Ballot({
   votes: { actor: string; target: string }[];
   colorOf: (n: string) => string;
 }) {
-  // Tally targets, most-voted first — the ballot reads like message reactions.
+  // Tally targets, most-voted first, the ballot reads like message reactions.
   const tally = new Map<string, string[]>();
   for (const v of votes) {
     if (!tally.has(v.target)) tally.set(v.target, []);
     tally.get(v.target)!.push(v.actor);
   }
   const sorted = [...tally.entries()].sort((a, b) => b[1].length - a[1].length);
-  // Heat up the frontrunner's chip — only when they're strictly ahead.
+  // Heat up the frontrunner's chip, only when they're strictly ahead.
   const leading =
     sorted.length > 0 && (sorted.length === 1 || sorted[0][1].length > sorted[1][1].length)
       ? sorted[0][0]
@@ -230,13 +230,13 @@ function SystemRow({ e }: { e: GameEvent }) {
     case "elimination":
       return (
         <div className="chat-event death">
-          <b>{e.target}</b> was voted out — they were <span className="role">{e.role}</span>
+          <b>{e.target}</b> was voted out, they were <span className="role">{e.role}</span>
         </div>
       );
     case "night_kill":
       return e.saved ? null : (
         <div className="chat-event death">
-          <b>{e.target}</b> didn't survive the night — they were <span className="role">{e.role}</span>
+          <b>{e.target}</b> didn't survive the night, they were <span className="role">{e.role}</span>
         </div>
       );
     case "save":
@@ -244,13 +244,13 @@ function SystemRow({ e }: { e: GameEvent }) {
     case "detective_will":
       return (
         <div className="chat-event save">
-          {e.actor}&apos;s final notes were found: investigated {e.target} — <b>{e.result}</b>
+          {e.actor}&apos;s final notes were found: investigated {e.target}: <b>{e.result}</b>
         </div>
       );
     case "investigation":
       return (
         <div className="chat-event secret">
-          <SearchIcon /> {e.actor} investigated {e.target} — <b>{e.result}</b>
+          <SearchIcon /> {e.actor} investigated {e.target}: <b>{e.result}</b>
         </div>
       );
     case "game_over":

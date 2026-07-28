@@ -3,10 +3,10 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { GameEvent } from "@/lib/events";
-import { EPISODES, episodeAfter, type EpisodeMeta } from "@/lib/episodes";
+import { EPISODES, episodeAfter, caseNumber, type EpisodeMeta } from "@/lib/episodes";
 import EpisodePlayer from "@/components/EpisodePlayer";
 
-// Every episode is rendered at build time from the committed logs — the
+// Every episode is rendered at build time from the committed logs, the
 // deployed site ships no server code for this route.
 export const dynamicParams = false;
 
@@ -19,7 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const card = EPISODES.find((e) => e.slug === slug);
   if (!card) return {};
   return {
-    title: `${card.title} — LLM Mafia`,
+    // caseNumber shouts ("CASE 009"); the tab wants sentence case.
+    title: `LLM Mafia, ${caseNumber(slug).replace("CASE", "Case")}`,
     description: card.tagline,
   };
 }

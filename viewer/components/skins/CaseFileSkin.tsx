@@ -6,7 +6,7 @@ import { useStageScroll, type SkinProps } from "./types";
 import Mug from "./Mug";
 
 // Noir investigation board: you're the detective reading the case as it builds.
-// Signature move — intercepted mafia comms render as a DECLASSIFIED redaction
+// Signature move: intercepted mafia comms render as a DECLASSIFIED redaction
 // memo, the dramatic irony of a spectator log made literal.
 export default function CaseFileSkin({ state, active, title, caseNo }: SkinProps) {
   const { players, revealed, alive, deaths, phase, day, winner } = state;
@@ -45,7 +45,7 @@ export default function CaseFileSkin({ state, active, title, caseNo }: SkinProps
           <div className="cf-no">{caseNo ?? "CASE FILE"}</div>
           <div className="cf-title">{title ?? "THE TOWN MURDERS"}</div>
           <div className={`cf-sub ${phase}`}>
-            {phase === "day" ? "▣ DAY" : "☾ NIGHT"} {day || 1} — {phase === "day" ? "IN SESSION" : "AFTER DARK"}
+            {phase === "day" ? "▣ DAY" : "☾ NIGHT"} {day || 1} · {phase === "day" ? "IN SESSION" : "AFTER DARK"}
           </div>
         </header>
 
@@ -83,7 +83,7 @@ function CaseRow({ e }: { e: GameEvent | Ballot }) {
       return (
         <div className="cf-testimony accuse">
           <div className="cf-speaker">
-            {e.actor} <span className="cf-points">NAMES {e.target ?? "—"}</span>
+            {e.actor} <span className="cf-points">NAMES {e.target ?? "-"}</span>
           </div>
           <p>{e.text}</p>
         </div>
@@ -92,7 +92,7 @@ function CaseRow({ e }: { e: GameEvent | Ballot }) {
       return (
         <div className="cf-intercept">
           <div className="cf-intercept-head">
-            <span className="cf-declass">DECLASSIFIED</span> INTERCEPTED COMMS — {e.actor}
+            <span className="cf-declass">DECLASSIFIED</span> INTERCEPTED COMMS: {e.actor}
           </div>
           <p className="cf-redacted">{e.text}</p>
         </div>
@@ -113,7 +113,7 @@ function CaseRow({ e }: { e: GameEvent | Ballot }) {
     case "investigation":
       return (
         <div className="cf-report">
-          FIELD REPORT — {e.actor} examined {e.target}:{" "}
+          FIELD REPORT: {e.actor} examined {e.target}:{" "}
           <b className={e.result.toUpperCase() === "INNOCENT" ? "ok" : "bad"}>{e.result}</b>
         </div>
       );
@@ -122,11 +122,11 @@ function CaseRow({ e }: { e: GameEvent | Ballot }) {
     case "night_kill":
       return e.saved ? null : <Verdict label="FOUND SLAIN AT DAWN" name={e.target} role={e.role} />;
     case "save":
-      return <div className="cf-report foiled">ATTEMPT ON {e.target} FOILED — subject survives</div>;
+      return <div className="cf-report foiled">ATTEMPT ON {e.target} FOILED, subject survives</div>;
     case "detective_will":
       return (
         <div className="cf-report">
-          POSTHUMOUS EVIDENCE — {e.actor}&apos;s notes name {e.target}:{" "}
+          POSTHUMOUS EVIDENCE: {e.actor}&apos;s notes name {e.target}:{" "}
           <b className={e.result.toUpperCase() === "INNOCENT" ? "ok" : "bad"}>{e.result}</b>
         </div>
       );

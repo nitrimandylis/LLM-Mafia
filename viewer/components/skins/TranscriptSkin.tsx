@@ -11,7 +11,7 @@ export default function TranscriptSkin({ state, active }: SkinProps) {
   const { ref: scroller, onScroll } = useStageScroll<HTMLDivElement>(active, state.cursor);
 
   const items = withBallots(revealed);
-  let line = 0; // running deposition line number — only utterances get one
+  let line = 0; // running deposition line number, only utterances get one
 
   return (
     <div className={`transcript ${phase}`} ref={scroller} onScroll={onScroll}>
@@ -30,7 +30,7 @@ export default function TranscriptSkin({ state, active }: SkinProps) {
           <div className="tr-verdict">
             <div className="tr-seal">⚖</div>
             <div className="tr-verdict-text">
-              VERDICT — {winner === "mafia" ? "FOR THE MAFIA" : winner === "town" ? "FOR THE TOWN" : "NO RESOLUTION"}
+              VERDICT: {winner === "mafia" ? "FOR THE MAFIA" : winner === "town" ? "FOR THE TOWN" : "NO RESOLUTION"}
             </div>
             <div className="tr-verdict-sub">So entered into the record. Proceedings adjourned.</div>
           </div>
@@ -51,7 +51,7 @@ function Line({ e, no }: { e: GameEvent | Ballot; no?: number }) {
     case "phase":
       return (
         <div className="tr-section">
-          {e.phase === "day" ? `DAY ${e.day} — CONVENED` : `NIGHT ${e.day} — THE COURT RECESSES`}
+          {e.phase === "day" ? `DAY ${e.day}, CONVENED` : `NIGHT ${e.day}, THE COURT RECESSES`}
         </div>
       );
     case "statement":
@@ -99,7 +99,7 @@ function Line({ e, no }: { e: GameEvent | Ballot; no?: number }) {
       const tally = tallyVotes(e.votes);
       return (
         <div className="tr-exhibit">
-          <div className="tr-exhibit-cap">EXHIBIT — BALLOT OF THE ASSEMBLY</div>
+          <div className="tr-exhibit-cap">EXHIBIT: BALLOT OF THE ASSEMBLY</div>
           <table>
             <tbody>
               {tally.map(([t, v]) => (
@@ -117,27 +117,27 @@ function Line({ e, no }: { e: GameEvent | Ballot; no?: number }) {
     case "investigation":
       return (
         <div className="tr-finding">
-          SEALED FINDING — {e.actor} examined {e.target}, returned <b>{e.result}</b>.
+          SEALED FINDING: {e.actor} examined {e.target}, returned <b>{e.result}</b>.
         </div>
       );
     case "elimination":
       return (
         <div className="tr-struck">
-          STRICKEN FROM THE RECORD — <s>{e.target}</s>, found to be {e.role}, removed by vote of the assembly.
+          STRICKEN FROM THE RECORD: <s>{e.target}</s>, found to be {e.role}, removed by vote of the assembly.
         </div>
       );
     case "night_kill":
       return e.saved ? null : (
         <div className="tr-struck night">
-          FOUND DECEASED — <s>{e.target}</s>, {e.role}, entered into evidence at dawn.
+          FOUND DECEASED: <s>{e.target}</s>, {e.role}, entered into evidence at dawn.
         </div>
       );
     case "save":
-      return <div className="tr-finding">NOTED — an attempt upon {e.target} was prevented.</div>;
+      return <div className="tr-finding">NOTED: an attempt upon {e.target} was prevented.</div>;
     case "detective_will":
       return (
         <div className="tr-finding">
-          POSTHUMOUS EXHIBIT — the notes of {e.actor} record {e.target} as <b>{e.result}</b>.
+          POSTHUMOUS EXHIBIT: the notes of {e.actor} record {e.target} as <b>{e.result}</b>.
         </div>
       );
     default:

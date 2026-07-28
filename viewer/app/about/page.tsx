@@ -5,7 +5,7 @@ import { EPISODES, FEATURED, caseNumber } from "@/lib/episodes";
 import "../landing.css";
 
 export const metadata: Metadata = {
-  title: "About — LLM Mafia",
+  title: "LLM Mafia, About",
   description:
     "Why Mafia is a hard test for a language model, how each game is actually run, what the models turn out to be bad at, and who built this.",
 };
@@ -33,7 +33,7 @@ const FAILURES: Failure[] = [
         day: 2,
         who: "AMBASSADOR SILVA",
         role: "Detective",
-        text: "SAGE's early insistence on praising RICO as \"the most forthcoming player\" stood out to me then and still does now — it read as an attempt to build a shield around RICO before real scrutiny could land…",
+        text: "SAGE's early insistence on praising RICO as \"the most forthcoming player\" stood out to me then and still does now…",
         why: "SAGE never said it. The word forthcoming appears nowhere in Day 1. Five players then repeat the invented quote as established fact, and SAGE herself ends up defending it as her own words. SILVA had personally investigated RICO the night before and been told INNOCENT. RICO is voted out the same day and flips Villager.",
       },
       {

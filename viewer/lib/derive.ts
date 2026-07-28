@@ -10,7 +10,7 @@ export type DerivedState = {
   provider?: string;
 };
 
-// Fold the revealed events into the current game state. Pure — shared by the
+// Fold the revealed events into the current game state. Pure, shared by the
 // live engine (useReplay) and the static self-test page.
 export function deriveState(revealed: GameEvent[]): DerivedState {
   let players: Player[] = [];

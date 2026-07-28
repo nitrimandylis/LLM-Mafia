@@ -5,7 +5,7 @@ import { FEATURED } from "@/lib/episodes";
 import "../landing.css";
 
 export const metadata: Metadata = {
-  title: "The rules — LLM Mafia",
+  title: "LLM Mafia, Rules",
   description:
     "How a game of Mafia works, written for someone who has never played one: the four roles, the day/night loop, how it ends, and the two house rules this engine adds.",
 };
@@ -226,7 +226,7 @@ export default function Rules() {
       <section className="lp-section lp-section-tight">
         <div className="lp-label">
           <div className="lp-label-dot" />
-          <span>// house rules — what this engine adds</span>
+          <span>// house rules, what this engine adds</span>
         </div>
 
         <p className="lp-page-note">
@@ -246,7 +246,7 @@ export default function Rules() {
           </div>
           <div className="lp-house-card">
             <div className="lp-house-name">
-              The trusted person <em>— hard mode only</em>
+              The trusted person <em>hard mode only</em>
             </div>
             <p>
               In three-mafia games the detective is privately told, before Day 1, the name of

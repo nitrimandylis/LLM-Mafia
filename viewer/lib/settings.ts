@@ -9,7 +9,7 @@ export type SkinMeta = {
   swatch: [string, string, string];
 };
 
-// Single source of truth for the four designs — drives the switcher and homepage.
+// Single source of truth for the four designs, drives the switcher and homepage.
 export const SKINS: SkinMeta[] = [
   {
     id: "chat",

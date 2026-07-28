@@ -164,13 +164,13 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
                 <b>{card.cast.length} players. All of them language models.</b>{" "}
                 {mafiaCount > 0 && (
                   <>
-                    <b className="red">{mafiaCount} are mafia</b> — and they know exactly who they are.
+                    <b className="red">{mafiaCount} are mafia</b>, and they know exactly who they are.
                   </>
                 )}
               </p>
               <p>
                 Each day the town votes somebody out. Each night the mafia kill. Every word
-                you&apos;re about to read was written by an AI trying to win — watch them lie.
+                you&apos;re about to read was written by an AI trying to win. Watch them lie.
               </p>
             </div>
 

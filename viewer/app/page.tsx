@@ -5,9 +5,9 @@ import SiteFooter, { GITHUB } from "@/components/SiteFooter";
 import "./landing.css";
 
 export const metadata: Metadata = {
-  title: "LLM Mafia — every player is a language model",
+  title: "LLM Mafia",
   description:
-    "Watch AI players lie, accuse, and vote each other out — replayed as a group chat, a detective's case file, a court transcript, or a live suspicion graph.",
+    "Watch AI players lie, accuse, and vote each other out, replayed as a group chat, a detective's case file, a court transcript, or a live suspicion graph.",
 };
 
 // Real skins, pulled from viewer/lib/settings.ts (kept in sync with the app).
@@ -49,7 +49,7 @@ export default function Landing() {
           <div className="lp-tagline">NO HUMANS. PURE MODEL-VS-MODEL DECEPTION.</div>
 
           <p className="lp-desc">
-            Watch AI players lie, accuse, and vote each other out — replayed as a tense
+            Watch AI players lie, accuse, and vote each other out, replayed as a tense
             group chat, a detective&apos;s case file, a court transcript, or a live
             suspicion graph.
           </p>
@@ -74,10 +74,10 @@ export default function Landing() {
               <div className="lp-dot on" />
               <div className="lp-dot" />
               <div className="lp-dot" />
-              <span className="file">game_log.json — viewer</span>
+              <span className="file">game_log.json · viewer</span>
             </div>
             <div className="lp-term-body">
-              <div className="cmt">// replay — day 2 town meeting</div>
+              <div className="cmt">// replay: day 2 town meeting</div>
               <div>
                 <span className="lp-n-red">HOLMES</span>
                 <span className="meta"> › </span>
@@ -96,7 +96,7 @@ export default function Landing() {
               <div>
                 <span className="lp-n-red">SAGE</span>
                 <span className="meta"> › </span>
-                <span className="said">I agree with HOLMES — something is off.</span>
+                <span className="said">I agree with HOLMES, something is off.</span>
               </div>
               <div style={{ marginTop: 4 }}>
                 <span className="meta">❯</span>
@@ -120,11 +120,11 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── EPISODES — the case files ── */}
+      {/* ── EPISODES: the case files ── */}
       <section className="lp-section" id="cases">
         <div className="lp-label">
           <div className="lp-label-dot" />
-          <span>// the case files — {EPISODES.length} on record</span>
+          <span>// the case files, {EPISODES.length} on record</span>
         </div>
 
         {FEATURED && (
@@ -201,8 +201,8 @@ export default function Landing() {
             <div className="lp-card-preview pv-tx">
               <div className="row"><span className="ln">041</span><span><span className="q">Q.</span> Where were you on night one?</span></div>
               <div className="row"><span className="ln">042</span><span>A. Asleep. I have no role to hide.</span></div>
-              <div className="row"><span className="ln">043</span><span className="strike">PIP voted out — struck.</span></div>
-              <div className="row"><span className="ln">044</span><span>BALLOT EXHIBIT C — ARIA: 4</span></div>
+              <div className="row"><span className="ln">043</span><span className="strike">PIP voted out, struck.</span></div>
+              <div className="row"><span className="ln">044</span><span>BALLOT EXHIBIT C · ARIA: 4</span></div>
             </div>
           </SkinCard>
 
@@ -231,7 +231,7 @@ export default function Landing() {
       </section>
 
       {/* ── PIPELINE ── */}
-      {/* No eyebrow here — the big statement heading leads the section itself. */}
+      {/* No eyebrow here; the big statement heading leads the section itself. */}
       <section className="lp-section pipeline">
         <div className="lp-pipe-grid">
           <div>
@@ -241,8 +241,8 @@ export default function Landing() {
               The viewer dramatizes.
             </div>
             <p className="lp-pipe-p">
-              A Python engine runs the full Mafia game — roles, reasoning, voting, night
-              kills — and writes a structured <code>events[]</code> stream to{" "}
+              A Python engine runs the full Mafia game (roles, reasoning, voting, night
+              kills) and writes a structured <code>events[]</code> stream to{" "}
               <code>game_log.json</code>. The Next.js viewer reads that same file and
               replays it in four cinematic styles.
             </p>
@@ -251,7 +251,7 @@ export default function Landing() {
               <div className="lp-step">
                 <span className="num">01</span>
                 <span className="txt">
-                  Run <code>python main.py</code> — the LLMs play a full game
+                  Run <code>python main.py</code>, the LLMs play a full game
                 </span>
               </div>
               <div className="lp-step">
@@ -262,7 +262,7 @@ export default function Landing() {
               </div>
               <div className="lp-step">
                 <span className="num">03</span>
-                <span className="txt">Open the viewer — pick a style — hit play</span>
+                <span className="txt">Open the viewer, pick a style, hit play</span>
               </div>
             </div>
           </div>
@@ -300,7 +300,7 @@ function RevealedTag() {
   );
 }
 
-// Ran with 3+ mafia — the town starts further behind than the usual two.
+// Ran with 3+ mafia, the town starts further behind than the usual two.
 function HardTag() {
   return (
     <span
@@ -312,7 +312,7 @@ function HardTag() {
   );
 }
 
-// Spoiler-free by design: days, body count, cast size — never the winner.
+// Spoiler-free by design: days, body count, cast size, never the winner.
 function EpisodeMetaLine({ ep }: { ep: EpisodeCard }) {
   return (
     <div className="lp-ep-meta">

@@ -12,7 +12,7 @@ async function tryRead(p: string) {
     const json = JSON.parse(await readFile(p, "utf8"));
     if (Array.isArray(json.events) && json.events.length > 0) return json;
   } catch {
-    /* missing or malformed — fall through */
+    /* missing or malformed, fall through */
   }
   return null;
 }

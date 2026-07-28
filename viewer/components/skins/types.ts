@@ -19,11 +19,11 @@ export function useStageScroll<T extends HTMLElement>(active: boolean, dep: numb
   const saved = useRef(0);
   const wasActive = useRef(false);
   // Whether to follow new content to the bottom. Flipped off when the user
-  // scrolls up, back on when they return to the bottom — so manual scrolling
+  // scrolls up, back on when they return to the bottom, so manual scrolling
   // isn't yanked back on every new event.
   const stick = useRef(true);
 
-  // Follow live content to the bottom — only for the view that's on screen,
+  // Follow live content to the bottom, only for the view that's on screen,
   // and only while the user is parked at the bottom.
   useEffect(() => {
     if (!active) return;

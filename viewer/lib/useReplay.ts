@@ -5,7 +5,7 @@ import type { GameEvent, Player } from "./events";
 import { deriveState } from "./derive";
 
 // Dwell time (ms) AFTER an event is shown, before the next reveals. This is the
-// whole "drama" knob — kills/eliminations hang, votes snap by. Scaled by speed.
+// whole "drama" knob: kills/eliminations hang, votes snap by. Scaled by speed.
 const DELAY: Record<GameEvent["type"], number> = {
   game_start: 500,
   phase: 1500,

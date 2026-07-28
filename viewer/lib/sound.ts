@@ -1,6 +1,6 @@
 "use client";
 
-// Synthesized stings for the episode player — no audio assets, one shared
+// Synthesized stings for the episode player, no audio assets, one shared
 // AudioContext. Browsers only allow audio after a user gesture, so
 // unlockAudio() is called from the cold-open BEGIN click (and Play).
 // ponytail: plain oscillators with decay envelopes; swap for samples only if
@@ -25,7 +25,7 @@ export function unlockAudio() {
   if (typeof window === "undefined") return;
   if (!ctx) {
     const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AC) return; // no WebAudio — episodes just play silently
+    if (!AC) return; // no WebAudio, episodes just play silently
     ctx = new AC();
   }
   void ctx.resume();

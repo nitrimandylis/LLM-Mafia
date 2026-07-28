@@ -1,6 +1,6 @@
 import manifest from "@/public/logs/manifest.json";
 
-// Spoiler-free card data written by tools/publish_game.py — never the winner,
+// Spoiler-free card data written by tools/publish_game.py, never the winner,
 // never anyone's role.
 export type EpisodeCard = {
   slug: string;
@@ -12,7 +12,7 @@ export type EpisodeCard = {
   // true when the game was recorded with --reveal-secrets (mafia comms and
   // detective checks are in the replay)
   revealed?: boolean;
-  // true when the game ran with 3+ mafia — a harder setup for the town
+  // true when the game ran with 3+ mafia, a harder setup for the town
   hard?: boolean;
   // which backend played the game ("nvidia" | "claude" | "lm-studio")
   provider?: string;
@@ -25,7 +25,7 @@ export const PROVIDER_COLORS: Record<string, string> = {
   "lm-studio": "#8a7ff0",
 };
 
-// GM-written packaging baked into each published log. The recap spoils —
+// GM-written packaging baked into each published log. The recap spoils,
 // it's only shown on the end-of-replay card.
 export type EpisodeMeta = { title: string; tagline: string; recap: string };
 

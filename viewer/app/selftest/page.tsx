@@ -1,6 +1,6 @@
 "use client";
 
-// Static render of all four skins against the full sample log — every event
+// Static render of all four skins against the full sample log, every event
 // revealed at once. Doubles as headless verification (curl + grep this route)
 // and a one-glance visual QA aid. Not part of the normal viewer flow.
 
@@ -35,7 +35,7 @@ function stateAt(cursor: number): ReplayState {
 export default function SelfTest() {
   const full = stateAt(events.length);
   // A mid-game cursor (just past the last accusation) exercises the in-progress
-  // paths — live ballots, partial graph — that the final frame hides.
+  // paths (live ballots, partial graph) that the final frame hides.
   const lastSpeechIdx = events.reduce(
     (acc, e, i) => (e.type === "accusation" ? i : acc),
     0

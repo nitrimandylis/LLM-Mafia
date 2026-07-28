@@ -9,7 +9,7 @@ import { useStageScroll, type SkinProps } from "./types";
 // (accusations & votes) the harder signal. Everything accumulates over the
 // replay so the web only grows. Node size = attention aimed at a player,
 // emphasised by suspicion. Mafia identities stay hidden until a death reveals
-// them — and all of them ignite at the final verdict.
+// them, and all of them ignite at the final verdict.
 const R = 38; // graph radius in viewBox units (centre 50,50)
 
 export default function SignalSkin({ state, active }: SkinProps) {
@@ -56,7 +56,7 @@ export default function SignalSkin({ state, active }: SkinProps) {
   // Directed interaction edges (actor → target). `dialogue` = questions/answers
   // (who's engaging whom), `suspicion` = accusations/votes (the hot signal).
   // Both accumulate across the whole replay, so adding statements never clears
-  // the web — it only ever grows.
+  // the web, it only ever grows.
   type Edge = { dialogue: number; suspicion: number };
   const edges = new Map<string, Edge>();
   const incoming = new Map<string, number>();   // suspicion aimed at a player (→ MOST SUSPECTED)
@@ -87,7 +87,7 @@ export default function SignalSkin({ state, active }: SkinProps) {
         <span className="sg-metric"><i>{alive.size}</i> ALIVE</span>
         <span className="sg-metric"><i>{deaths.size}</i> DOWN</span>
         <span className="sg-metric wide">
-          MOST SUSPECTED <i>{mostSuspected ? mostSuspected[0] : "—"}</i>
+          MOST SUSPECTED <i>{mostSuspected ? mostSuspected[0] : "-"}</i>
         </span>
         <span className="sg-legend">
           <em className="line asks" /> asks <em className="line suspects" /> suspects <em className="mafia" /> mafia
@@ -179,7 +179,7 @@ function FeedLine({ e }: { e: GameEvent }) {
     elimination: ["✕", "down"],
     night_kill: ["☾", "down"],
     save: ["+", "save"],
-    phase: ["—", "phase"],
+    phase: ["·", "phase"],
     game_over: ["■", "end"],
   };
   const [glyph, cls] = map[e.type] ?? ["·", ""];
@@ -201,8 +201,8 @@ function summarize(e: GameEvent): string {
     case "vote": return `${e.actor} votes ${e.target}`;
     case "mafia_chat": return `${e.actor} [mafia]: ${e.text}`;
     case "investigation": return `${e.actor} probes ${e.target} → ${e.result}`;
-    case "elimination": return `${e.target} eliminated — ${e.role}`;
-    case "night_kill": return e.saved ? `attack on ${e.target} failed` : `${e.target} killed — ${e.role}`;
+    case "elimination": return `${e.target} eliminated: ${e.role}`;
+    case "night_kill": return e.saved ? `attack on ${e.target} failed` : `${e.target} killed: ${e.role}`;
     case "save": return `${e.target} saved`;
     case "detective_will": return `${e.actor}'s notes found: ${e.target} is ${e.result}`;
     case "game_over": return `${e.winner.toUpperCase()} WINS`;

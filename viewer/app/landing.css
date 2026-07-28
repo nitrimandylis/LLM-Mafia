@@ -1,4 +1,4 @@
-/* LLM Mafia landing page — adapted from the Claude Design "LLM Mafia Landing v2"
+/* LLM Mafia landing page, adapted from the Claude Design "LLM Mafia Landing v2"
    (blood / modern palette). Self-contained: scoped under .lp so it never touches
    the viewer chrome in globals.css. */
 
@@ -23,10 +23,10 @@
 /* ── NEON NOIR ATMOSPHERE ───────────────────────────────
    Layer 1 (.lp::before): the lights. Hot red neon signage glow over the
    wordmark/CTA and the case files, answered by one cold gas-lamp wash on the
-   terminal side — the classic two-tone neon-noir key/fill. One continuous
+   terminal side, the classic two-tone neon-noir key/fill. One continuous
    page layer so nothing clips at section boundaries.
-   Layer 2 (.lp::after): the tube. A fixed CRT pass — scanlines, phosphor
-   grain, vignette, and a faint mains flicker — over the whole broadcast. */
+   Layer 2 (.lp::after): the tube. A fixed CRT pass: scanlines, phosphor
+   grain, vignette, and a faint mains flicker, over the whole broadcast. */
 .lp::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background:
@@ -188,7 +188,7 @@
 .lp-label-dot { width: 8px; height: 8px; background: var(--neon); box-shadow: 0 0 10px rgba(255, 42, 42, 0.7); animation: lp-pulse 2s ease-in-out infinite; }
 .lp-label span { font-size: 11px; letter-spacing: 4px; color: var(--neon); text-transform: uppercase; text-shadow: 0 0 10px rgba(255, 42, 42, 0.35); }
 
-/* ── EPISODES — the case files ──────────────────────── */
+/* ── EPISODES: the case files ──────────────────────── */
 /* The featured case is a wide dossier banner; earlier cases file underneath
    as smaller posters. Card copy is spoiler-free (GM tagline, no winner). */
 .lp-ep-featured {
@@ -198,7 +198,7 @@
   transition: border-color 0.2s; position: relative; overflow: hidden;
 }
 .lp-ep-featured::after {
-  /* faint red wash bleeding from the corner — the "tonight's feature" glow */
+  /* faint red wash bleeding from the corner, the "tonight's feature" glow */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(600px 300px at 100% 0%, rgba(196, 30, 30, 0.09), transparent 70%);
 }

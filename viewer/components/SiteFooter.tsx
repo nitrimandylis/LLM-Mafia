@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const GITHUB = "https://github.com/nitrimandylis/LLM-Mafia";
 
-// Shared across the landing, /rules and /about — all three render inside .lp,
+// Shared across the landing, /rules and /about, all three render inside .lp,
 // so the styles come from landing.css.
 export default function SiteFooter() {
   return (

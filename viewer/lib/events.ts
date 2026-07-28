@@ -1,4 +1,4 @@
-// TypeScript mirror of the Python event schema (mafia/events.py) — the source
+// TypeScript mirror of the Python event schema (mafia/events.py), the source
 // of truth. `tools/make_sample_log.py` (check_schema_parity) fails if the
 // event-type lists here and in events.py drift apart.
 
@@ -50,7 +50,7 @@ export function isSpeech(
   return SPEECH_TYPES.has(e.type);
 }
 
-// A run of consecutive votes — skins render these as one tally, not N lines.
+// A run of consecutive votes; skins render these as one tally, not N lines.
 export type Ballot = { type: "ballot"; votes: { actor: string; target: string }[] };
 
 // Collapse consecutive `vote` events into a single Ballot; pass everything else

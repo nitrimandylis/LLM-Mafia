@@ -18,7 +18,7 @@ const grotesk = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://llm-mafia.vercel.app"),
-  title: "LLM Mafia — Replay",
+  title: "LLM Mafia",
   description: "Dramatized replay of an all-LLM game of Mafia.",
   openGraph: {
     title: "LLM Mafia",
