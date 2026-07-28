@@ -30,6 +30,17 @@ DEFAULT_CLAUDE_MODEL = "sonnet"
 CLAUDE_SEAT_MODELS = ["haiku", "sonnet", "opus"]
 DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
 
+# A single failed call is a glitch, and query_model absorbs it with
+# "*X remains silent*". Three in a row is the backend being gone — a hit
+# subscription limit, a dropped network, a broken CLI. Without this the game
+# runs to completion with every player mumbling and saves a log that looks
+# finished and is worthless.
+MAX_CONSECUTIVE_FAILURES = 3
+
+
+class BackendUnavailable(RuntimeError):
+    """Raised when MAX_CONSECUTIVE_FAILURES backend calls fail in a row."""
+
 
 def short_model_name(model_id: str) -> str:
     """Trim a Claude model id down to what the viewer badges show:
@@ -75,6 +86,7 @@ class MafiaGame:
 
         self.use_nvidia = nvidia_api_key is not None
         self.use_claude = use_claude
+        self.consecutive_failures = 0
         if self.use_claude:
             self.model = model_override or DEFAULT_CLAUDE_MODEL
             self._lm_client = None  # claude backend shells out, no HTTP client
@@ -1094,6 +1106,10 @@ Here is the game history so far:
                 response_text = f"*{player.name} remains silent*"
             return response_text
 
+        except BackendUnavailable:
+            # The backend is gone, not glitching. Let this reach main.py so the
+            # run aborts instead of saving a log full of silent players.
+            raise
         except Exception as e:
             self.log(f"  [ERROR querying {seat_model}: {e}]", "red", public=False)
             return f"*{player.name} remains silent*"
@@ -1107,15 +1123,26 @@ Here is the game history so far:
         # name-only call truncated, the retry must not truncate again.
         # (Claude CLI backend has no max_tokens knob; the cap applies to the
         # OpenAI-compatible backends only.)
-        return call_llm(
-            self._lm_client, model or self.model, messages,
-            use_nvidia=self.use_nvidia, schema_key="response",
-            max_tokens=max_tokens, private_reasoning=True,
-            use_claude=self.use_claude,
-            on_retry=lambda wait: self.log(
-                f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
-            ),
-        )
+        try:
+            response = call_llm(
+                self._lm_client, model or self.model, messages,
+                use_nvidia=self.use_nvidia, schema_key="response",
+                max_tokens=max_tokens, private_reasoning=True,
+                use_claude=self.use_claude,
+                on_retry=lambda wait: self.log(
+                    f"  [429 rate limit — retrying in {wait:.0f}s]", "yellow", public=False
+                ),
+            )
+        except Exception as error:
+            self.consecutive_failures += 1
+            if self.consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
+                raise BackendUnavailable(
+                    f"{self.consecutive_failures} backend calls failed in a row; "
+                    f"last error: {error}"
+                ) from error
+            raise
+        self.consecutive_failures = 0
+        return response
 
     def extract_vote(
         self, response: str, valid_targets: List[str], prefer_first: bool = False
@@ -1255,6 +1282,8 @@ Here is the game history so far:
                     else:
                         self.log(f"   {m.name}: [no response]", "red", public=False)
                         round_choices.append(None)
+                except BackendUnavailable:
+                    raise
                 except Exception as e:
                     self.log(f"   {m.name}: [error: {e}]", "red", public=False)
                     round_choices.append(None)

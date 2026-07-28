@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 from dotenv import load_dotenv
-from mafia.game import MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_CLAUDE_MODEL, DEFAULT_GM_MODEL, CLAUDE_SEAT_MODELS, short_model_name
+from mafia.game import BackendUnavailable, MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_CLAUDE_MODEL, DEFAULT_GM_MODEL, CLAUDE_SEAT_MODELS, short_model_name
 from mafia.game_master import resolve_claude_model
 
 load_dotenv()
@@ -140,5 +140,14 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print("\n\n⚠️  Game interrupted by user")
+        raise SystemExit(130)
+    except BackendUnavailable as e:
+        # No log is written: a game that lost its backend has silent players
+        # and no winner. Exit 2 so a batch runner can tell "quota/network gone"
+        # apart from an ordinary crash and wait instead of retrying.
+        print(f"\n🚫 Backend unavailable: {e}")
+        print("   Game discarded (no log written).")
+        raise SystemExit(2)
     except Exception as e:
         print(f"\n❌ Game crashed: {e}")
+        raise SystemExit(1)
