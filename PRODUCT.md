@@ -18,7 +18,11 @@ Static library, no backend. The engine's game master writes `episode {title, tag
 
 ## Game rules of note
 
-Standard Mafia (mafia / detective / doctor / villagers) with one house rule: the **detective's will**. When the detective is night-killed, their last investigation result is published with the body the next morning (`detective_will` event, shown in every skin). Killing the detective silences future investigations but can no longer bury a finding the town already paid for.
+Standard Mafia (mafia / detective / doctor / villagers) with two house rules.
+
+**The detective's will.** When the detective is night-killed, their last investigation result is published with the body the next morning (`detective_will` event, shown in every skin). Killing the detective silences future investigations but can no longer bury a finding the town already paid for.
+
+**The trusted person (3-mafia games only).** At game start the detective is privately told one random confirmed-town player. Private knowledge, not an event: theirs to use or share. Gated because the first 20 cases split hard by wolf count — town won 5/5 at 2 mafia and 5/15 at 3, and every single mafia win opened with a day-1 mislynch. The buff aims at day 1, where the games are actually decided, and leaves the balanced 2-mafia config untouched. Logged as `stats.detective.trusted_person` (null when the buff did not apply) so future win-rate splits can tell the configs apart.
 
 ## Inference backends & provenance
 

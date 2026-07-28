@@ -321,7 +321,7 @@ function HardTag() {
   return (
     <span
       className="lp-ep-hard"
-      title="Hard mode: three mafia instead of the usual two. The town has far less room to misfire."
+      title="Hard mode: three mafia instead of the usual two. The town has far less room to misfire, so the detective starts knowing one player who is confirmed innocent."
     >
       HARD MODE
     </span>

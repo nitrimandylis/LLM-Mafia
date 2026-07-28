@@ -94,6 +94,8 @@ class MafiaGame:
         self.detective_investigated: set = set()
         # Latest (target, result) — revealed as a public "will" if the detective dies
         self.last_investigation: Optional[Tuple[str, str]] = None
+        # 3-mafia only: one confirmed-town name the detective starts knowing
+        self.trusted_person: Optional[str] = None
         self.day_summaries: Dict[int, str] = {}
         self.no_kill_nights = 0
         self.episode: Dict[str, str] = {}
@@ -143,6 +145,24 @@ class MafiaGame:
         for player in shuffled:
             if player.role is None:
                 player.role = Role.VILLAGER
+
+        # Town information boost, 3-mafia games only: the detective starts
+        # knowing one random confirmed-town player. 2-mafia town won 5/5 across
+        # the published cases, 3-mafia won 5/15, and every mafia win opened with
+        # a day-1 mislynch — so the buff is aimed at day 1 and gated to 3 wolves.
+        det = next((p for p in self.players if p.role == Role.DETECTIVE), None)
+        if mafia_count >= 3 and det:
+            candidates = [
+                p.name for p in self.players
+                if p.role != Role.MAFIA and p.name != det.name
+            ]
+            if candidates:
+                self.trusted_person = random.choice(candidates)
+                self.add_private_note(
+                    det,
+                    f"Game start: {self.trusted_person} is confirmed NOT mafia. "
+                    "You may use or share this as you see fit.",
+                )
 
         self.log("\n🎭 ROLES ASSIGNED", "bold")
         for p in self.players:
@@ -1255,6 +1275,7 @@ Here is the game history so far:
                 "survived": det.alive,
                 "investigated": sorted(self.detective_investigated),
                 "mafia_found": found,
+                "trusted_person": self.trusted_person,
             }
 
         kills = [k for k in self.night_kill_history if not k["saved"]]
