@@ -42,6 +42,13 @@ def _schema(key: str) -> dict:
     }
 
 
+# Which build each `--model` alias actually ran, e.g. "sonnet" -> "claude-sonnet-5".
+# Aliases move whenever a new model ships (two new opuses and one new sonnet
+# landed while cases 005-020 were recorded), so the alias alone does not say who
+# played. call_claude fills this in; MafiaGame stamps it into the log.
+RESOLVED_CLAUDE_MODELS: Dict[str, str] = {}
+
+
 def call_claude(model: str, messages: List[Dict]) -> str:
     """One `claude -p` subprocess call, billed to the Claude subscription.
     Fully isolated: no tools, no settings/CLAUDE.md/hooks, no MCP — a pure
@@ -63,12 +70,40 @@ def call_claude(model: str, messages: List[Dict]) -> str:
             "--tools", "",
             "--setting-sources", "",
             "--strict-mcp-config",
+            # json (rather than plain text) so the reply arrives with the name
+            # of the build that answered, under "modelUsage"
+            "--output-format", "json",
         ],
         capture_output=True, text=True, timeout=180,
     )
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or f"claude exited {result.returncode}")
-    return result.stdout.strip()
+
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        # A game is expensive to re-run, so don't lose a reply over a parsing
+        # hiccup — take the raw text and skip the model name this time.
+        return result.stdout.strip()
+
+    # One call uses one model, so modelUsage holds a single key.
+    for resolved_name in payload.get("modelUsage", {}):
+        RESOLVED_CLAUDE_MODELS[model] = resolved_name
+    return payload.get("result", "").strip()
+
+
+def resolve_claude_model(alias: str) -> str:
+    """Which build an alias points at right now, e.g. "opus" -> "claude-opus-4-8".
+    Costs one throwaway call, so the startup banner can name the real model
+    instead of the alias. Falls back to the alias if the call fails."""
+    try:
+        call_claude(alias, [
+            {"role": "system", "content": "Reply with one word."},
+            {"role": "user", "content": "Say ready."},
+        ])
+    except Exception:
+        return alias
+    return RESOLVED_CLAUDE_MODELS.get(alias, alias)
 
 
 def call_llm(

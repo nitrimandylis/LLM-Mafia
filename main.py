@@ -2,7 +2,8 @@ import argparse
 import json
 import os
 from dotenv import load_dotenv
-from mafia.game import MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_CLAUDE_MODEL, DEFAULT_GM_MODEL
+from mafia.game import MafiaGame, LM_STUDIO_URL, DEFAULT_MODEL, DEFAULT_NVIDIA_MODEL, DEFAULT_CLAUDE_MODEL, DEFAULT_GM_MODEL, CLAUDE_SEAT_MODELS, short_model_name
+from mafia.game_master import resolve_claude_model
 
 load_dotenv()
 
@@ -89,7 +90,11 @@ if __name__ == "__main__":
     if args.claude:
         model = args.model  # None → seats cycle haiku/sonnet/opus, GM on sonnet
         max_workers = args.max_workers
-        seat_desc = model or "haiku/sonnet/opus mix"
+        # Aliases move when a new model ships, so ask the CLI which builds are
+        # actually about to play. This also pre-fills the map the log is
+        # stamped from, covering any seat that never gets a turn.
+        aliases = [model] if model else CLAUDE_SEAT_MODELS
+        seat_desc = ", ".join(short_model_name(resolve_claude_model(a)) for a in aliases)
         print(f"🔌 Backend: Claude CLI  |  Model: {seat_desc}  |  Workers: {max_workers}\n")
     elif args.nvidia:
         model = args.model or DEFAULT_NVIDIA_MODEL

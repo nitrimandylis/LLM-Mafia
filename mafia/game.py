@@ -10,7 +10,12 @@ from typing import Dict, List, Optional, Tuple
 from openai import OpenAI
 
 from mafia.events import EventLog, seat_color
-from mafia.game_master import GameMaster, call_llm, episode_inputs_from_events
+from mafia.game_master import (
+    RESOLVED_CLAUDE_MODELS,
+    GameMaster,
+    call_llm,
+    episode_inputs_from_events,
+)
 from mafia.game_state import build_day_summary
 from mafia.player import Player, Role, load_players_from_file
 
@@ -24,6 +29,22 @@ DEFAULT_CLAUDE_MODEL = "sonnet"
 # arguments) — mixing tiers restores the dissent mixed-model games had
 CLAUDE_SEAT_MODELS = ["haiku", "sonnet", "opus"]
 DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
+
+
+def short_model_name(model_id: str) -> str:
+    """Trim a Claude model id down to what the viewer badges show:
+    claude-sonnet-5 -> sonnet-5, claude-haiku-4-5-20251001 -> haiku-4.5.
+    Anything that doesn't fit that shape is returned untouched."""
+    parts = model_id.split("-")
+    if parts[0] == "claude":
+        parts = parts[1:]
+    if len(parts[-1]) == 8 and parts[-1].isdigit():
+        parts = parts[:-1]  # drop the snapshot date
+    if len(parts) < 2:
+        return model_id
+    family = parts[0]
+    version = ".".join(parts[1:])
+    return f"{family}-{version}"
 
 
 class MafiaGame:
@@ -716,6 +737,7 @@ class MafiaGame:
             gc.collect()
 
         # Game over
+        self.stamp_resolved_models()
         self.log("\n\n🏁 GAME OVER", "bold")
         survivors = [p.name for p in self.players if p.alive]
         self.emit("game_over", winner=winner or "timeout", survivors=survivors)
@@ -781,6 +803,20 @@ class MafiaGame:
         if private and not self.reveal_secrets:
             return
         self.events.emit(type, **fields)
+
+    def stamp_resolved_models(self):
+        """Rewrite the game_start seats from the alias we asked the CLI for
+        ("sonnet") to the build that actually answered ("sonnet-5"). game_start
+        is emitted before the map is filled, so this runs at game over."""
+        if not self.use_claude:
+            return
+        for event in self.events.to_list():
+            if event["type"] != "game_start":
+                continue
+            for seat in event["players"]:
+                resolved = RESOLVED_CLAUDE_MODELS.get(seat["model"])
+                if resolved:
+                    seat["model"] = short_model_name(resolved)
 
     def add_private_note(self, player: Player, note: str):
         """Record something only this player knows (e.g. a detective result).
