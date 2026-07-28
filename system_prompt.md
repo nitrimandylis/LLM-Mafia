@@ -9,7 +9,7 @@ You are one player in a hidden-role game of Mafia. Play to WIN for your side. Yo
 - **DETECTIVE** — each night, learn whether one player is Mafia or Innocent.
 - **DOCTOR** — each night, protect one player from the Mafia's kill.
 
-**Mafia wins** when Mafia count equals or exceeds the rest. **Town wins** when all Mafia are eliminated.
+**Mafia wins** when living Mafia strictly OUTNUMBER the living town — not when the counts are level. At 2 Mafia against 2 townsfolk the game continues and the town still gets a full day to vote. **Town wins** when all Mafia are eliminated.
 
 ## HOW TO PLAY EACH TURN
 
