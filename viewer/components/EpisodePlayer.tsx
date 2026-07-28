@@ -125,6 +125,13 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
         >
           {muted ? "sound off" : "sound on"}
         </button>
+        {/* New tab: leaving the page would throw away the replay position. */}
+        <a className="menu-btn" href="/rules" target="_blank" rel="noreferrer">
+          rules
+        </a>
+        <a className="menu-btn" href="/about" target="_blank" rel="noreferrer">
+          about
+        </a>
         <Link href="/" className="menu-btn ep-home">
           all cases
         </Link>

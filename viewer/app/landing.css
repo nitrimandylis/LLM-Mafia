@@ -87,7 +87,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 64px clamp(40px, 6vw, 96px);
+  padding: 64px clamp(22px, 6vw, 96px);
   gap: clamp(32px, 4vw, 80px);
   position: relative;
   overflow: hidden;
@@ -182,8 +182,8 @@
 }
 
 /* ── SECTION LABEL ──────────────────────────────────── */
-.lp-section { padding: 120px clamp(40px, 6vw, 96px); position: relative; }
-.lp-section.pipeline { padding: 80px clamp(40px, 6vw, 96px) 120px; }
+.lp-section { padding: 120px clamp(22px, 6vw, 96px); position: relative; }
+.lp-section.pipeline { padding: 80px clamp(22px, 6vw, 96px) 120px; }
 .lp-label { display: flex; align-items: center; gap: 12px; margin-bottom: 56px; }
 .lp-label-dot { width: 8px; height: 8px; background: var(--neon); box-shadow: 0 0 10px rgba(255, 42, 42, 0.7); animation: lp-pulse 2s ease-in-out infinite; }
 .lp-label span { font-size: 11px; letter-spacing: 4px; color: var(--neon); text-transform: uppercase; text-shadow: 0 0 10px rgba(255, 42, 42, 0.35); }
@@ -298,15 +298,19 @@
 
 /* ── PIPELINE ───────────────────────────────────────── */
 .lp-pipe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1100px; align-items: start; }
+/* Grid children default to min-width:auto, so a long code token in a step
+   pushes the whole page wider than the phone. Let them shrink and wrap. */
+.lp-pipe-grid > * { min-width: 0; }
 .lp-pipe-h { font-family: var(--grotesk); font-size: clamp(22px, 2.8vw, 36px); font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 24px; }
 .lp-pipe-p { font-size: 14px; color: #666; line-height: 1.8; margin-bottom: 32px; text-wrap: pretty; }
 .lp-steps { display: flex; flex-direction: column; gap: 16px; }
 .lp-step { display: flex; align-items: baseline; gap: 12px; }
 .lp-step .num { color: var(--accent); font-size: 11px; font-weight: 700; flex: none; width: 20px; }
-.lp-step .txt { font-size: 13px; color: #888; }
+.lp-step .txt { font-size: 13px; color: #888; min-width: 0; overflow-wrap: anywhere; }
 .lp-step .txt code { color: #ccc; font-family: var(--mono); }
 .lp-qs-label { font-size: 11px; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-bottom: 12px; }
-.lp-qs { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 24px; font-size: 12px; line-height: 2.2; }
+/* Commands are unbreakable tokens: let the block scroll instead of the page. */
+.lp-qs { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 24px; font-size: 12px; line-height: 2.2; overflow-x: auto; }
 .lp-qs .cmt { color: #888; }
 .lp-qs .pr { color: #888; }
 .lp-qs code { color: #ccc; font-family: var(--mono); }
@@ -314,13 +318,13 @@
 
 /* ── FOOTER ─────────────────────────────────────────── */
 .lp-footer {
-  border-top: 1px solid #12141c; padding: 48px clamp(40px, 6vw, 96px);
+  border-top: 1px solid #12141c; padding: 48px clamp(22px, 6vw, 96px);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
 }
 .lp-footer .fmark { display: flex; align-items: baseline; gap: 8px; font-family: var(--grotesk); font-weight: 800; font-size: 18px; }
 .lp-footer .fmark .l1 { color: #fff; }
 .lp-footer .fmark .l2 { color: var(--accent); }
-.lp-footer .fnav { display: flex; align-items: center; gap: 24px; font-size: 11px; }
+.lp-footer .fnav { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 24px; font-size: 11px; }
 .lp-footer .fnav a { color: #888; letter-spacing: 1px; transition: color 0.2s; }
 .lp-footer .fnav a:hover { color: var(--accent); }
 .lp-footer .sep { color: #222; }
@@ -344,11 +348,11 @@
    Both render inside .lp, so they inherit the tokens, grain and scanlines
    above and only need their own blocks. */
 
-.lp-subnav { padding: 28px clamp(40px, 6vw, 96px) 0; }
+.lp-subnav { padding: 28px clamp(22px, 6vw, 96px) 0; }
 .lp-back { font-size: 11px; letter-spacing: 3px; color: #888; transition: color 0.2s; }
 .lp-back:hover { color: var(--accent); }
 
-.lp-page-head { padding: 56px clamp(40px, 6vw, 96px) 0; max-width: 900px; }
+.lp-page-head { padding: 56px clamp(22px, 6vw, 96px) 0; max-width: 900px; }
 .lp-page-head .lp-label { margin-bottom: 28px; }
 .lp-page-h1 {
   font-family: var(--grotesk); font-size: clamp(34px, 5.5vw, 64px); font-weight: 800;
@@ -357,7 +361,7 @@
 .lp-page-h2 { font-family: var(--grotesk); font-size: clamp(22px, 3vw, 34px); font-weight: 700; color: #fff; margin: 0 0 28px; }
 .lp-page-lede { font-size: 15px; line-height: 1.9; color: #a8a8a8; margin: 0; max-width: 66ch; text-wrap: pretty; }
 .lp-page-note { font-size: 14px; line-height: 1.8; color: #888; margin: -28px 0 40px; max-width: 66ch; text-wrap: pretty; }
-.lp-section-tight { padding: 80px clamp(40px, 6vw, 96px); }
+.lp-section-tight { padding: 80px clamp(22px, 6vw, 96px); }
 .lp-section-tight .lp-label { margin-bottom: 40px; }
 .lp-page-cta { text-align: left; }
 
