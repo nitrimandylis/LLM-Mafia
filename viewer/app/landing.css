@@ -462,3 +462,66 @@
 @media (max-width: 640px) {
   .lp-mech-row { grid-template-columns: 1fr; gap: 10px; }
 }
+
+/* ══ /wallpapers ═══════════════════════════════════════
+   Five design groups, each with two palette tiles. One sticky bar swaps every
+   preview between the desktop and phone compositions; only the selected
+   device's images are ever in the tree. */
+
+.wp-bar {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; gap: 8px;
+  padding: 18px clamp(22px, 6vw, 96px);
+  margin-top: 48px;
+  border-bottom: 1px solid var(--border);
+  /* Opaque, not translucent: previews scroll under this and a blur would cost
+     more than it buys on a page that is mostly large images. */
+  background: #050609;
+}
+.wp-tab {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+  padding: 9px 20px; cursor: pointer; transition: color 0.2s, border-color 0.2s;
+  background: transparent; border: 1px solid var(--border); border-radius: 4px; color: #888;
+}
+.wp-tab:hover { color: #ccc; border-color: var(--dim); }
+.wp-tab.on { color: var(--neon); border-color: var(--dim); background: var(--subtle); }
+
+.wp-group { padding: 72px clamp(22px, 6vw, 96px) 0; }
+.wp-group:last-of-type { padding-bottom: 40px; }
+.wp-group .lp-label { margin-bottom: 12px; }
+.wp-blurb { font-size: 13px; color: #888; margin: 0 0 28px; }
+
+.wp-tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1180px; }
+/* Phone shots are 9:19.5. Left them at the desktop column width and each one
+   would run over a thousand pixels tall, so the columns shrink to the tile. */
+.wp-tiles.phone { grid-template-columns: repeat(auto-fill, 260px); }
+
+.wp-tile { margin: 0; }
+.wp-shot {
+  display: block; overflow: hidden; border-radius: 6px;
+  border: 1px solid var(--border); transition: border-color 0.2s;
+}
+.wp-shot:hover { border-color: var(--dim); }
+.wp-shot img { display: block; width: 100%; height: auto; }
+/* The bezel is doing real work: at 260px wide a bare rectangle reads as a
+   broken tile rather than as a phone. */
+.wp-tiles.phone .wp-shot { border-radius: 26px; border-width: 5px; border-color: #16171d; }
+.wp-tiles.phone .wp-shot:hover { border-color: #2a2c36; }
+
+.wp-cap {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  padding: 14px 2px 0; font-size: 10px; letter-spacing: 2px; color: #6f7480;
+}
+.wp-pal { color: #ddd; text-transform: uppercase; }
+.wp-meta { letter-spacing: 1px; }
+.wp-dl { margin-left: auto; color: var(--accent); transition: color 0.2s; }
+.wp-dl:hover { color: var(--neon); }
+/* A 260px tile is too narrow to hold the whole caption on one line, and
+   letting it wrap on its own put the link in a different place on every tile.
+   Give it its own row instead. */
+.wp-tiles.phone .wp-dl { margin-left: 0; flex-basis: 100%; margin-top: 6px; }
+
+@media (max-width: 860px) {
+  .wp-tiles { grid-template-columns: 1fr; }
+  .wp-cap .wp-dl { margin-left: 0; flex-basis: 100%; }
+}

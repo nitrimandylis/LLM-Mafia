@@ -16,6 +16,8 @@ export default function SiteFooter() {
         <span className="sep">│</span>
         <Link href="/about">About</Link>
         <span className="sep">│</span>
+        <Link href="/wallpapers">Wallpapers</Link>
+        <span className="sep">│</span>
         <a href="https://github.com/nitrimandylis" target="_blank" rel="noreferrer">
           Nick Trimandylis
         </a>
