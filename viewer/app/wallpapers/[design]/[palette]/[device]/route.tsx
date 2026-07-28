@@ -10,8 +10,24 @@ import { SIZES, wallpaper, type Design, type Device, type Palette } from "../../
 const DESIGNS = ["terminal", "transcript", "poster", "mugshots"];
 const PALETTES = ["shell", "skin"];
 
-// Cast order matches the booking wall, five to a row.
-const CAST = ["aria", "chen", "holmes", "marshal", "pip", "rico", "sage", "silva", "socrates", "vance"];
+/** Avatar file for a cast name, the same rule Mug.tsx uses: "DR. VANCE" -> vance.svg. */
+function slug(name: string) {
+  return name.trim().split(/\s+/).pop()!.replace(/[^a-zA-Z]/g, "").toLowerCase();
+}
+
+/** The cast in players.json order, each avatar SVG inlined: Satori has no filesystem.
+ *  players.json sits at the repo root, one level above the deployed viewer, so this
+ *  only resolves locally. That is fine: the generator is the only caller. */
+async function loadCast() {
+  const raw = await readFile(join(process.cwd(), "..", "players.json"), "utf8");
+  const players: { name: string }[] = JSON.parse(raw);
+  return Promise.all(
+    players.map(async ({ name }) => {
+      const svg = await readFile(join(process.cwd(), "public/avatars", `${slug(name)}.svg`));
+      return { src: `data:image/svg+xml;base64,${svg.toString("base64")}`, name };
+    })
+  );
+}
 
 export async function GET(
   _req: Request,
@@ -25,13 +41,14 @@ export async function GET(
   const mono = await readFile(join(process.cwd(), "assets/JetBrainsMono-Regular.ttf"));
   const grotesk = await readFile(join(process.cwd(), "assets/SpaceGrotesk-Bold.ttf"));
 
-  // The existing 24x24 avatar SVGs, inlined: Satori has no filesystem access.
-  const faces = await Promise.all(
-    CAST.map(async (name) => {
-      const svg = await readFile(join(process.cwd(), "public/avatars", `${name}.svg`));
-      return `data:image/svg+xml;base64,${svg.toString("base64")}`;
-    })
-  );
+  let faces: Awaited<ReturnType<typeof loadCast>> = [];
+  if (design === "mugshots") {
+    try {
+      faces = await loadCast();
+    } catch {
+      return new Response("cast unavailable: run this from a full checkout", { status: 404 });
+    }
+  }
 
   return new ImageResponse(
     wallpaper(design as Design, palette as Palette, device as Device, faces),

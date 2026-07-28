@@ -7,6 +7,9 @@ export type Device = "mac" | "iphone";
 export type Design = "terminal" | "transcript" | "poster" | "mugshots";
 export type Palette = "shell" | "skin";
 
+/** One cast member: the inlined avatar SVG and the name printed under it. */
+export type Face = { src: string; name: string };
+
 export const SIZES: Record<Device, { width: number; height: number }> = {
   mac: { width: 3840, height: 2160 },
   iphone: { width: 1170, height: 2532 },
@@ -15,8 +18,8 @@ export const SIZES: Record<Device, { width: number; height: number }> = {
 // Type scale per device. Explicit rather than derived from width: a phone is
 // held at arm's length and needs proportionally larger text than a 4K monitor.
 const TYPE = {
-  mac: { label: 96, body: 44, mono: 56, lead: 90, logo: 300, tag: 54, face: 380, num: 34 },
-  iphone: { label: 44, body: 26, mono: 30, lead: 52, logo: 132, tag: 26, face: 176, num: 20 },
+  mac: { label: 96, body: 44, mono: 56, lead: 90, logo: 300, tag: 54, face: 380, num: 34, name: 28 },
+  iphone: { label: 44, body: 26, mono: 30, lead: 52, logo: 132, tag: 26, face: 176, num: 20, name: 14 },
 };
 
 // Satori silently drops repeating-linear-gradient, so every repeating texture
@@ -213,7 +216,7 @@ function poster(device: Device, palette: Palette) {
   );
 }
 
-function mugshots(device: Device, palette: Palette, faces: string[]) {
+function mugshots(device: Device, palette: Palette, faces: Face[]) {
   const t = TYPE[device];
   const shell = palette === "shell";
   const c = shell ? SHELL : WALL;
@@ -235,9 +238,14 @@ function mugshots(device: Device, palette: Palette, faces: string[]) {
 
         {[0, 1].map((row) => (
           <div key={row} style={{ display: "flex", marginTop: row === 0 ? 0 : gap }}>
-            {faces.slice(row * 5, row * 5 + 5).map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={src} width={t.face} height={t.face} alt="" style={{ marginRight: gap }} />
+            {faces.slice(row * 5, row * 5 + 5).map(({ src, name }) => (
+              <div key={name} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: t.face, marginRight: gap }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} width={t.face} height={t.face} alt={name} />
+                <div style={{ display: "flex", marginTop: t.name * 0.7, fontSize: t.name, letterSpacing: t.name / 14, color: shell ? c.muted : WALL.muted }}>
+                  {name}
+                </div>
+              </div>
             ))}
           </div>
         ))}
@@ -255,7 +263,7 @@ const BACKGROUNDS: Record<Design, Record<Palette, string>> = {
   mugshots: { shell: SHELL.bg, skin: WALL.bg },
 };
 
-export function wallpaper(design: Design, palette: Palette, device: Device, faces: string[]) {
+export function wallpaper(design: Design, palette: Palette, device: Device, faces: Face[]) {
   const size = SIZES[device];
   const paper = isPaper(design, palette);
 
