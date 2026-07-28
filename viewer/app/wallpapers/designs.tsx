@@ -3,7 +3,7 @@
 // get saved. Palettes are copied from globals.css so the wallpapers stay in
 // step with the skins they quote.
 
-export type Device = "mac" | "iphone";
+export type Device = "mac" | "macbook" | "iphone";
 export type Design = "terminal" | "transcript" | "poster" | "mugshots" | "chat";
 export type Palette = "shell" | "skin" | "day" | "night";
 
@@ -22,15 +22,22 @@ export const PALETTES: Record<Design, Palette[]> = {
 /** One cast member: the inlined avatar SVG and the name printed under it. */
 export type Face = { src: string; name: string };
 
+// mac is the 16:9 external monitor, macbook the 16:10 built-in panel. A 16:9
+// file on a 16:10 screen gets scaled to cover and loses a slice off each side,
+// so the laptop gets its own file rather than a crop of the monitor's.
 export const SIZES: Record<Device, { width: number; height: number }> = {
   mac: { width: 3840, height: 2160 },
+  macbook: { width: 3024, height: 1964 },
   iphone: { width: 1170, height: 2532 },
 };
 
 // Type scale per device. Explicit rather than derived from width: a phone is
 // held at arm's length and needs proportionally larger text than a 4K monitor.
+// macbook is the exception, and is the mac scale at the 3024/3840 width ratio:
+// it is the same composition on a smaller canvas, not a different one.
 const TYPE = {
   mac: { label: 96, body: 44, mono: 56, lead: 90, logo: 300, tag: 54, face: 380, num: 34, name: 28 },
+  macbook: { label: 76, body: 35, mono: 44, lead: 71, logo: 236, tag: 43, face: 299, num: 27, name: 22 },
   iphone: { label: 44, body: 26, mono: 30, lead: 52, logo: 132, tag: 26, face: 176, num: 20, name: 14 },
 };
 
@@ -65,9 +72,10 @@ function vLines(width: number, pitch: number, thickness: number, color: string) 
 // and windows; iPhone clears the top third for the clock and the bottom for
 // the lock-screen buttons, so its content lives in a middle band.
 function cluster(device: Device) {
-  return device === "mac"
-    ? { position: "absolute" as const, left: 220, bottom: 200, display: "flex", flexDirection: "column" as const }
-    : { position: "absolute" as const, left: 90, top: 920, display: "flex", flexDirection: "column" as const };
+  const col = { position: "absolute" as const, display: "flex", flexDirection: "column" as const };
+  if (device === "iphone") return { ...col, left: 90, top: 920 };
+  if (device === "macbook") return { ...col, left: 173, bottom: 158 };
+  return { ...col, left: 220, bottom: 200 };
 }
 
 // ---------------------------------------------------------------- palettes
@@ -295,7 +303,7 @@ function chat(device: Device, palette: Palette, faces: Face[]) {
   const t = TYPE[device];
   const c = palette === "night" ? CHAT_NIGHT : CHAT_DAY;
 
-  const width = device === "mac" ? 1500 : 990;
+  const width = device === "mac" ? 1500 : device === "macbook" ? 1181 : 990;
   const pad = t.mono * 0.55;
   const gap = t.mono * 0.35;
   const inset = t.mono * 0.9; // how much narrower each card behind the front one is, per side

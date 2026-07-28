@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import WallpaperGrid, { type Group } from "@/components/WallpaperGrid";
-import { PALETTES, SIZES, type Design } from "./designs";
+import { PALETTES, SIZES, type Design, type Device } from "./designs";
 import "../landing.css";
 
 export const metadata: Metadata = {
   title: "LLM Mafia, Wallpapers",
   description:
-    "Twenty desktop and phone wallpapers from the LLM Mafia viewer: five designs, two palettes each, composed separately for 3840x2160 and 1170x2532.",
+    "Thirty desktop and phone wallpapers from the LLM Mafia viewer: five designs, two palettes each, composed separately for 3840x2160, 3024x1964 and 1170x2532.",
 };
 
 // One line per design, read on the page under its eyebrow.
@@ -22,9 +22,15 @@ const BLURBS: Record<Design, string> = {
   chat: "the group chat, arriving as notifications",
 };
 
-/** Bytes on disk, so the download link can say what it costs. */
-function fileSize(name: string) {
-  return statSync(join(process.cwd(), "public/wallpapers", name)).size;
+/** One variant: its filename, its size on disk so the download link can say
+ *  what it costs, and its pixel dimensions. */
+function file(design: Design, palette: string, device: Device) {
+  const name = `mafia-${design}-${palette}-${device}.png`;
+  return {
+    file: name,
+    bytes: statSync(join(process.cwd(), "public/wallpapers", name)).size,
+    ...SIZES[device],
+  };
 }
 
 // Built here rather than in the grid because the grid is a client component:
@@ -35,16 +41,9 @@ const GROUPS: Group[] = (Object.keys(PALETTES) as Design[]).map((design) => ({
   blurb: BLURBS[design],
   tiles: PALETTES[design].map((palette) => ({
     palette,
-    mac: {
-      file: `mafia-${design}-${palette}-mac.png`,
-      bytes: fileSize(`mafia-${design}-${palette}-mac.png`),
-      ...SIZES.mac,
-    },
-    iphone: {
-      file: `mafia-${design}-${palette}-iphone.png`,
-      bytes: fileSize(`mafia-${design}-${palette}-iphone.png`),
-      ...SIZES.iphone,
-    },
+    mac: file(design, palette, "mac"),
+    macbook: file(design, palette, "macbook"),
+    iphone: file(design, palette, "iphone"),
   })),
 }));
 
@@ -62,11 +61,12 @@ export default function Wallpapers() {
           <div className="lp-label-dot" />
           <span>// wallpapers</span>
         </div>
-        <h1 className="lp-page-h1">Twenty wallpapers. Five designs, two palettes, two devices.</h1>
+        <h1 className="lp-page-h1">Thirty wallpapers. Five designs, two palettes, three devices.</h1>
         <p className="lp-page-lede">
-          Each device gets its own composition rather than a crop. The desktop files keep
-          the icon column and the centre of the screen clear; the phone files clear the
-          top third for the clock and the bottom for the lock-screen buttons. Click a
+          Each device gets its own composition rather than a crop, which is why the 16:9
+          monitor and the 16:10 laptop are separate files. The desktop files keep the
+          icon column and the centre of the screen clear; the phone files clear the top
+          third for the clock and the bottom for the lock-screen buttons. Click a
           preview to open the full image, or take the file straight from the link under
           it.
         </p>

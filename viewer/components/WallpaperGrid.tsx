@@ -8,12 +8,12 @@ import Image from "next/image";
 // the filesystem work.
 
 type File = { file: string; bytes: number; width: number; height: number };
-type Tile = { palette: string; mac: File; iphone: File };
+type Tile = { palette: string; mac: File; macbook: File; iphone: File };
 export type Group = { design: string; blurb: string; tiles: Tile[] };
 
-type Device = "mac" | "iphone";
+type Device = "mac" | "macbook" | "iphone";
 
-const DEVICE_LABEL: Record<Device, string> = { mac: "DESKTOP", iphone: "PHONE" };
+const DEVICE_LABEL: Record<Device, string> = { mac: "MONITOR", macbook: "LAPTOP", iphone: "PHONE" };
 
 export default function WallpaperGrid({ groups }: { groups: Group[] }) {
   // Always desktop on first paint: matching the visitor's own device would
@@ -24,7 +24,7 @@ export default function WallpaperGrid({ groups }: { groups: Group[] }) {
   return (
     <>
       <div className="wp-bar">
-        {(["mac", "iphone"] as Device[]).map((d) => (
+        {(["mac", "macbook", "iphone"] as Device[]).map((d) => (
           <button
             key={d}
             className={`wp-tab${device === d ? " on" : ""}`}
@@ -57,7 +57,7 @@ export default function WallpaperGrid({ groups }: { groups: Group[] }) {
                       src={`/wallpapers/${f.file}`}
                       width={f.width}
                       height={f.height}
-                      sizes={device === "mac" ? "(max-width: 860px) 90vw, 44vw" : "260px"}
+                      sizes={device === "iphone" ? "260px" : "(max-width: 860px) 90vw, 44vw"}
                       alt={`${group.design} wallpaper, ${tile.palette} palette, ${DEVICE_LABEL[device].toLowerCase()}`}
                     />
                   </a>

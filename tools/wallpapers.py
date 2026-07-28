@@ -22,9 +22,9 @@ PALETTES = {
     "mugshots": ["shell", "skin"],
     "chat": ["day", "night"],
 }
-DEVICES = ["mac", "iphone"]
+DEVICES = ["mac", "macbook", "iphone"]
 
-SIZES = {"mac": (3840, 2160), "iphone": (1170, 2532)}
+SIZES = {"mac": (3840, 2160), "macbook": (3024, 1964), "iphone": (1170, 2532)}
 
 # Texture period in device px, must match designs.tsx. The two paper skins get
 # widely spaced ruled lines; everything else gets CRT scanlines.
