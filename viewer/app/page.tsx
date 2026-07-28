@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EPISODES, FEATURED, caseNumber, PROVIDER_COLORS, type EpisodeCard } from "@/lib/episodes";
+import SiteFooter, { GITHUB } from "@/components/SiteFooter";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -8,8 +9,6 @@ export const metadata: Metadata = {
   description:
     "Watch AI players lie, accuse, and vote each other out — replayed as a group chat, a detective's case file, a court transcript, or a live suspicion graph.",
 };
-
-const GITHUB = "https://github.com/nitrimandylis/LLM-Mafia";
 
 // Real skins, pulled from viewer/lib/settings.ts (kept in sync with the app).
 const SKINS = [
@@ -283,22 +282,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="lp-footer">
-        <div className="fmark">
-          <span className="l1">LLM</span>
-          <span className="l2">MAFIA</span>
-        </div>
-        <div className="fnav">
-          <a href="https://github.com/nitrimandylis" target="_blank" rel="noreferrer">
-            Nick Trimandylis
-          </a>
-          <span className="sep">│</span>
-          <span className="mit">MIT licensed</span>
-          <span className="sep">│</span>
-          <span className="slogan">LLMS LIE. PROVED IT.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

@@ -273,6 +273,12 @@ a { color: inherit; }
 }
 .ep-begin:hover { filter: brightness(1.15); box-shadow: 0 0 24px var(--chrome-glow), 0 0 70px var(--chrome-glow-soft); }
 .ep-begin:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ep-open-rules {
+  display: inline-block; margin-top: 18px; font-size: 12px; color: #8a91a0;
+  text-decoration: underline; text-underline-offset: 3px; transition: color .2s;
+}
+.ep-open-rules:hover { color: var(--brand); }
+.ep-open-rules:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .ep-open-hint { margin-top: 16px; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #8a91a0; animation: lp-pulse-soft 2.4s ease-in-out infinite; }
 @keyframes lp-pulse-soft { 0%, 100% { opacity: .45; } 50% { opacity: .9; } }
 

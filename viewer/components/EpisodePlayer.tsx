@@ -179,6 +179,10 @@ export default function EpisodePlayer({ events, episode, card, next }: Props) {
             <button className="ep-begin" onClick={begin} autoFocus>
               ▸ BEGIN THE REPLAY
             </button>
+            {/* New tab on purpose: reading the rules must not throw away the replay. */}
+            <a className="ep-open-rules" href="/rules" target="_blank" rel="noreferrer">
+              new to Mafia? read the rules →
+            </a>
             <div className="ep-open-hint">someone dies tonight</div>
           </div>
         </div>
