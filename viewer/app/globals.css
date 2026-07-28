@@ -222,6 +222,11 @@ a { color: inherit; }
   .skin-menu-list { max-width: calc(100vw - 24px); }
   /* Fatter tap targets for thumbs (desktop keeps its tight 4px). */
   .menu-btn { order: 1; padding: 8px 4px; }
+  /* The other four links come to 311px of the 320px this row has to survive,
+     so a fifth cannot fit at any label length. Wallpapers is the one that
+     goes: it is the least urgent mid-replay, and the footer links it from
+     every other page. */
+  .ep-walls { display: none; }
 }
 
 @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }

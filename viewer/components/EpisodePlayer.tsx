@@ -138,6 +138,9 @@ export default function EpisodePlayer({ events, episode, roles, card, next }: Pr
         <a className="menu-btn" href="/about" target="_blank" rel="noreferrer">
           about
         </a>
+        <a className="menu-btn ep-walls" href="/wallpapers" target="_blank" rel="noreferrer">
+          wallpapers
+        </a>
         <Link href="/" className="menu-btn ep-home">
           all cases
         </Link>
