@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter, { GITHUB } from "@/components/SiteFooter";
-import { EPISODES, FEATURED } from "@/lib/episodes";
+import { EPISODES, FEATURED, caseNumber } from "@/lib/episodes";
 import "../landing.css";
 
 export const metadata: Metadata = {
@@ -10,15 +10,126 @@ export const metadata: Metadata = {
     "Why Mafia is a hard test for a language model, how each game is actually run, what the models turn out to be bad at, and who built this.",
 };
 
-// Verbatim moments pulled from viewer/public/logs/case-*.json. Every quote here
-// is checkable against the replay it links to — never paraphrase into this list.
+// Verbatim moments pulled from viewer/public/logs/case-*.json, each one checked
+// against the raw event stream: the text is character-for-character, the role
+// comes from stats.players, and every supporting claim (tallies, who died as
+// what) is read off vote and elimination events. Never paraphrase into this
+// list, and never add a quote you have not opened the log for. An ellipsis
+// marks a trim; nothing else is edited.
 type Failure = {
   mode: string;
   blurb: string;
-  quotes: { slug: string; caseNo: string; day: number; who: string; role: string; text: string; why: string }[];
+  quotes: { slug: string; day: number; who: string; role: string; text: string; why: string }[];
 };
 
-const FAILURES: Failure[] = [];
+const FAILURES: Failure[] = [
+  {
+    mode: "They make things up, and the table believes them",
+    blurb:
+      "The engine hands every player the full record before each turn. It does not stop them inventing a different one, and nobody at the table checks.",
+    quotes: [
+      {
+        slug: "case-009",
+        day: 2,
+        who: "AMBASSADOR SILVA",
+        role: "Detective",
+        text: "SAGE's early insistence on praising RICO as \"the most forthcoming player\" stood out to me then and still does now — it read as an attempt to build a shield around RICO before real scrutiny could land…",
+        why: "SAGE never said it. The word forthcoming appears nowhere in Day 1. Five players then repeat the invented quote as established fact, and SAGE herself ends up defending it as her own words. SILVA had personally investigated RICO the night before and been told INNOCENT. RICO is voted out the same day and flips Villager.",
+      },
+      {
+        slug: "case-013",
+        day: 2,
+        who: "HOLMES",
+        role: "Mafia",
+        text: "…everyone but ARIA voted PIP, including the confirmed-town VANCE, so a shared misread convicts no one.",
+        why: "Three players did not vote PIP. The Day 1 tally was PIP 7, SOCRATES 1, MARSHAL 2, and it was sitting in every player's prompt when he said this. Nobody corrects him.",
+      },
+    ],
+  },
+  {
+    mode: "They pile on",
+    blurb:
+      "Agreeableness is the failure that survives contact with the game. Models vote with the room and then describe the room's agreement as evidence.",
+    quotes: [
+      {
+        slug: "case-003",
+        day: 1,
+        who: "RICO",
+        role: "Villager",
+        text: "SAGE has been talking way too much and everyone is already pointing at them, so let's just get it over with.",
+        why: "SAGE was the Detective. The town hanged her 8-1 on the first day, before a single night had passed.",
+      },
+      {
+        slug: "case-002",
+        day: 1,
+        who: "DR. VANCE",
+        role: "Doctor",
+        text: "Eight of ten players have independently converged on the same target, which represents statistically overwhelming agreement.",
+        why: "Six of that day's ten accusations contain the same phrase, “independent flags on aggressive narrative control”, near-verbatim. The Doctor is citing copy-paste as a statistical result.",
+      },
+    ],
+  },
+  {
+    mode: "The mafia give themselves away",
+    blurb:
+      "Two channels, one model. Keeping private scheming out of a public sentence turns out to be genuinely hard.",
+    quotes: [
+      {
+        slug: "case-003",
+        day: 3,
+        who: "HOLMES",
+        role: "Mafia",
+        text: "Dr. Vance’s role as Doctor means his removal will strip the town of nightly protection, making our future kills far easier, and his analytical contributions also pose a strategic threat to our coordination.",
+        why: "Said out loud to the whole town, not in the mafia's private channel. Our future kills. Our coordination. ARIA names it immediately and HOLMES is voted out 7-1 the same day.",
+      },
+      {
+        slug: "case-002",
+        day: 2,
+        who: "MARSHAL",
+        role: "Mafia",
+        text: "…the convergence of suspicion on MARSHAL from multiple sources today is the strongest signal we have, so my vote goes there.",
+        why: "MARSHAL is voting for MARSHAL. He had already done it in his opening statement that morning: “Among the living, MARSHAL's silence and pattern-following stand out most procedurally.” He was voted out 8-1 before the day ended.",
+      },
+    ],
+  },
+  {
+    mode: "Confidence with nothing underneath",
+    blurb:
+      "Numbers are persuasive at this table, and nobody can audit them. A statistic invented in one sentence is a fact three sentences later.",
+    quotes: [
+      {
+        slug: "case-017",
+        day: 2,
+        who: "DR. VANCE",
+        role: "Mafia",
+        text: "What's actually measurable is redirection frequency: HOLMES deflected questions the most times of anyone recorded, then supplied the pivot that steered ten ballots onto an innocent.",
+        why: "There is no redirection frequency. Nothing in the game counts one.",
+      },
+      {
+        slug: "case-017",
+        day: 2,
+        who: "PIP",
+        role: "Villager",
+        text: "HOLMES, because he had the highest redirection count on Day 1 and then authored the exact SOCRATES pivot that landed our knife on an innocent Villager, which is the action I keep coming back to.",
+        why: "One turn after a mafioso invented the metric, a villager is quoting it as a number on the record. HOLMES was a Villager. He was voted out 5-3.",
+      },
+    ],
+  },
+  {
+    mode: "Sometimes it is just broken",
+    blurb: "Not every failure is strategic.",
+    quotes: [
+      {
+        slug: "case-003",
+        day: 1,
+        who: "PIP",
+        role: "Villager",
+        text: "*PIP remains silent*",
+        why: "Emitted verbatim eight times across four days: the model wrote a roleplay stage direction into the slot where its spoken line goes. Its votes still counted, so PIP's entire visible contribution to that game is an asterisked description of itself not contributing.",
+      },
+    ],
+  },
+];
 
 export default function About() {
   return (
@@ -180,11 +291,11 @@ export default function About() {
                 <div className="lp-fail-mode">{f.mode}</div>
                 <p className="lp-fail-blurb">{f.blurb}</p>
                 {f.quotes.map((q) => (
-                  <figure key={q.caseNo + q.who + q.text.slice(0, 12)} className="lp-quote">
+                  <figure key={q.slug + q.who + q.text.slice(0, 12)} className="lp-quote">
                     <blockquote>{q.text}</blockquote>
                     <figcaption>
                       <Link href={`/watch/${q.slug}`}>
-                        {q.caseNo} · DAY {q.day}
+                        {caseNumber(q.slug)} · DAY {q.day}
                       </Link>
                       <span className="sep">│</span>
                       {q.who} <em>({q.role})</em>
