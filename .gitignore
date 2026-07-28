@@ -132,3 +132,6 @@ node_modules/
 .superpowers/
 docs/
 .vercel
+
+# raw batch logs, published copies live in viewer/public/logs
+runs/
