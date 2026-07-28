@@ -38,6 +38,40 @@ def expected_pitch(design, palette):
     return SCAN_PITCH
 
 
+# A wallpaper is set per Space, not per display, so the 16:10 laptop file is
+# also what the 16:9 monitor shows: scaled to cover, with this much cut off the
+# top and bottom. designs.tsx places the macbook cluster against the surviving
+# band; ink_rows is what proves it still does.
+MB_BAND = round(SIZES["macbook"][0] * 9 / 16)
+MB_CROP = round((SIZES["macbook"][1] - MB_BAND) / 2)
+# Clearing the band is not enough. The first attempt put the tagline 11px inside
+# it, which passed a not-clipped test and still looked broken on the monitor, so
+# the floor is a visible margin: 6% of the band, against the mac file's own 9.3%.
+MB_MARGIN = round(0.06 * MB_BAND)
+
+
+def ink_rows(im):
+    """First and last row carrying content, ignoring the full-bleed texture.
+
+    Every row is compared against the same row in an empty right-hand column,
+    so the scanlines and any background gradient cancel out and only the
+    cluster registers. Works on the light paper skins too: the test is on the
+    size of the difference, not its sign.
+    """
+    px = im.convert("RGB").load()
+    ref_x = im.width - 40
+    top = bot = None
+    for y in range(im.height):
+        ref = sum(px[ref_x, y])
+        for x in range(120, int(im.width * 0.62), 4):
+            if abs(sum(px[x, y]) - ref) > 90:
+                if top is None:
+                    top = y
+                bot = y
+                break
+    return top, bot
+
+
 def texture_period(im, pitch):
     """Vertical period of the texture bars in an empty column, or 0 if flat.
 
@@ -85,6 +119,16 @@ def main():
                 want = expected_pitch(design, palette)
                 got = texture_period(im, want)
                 assert got == want, f"{path.name}: texture period {got}, want {want}"
+
+                if device == "macbook":
+                    top, bot = ink_rows(im)
+                    lo, hi = MB_CROP + MB_MARGIN, im.height - MB_CROP - MB_MARGIN
+                    assert lo <= top and bot <= hi, (
+                        f"{path.name}: ink {top}..{bot} is outside {lo}..{hi}, "
+                        f"the 16:9 crop band less its {MB_MARGIN}px margin; it "
+                        f"would sit on the edge of the monitor"
+                    )
+
                 file_count += 1
                 print(f"{path.name:44} {im.width}x{im.height}  {len(data) // 1024} KB")
     print(f"\n{file_count} files, {total // 1024} KB total")

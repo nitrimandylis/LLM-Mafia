@@ -68,13 +68,28 @@ function vLines(width: number, pitch: number, thickness: number, color: string) 
   ));
 }
 
+// The laptop file is also the one that goes up on the 16:9 monitor, because a
+// wallpaper is set per Space and not per display. macOS scales it to cover, so
+// the monitor sees a 16:9 band cut out of the middle and loses this much off
+// the top and bottom. Nothing is lost sideways: cover on a wider target scales
+// by width.
+const MB_BAND = Math.round((SIZES.macbook.width * 9) / 16); // 1701
+const MB_CROP = Math.round((SIZES.macbook.height - MB_BAND) / 2); // 131
+
 // Where the content sits. Mac clears the right third and the centre for icons
 // and windows; iPhone clears the top third for the clock and the bottom for
 // the lock-screen buttons, so its content lives in a middle band.
+//
+// macbook measures its bottom margin against MB_BAND rather than the full
+// canvas, at the same 200/2160 the mac file uses, so the tagline keeps its air
+// after the crop instead of ending up 27px off the edge. On the laptop itself
+// that reads as a wider bottom margin, which is where the Dock sits anyway.
+const MB_BOTTOM = MB_CROP + Math.round((200 / 2160) * MB_BAND); // 289
+
 function cluster(device: Device) {
   const col = { position: "absolute" as const, display: "flex", flexDirection: "column" as const };
   if (device === "iphone") return { ...col, left: 90, top: 920 };
-  if (device === "macbook") return { ...col, left: 173, bottom: 158 };
+  if (device === "macbook") return { ...col, left: 173, bottom: MB_BOTTOM };
   return { ...col, left: 220, bottom: 200 };
 }
 
