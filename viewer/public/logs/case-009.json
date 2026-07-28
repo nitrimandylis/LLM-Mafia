@@ -7,70 +7,70 @@
      "name": "RICO",
      "seat": 0,
      "color": "#7cc4ff",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Villager"
     },
     {
      "name": "ARIA",
      "seat": 1,
      "color": "#ff9a9a",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Mafia"
     },
     {
      "name": "SAGE",
      "seat": 2,
      "color": "#b9f6ca",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Villager"
     },
     {
      "name": "HOLMES",
      "seat": 3,
      "color": "#ffd180",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Mafia"
     },
     {
      "name": "MARSHAL",
      "seat": 4,
      "color": "#ce93d8",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Villager"
     },
     {
      "name": "SOCRATES",
      "seat": 5,
      "color": "#80deea",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Villager"
     },
     {
      "name": "DR. VANCE",
      "seat": 6,
      "color": "#ffab91",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Doctor"
     },
     {
      "name": "PIP",
      "seat": 7,
      "color": "#c5e1a5",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Villager"
     },
     {
      "name": "CHEN",
      "seat": 8,
      "color": "#f48fb1",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Villager"
     },
     {
      "name": "AMBASSADOR SILVA",
      "seat": 9,
      "color": "#9fa8da",
-     "model": "sonnet",
+     "model": "sonnet-4.6",
      "role": "Detective"
     }
    ],

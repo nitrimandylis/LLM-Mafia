@@ -7,61 +7,61 @@
      "name": "RICO",
      "seat": 0,
      "color": "#7cc4ff",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "ARIA",
      "seat": 1,
      "color": "#ff9a9a",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "SAGE",
      "seat": 2,
      "color": "#b9f6ca",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "HOLMES",
      "seat": 3,
      "color": "#ffd180",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "MARSHAL",
      "seat": 4,
      "color": "#ce93d8",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "SOCRATES",
      "seat": 5,
      "color": "#80deea",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "DR. VANCE",
      "seat": 6,
      "color": "#ffab91",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "PIP",
      "seat": 7,
      "color": "#c5e1a5",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "CHEN",
      "seat": 8,
      "color": "#f48fb1",
-     "model": "opus"
+     "model": "opus-4.7"
     },
     {
      "name": "AMBASSADOR SILVA",
      "seat": 9,
      "color": "#9fa8da",
-     "model": "opus"
+     "model": "opus-4.7"
     }
    ],
    "player_count": 10,
