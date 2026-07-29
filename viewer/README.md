@@ -10,12 +10,14 @@ line-numbered court deposition), or **Signal** (a live suspicion-network panel).
 
 ```bash
 cd viewer
-npm install
-npm run dev          # http://localhost:3000
+bun install
+bun run dev          # http://localhost:3000
 ```
 
-`http://localhost:3000` is the landing page; the replay viewer lives at
-`/watch` (or click **▸ Watch a replay**).
+`http://localhost:3000` is the landing page and the case-file library: every
+published game in `public/logs/` (indexed by `manifest.json`) is a poster that
+opens as an episode. The rest of the site is `/watch` (the replay viewer, which
+reads the engine's freshest log), `/rules`, `/about`, and `/wallpapers`.
 
 On load it calls `/api/log`, which reads the engine's `../game_log.json` and
 falls back to the bundled `public/logs/sample.json` if no game has been played.
@@ -52,8 +54,8 @@ the stream; without it the viewer only shows what the town could see.
 ## Checks
 
 ```bash
-npm run build     # type-check + compile
-node verify.mjs   # validate the sample log + replay reduction logic
+bun run build     # type-check + compile
+bun verify.mjs    # validate the sample log + replay reduction logic
 ```
 
 `/selftest` renders all four skins against the full sample log (server-side),

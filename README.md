@@ -42,7 +42,7 @@ viewer dramatizes the result for spectators.
 ```
   mafia/  ──writes──▶  game_log.json  ──reads──▶  viewer/
   the engine          structured events[]        web replay, 4 dramatized skins
-  (python main.py)    + transcript + stats       (npm run dev)
+  (python main.py)    + transcript + stats       (bun run dev)
 ```
 
 The engine writes a structured `events[]` stream to `game_log.json`; the viewer
@@ -64,6 +64,21 @@ parity check.
 | 07 | **`--claude`** | run against the Claude Code CLI on your subscription — seats cycle haiku/sonnet/opus for model-vs-model variety |
 | 08 | **JSON game log** | full transcript + structured `events[]` + per-player vote accuracy, detective stats, and which model played each seat |
 | 09 | **web replay viewer** | a Next.js app that dramatizes the log — group chat, case file, transcript, or suspicion graph ([`viewer/`](viewer/)) |
+
+## ⚖️ Two house rules
+
+Otherwise it's standard Mafia.
+
+**The detective's will.** Night-kill the detective and their last investigation
+result is published with the body the next morning (`detective_will`). Silencing
+the detective no longer buries a finding the town already paid for.
+
+**The trusted person** (`--mafia 3` only). At game start the detective is
+privately told one random confirmed-town player. Private knowledge, not an
+event — theirs to use or share. Gated to 3-mafia games because the first 20
+cases split hard by wolf count: town won 5/5 at two mafia and 5/15 at three,
+and every mafia win opened with a day-1 mislynch. Run
+`python tools/balance_report.py` to see the current split.
 
 ## 🚀 Run it
 
@@ -112,8 +127,10 @@ The town accepts instructions:
 | flag | default | what it does |
 |---|---|---|
 | `--player-count` | 10 | number of players (4–10) |
+| `--mafia` | 2 | number of mafia (3 is "hard mode"; clamped below parity) |
 | `--reveal-secrets` | off | show private mafia chat and detective results |
 | `--nvidia` | off | use NVIDIA NIM instead of LM Studio |
+| `--lm-studio-url` | `http://localhost:1234/v1` | LM Studio base URL |
 | `--nvidia-key` | env | NVIDIA API key (or set `NVIDIA_API_KEY` in `.env`) |
 | `--claude` | off | use the Claude CLI (subscription-billed); seats mix haiku/sonnet/opus |
 | `--model` | auto | override the player model (with `--claude`, forces one model on every seat) |
@@ -133,8 +150,8 @@ latest `game_log.json` automatically — no copying, no config.
 
 ```bash
 cd viewer
-npm install            # first time only
-npm run dev            # http://localhost:3000
+bun install            # first time only
+bun run dev            # http://localhost:3000
 ```
 
 Then:
@@ -173,14 +190,26 @@ LLM-Mafia/
 │
 ├── viewer/                 THE VIEWER (Next.js)
 │   ├── app/                pages, /api/log (reads ../game_log.json), /selftest
+│   │                       + /watch, /rules, /about, /wallpapers
 │   ├── components/skins/   the four dramatized designs
 │   ├── lib/                useReplay engine, events.ts (mirrors mafia/events.py)
-│   └── public/logs/        published episodes + manifest (the homepage library)
+│   └── public/             logs/ (published episodes + manifest), avatars/, wallpapers/
 ├── tools/
 │   ├── make_sample_log.py  generates the viewer's sample log + checks schema parity
-│   └── publish_game.py     publishes a finished log as a homepage episode
-└── docs/                   design specs
+│   ├── publish_game.py     publishes a finished log as a homepage episode
+│   ├── run_batch.py        plays N Claude games unattended, minding subscription quota
+│   ├── balance_report.py   win rates + lynch accuracy across the library, split by wolf count
+│   ├── mugshots.py         regenerates the pixel-art avatar SVGs from ASCII grids
+│   ├── wallpapers.py       saves the wallpaper PNGs off a running viewer
+│   ├── claude_usage.py     reads remaining Claude subscription quota
+│   └── test_*.py           the engine's checks (`python tools/test_fixes.py`, …)
+└── docs/                   design specs, the balance review, the editorial log
 ```
+
+Published episodes live in `viewer/public/logs/` and are indexed by
+`manifest.json`; that manifest, not the directory, defines the library. A log
+hand-edited for the editorial pass carries `exclude_from_stats` so
+`balance_report.py` leaves it out of the win rates.
 
 ---
 
