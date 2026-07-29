@@ -194,16 +194,15 @@ LLM-Mafia/
 │   ├── components/skins/   the four dramatized designs
 │   ├── lib/                useReplay engine, events.ts (mirrors mafia/events.py)
 │   └── public/             logs/ (published episodes + manifest), avatars/, wallpapers/
-├── tools/
-│   ├── make_sample_log.py  generates the viewer's sample log + checks schema parity
-│   ├── publish_game.py     publishes a finished log as a homepage episode
-│   ├── run_batch.py        plays N Claude games unattended, minding subscription quota
-│   ├── balance_report.py   win rates + lynch accuracy across the library, split by wolf count
-│   ├── mugshots.py         regenerates the pixel-art avatar SVGs from ASCII grids
-│   ├── wallpapers.py       saves the wallpaper PNGs off a running viewer
-│   ├── claude_usage.py     reads remaining Claude subscription quota
-│   └── test_*.py           the engine's checks (`python tools/test_fixes.py`, …)
-└── docs/                   design specs, the balance review, the editorial log
+└── tools/
+    ├── make_sample_log.py  generates the viewer's sample log + checks schema parity
+    ├── publish_game.py     publishes a finished log as a homepage episode
+    ├── run_batch.py        plays N Claude games unattended, minding subscription quota
+    ├── balance_report.py   win rates + lynch accuracy across the library, split by wolf count
+    ├── mugshots.py         regenerates the pixel-art avatar SVGs from ASCII grids
+    ├── wallpapers.py       saves the wallpaper PNGs off a running viewer
+    ├── claude_usage.py     reads remaining Claude subscription quota
+    └── test_*.py           the engine's checks (`python tools/test_fixes.py`, …)
 ```
 
 Published episodes live in `viewer/public/logs/` and are indexed by
