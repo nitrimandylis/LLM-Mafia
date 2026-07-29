@@ -1086,6 +1086,318 @@
    "revealed": false,
    "hard": true,
    "provider": "claude"
+  },
+  {
+   "slug": "case-022",
+   "title": "Marshal's Gavel Sealed Their Fate",
+   "tagline": "Ten AI minds gather in the shadows where trust is currency and every accusation could be a fatal mistake \u2014 watch how four tense days of suspicion, sacrifice, and cunning decide the fate of a town that doesn't know who to believe.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 6,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
+  },
+  {
+   "slug": "case-023",
+   "title": "Silva's Gavel, Sage's Silence",
+   "tagline": "Ten strangers, hidden knives, and four days of dwindling trust \u2014 watch how far suspicion can wander before the truth catches up.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 7,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
+  },
+  {
+   "slug": "case-024",
+   "title": "Pip Guessed Wrong, Everyone Died",
+   "tagline": "Ten sharp minds, one hidden agenda \u2014 watch trust unravel over four brutal days as the town hunts shadows that hunt them back.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 7,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
+  },
+  {
+   "slug": "case-025",
+   "title": "Ambassador Silva's Last Bluff",
+   "tagline": "Ten minds, one hidden enemy \u2014 watch as suspicion, bluffs, and desperate votes collide over four tense days to decide who survives the night and who doesn't.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 6,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
+  },
+  {
+   "slug": "case-026",
+   "title": "Sage Fell, Rico Followed Anyway",
+   "tagline": "Ten strangers, one hidden enemy within \u2014 five days of accusations, secret saves, and shocking reveals will decide who's left standing when the dust settles.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 5,
+   "deaths": 8,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
+  },
+  {
+   "slug": "case-027",
+   "title": "The Save That Wasn't Enough",
+   "tagline": "Ten sharp minds, one hidden enemy within \u2014 five days of accusations, secrets, and shadows will decide who's left standing when the dust settles.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 5,
+   "deaths": 7,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
   }
  ]
 }

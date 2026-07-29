@@ -32,6 +32,12 @@ def read_game(path):
     """Pull the few numbers we care about out of one log, or None if the game
     never finished (no game_over event)."""
     log = json.loads(path.read_text())
+
+    # Hand-edited logs carry this flag. Their winner was decided by us, not by
+    # the players, so counting them would skew the win rate.
+    if log.get("exclude_from_stats"):
+        return None
+
     events = log["events"]
 
     winner = None

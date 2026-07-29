@@ -55,6 +55,16 @@ def backfill_episode(log: dict, args: argparse.Namespace, slug: str) -> dict:
     if args.no_llm:
         return fallback_episode(inputs, slug)
 
+    # --claude shells out to the `claude` CLI, so the client and model here are
+    # unused; GameMaster ignores them once use_claude is on.
+    if args.claude:
+        gm = GameMaster(client=None, model="sonnet", use_claude=True)
+        episode = gm.write_episode(**inputs)
+        if not episode.get("title"):
+            print("⚠️  GM call returned nothing — using formulaic metadata.")
+            episode = fallback_episode(inputs, slug)
+        return episode
+
     if args.nvidia:
         key = args.nvidia_key or os.environ.get("NVIDIA_API_KEY")
         if not key:
@@ -133,6 +143,7 @@ def main():
     parser = argparse.ArgumentParser(description="Publish a game log as a viewer episode")
     parser.add_argument("log", help="Path to a finished game_log.json")
     parser.add_argument("--slug", default=None, help="Episode slug (default: the next free one)")
+    parser.add_argument("--claude", action="store_true", help="Backfill metadata via the claude CLI")
     parser.add_argument("--nvidia", action="store_true", help="Backfill metadata via NVIDIA NIM")
     parser.add_argument("--nvidia-key", default=None)
     parser.add_argument("--lm-studio-url", default=LM_STUDIO_URL)
@@ -155,7 +166,10 @@ def main():
 
     # Slim copy: the viewer only reads events/day/stats/episode; the raw
     # console logs are dev noise and double the file size.
-    published = {k: log[k] for k in ("events", "day", "stats", "episode") if k in log}
+    # exclude_from_stats/edit ride along so balance_report.py still skips a
+    # hand-edited game once it is published.
+    carried = ("events", "day", "stats", "episode", "exclude_from_stats", "edit")
+    published = {k: log[k] for k in carried if k in log}
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = LOGS_DIR / f"{args.slug}.json"
     with open(out_path, "w") as f:
