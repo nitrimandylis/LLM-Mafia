@@ -34,9 +34,11 @@ def test_should_start_game():
     # No reading from the usage endpoint: run anyway, the failure guard covers us.
     assert should_start_game(None, 0, now, None, 0, max_wait) == "go"
 
-    # First game (nothing measured): the fixed 50% guard applies.
+    # First game (nothing measured): the fixed guard applies, reserving 30%.
     assert should_start_game(40.0, resets_at, now, None, 0, max_wait) == "go"
-    assert should_start_game(55.0, resets_at, now, None, 0, max_wait) == "wait"
+    assert should_start_game(55.0, resets_at, now, None, 0, max_wait) == "go"
+    assert should_start_game(70.0, resets_at, now, None, 0, max_wait) == "go"
+    assert should_start_game(75.0, resets_at, now, None, 0, max_wait) == "wait"
 
     # Once a game has been measured, headroom is judged against its real cost.
     assert should_start_game(80.0, resets_at, now, 12.0, 0, max_wait) == "go"    # 20% left, needs 18%
