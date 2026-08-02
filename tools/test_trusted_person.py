@@ -51,4 +51,39 @@ for seed in range(20):
 # the buff picks a different name across seeds, i.e. it's not pinned to a seat
 assert len({run(3, s).trusted_person for s in range(20)}) > 1
 
+# The day points players at a target four separate ways (opening probe, daily
+# "most suspicious", questioning rounds, final accusation), and this shortlist
+# is what decides who each of them can be made to attack. Nobody should ever be
+# handed a name they already know is on their own side.
+for seed in range(20):
+    game = run(3, seed)
+    alive_names = [p.name for p in game.players]
+    mafia_names = {p.name for p in game.players if p.role == Role.MAFIA}
+
+    for player in game.players:
+        candidates = game.probe_candidates(player, alive_names)
+
+        assert player.name not in candidates, f"{player.name} can probe themselves (seed {seed})"
+        assert candidates, f"empty shortlist for {player.name} (seed {seed})"
+
+        if player.role == Role.MAFIA:
+            partners = mafia_names - {player.name}
+            overlap = partners & set(candidates)
+            assert not overlap, f"wolf {player.name} offered partner {overlap} (seed {seed})"
+
+        if player.role == Role.DETECTIVE:
+            assert game.trusted_person not in candidates, (
+                f"detective offered their trusted person "
+                f"{game.trusted_person} (seed {seed})"
+            )
+
+# 2 mafia has no buff, so the detective's shortlist is everyone but themselves
+for seed in range(20):
+    game = run(2, seed)
+    alive_names = [p.name for p in game.players]
+    detective = next(p for p in game.players if p.role == Role.DETECTIVE)
+    candidates = game.probe_candidates(detective, alive_names)
+    assert len(candidates) == len(alive_names) - 1, f"2-mafia detective lost names (seed {seed})"
+
 print("trusted-person gating OK")
+print("probe shortlist exclusions OK")
