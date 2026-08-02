@@ -188,6 +188,69 @@
 .lp-label-dot { width: 8px; height: 8px; background: var(--neon); box-shadow: 0 0 10px rgba(255, 42, 42, 0.7); animation: lp-pulse 2s ease-in-out infinite; }
 .lp-label span { font-size: 11px; letter-spacing: 4px; color: var(--neon); text-transform: uppercase; text-shadow: 0 0 10px rgba(255, 42, 42, 0.35); }
 
+/* ── THE RECORD: five totals as a ledger strip ──────────
+   Same sign as the hero wordmark: hot red tube, three-layer glow, and the
+   mains buzz, but staggered so they read as five separate tubes instead of
+   one relay clicking. Numbers only; the labels stay dim so the glow is the
+   only ink competing with the case files below. */
+.lp-section.stats { padding-bottom: 0; }
+.lp-stats { display: grid; grid-template-columns: repeat(5, 1fr); }
+.lp-stat { padding: 0 clamp(12px, 2vw, 28px); border-left: 1px solid var(--border); }
+.lp-stat:nth-child(5n + 1) { border-left: 0; padding-left: 0; }
+.lp-stat-n {
+  font-family: var(--grotesk);
+  font-size: clamp(34px, 4.4vw, 60px);
+  font-weight: 800; line-height: 0.9; letter-spacing: -0.03em;
+  color: var(--neon);
+  text-shadow:
+    0 0 8px rgba(255, 42, 42, 0.55),
+    0 0 26px rgba(255, 42, 42, 0.38),
+    0 0 70px rgba(196, 30, 30, 0.30);
+  margin-bottom: 14px;
+}
+.lp-stat-l {
+  font-size: 10px; letter-spacing: 2px; color: #888;
+  text-transform: uppercase; line-height: 1.6;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lp-stat-n { animation: lp-neon-buzz 7s linear infinite; }
+  .lp-stat:nth-child(2) .lp-stat-n { animation-delay: 1.4s; }
+  .lp-stat:nth-child(3) .lp-stat-n { animation-delay: 2.8s; }
+  .lp-stat:nth-child(4) .lp-stat-n { animation-delay: 4.2s; }
+  .lp-stat:nth-child(5) .lp-stat-n { animation-delay: 5.6s; }
+
+  /* The sign warms up when the strip scrolls into view (NeonOnView adds .lit).
+     Fixed 900ms on its own clock, tube by tube, so it plays the same however
+     fast you scrolled to it. It rides the wrapper, not the number, so it never
+     fights the buzz over the same opacity. */
+  .lp-stats.lit .lp-stat { animation: lp-neon-warmup 0.9s linear both; }
+  .lp-stats.lit .lp-stat:nth-child(2) { animation-delay: 0.09s; }
+  .lp-stats.lit .lp-stat:nth-child(3) { animation-delay: 0.18s; }
+  .lp-stats.lit .lp-stat:nth-child(4) { animation-delay: 0.27s; }
+  .lp-stats.lit .lp-stat:nth-child(5) { animation-delay: 0.36s; }
+}
+@keyframes lp-neon-warmup {
+  0% { opacity: 0.06; }
+  18% { opacity: 0.55; }
+  26% { opacity: 0.12; }
+  42% { opacity: 0.82; }
+  52% { opacity: 0.24; }
+  68% { opacity: 0.95; }
+  76% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+@media (max-width: 860px) {
+  .lp-stats { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  /* The divider always drops on the first cell of a row, so which cell that
+     is has to be restated every time the column count changes. */
+  .lp-stat { border-left: 1px solid var(--border); padding-left: clamp(12px, 2vw, 28px); }
+  .lp-stat:nth-child(2n + 1) { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 640px) {
+  .lp-stats { grid-template-columns: 1fr; row-gap: 32px; }
+  .lp-stat { border-left: 0; padding: 0; }
+}
+
 /* ── EPISODES: the case files ──────────────────────── */
 /* The featured case is a wide dossier banner; earlier cases file underneath
    as smaller posters. Card copy is spoiler-free (GM tagline, no winner). */

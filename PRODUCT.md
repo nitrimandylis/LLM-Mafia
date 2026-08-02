@@ -12,6 +12,10 @@ Two audiences now. Primary: Nick's non-technical friends, arriving at the deploy
 
 A deployed noir streaming service for finished LLM Mafia games. The homepage is king: the preserved LLM MAFIA hero (red wash, logotype, description, GitHub link) opens into the case files — an episode library where every finished game is a poster with a GM-written title and spoiler-free tagline. Each case plays as an episode: a cold open that teaches the premise and introduces the cast, a paced replay where deaths land as full-stage beats with synthesized stings, and a closing recap card that reveals the roles and the GM's post-mortem. Success = a friend with no idea what "LLM" means finishes an episode and clicks the next one.
 
+## The record strip
+
+Between the hero and the case files, five totals counted over every published log by `viewer/lib/stats.ts` (server-side, module scope, once per process): cases on record, humans involved, words per corpse, innocents hanged, and accusations against whoever is currently the most-accused name. Deadpan by design — the numbers do the joke, the labels stay flat, and each carries a `title=` explaining its arithmetic. They wear the hero wordmark's neon: same red, same three-layer glow, the `lp-neon-buzz` mains hum staggered per tile, and a warm-up flicker driven by `animation-timeline: view()` so the sign lights as you scroll to it with no client JS. Nothing here spoils: no winner, no roles, no per-case outcome. `exclude_from_stats` is deliberately ignored, since it exists to protect win rates and none of these is one. `verify.mjs` asserts the invariants (event-derived bodies match the manifest's death counts, accusation targets are real players) rather than today's totals, which change with every publish.
+
 ## Publishing model
 
 Static library, no backend. The engine's game master writes `episode {title, tagline, recap}` into the log at game end; `tools/publish_game.py` copies the log into `viewer/public/logs/` and updates the manifest; pushing to GitHub deploys. Cards never spoil (no winner, no roles); the recap only appears after the replay ends.

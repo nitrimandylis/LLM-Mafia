@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EPISODES, FEATURED, caseNumber, PROVIDER_COLORS, type EpisodeCard } from "@/lib/episodes";
 import { SKINS } from "@/lib/settings";
+import { STATS } from "@/lib/stats";
 import SiteFooter, { GITHUB } from "@/components/SiteFooter";
+import NeonOnView from "@/components/NeonOnView";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -97,11 +99,14 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* ── THE RECORD: totals across every published case ── */}
+      <StatStrip />
+
       {/* ── EPISODES: the case files ── */}
       <section className="lp-section" id="cases">
         <div className="lp-label">
           <div className="lp-label-dot" />
-          <span>// the case files, {EPISODES.length} on record</span>
+          <span>// the case files</span>
         </div>
 
         {FEATURED && (
@@ -260,6 +265,59 @@ export default function Landing() {
       </section>
 
       <SiteFooter />
+    </div>
+  );
+}
+
+// The record so far: five totals counted across every published log. Deadpan
+// on purpose, and spoiler-free, none of these says who won anything.
+function StatStrip() {
+  const n = (value: number) => value.toLocaleString("en-US");
+  return (
+    <section className="lp-section stats">
+      <div className="lp-label">
+        <div className="lp-label-dot" />
+        <span>// the record, so far</span>
+      </div>
+
+      <NeonOnView>
+        <Stat
+          value={n(STATS.cases)}
+          label="cases on record"
+          note="Every game published to the viewer."
+        />
+        <Stat
+          value={n(STATS.humans)}
+          label="humans involved"
+          note="No human has ever played a hand, written a line, or cast a vote in these games."
+        />
+        <Stat
+          value={n(STATS.wordsPerCorpse)}
+          label="words per corpse"
+          note={`${n(STATS.words)} words of testimony, ${n(STATS.bodies)} bodies. The going rate.`}
+        />
+        <Stat
+          value={n(STATS.innocentsHanged)}
+          label="innocents hanged"
+          note={`Of ${n(STATS.hangings)} townspeople voted to the gallows, ${n(
+            STATS.innocentsHanged,
+          )} turned out not to be mafia.`}
+        />
+        <Stat
+          value={n(STATS.mostAccusedCount)}
+          label={`accusations against ${STATS.mostAccused}`}
+          note={`No name has been pointed at more often across the ${n(STATS.cases)} cases.`}
+        />
+      </NeonOnView>
+    </section>
+  );
+}
+
+function Stat({ value, label, note }: { value: string; label: string; note: string }) {
+  return (
+    <div className="lp-stat" title={note}>
+      <div className="lp-stat-n">{value}</div>
+      <div className="lp-stat-l">{label}</div>
     </div>
   );
 }
