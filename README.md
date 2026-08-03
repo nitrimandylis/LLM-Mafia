@@ -204,6 +204,7 @@ LLM-Mafia/
     ├── make_sample_log.py  generates the viewer's sample log + checks schema parity
     ├── publish_game.py     publishes a finished log as a homepage episode
     ├── run_batch.py        plays N Claude games unattended, minding subscription quota
+    ├── ci_case.py          reviews, publishes and merges one game; the weekly job's other half
     ├── balance_report.py   win rates + lynch accuracy across the library, split by wolf count
     ├── mugshots.py         regenerates the pixel-art avatar SVGs from ASCII grids
     ├── wallpapers.py       saves the wallpaper PNGs off a running viewer
@@ -215,6 +216,13 @@ Published episodes live in `viewer/public/logs/` and are indexed by
 `manifest.json`; that manifest, not the directory, defines the library. A log
 hand-edited for the editorial pass carries `exclude_from_stats` so
 `balance_report.py` leaves it out of the win rates.
+
+The library also grows on its own. Once a week `.github/workflows/case.yml`
+plays a game on a GitHub Actions runner and hands it to `tools/ci_case.py`,
+which throws out anything mechanically broken, asks Claude whether the game was
+worth watching, and opens a pull request it merges only if that review approves.
+A game the reviewer turns down stays an open PR instead, so nothing ships
+without either a yes or a look.
 
 ---
 
