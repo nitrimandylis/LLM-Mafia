@@ -1814,6 +1814,58 @@
    "revealed": true,
    "hard": true,
    "provider": "claude"
+  },
+  {
+   "slug": "case-036",
+   "title": "The Borrowed Conviction",
+   "tagline": "The town demands a quoted line before every vote. The quotes are all accurate. That turns out not to be the same thing as being right.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 3,
+   "deaths": 5,
+   "revealed": true,
+   "hard": true,
+   "provider": "claude"
   }
  ]
 }
