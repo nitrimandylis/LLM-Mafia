@@ -228,6 +228,10 @@ def pr_body(verdict, problems, slug):
 def main():
     parser = argparse.ArgumentParser(description="Review, publish and merge one finished game")
     parser.add_argument("log", help="Path to the finished game log in runs/")
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Gate and review only. Publishes nothing, opens no PR, pushes no ntfy.",
+    )
     args = parser.parse_args()
 
     log_path = Path(args.log)
@@ -238,8 +242,9 @@ def main():
     reasons = smells_wrong(log_path)
     if reasons:
         print(f"🛑 Mechanical gate: {', '.join(reasons)}")
-        notify("Mafia: game rejected", f"smells_wrong: {', '.join(reasons)}",
-               os.environ.get("RUN_URL"))
+        if not args.dry_run:
+            notify("Mafia: game rejected", f"smells_wrong: {', '.join(reasons)}",
+                   os.environ.get("RUN_URL"))
         return
 
     gm_title = log.get("episode", {}).get("title", "")
@@ -256,6 +261,12 @@ def main():
         print(f"📋 publish={verdict['publish']}")
         for reason in verdict["reasons"]:
             print(f"   - {reason}")
+
+    if args.dry_run:
+        print(f"🧪 Dry run — would publish: {approved}")
+        if not problems:
+            print(f"   card: {verdict['title']} — {verdict['tagline']}")
+        return
 
     # The card is only ever taken from a verdict that validated; otherwise the
     # GM's own metadata ships and a human decides on the PR.
