@@ -23,7 +23,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # GitHub delays scheduled runs under load, and a game that starts at 09:00
       # spends a five-hour quota window Nick is trying to use. A skipped week
