@@ -31,11 +31,18 @@ from tools.claude_usage import read_usage
 RUNS_DIR = REPO_ROOT / "runs"
 
 # Game 1 has nothing measured yet, so it needs a fixed guard: start only if the
-# window is at most this used. Reserving 30% keeps the same 1.5x margin the
-# measured path below uses, against a pessimistic 20% game. The old value of 50
-# reserved half a window, which stalled a batch for an hour at 51% used even
-# though a game has never come close to costing that much.
-FIRST_GAME_MAX_UTILIZATION = 70.0
+# window is at most this used.
+#
+# Measured over the 2026-08-03 batch, one 10-player 3-mafia game costs 16, 18,
+# 19, 23, 23, 33 percent of a window — mean 22%, worst 33%. Reserving half a
+# window is 1.5x that worst case, the same margin HEADROOM_MULTIPLIER applies
+# once a real cost is known.
+#
+# This was briefly raised to 70 on the theory that a game could not possibly
+# cost 50%; the worst one measured came within a third of it. Do not raise it
+# again without new numbers — the failure it prevents is running out mid-game,
+# which wastes everything already spent on that game.
+FIRST_GAME_MAX_UTILIZATION = 50.0
 # Start a game only with this much more headroom than the last one used —
 # games vary in length, and running out mid-game wastes everything spent.
 HEADROOM_MULTIPLIER = 1.5
