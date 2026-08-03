@@ -130,7 +130,8 @@ node_modules/
 
 # brainstorm visual companion
 .superpowers/
-docs/
+docs/*
+!docs/specs/
 .vercel
 
 # raw batch logs, published copies live in viewer/public/logs
