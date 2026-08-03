@@ -96,7 +96,7 @@
 
 .lp-logo {
   font-family: var(--grotesk);
-  font-size: clamp(56px, 7vw, 96px);
+  font-size: clamp(64px, 8vw, 160px);
   font-weight: 800; line-height: 0.88; letter-spacing: -0.04em;
   margin-bottom: 40px;
 }
