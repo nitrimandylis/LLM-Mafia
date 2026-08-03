@@ -191,15 +191,59 @@ class MafiaGame:
             ]
             if candidates:
                 self.trusted_person = random.choice(candidates)
+                # The note names the trade-off rather than granting permission.
+                # Under the first wording ("use or share as you see fit") no
+                # detective ever vouched in seven games, and in case-023 the
+                # town lynched the trusted person on day 4 while the detective
+                # sat on the answer. The cue is today's discussion because
+                # voting is simultaneous — a detective cannot see a lynch
+                # coming at ballot time, only hear it being built.
                 self.add_private_note(
                     det,
-                    f"Game start: {self.trusted_person} is confirmed NOT mafia. "
-                    "You may use or share this as you see fit.",
+                    f"Game start: {self.trusted_person} is confirmed NOT mafia — "
+                    "the one thing you know for certain. Never vote them, and "
+                    "treat their reads as honest. You can vouch for them "
+                    "publicly, but you cannot explain how you know without "
+                    "exposing yourself as the detective — so hold it unless "
+                    "today's discussion is turning on them, when a wasted "
+                    "lynch costs more than your cover.",
                 )
 
         self.log("\n🎭 ROLES ASSIGNED", "bold")
         for p in self.players:
             self.log(f"  {p.name}: {p.role.value}", "cyan", public=False)
+
+    def probe_candidates(self, player: Player, alive_names: List[str]) -> List[str]:
+        """Who this player may be pointed at when the day forces them to attack.
+
+        The day hands players a target several times over: the opening probe,
+        the daily "who is most suspicious", the questioning rounds, and the
+        final accusation. Anybody left in this list is someone the player might
+        be made to turn on, so two are removed: a wolf's partners, and the
+        detective's trusted person — the one player they have been told for
+        certain is town.
+
+        Leaving the trusted person in was spending the buff backwards. The
+        questioning rounds alone drew a random target twice a day, with
+        templates that say "Challenge" and "Confront", giving roughly a 60%
+        chance across a four-day game that the detective was made to attack
+        their own confirmed townie (case-023 on days 1 and 4, case-026 on 2).
+        """
+        candidates = [name for name in alive_names if name != player.name]
+
+        if player.role == Role.MAFIA:
+            partners = {p.name for p in self.get_mafia()}
+            candidates = [name for name in candidates if name not in partners]
+
+        if player.role == Role.DETECTIVE and self.trusted_person:
+            candidates = [name for name in candidates if name != self.trusted_person]
+
+        # Never hand back an empty shortlist; falling back to everyone else is
+        # better than having no one to name.
+        if not candidates:
+            candidates = [name for name in alive_names if name != player.name]
+
+        return candidates
 
     def get_mafia(self) -> List[Player]:
         """Return list of mafia players"""
@@ -258,11 +302,7 @@ class MafiaGame:
             with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
                 futures = {}
                 for player in alive:
-                    others = [n for n in alive_names if n != player.name]
-                    if player.role == Role.MAFIA:
-                        # Never force mafia to open on a teammate
-                        partners = {p.name for p in self.get_mafia()}
-                        others = [n for n in others if n not in partners] or others
+                    others = self.probe_candidates(player, alive_names)
                     prompt = f"This is Day 1. No one has died yet and no one has done anything. Pick ONE player from: {', '.join(random.sample(others, min(3, len(others))))} whose behavior you most want to probe today, and say what you want to see or hear from them (1 sentence). A player's name, title, or manner of speaking is NOT evidence — do not call anyone suspicious because of it. Do NOT reference past events or history."
                     future = executor.submit(
                         self.query_model,
@@ -317,7 +357,7 @@ class MafiaGame:
             with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
                 futures = {}
                 for player in alive:
-                    others = [n for n in alive_names if n != player.name]
+                    others = self.probe_candidates(player, alive_names)
                     prompt = f"KEY FACTS: {key_facts}Day {self.day}. {eliminated_str}. Given these new facts, who among the ALIVE players is most suspicious? Reference specific past behavior from: {', '.join(others[:5])}."
                     future = executor.submit(
                         self.query_model, player, prompt, recent_context,
@@ -358,7 +398,10 @@ class MafiaGame:
             # costs little real time — NVIDIA throttles globally and a single
             # local model serializes anyway — and reads as an actual conversation.
             for player in alive:
-                others = [p for p in alive if p != player]
+                # The templates below are adversarial ("Challenge", "Confront"),
+                # so who gets drawn here is who the player is made to attack.
+                allowed = set(self.probe_candidates(player, alive_names))
+                others = [p for p in alive if p.name in allowed]
                 if not others:
                     continue
                 target = random.choice(others)
@@ -402,7 +445,7 @@ class MafiaGame:
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             futures = {}
             for player in alive:
-                others = [n for n in alive_names if n != player.name]
+                others = self.probe_candidates(player, alive_names)
                 prompt = f"{eliminated_str}. Who should be eliminated TODAY from the ALIVE players? Choose from: {', '.join(others)}. Be decisive (1 sentence). START your sentence with the name of the player you accuse, then give your reason. Your reason must cite a recorded action (a vote, claim, or contradiction) — personality and speaking style are not evidence."
                 future = executor.submit(
                     self.query_model, player, prompt, build_day_summary(self.day, alive_names, self.vote_history, self.night_kill_history),
@@ -579,7 +622,13 @@ class MafiaGame:
             detectives = [p for p in alive if p.role == Role.DETECTIVE]
             if detectives:
                 detective = detectives[0]
-                uninvestigated = [n for n in alive_names if n != detective.name and n not in self.detective_investigated]
+                # The trusted person counts as already investigated: spending a
+                # night confirming what the detective was told on turn one is
+                # the single most expensive way to waste the buff.
+                known = set(self.detective_investigated)
+                if self.trusted_person:
+                    known.add(self.trusted_person)
+                uninvestigated = [n for n in alive_names if n != detective.name and n not in known]
                 valid = uninvestigated if uninvestigated else [n for n in alive_names if n != detective.name]
                 prompt = f"Choose ONE player to investigate tonight. Pick someone suspicious from today's discussion. Targets: {', '.join(valid)}"
                 future = executor.submit(
@@ -1343,6 +1392,13 @@ Here is the game history so far:
                 "investigated": sorted(self.detective_investigated),
                 "mafia_found": found,
                 "trusted_person": self.trusted_person,
+                # Which delivery of the buff this game played. v1 (logs with no
+                # such field) told the detective the name and nothing else, and
+                # let day 1 force them to attack it. v2 filters the day-1
+                # shortlist and spells out the vouching trade-off. Pooling the
+                # two in the balance report would average two mechanics, which
+                # is the exact mistake that produced the old 50/50 headline.
+                "trusted_person_v": 2,
             }
 
         kills = [k for k in self.night_kill_history if not k["saved"]]

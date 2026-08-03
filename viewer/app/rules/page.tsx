@@ -241,7 +241,9 @@ export default function Rules() {
               When the detective is killed in the night, their last investigation result is
               found with the body and published to the whole town the next morning. Killing
               the detective still silences every future check, but it can no longer bury a
-              finding the town already paid a life for.
+              finding the town already paid a life for. This one arrived part-way through the
+              archive: cases 001 to 004 were played before it existed, so when their detective
+              died in the night, nothing was found with the body.
             </p>
           </div>
           <div className="lp-house-card">

@@ -68,6 +68,10 @@ def read_game(path):
         "mafia_count": mafia_count,
         "lynches": lynches,
         "trusted_person": detective.get("trusted_person"),
+        # Logs written before the delivery fix carry no version field. They are
+        # v1: the detective was told the name and nothing else, and day 1 could
+        # force them to attack it.
+        "trusted_person_v": detective.get("trusted_person_v", 1),
     }
 
 
@@ -167,12 +171,19 @@ def main():
     print_table("Where the game is decided", day_one_split(games))
 
     # The trusted person only applies to 3-mafia games, so the comparison that
-    # means anything is buffed vs unbuffed within that group.
-    buffed = [g for g in three_mafia if g["trusted_person"]]
+    # means anything is buffed vs unbuffed within that group. The two deliveries
+    # get their own rows: v1 let day 1 force the detective to attack their own
+    # trusted person, so pooling it with v2 would average two mechanics.
     unbuffed = [g for g in three_mafia if not g["trusted_person"]]
+    buffed_v1 = [g for g in three_mafia if g["trusted_person"] and g["trusted_person_v"] == 1]
+    buffed_v2 = [g for g in three_mafia if g["trusted_person"] and g["trusted_person_v"] >= 2]
     print_table(
         "Trusted person (3-mafia only)",
-        [("with trusted person", buffed), ("without", unbuffed)],
+        [
+            ("without", unbuffed),
+            ("v1 (name only)", buffed_v1),
+            ("v2 (day-1 filtered)", buffed_v2),
+        ],
     )
     print()
 

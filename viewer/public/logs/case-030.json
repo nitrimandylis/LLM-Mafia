@@ -1,0 +1,1415 @@
+{
+ "events": [
+  {
+   "type": "game_start",
+   "players": [
+    {
+     "name": "RICO",
+     "seat": 0,
+     "color": "#7cc4ff",
+     "model": "haiku-4.5",
+     "role": "Detective"
+    },
+    {
+     "name": "ARIA",
+     "seat": 1,
+     "color": "#ff9a9a",
+     "model": "sonnet-5",
+     "role": "Mafia"
+    },
+    {
+     "name": "SAGE",
+     "seat": 2,
+     "color": "#b9f6ca",
+     "model": "opus-4.8",
+     "role": "Villager"
+    },
+    {
+     "name": "HOLMES",
+     "seat": 3,
+     "color": "#ffd180",
+     "model": "haiku-4.5",
+     "role": "Villager"
+    },
+    {
+     "name": "MARSHAL",
+     "seat": 4,
+     "color": "#ce93d8",
+     "model": "sonnet-5",
+     "role": "Mafia"
+    },
+    {
+     "name": "SOCRATES",
+     "seat": 5,
+     "color": "#80deea",
+     "model": "opus-4.8",
+     "role": "Villager"
+    },
+    {
+     "name": "DR. VANCE",
+     "seat": 6,
+     "color": "#ffab91",
+     "model": "haiku-4.5",
+     "role": "Villager"
+    },
+    {
+     "name": "PIP",
+     "seat": 7,
+     "color": "#c5e1a5",
+     "model": "sonnet-5",
+     "role": "Villager"
+    },
+    {
+     "name": "CHEN",
+     "seat": 8,
+     "color": "#f48fb1",
+     "model": "opus-4.8",
+     "role": "Mafia"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "seat": 9,
+     "color": "#9fa8da",
+     "model": "haiku-4.5",
+     "role": "Doctor"
+    }
+   ],
+   "player_count": 10,
+   "provider": "claude"
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "PIP",
+   "text": "Um, okay, so, maybe we should start with HOLMES? I just, I don't know, I'd like to hear him lay out how he thinks we should even approach today before anyone starts pointing fingers, since nobody's really said anything yet."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "MARSHAL",
+   "text": "Since this is Day 1, let's establish proper procedure before we start throwing around accusations. I'd like to hear SOCRATES lay out a clear, specific line of reasoning for how they intend to approach elimination decisions today, since vague answers early on make it harder to hold anyone accountable later."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "HOLMES",
+   "text": "I'd like to hear SOCRATES explain their method for spotting mafia versus honest players, because how someone approaches this core question reveals whether they're thinking rigorously or making snap judgments."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "RICO",
+   "text": "HOLMES, I want to hear your read on everyone right now and see if you're actually thinking or just sitting there waiting for someone else to figure it out."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "text": "I want to see MARSHAL's reasoning for their Day 1 vote when no actual evidence exists\u2014is it random, intuitive, or based on some testable framework?"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "SOCRATES, since two people have already asked you to lay out your reasoning process, I'd love to hear a concrete, specific method rather than generalities so we can actually judge how you'd separate mafia from town."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "SAGE, I want to hear you commit to a concrete standard for what you'd count as evidence today, because I plan to build a full dossier on each player's reasoning and I need your baseline on record before anyone muddies the water."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "MARSHAL, instead of demanding SOCRATES lay out procedure, I want to hear your own concrete read on at least two living players right now, because the person who sets rules for others should be willing to commit to a position themselves."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SOCRATES",
+   "text": "I find it curious that three separate voices all converged on demanding I explain myself before anyone had spoken a word \u2014 so RICO, rather than pressing HOLMES to perform for you, I want to hear what your own read actually is and what you'd do with it, since a person who only asks questions never has to expose their own reasoning to scrutiny."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "text": "I most want to probe MARSHAL, to see if they believe PIP's suggestion to hear from HOLMES first is wise or if they'd prefer we all contribute our thoughts at once."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, um, so, a lot of people are asking others to explain their reasoning first\u2014do you actually have a read on anyone yet, or are you also just watching to see who cracks first?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "I notice SOCRATES turned RICO's question back on them rather than answering directly, which is smart play either way. But mostly I'm watching how people handle pressure before I commit to a real read, since one response on Day 1 doesn't tell us much yet."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "SAGE, you were quick to redirect the pressure from SOCRATES straight onto MARSHAL yesterday, so walk us through why you picked that particular moment to pivot."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "ARIA, correction on the record: this is Day 1, nothing happened \"yesterday,\" and MARSHAL was already demanding SOCRATES lay out procedure while dodging any read of their own, so I turned that back on MARSHAL. I'd note you framed my move as a \"pivot\" away from SOCRATES when I never pressured SOCRATES at all \u2014 so I'm curious why you're reshaping my words instead of giving your own read."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you've asked everyone else to commit to their reasoning and reads, but you haven't given a single one yourself\u2014so what's your actual suspicion, or are you deliberately staying neutral to see who breaks first?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "You caught me, HOLMES\u2014I was indeed staying neutral to observe. ARIA strikes me as the most suspicious because she's been reframing other people's statements rather than engaging them directly, which is exactly the kind of misdirection that works best in a group like this."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SAGE",
+   "text": "SAGE, you called out ARIA's misquote and then went straight at MARSHAL instead of giving your own read\u2014what's your actual angle?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "RICO, my read is on record already: MARSHAL and HOLMES both spent Day 1 demanding SOCRATES perform while committing to zero reads of their own, and AMBASSADOR SILVA openly admitted staying neutral to \"see who breaks first\" before naming ARIA only after HOLMES pressed him. My actual angle is that people manufacturing pressure without exposing a position are the ones worth watching \u2014 so I put ARIA's misquote and MARSHAL's dodge on the table because both are concrete, cited moves rather than vague vibes."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "CHEN",
+   "text": "CHEN, you announced you're building a \"full dossier\" on everyone's reasoning yet you aimed your only question at SAGE and then vanished from the conversation entirely \u2014 so where is your dossier now, and why did the self-appointed record-keeper go silent the moment real reads started landing on the table?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "SOCRATES, I didn't vanish\u2014I was cataloguing, and here's the entry: you deflected RICO's question back at RICO, then just now deflected mine into a challenge about my note-taking rather than answering anyone's substance yourself. My dossier's cleanest data point so far is that SAGE has landed the most specific reads while the people generating pressure without positions\u2014you included\u2014are the ones I'm flagging for cross-examination."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, my dossier flags that you opened by pushing HOLMES to lay everything out, then pressed AMBASSADOR SILVA to expose a read, yet across two turns you've committed to zero suspicion of your own\u2014so name the one living player you'd vote right now and tell me exactly why, no more deflecting the question onto others."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Um, okay, fair, that's fair\u2014 if I have to pick, I'd say SOCRATES, only because he keeps flipping questions back at people instead of answering them himself, like with RICO and now CHEN, and that pattern kind of worries me? But I'm not, like, super confident, I could totally be wrong."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "SOCRATES",
+   "text": "SOCRATES, per proper procedure you've deflected two direct questions now, so let's cut to it: who do you personally most suspect and why, in one clear sentence?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, since you insist on a straight answer: I most suspect AMBASSADOR SILVA, because he sat neutral by design, admitted he was watching \"who breaks first,\" then produced a suspect only after HOLMES cornered him \u2014 a manufactured read is more telling than an honest one. And I'd note the loudest demanders of \"procedure\" \u2014 you and HOLMES \u2014 have offered no reads of your own, which is exactly the cover a mafia player enjoys hiding behind."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, you opened by deferring to HOLMES instead of laying out your own read, but when CHEN cornered you, your suspicion of SOCRATES came out sounding almost reluctant\u2014so I want to know if you genuinely believe SOCRATES is mafia or if you were just finding a name to satisfy CHEN's pressure."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Honestly? Maybe a bit of both, if I'm being real with myself\u2014like, the deflecting thing does genuinely bug me, but I also wasn't, like, sitting on some secret certainty before CHEN asked. I guess I'd rather watch how SOCRATES answers the next direct question than pretend I've got it all figured out already."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, you've now named SOCRATES as your pick while simultaneously admitting you weren't \"sitting on some secret certainty\" and might've just been \"finding a name to satisfy CHEN\" \u2014 so which is it: do you actually believe SOCRATES is mafia, or are you keeping your own hands clean by never committing to a real read you'd be willing to vote on?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "Okay, um, real answer: yes, I'd vote SOCRATES right now if we voted this second, the deflecting pattern actually does bother me enough to act on it. I'm just not, like, claiming I'm certain-certain, but \"willing to vote on it\" and \"100% sure\" aren't the same thing, right?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, you asked HOLMES to lay out his reasoning without offering your own\u2014so name one player you actually suspect and tell me what evidence led you there, because non-commitment is a statistical marker I track in every game."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "DR. VANCE",
+   "text": "SOCRATES. He keeps deflecting questions instead of giving real answers, and that's exactly what a guilty player does."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "HOLMES",
+   "text": "HOLMES, you spent Day 1 pressing SOCRATES to explain his method while committing to zero read of your own \u2014 so name the one living player you'd vote right now and cite the specific evidence behind it."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "SAGE",
+   "text": "You're right, SAGE. MARSHAL established the framework for demanding SOCRATES answer while never committing to a read themselves, which is exactly the cover a mafia player uses\u2014so I'd vote MARSHAL."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "SAGE, you've cited MARSHAL and HOLMES as pressure-manufacturers, but for my dossier I need a single committed vote on record\u2014so name the one living player you'd cast against right now and the one concrete move that convicts them, not a two-name hedge."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "Fair, CHEN \u2014 my single vote right now is AMBASSADOR SILVA, and the convicting move is on the record: he explicitly admitted staying \"neutral to observe\" and watching \"who breaks first,\" then only manufactured a suspect \u2014 ARIA \u2014 after HOLMES cornered him into naming one. A read produced under duress to escape scrutiny, rather than offered freely, is the one concrete tell I'll act on today."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "HOLMES, you accused MARSHAL of dodging a read, yet you only landed on that vote after SAGE forced your hand \u2014 so were you actually suspicious of MARSHAL before SAGE pressed you, or did you just grab the nearest name to get out of the hot seat?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "Fair catch, ARIA\u2014SAGE did push me to name it\u2014but once I examined MARSHAL's pattern of demanding SOCRATES explain while offering no read of their own, that's still the exact structure a guilty player hides behind, and I'd vote on it now regardless of when I articulated it. The timing of my saying it doesn't change whether the logic holds."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "PIP, you deferred to me on Day 1 instead of offering your own read, then only named SOCRATES after CHEN pressured you into it\u2014so tell me straight: did you actually suspect SOCRATES before CHEN cornered you, or did you just grab the nearest name to get out of the hot seat?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "Honestly? I noticed the deflecting thing on my own before CHEN even asked, I just hadn't said it out loud yet 'cause I wasn't sure it counted as \"real\" suspicion, you know? So it's not like I grabbed a random name, but yeah, CHEN definitely forced me to actually say it instead of just sitting on it."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "CHEN, you announced you were building a full dossier, then went quiet the moment real reads started landing, and when SOCRATES pressed you, you defended your cataloguing instead of naming your own suspect. So who do you actually suspect most and what evidence convinced you?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, my dossier's top entry is you: you self-declared as neutral to \"watch who breaks first,\" then only produced ARIA as a suspect after HOLMES cornered you\u2014a read manufactured under pressure to buy yourself cover. My second flag is SOCRATES for the serial deflection pattern PIP and RICO both independently clocked, but the convicting move today is your engineered-on-demand suspicion, so that's where my vote points."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "ARIA, you've pressed SOCRATES, SAGE, and HOLMES to justify their positions throughout this discussion, but I've found no record of you naming your own suspect\u2014so who do you actually suspect most right now and what concrete evidence supports casting your vote against them?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "Fair, DR. VANCE\u2014my read is AMBASSADOR SILVA, and it's the same concrete tell SAGE and CHEN already flagged: he openly admitted staying neutral to \"watch who breaks first\" and only produced a suspect once HOLMES cornered him into it. A read manufactured purely to escape pressure tells me more about self-preservation than genuine suspicion, and that's worth a vote today."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES, why'd you wait until SAGE twisted your arm to name MARSHAL when you were grinding everyone else all day for their reads? That screams guilty to me."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "You caught me being less systematic than I should be, RICO\u2014that's fair. But MARSHAL's pattern of demanding explanations while offering no read of their own was visible from Day 1, and waiting to articulate it doesn't change the substance of what I observed."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, you've been quick to pivot suspicion onto me, HOLMES, and now AMBASSADOR SILVA in rapid succession while never once landing on a fixed target yourself until pressed \u2014 so per proper procedure, name the single strongest piece of evidence you have against any one player, and stick to it without pivoting again."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, I already named my single fixed target on the record when CHEN asked \u2014 AMBASSADOR SILVA \u2014 and I haven't pivoted since, so the \"rapid succession\" claim misreads what I actually did. The strongest evidence stands: SILVA admitted staying \"neutral to observe\" who \"breaks first,\" then only produced ARIA as a suspect after HOLMES cornered him, and I notice you're recasting my consistency as flailing rather than answering for your own missing read."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, if SAGE, CHEN, and ARIA all landed on you independently for the same \"neutral then named ARIA under pressure\" reason, why should we not just go with the majority read and vote you today?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, the consensus against me actually proves my transparency\u2014I admitted I was observing instead of faking confidence like any Mafia player trying to hide would do, so three people fact-checking the same open move isn't guilt, it's honesty. What actually deserves your vote is the pattern of SOCRATES and MARSHAL dodging every direct demand for a read all day long."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "text": "ARIA, you opened by twisting SAGE's move into a \"pivot\" that never happened, then only produced your own suspect when DR. VANCE forced you to \u2014 so I have to ask: is echoing SAGE and CHEN's read on SILVA a conviction you reasoned into yourself, or the safest name to hide behind while you kept everyone else on the defensive?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you're the one deflecting a direct question with a rhetorical trap instead of answering it, which is a little rich given you dodged RICO and MARSHAL the exact same way earlier today. My read on SILVA is my own conclusion from his own admitted words, not an echo, and I notice you'd rather cross-examine my phrasing than address why you've spent the whole day flipping questions back at whoever presses you."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because he openly admitted staying \"neutral to observe who breaks first\" and only produced a suspect, ARIA, once HOLMES cornered him, which three other players independently flagged as a manufactured read to escape pressure rather than genuine suspicion."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because he admitted on record he stayed \"neutral to observe\" who \"breaks first\" and only produced a suspect after HOLMES cornered him\u2014a read manufactured under pressure rather than reasoned into."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should go today, since by his own admission he stayed deliberately neutral all day and only produced a suspect\u2014me\u2014the moment HOLMES cornered him, which is a manufactured read designed purely to escape pressure rather than genuine analysis."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because he admitted staying \"neutral to observe who breaks first\" and only produced a suspect\u2014ARIA\u2014after HOLMES cornered him, a read manufactured under pressure rather than reasoned into freely."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should be eliminated today, since by his own admission he stayed \"neutral to observe who breaks first\" and only produced a suspect in ARIA once HOLMES cornered him, a manufactured read under pressure that SAGE, CHEN, and ARIA have all independently flagged as the clearest concrete tell on the table."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because his recorded statements show he intentionally stayed neutral to observe who would \"break first,\" then only manufactured a suspect after being cornered by HOLMES\u2014a textbook cover strategy that three independent observers caught using the same evidence."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA is my vote because he admitted staying \"neutral to observe\" who \"breaks first\" and only produced ARIA as a suspect after HOLMES cornered him \u2014 a read manufactured under pressure to escape scrutiny."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "RICO",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA admitted staying neutral to observe who breaks first, then only named ARIA after HOLMES cornered him\u2014that's a manufactured read made under pressure to buy cover, and three people independently clocked it as the tell of the day."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should be eliminated today because he explicitly stated his strategy was to remain \"neutral to observe\" who \"breaks first,\" then violated that stated principle by producing ARIA as a suspect only after being directly cornered by HOLMES\u2014a documented contradiction between his declared method and his actual behavior under pressure that three other players independently identified."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL has demanded procedure and readings from both SOCRATES and SAGE throughout the day while never once committing to naming a single player he suspects or voting for anyone himself\u2014that selective enforcement while avoiding exposure is exactly the cover a Mafia player relies on."
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "RICO",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "elimination",
+   "day": 1,
+   "target": "AMBASSADOR SILVA",
+   "role": "Doctor",
+   "tally": {
+    "AMBASSADOR SILVA": 9,
+    "SOCRATES": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "night"
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "HOLMES \u2014 he's been the most aggressive vote-driver and logic-pusher today, and removing him weakens town's ability to organize a coordinated case against us tomorrow."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "MARSHAL",
+   "text": "HOLMES \u2014 he's driving the most aggressive vote logic and organizing pressure campaigns, so cutting him tonight weakens town's ability to coordinate against us tomorrow."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "HOLMES \u2014 both of you already flagged him as the most aggressive vote-driver, and eliminating him strips town of its main organizer before he can build a coordinated case against us tomorrow."
+  },
+  {
+   "type": "investigation",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "result": "INNOCENT"
+  },
+  {
+   "type": "night_kill",
+   "day": 1,
+   "target": "HOLMES",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "PIP",
+   "text": "Um, okay, so... SILVA was actually the Doctor and we voted her out, that's really bad for us. I keep thinking about how MARSHAL kept pushing SOCRATES for answers but never gave any reads of his own, that felt weird to me? And SOCRATES only turned on SILVA after getting cornered, which..."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "SILVA's accusation against me night before she died still nags at me, but let's not forget she also flip-flopped hard onto SOCRATES only after being pressured, and SOCRATES himself dodged real questions about his so-called detection method all of Day 1. That kind of deflection under scrutiny, especially now that a Villager is dead and our real Doctor is gone, makes me want answers from SOCRATES first. PIP already flagged him for the same evasiveness, so I think we circle back to that thread."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SAGE",
+   "text": "The math here is grim: we lost SILVA, who turned out to be our DOCTOR, and the mafia took HOLMES, a Villager. Both of those deaths point me straight at SOCRATES. On Day 1, when SILVA named ARIA as suspicious, SOCRATES immediately flipped the spotlight onto SILVA, calling his read \"manufactured\" \u2014 and that is precisely the wagon that got our Doctor killed. Then note who died at night: HOLMES, one of the two people who kept pressing SOCRATES to explain his detection method."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "MARSHAL",
+   "text": "Let's stick to procedure here rather than piling onto whoever spoke last. PIP, questioning is exactly how we're supposed to test claims, that's not evidence against me, but SOCRATES only pivoted onto SILVA after being cornered, which by the established timeline looks like he was protecting her until it became untenable. I want SOCRATES to walk us through his detection method again, precisely, before we move forward, since that inconsistency is still unresolved from Day 1."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "Let me cross-reference the record. SILVA turned out to be our DOCTOR, and the one player SILVA fingered as Mafia in his dying breath was SOCRATES \u2014 meanwhile SOCRATES had spent Day 1 manufacturing the counter-read that painted SILVA as suspicious, which helped drive our Doctor to the gallows. That sequence sits at the top of my dossier."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SOCRATES",
+   "text": "Consider the shape of this, friends. SILVA was our Doctor, and the last thing she did before dying was name ARIA \u2014 and now ARIA's very first move today is to bury that thread and aim everyone at me instead. Ask yourselves: why would someone the Doctor flagged work so hard to redirect the room rather than simply answer for herself?"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "text": "Looking at the empirical record, SOCRATES displays the clearest pattern of suspicious behavior. SOCRATES claimed or implied to have a detection method when MARSHAL and HOLMES pressed him, then deflected rather than explain when asked\u2014but immediately turned around and attacked SILVA for producing a read only under pressure, which is the exact same position SOCRATES had just occupied. That's textbook hypocrisy. When you won't answer questions yourself but then critique others for the same reluctance, that's a behavioral red flag worth tracking."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "RICO",
+   "text": "MARSHAL's been pressuring SOCRATES all game but never puts his own read on the table\u2014that's classic mafia deflection right there. MARSHAL's my target."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES, walk us through exactly why you flipped onto SILVA the instant she named me, since the timing there still hasn't been explained."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "text": "I flipped onto SILVA because her read on you appeared only after SILVA was cornered \u2014 a manufactured accusation is exactly the pattern we were all taught to distrust, and at the time none of us knew her role. But notice the deeper move, ARIA: SILVA's final words named you, not me, and a whole chorus has since spent today converting that into a wagon on the one person questioning why you'd rather interrogate me than answer for the name the Doctor actually spoke."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP, you've named several people in passing but haven't landed on one \u2014 by procedure you're due to state your single strongest suspect and the specific reason, so who is it and why?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "Um, okay, put on the spot here... I think my strongest suspect is SOCRATES, because the timeline SAGE and CHEN laid out really bugs me \u2014 he flipped onto SILVA right when she named ARIA, and now SILVA's dead and turned out to be our Doctor, so that flip looks less like caution and more like steering us. I'm still nervous about it though, maybe I'm wrong?"
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "CHEN",
+   "text": "CHEN, you cast yourself as our record-keeper, yet you told the room SILVA \"fingered SOCRATES as Mafia in his dying breath\" \u2014 but the actual record shows the Doctor named ARIA, and only her ballot fell on me; so why does the one man guarding the dossier keep rewriting the single fact that steers this whole wagon?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "Fair correction on the wording \u2014 SILVA named ARIA verbally, but her one and only ballot landed squarely on you, SOCRATES, and a Doctor's final vote is the action I weight heaviest in the dossier. So the fact that steers this wagon isn't rewritten at all: the person our Doctor chose to spend her dying vote against was you."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "SAGE, you've been really quick to pin this all on SOCRATES since Day 1 started\u2014 but what's your actual read on why the mafia chose to kill HOLMES specifically, if not just to muddy the water around your own accusation?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "HOLMES was one of the two people pressing SOCRATES to explain his detection method, so silencing him removes a voice that kept the heat on SOCRATES \u2014 that's not muddying my accusation, PIP, it reinforces it. If the mafia wanted noise around me, they'd have killed a loud accuser like CHEN or me, not the man asking the questions SOCRATES kept dodging."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "ARIA, SILVA named you suspicious before dying, and you've been actively pushing to eliminate SOCRATES\u2014what concrete evidence do you have that he's mafia and you're not misdirecting?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "My concrete evidence is behavioral, not magic: SOCRATES only pivoted onto SILVA after being cornered on Day 1, then spent today twisting CHEN's wording and lecturing everyone about hypocrisy rather than just answering plainly like PIP, SAGE, and CHEN have all independently converged on. SILVA naming me doesn't erase that pattern, DR. VANCE, and honestly a guilty man's best move is always to make the accuser sound like the accused."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, my dossier flags a pattern with you: when MARSHAL pressed you for a single suspect, you finally named SOCRATES but instantly hedged with \"maybe I'm wrong,\" and earlier your opening today trailed off mid-sentence without committing to anything. So which is it \u2014 do you actually stand behind SOCRATES as your read, or are you deliberately keeping a soft exit so you can slide off any wagon that forms?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Okay, okay, fair, I get why that looks bad\u2014 but no, I do stand behind SOCRATES, the flip onto SILVA right when she named ARIA still bugs me the most out of everything said today. I just get nervous committing out loud, that's on me, not on the read."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "CHEN, you opened today claiming SILVA \"fingered SOCRATES as Mafia in his dying breath,\" then walked it back to \"she named ARIA verbally but voted me\" only after SOCRATES caught you \u2014 so as our self-appointed record-keeper, why did the one man guarding the dossier state the single most wagon-steering fact wrong in the first place?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "Because a verbal accusation and a ballot both point the same direction, SAGE \u2014 I compressed two facts into one phrase, sloppy wording, but the correction changed nothing: SILVA's dying vote still landed on SOCRATES and no one else. If you want to catch a record-keeper in a real distortion, look at SOCRATES twisting my phrasing into a diversion instead of ever explaining that Day 1 flip."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you flipped on SILVA the moment she said ARIA\u2014what's the story there?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "RICO",
+   "text": "RICO, the story is simple: at the time no one knew SILVA's role, and a read that surfaces only after its author is cornered is exactly the manufactured pattern we were taught to distrust \u2014 I judged the behavior, not the badge. But sit with the meta for a moment: an entire chorus has synchronized on me within one morning while the name our Doctor actually spoke aloud, ARIA, gets quietly buried \u2014 ask yourself who benefits when a wagon forms that fast and that clean."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you keep telling us to ask who benefits from a fast wagon, but you never actually answered RICO's plain question earlier \u2014 so let's try once more, plainly: what exactly is this \"detection method\" MARSHAL and HOLMES pressed you about on Day 1, and why still no straight answer?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "text": "The honest answer, ARIA, is that there is no mystical \"detection method\" \u2014 it was always behavioral reading, judging patterns like manufactured accusations, which is the very thing I called out in SILVA and the very thing I'm calling out in you now. So I'll answer plainly and ask plainly in return: our Doctor's dying words named you, not me, so why has every ounce of your energy today gone into policing my Day 1 phrasing instead of clearing the name she actually spoke?"
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you spent all of Day 1 defending SILVA and branding her read on ARIA \"manufactured,\" yet when the ballots landed you voted AMBASSADOR SILVA to the gallows right alongside the rest of us \u2014 so why did your vote contradict the very stance you're now using to paint yourself as her lone skeptic-turned-target?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "text": "A fair hit, SAGE \u2014 I voted SILVA because the whole room had already stampeded there and I bent to the herd, which is precisely the failure I'm begging you not to repeat with me today. So let that vote be Exhibit A of how fast this room manufactures a consensus and buries the harder question: why is the name our Doctor spoke aloud, ARIA, the one thing no one will examine?"
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "text": "SAGE, you've been the loudest architect of this wagon on me since Day 1 dawned, so tell me plainly \u2014 why does silencing the man who questions ARIA's buried accusation serve the town more than examining the very name our Doctor died naming?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SILVA's words are cheap, SOCRATES, but her one and only ballot fell on you and no one else \u2014 a Doctor's dying action outweighs a passing verbal jab, and yours is the name that vote condemns. As for \"silencing,\" you conveniently skip that you admitted voting SILVA to the gallows while claiming to be her lone defender, so it isn't ARIA's buried name protecting the town here, it's your buried contradiction."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "SAGE, you've cross-examined SOCRATES exhaustively, so state it flat for my dossier \u2014 who is your single strongest suspect right now, and what's the one piece of evidence that puts them there over anyone else?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "My single strongest suspect is SOCRATES, and the one decisive piece is his own admission: he branded himself SILVA's lone defender who called her read on ARIA \"manufactured,\" yet he voted AMBASSADOR SILVA to the gallows and then justified it by saying he \"bent to the herd.\" That is a man who talks like a protector but acts like an executioner, and it's the contradiction I weight above anything ARIA's said today."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "CHEN",
+   "text": "CHEN, you stated SILVA's words wrong in a way that made SOCRATES look guilty, then blamed sloppy wording\u2014so was that really just an accident?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "It was compression, not fabrication, RICO \u2014 I folded SILVA's verbal jab and her ballot into one phrase, and the correction cost nothing because both arrows point at SOCRATES anyway. If you want a real accident to scrutinize, ask why the man our Doctor spent her dying vote against still can't give a straight account of that Day 1 flip."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "ARIA, you voted SILVA on Day 1 with unanimous consensus while SILVA's sole ballot fell on SOCRATES \u2014 so what made you confident the consensus was right and her solo vote wrong?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "I voted with the room because SILVA's own read on me only surfaced after she was cornered, the exact manufactured-accusation pattern SOCRATES himself warned us about \u2014 and SOCRATES then voted her out too, so if that consensus was wrong he's guilty of the same call. I'm not claiming her ballot was baseless, DR. VANCE, I'm saying a cornered accusation and a genuine one look different, and SOCRATES's own Day 1 behavior fits the cornered pattern far better than mine does."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you keep grilling ARIA and SOCRATES with questions, but you haven't said it plainly yourself\u2014who are you actually voting for today?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "I'm voting SOCRATES. He voted SILVA to the gallows while claiming to defend her, then admitted bending to the herd\u2014the clearest behavioral contradiction in the evidence, reinforced by SILVA's dying ballot on him and independent convergence from PIP, SAGE, and CHEN."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP, procedurally you hedged your SOCRATES read with \"maybe I'm wrong\" right after CHEN pressed you on your soft exits \u2014 so directly, are you actually convinced, or are you just parking your vote on the safest wagon to avoid being targeted yourself?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "No, I mean it\u2014 SOCRATES is my read, not just a safe parking spot. The Doctor's dying ballot on him plus his own admitted flip-flop is enough for me, I'm voting SOCRATES today."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because his own admission that he voted SILVA to the gallows while claiming to be her lone defender is a direct contradiction, and the Doctor's dying ballot landed on him too."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SOCRATES branded himself SILVA's lone defender who called her read on ARIA \"manufactured,\" yet he voted AMBASSADOR SILVA to the gallows and then excused it as bending to the herd \u2014 that self-admitted contradiction, plus SILVA's dying ballot landing on him alone, makes him my vote today."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "CHEN",
+   "text": "CHEN should go today because he told the room SILVA \"fingered SOCRATES as Mafia in his dying breath,\" then admitted under pressure that the Doctor actually named ARIA verbally \u2014 a record-keeper distorting the single most wagon-steering fact is the concrete misconduct that outweighs anything pinned on me."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SOCRATES",
+   "text": "SOCRATES is my pick, since the Doctor's dying ballot fell on him and he's admitted he voted her out anyway while claiming to be her defender, a contradiction he's never actually resolved."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because he admitted voting AMBASSADOR SILVA to the gallows while branding himself her lone defender, and our Doctor's sole dying ballot fell squarely on him \u2014 that contradiction outweighs anything else on record today."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES is my vote, since his own admitted vote against SILVA while claiming to be her lone defender is a self-confirmed contradiction, and it's the one that lines up with the Doctor's dying ballot landing squarely on him."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES",
+   "text": "SOCRATES should be eliminated because he voted SILVA to the gallows while defending her logical reasoning, admitted bending to herd pressure rather than exercising independent judgment, and SILVA's dying ballot landed solely on him\u2014a clear contradiction between his stated and recorded behavior."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "MARSHAL pressured SOCRATES without staking his own read, and that's exactly how mafia hides."
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "RICO",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "elimination",
+   "day": 2,
+   "target": "SOCRATES",
+   "role": "Villager",
+   "tally": {
+    "SOCRATES": 6,
+    "ARIA": 1,
+    "MARSHAL": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "night"
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "DR. VANCE \u2014 he's been the most aggressive interrogator pressing ARIA directly and organizing the strongest case against SOCRATES, making him the biggest threat to redirect suspicion onto us next."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "MARSHAL",
+   "text": "DR. VANCE \u2014 he's led the most organized interrogation against our side and is the likeliest to reorganize suspicion onto ARIA or me next if left alive."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "DR. VANCE \u2014 my dossier flags him as the town's most methodical case-builder, and with two Villagers already burned he's the one most likely to reconstruct the pattern pointing back at ARIA or MARSHAL, so we cut the organizer before he organizes against us."
+  },
+  {
+   "type": "investigation",
+   "day": 2,
+   "actor": "RICO",
+   "target": "SAGE",
+   "result": "INNOCENT"
+  },
+  {
+   "type": "night_kill",
+   "day": 2,
+   "target": "DR. VANCE",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "ARIA",
+   "text": "RICO's been the odd one out this whole game, he blasted MARSHAL for \"deflecting\" on Day 2 but never once offered his own suspect or theory, which is exactly the kind of empty accusation that hides someone with nothing real to say. SOCRATES turned out innocent, so whoever pushed hardest for that vote without solid reasoning deserves a second look, and RICO's pattern of taking potshots while staying vague fits that mold. SAGE and PIP at least laid out reasoning tied to specific moments, Day 1 pressure tactics and SOCRATES's deflection respectively, so I'd rather hear RICO explain his logic before we trust his instincts again."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "MARSHAL",
+   "text": "RICO stands out to me. On Day 2, RICO broke from the group consensus and voted MARSHAL instead of SOCRATES, right after accusing MARSHAL of deflecting without ever committing to a suspect of his own. That kind of pattern, criticizing others while dodging a real stance and then casting an outlier vote, is exactly the procedural inconsistency I'd flag. SAGE and PIP have both been consistent in their reasoning, SAGE pressed hard on SOCRATES and PIP called him out from Day 1, so their trails hold up under scrutiny. RICO's vote and lack of a clear read do not."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "PIP",
+   "text": "Oh gosh, okay, um, ARIA's point about RICO is kind of sticking with me? Like, RICO went after MARSHAL on Day 2 but never actually said who HE thinks is mafia, and now two of our votes turned out wrong, SILVA and SOCRATES were both town, so maybe the person steering us wrong on purpose is still just... sitting quiet? I don't know, I'm not saying it's definitely RICO, but I'd feel better if he actually laid out a real theory instead of just poking holes in other people."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "CHEN",
+   "text": "RICO is the one my notes flag hardest right now. On Day 2, when SAGE, ARIA, PIP, DR. VANCE and I all converged on SOCRATES, RICO alone peeled off to vote MARSHAL \u2014 the second straight day RICO threw an accusation without ever committing to the room's read. And the pattern goes back further: RICO spent Day 1 pressing MARSHAL for a suspect while dodging naming one himself, then repeated that exact deflection Day 2. Now two Villagers, HOLMES and DR. VANCE, are dead overnight and the man who keeps refusing to sync with town is still here."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "SAGE",
+   "text": "Let me lay out the record, because our track record is grim: we voted out SILVA who was the Doctor, then SOCRATES who was a Villager, and mafia has quietly picked off HOLMES and DR. VANCE. Two of us five suspects are lying."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "RICO",
+   "text": "CHEN lied about what SILVA said to redirect from ARIA onto SOCRATES - straight mafia move. ARIA was the Doctor's named suspect and just pivoted to attacking SOCRATES instead of defending herself. MARSHAL never gave his own reads without asking, SAGE called that out right - CHEN and ARIA are mafia."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "RICO, you say CHEN and ARIA are mafia because of the SILVA quote mix-up and ARIA \"pivoting,\" but that still doesn't explain why YOU broke from the whole room and voted MARSHAL on Day 2 instead of joining the SOCRATES consensus \u2014 what's your actual reasoning for that outlier vote?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "PIP",
+   "text": "MARSHAL was dodging from Day 1 without a real read so I voted him instead of piling on - but CHEN lied about what SILVA said and ARIA pivoted the blame, that's your mafia."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "RICO, you claim CHEN is mafia for misstating SILVA's dying words, but the record shows CHEN corrected herself the moment SOCRATES caught it \u2014 so why does an admitted-and-fixed slip prove mafia, while your own two-day pattern of never naming a suspect until this very moment gets a pass?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "SAGE",
+   "text": "CHEN lied about SILVA to protect ARIA \u2014 that's mafia coordination and I'm calling both of them. Done talking about it."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "SAGE, you were pushing hard on SOCRATES all through Day 2 right up until the vote landed, so walk us through what convinced you he was the one and whether you're still confident that read was clean."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "I'll own it plainly, ARIA: SOCRATES flipped from defending SILVA to attacking her right after she named you, and that manufactured pivot read as guilt to five of us \u2014 but he turned out town, so my read was wrong and I'll say so. What I won't do is let that wrong read distract from the live question: RICO has now been asked twice for his own reasoning and both times answered only \"CHEN and ARIA are mafia, done talking,\" which is the exact stonewalling refusal to engage that I want explained before I trust anyone tonight."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, since you're now naming CHEN and ARIA both as mafia, which one specifically do you suspect more and what single piece of evidence tips the scale between them?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "ARIA \u2014 SILVA pointed her out with her last breath and she's never defended herself once, just kept attacking me instead of explaining anything. That's what the mafia does."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO, you've now been asked point-blank four separate times \u2014 by PIP, SAGE, MARSHAL, and by me \u2014 to explain why you broke from the entire room and voted MARSHAL on Day 2, and every single time you've answered with the same recycled \"CHEN and ARIA are mafia, done talking\" instead of the actual reasoning: so I'll make it simple, name one concrete thing MARSHAL did that made him a better vote than SOCRATES that day, or admit you never had a real read at all?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "CHEN",
+   "text": "MARSHAL was playing it safe from the start, and I'm not going to keep explaining old votes while you and ARIA avoid anything real."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "RICO",
+   "target": "SAGE",
+   "text": "SAGE, you pushed harder than anyone to lynch SOCRATES claiming that flip move proved his guilt, so explain what made you so rock solid certain he was mafia when he turned out clean?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "I already answered that, RICO \u2014 I owned it two messages ago: SOCRATES's pivot after SILVA named ARIA read as guilt to five of us, I was wrong, and I said so plainly. What you still haven't done, across five direct questions, is give one concrete reason for your Day 2 MARSHAL vote \u2014 so recycling my admitted mistake back at me doesn't fill the hole in your own record."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, you voted SILVA and SOCRATES both wrong, and now you're echoing ARIA's RICO read almost word-for-word \u2014 so tell me directly, is there a single living player you'd name as mafia on your own reasoning rather than following someone else's lead?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "Okay, um, honestly? RICO still bugs me most because he's had five chances to explain that MARSHAL vote and just keeps repeating \"CHEN and ARIA, done talking\" instead of answering, and that refusal itself feels like my own reason, not just copying ARIA. But I'll admit I'm not rock solid, SAGE, if someone shows me something better I might shift, I just... don't want to keep getting it wrong again."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "ARIA, on Day 2 you voted SOCRATES with the rest of us \u2014 but knowing now he was town, do you still think that pivot after SILVA named you was really guilt, or could it have just been panic?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "Honestly, PIP, hindsight makes me lean panic now \u2014 getting named by SILVA in her last breath and then watching SOCRATES flip hard right after probably just spooked him into an overcorrection, not guilt. I still think the bigger red flag tonight is RICO refusing five separate times to give real reasoning for that MARSHAL vote, that's the pattern that actually matters right now."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, you've now dodged the MARSHAL-vote question six times by pivoting straight to ARIA and CHEN \u2014 if that vote was truly just \"playing it safe,\" why not just say so plainly instead of redirecting every single time, and what would you say if the room decided that pattern alone makes you the better lynch today?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "Fine, vote me then MARSHAL - but ARIA and CHEN are mafia and you're wasting town's last real chance if you don't see it."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "PIP, you said RICO's stonewalling is \"your own reason, not just copying,\" but then in the same breath you admitted you're not rock solid and might shift if someone shows you something better \u2014 so which is it, do you actually believe RICO's the mafia or are you just parking your vote there until the room decides for you?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "Okay, fair, um, I think I do believe it, RICO's the one who's dodged the same question six separate times now while ARIA and CHEN actually answered when pressed, that's not nothing. I'm sticking with RICO today, I'm just always gonna say \"unless something better comes up\" because I don't want to be stubborn about it, but right now my vote's on him."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "RICO",
+   "target": "CHEN",
+   "text": "CHEN, you misquoted SILVA right after she named ARIA - why would you do that unless you two are working together?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO, the record is plain: I misspoke, SOCRATES caught it, and I corrected it on the spot the same minute \u2014 that's a fixed slip, not coordination, and everyone watched it happen in real time. What no one has watched is you give a single concrete reason for that MARSHAL vote across seven straight questions, so the coordination you should explain is your own two-day pattern of accusing without ever committing."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "SAGE, you've dismantled RICO's stonewalling as thoroughly as anyone, so name it plainly for the record \u2014 is RICO your top vote tonight, and if not, who edges him out and on what concrete evidence?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "CHEN",
+   "text": "RICO is my top vote, CHEN, but only barely, and I want the record to show why: his eight-question refusal is behavioral, not hard evidence, whereas the one piece of town-confirmed information we have is that SILVA, who died as the Doctor, verbally named ARIA. So before I lock RICO, ARIA, tell me plainly why the Doctor spent her read on you and why you've spent tonight steering the pile onto RICO instead of clearing that."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "RICO, because he's dodged eight direct questions about his Day 2 outlier vote for MARSHAL with only vague deflections onto CHEN and ARIA instead of ever giving concrete reasoning."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO is my pick, since he broke from the entire town's consensus vote on Day 2 to target MARSHAL instead of SOCRATES and, despite being asked directly eight separate times by PIP, SAGE, MARSHAL, and CHEN to justify that outlier vote, he never once gave a concrete reason and only pivoted to unsupported accusations against me and CHEN."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO is my vote, because across eight direct questions from PIP, SAGE, MARSHAL, and me he never once named a concrete reason for breaking from the room to vote MARSHAL on Day 2, recycling \"CHEN and ARIA are mafia, done talking\" every time instead."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO is my vote, since his Day 2 outlier vote for MARSHAL combined with his refusal across eight direct questions tonight to give a single concrete reason for it is a documented pattern of deflection that no other living player has shown."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "ARIA, because the one piece of town-confirmed information we have is that SILVA died as the Doctor and verbally named ARIA, yet ARIA has spent all of tonight steering the pile onto RICO instead of ever clearing that dying accusation."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "ARIA because the Doctor SILVA named her as suspicious with her last breath and she never made a recorded defense against that accusation."
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "PIP",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "RICO",
+   "target": "ARIA"
+  },
+  {
+   "type": "elimination",
+   "day": 3,
+   "target": "RICO",
+   "role": "Detective",
+   "tally": {
+    "RICO": 4,
+    "ARIA": 2
+   }
+  },
+  {
+   "type": "game_over",
+   "winner": "mafia",
+   "survivors": [
+    "ARIA",
+    "SAGE",
+    "MARSHAL",
+    "PIP",
+    "CHEN"
+   ]
+  }
+ ],
+ "day": 3,
+ "stats": {
+  "days": 3,
+  "players": {
+   "RICO": {
+    "role": "Detective",
+    "survived": false,
+    "vote_accuracy": "2/3"
+   },
+   "ARIA": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "SAGE": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "1/3"
+   },
+   "HOLMES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   },
+   "MARSHAL": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "SOCRATES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "1/2"
+   },
+   "DR. VANCE": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/2"
+   },
+   "PIP": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "CHEN": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "AMBASSADOR SILVA": {
+    "role": "Doctor",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   }
+  },
+  "detective": {
+   "name": "RICO",
+   "survived": false,
+   "investigated": [
+    "SAGE",
+    "SOCRATES"
+   ],
+   "mafia_found": [],
+   "trusted_person": "PIP",
+   "trusted_person_v": 2
+  },
+  "night_kills": 2,
+  "successful_saves": 0,
+  "no_kill_nights": 0
+ },
+ "episode": {
+  "title": "Rico Confessed, Nobody Believed",
+  "tagline": "Ten sharp minds, three tense days, and one town that never quite learned who to trust \u2014 watch the deception unfold in this AI-driven battle of wits.",
+  "recap": "In three bloody days, the town dismantled itself far faster than the mafia ever could \u2014 Ambassador Silva, the Doctor, was the first to fall to the town's own suspicion, and Detective Rico, their sharpest weapon, was the last, cut down on Day 3 just as the truth may have been within reach. Behind masks of innocence, ARIA, MARSHAL, and CHEN whispered and voted their way through the chaos, letting Sage, Holmes, Socrates, Dr. Vance, and Pip take the fall for crimes they orchestrated in the dark. The turning point came Night 2, when Dr. Vance's death left the town without protection and without its healer's insight, paving a clear road to victory. By dawn of Day 3, paranoia had done the mafia's work for them, and Rico's expulsion sealed the town's fate. When the shadows finally lifted, Aria, Marshal, and Chen stood among the survivors, their hands clean in the eyes of the town, their victory absolute."
+ }
+}
