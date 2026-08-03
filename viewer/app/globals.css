@@ -440,6 +440,9 @@ img.mug { object-fit: cover; background: #2e3644; }
   background: #1f0f11; border: 1px dashed #8a3438; color: #e6c2c2;
   border-radius: 13px 4px 13px 13px;
   box-shadow: 0 0 14px rgba(122, 47, 51, 0.2), inset 0 0 12px rgba(122, 47, 51, 0.1);
+  /* .chat-stack stretches to the text's max-content, so the bubble needs the same
+     push-right + reset that .flip does, or it strands on the left with ragged text. */
+  margin-left: auto; text-align: left;
 }
 .chat-row.side .who { color: #b5888a; margin: 0 2px 3px 0; }
 .chat-ballot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 7px; margin: 10px auto 16px; }
