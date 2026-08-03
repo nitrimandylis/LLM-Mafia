@@ -1,0 +1,75 @@
+name: case
+
+# One game per run. Weekly cron supplies the batching, spread across weeks, so
+# running out of quota can never cost more than the single game in flight.
+on:
+  schedule:
+    # 01:00 UTC Sunday = 03:00 Athens in winter, 04:00 in summer. Both sit
+    # inside the window the clock guard below allows.
+    - cron: '0 1 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  case:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      GH_TOKEN: ${{ github.token }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # GitHub delays scheduled runs under load, and a game that starts at 09:00
+      # spends a five-hour quota window Nick is trying to use. A skipped week
+      # costs one episode. Manual runs skip the guard.
+      - id: guard
+        if: github.event_name == 'schedule'
+        run: |
+          hour=$(TZ=Europe/Athens date +%-H)
+          echo "Athens hour: $hour"
+          if [ "$hour" -lt 3 ] || [ "$hour" -ge 7 ]; then
+            echo "Outside 03:00-07:00 Athens — skipping this week."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.guard.outputs.skip != 'true'
+        with:
+          python-version: '3.11'
+
+      - if: steps.guard.outputs.skip != 'true'
+        run: |
+          pip install -r requirements.txt
+          npm install -g @anthropic-ai/claude-code
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Three mafia is the config the trusted-person buff is being measured on.
+      - name: Play one game
+        if: steps.guard.outputs.skip != 'true'
+        run: python tools/run_batch.py --games 1 --no-wait --mafia 3
+
+      - name: Review, publish, PR, merge
+        if: steps.guard.outputs.skip != 'true'
+        run: python tools/ci_case.py "$(ls -t runs/*.json | head -1)"
+
+      - name: Upload the log
+        if: always() && steps.guard.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-log
+          path: runs/
+          if-no-files-found: ignore
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          curl -H "Title: Mafia: run failed" -H "Tags: mafia" \
+               -H "Click: $RUN_URL" -d "The game did not finish. $RUN_URL" \
+               "https://ntfy.sh/$NTFY_TOPIC"

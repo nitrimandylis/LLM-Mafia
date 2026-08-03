@@ -29,10 +29,13 @@ CACHE_STALE_SECONDS = 900
 def read_access_token():
     """The CLI's OAuth access token, or None if the Keychain entry is missing.
     Never printed or logged anywhere."""
-    result = subprocess.run(
-        ["security", "find-generic-password", "-s", KEYCHAIN_SERVICE, "-w"],
-        capture_output=True, text=True,
-    )
+    try:
+        result = subprocess.run(
+            ["security", "find-generic-password", "-s", KEYCHAIN_SERVICE, "-w"],
+            capture_output=True, text=True,
+        )
+    except FileNotFoundError:
+        return None  # no `security` binary at all, e.g. a Linux CI runner
     if result.returncode != 0:
         return None
     try:
