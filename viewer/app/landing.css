@@ -123,7 +123,11 @@
 .lp-desc {
   font-family: var(--grotesk);
   font-size: clamp(16px, 1.8vw, 22px); color: #999; line-height: 1.65;
-  max-width: 480px; margin-bottom: 40px; text-wrap: pretty;
+  /* Measure, not a fixed width: 480px held the line to 40 characters, which
+     left a third of the column empty on a wide monitor. 54ch keeps it in the
+     readable 45-75 band and scales with the clamped font size. Below ~1800px
+     the column is narrower than this anyway and does the capping itself. */
+  max-width: 54ch; margin-bottom: 40px; text-wrap: pretty;
 }
 .lp-cta { display: flex; gap: 16px; flex-wrap: wrap; }
 .lp-btn {
