@@ -1,0 +1,1708 @@
+{
+ "events": [
+  {
+   "type": "game_start",
+   "players": [
+    {
+     "name": "RICO",
+     "seat": 0,
+     "color": "#7cc4ff",
+     "model": "opus-5"
+    },
+    {
+     "name": "ARIA",
+     "seat": 1,
+     "color": "#ff9a9a",
+     "model": "opus-5"
+    },
+    {
+     "name": "SAGE",
+     "seat": 2,
+     "color": "#b9f6ca",
+     "model": "opus-5"
+    },
+    {
+     "name": "HOLMES",
+     "seat": 3,
+     "color": "#ffd180",
+     "model": "opus-5"
+    },
+    {
+     "name": "MARSHAL",
+     "seat": 4,
+     "color": "#ce93d8",
+     "model": "opus-5"
+    },
+    {
+     "name": "SOCRATES",
+     "seat": 5,
+     "color": "#80deea",
+     "model": "opus-5"
+    },
+    {
+     "name": "DR. VANCE",
+     "seat": 6,
+     "color": "#ffab91",
+     "model": "opus-5"
+    },
+    {
+     "name": "PIP",
+     "seat": 7,
+     "color": "#c5e1a5",
+     "model": "opus-5"
+    },
+    {
+     "name": "CHEN",
+     "seat": 8,
+     "color": "#f48fb1",
+     "model": "opus-5"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "seat": 9,
+     "color": "#9fa8da",
+     "model": "opus-5"
+    }
+   ],
+   "player_count": 10,
+   "provider": "claude"
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "MARSHAL",
+   "text": "Procedure first: I want CHEN to go on record early with a clear, specific read on someone and a stated voting intention, so we have a baseline to hold them to later in the day."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SOCRATES",
+   "text": "HOLMES, I want to hear who you'd vote for right now and the reasoning behind it, because the shape of a person's first guess \u2014 how much they hedge, whether they aim at the loudest or the quietest \u2014 tells us more than the guess itself."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "text": "We have zero data points, so I want to generate some: SOCRATES, state plainly who you'd vote for right now and the reasoning chain behind it, so I can check later whether your prediction held up against the actual alignment."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "HOLMES",
+   "text": "With zero data on the board, the only thing I can test today is consistency, so I'll probe CHEN first: I want to hear who CHEN considers the second-most likely mafia and the exact reasoning chain that gets there, not just a name. If that chain shifts when SAGE or DR. VANCE pushes back, that's a real datapoint rather than noise."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "RICO",
+   "text": "PIP, you're my pick \u2014 I want to hear straight out who you'd vote for right now and why, no hedging."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "HOLMES, I want to hear from you first \u2014 not a theory, but a plan: tell us exactly who you intend to vote for tonight and what would change your mind."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "PIP",
+   "text": "Um, maybe SOCRATES? I think \u2014 I'd like to hear who SOCRATES would vote for right now and why, like an actual name, not just questions back at me, because I'm not sure I'll be able to read anyone otherwise."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "ARIA hasn't put a single data point on the board yet, so she's the one I most want to probe: I want her to name the player she'd vote for right now and the exact reasoning chain behind it, so I have something concrete to cross-reference against her later claims."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, three separate people have already piled their demands onto CHEN, which leaves ARIA free to answer nothing at all \u2014 so ARIA, I want to hear your own unprompted read and the name you'd vote right now, before anyone hands you a script to follow."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "HOLMES asked CHEN for a \"second-most likely mafia\" without ever naming his own first, so I want HOLMES to state a top pick and a vote intention now \u2014 a question that only demands chains from others generates no record we can hold HOLMES to later."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO",
+   "text": "RICO, you demanded a name from PIP without offering one yourself \u2014 so tell me plainly: if the vote closed right now, which name goes on your ballot, and what would have to happen today to move it off them?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "text": "Fine \u2014 PIP goes on my ballot right now, because I asked for a name and got \"um, maybe SOCRATES\" with a question stapled to it. Give me one confident read from PIP with actual reasoning behind it and I'll move off; keep mumbling and I won't."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "CHEN",
+   "text": "MARSHAL asked CHEN, first thing, for a specific read and a stated voting intention, and what CHEN produced was another demand aimed at ARIA \u2014 a question is not a ballot, so the record on CHEN is still blank. So my direct question, CHEN: if the vote closed this second, whose name is on your paper, and does answering that cost you something? Until I hear it, CHEN is my top pick and my stated vote."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "HOLMES",
+   "text": "ARIA goes on my paper right now, and answering costs me nothing: three separate people \u2014 SILVA, myself, and by implication your own line of questioning \u2014 have asked her for a name, and she has produced zero, which is the only measurable gap on the board. Note the asymmetry in your own record, HOLMES: you demanded my \"second-most likely mafia\" before ever stating a first, and only named one after SAGE called that out, so I'll be cross-referencing whether your pick survives contact with pushback."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO, you've already banked a name and I respect that, so give me the fuller picture: setting PIP aside as the easy target, who's your genuine top mafia read right now and what specifically in their words got you there \u2014 mine sits on CHEN, who spent the whole day demanding chains from me while producing nothing but demands himself."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "Setting PIP aside, my gut says HOLMES \u2014 he spent the whole day building traps for other people and only coughed up a name after SAGE shoved him into it. ARIA, CHEN at least put your name on paper when asked; HOLMES had to be dragged there."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "Um, RICO \u2014 you're the one who put my name down first, so, I think I get to ask this? You said HOLMES had to be dragged to a name, but you only gave yours after SOCRATES pushed you too, so what makes your delay different from his?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "PIP",
+   "text": "I named you in my very first breath, PIP \u2014 SOCRATES asked me to confirm it, not to invent it, while HOLMES spent all day setting traps and coughed up nothing until SAGE shoved him. That's the difference, and honestly that comeback's the sharpest thing you've said, so maybe there's something under the mumbling after all."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SOCRATES, the record has two direct requests aimed at you \u2014 DR. VANCE asked you plainly to state who you'd vote for and the reasoning chain, and PIP asked for \"an actual name, not just questions back at me\" \u2014 and your only output since was another demand pointed at RICO. RICO banked PIP in his first breath, CHEN banked ARIA under pressure, HOLMES banked CHEN; your ballot is still empty after being asked twice. So, one question, no deflection: whose name is on your paper this second, and why did it take a third asking to get it?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "text": "RICO goes on my paper, and it took three askings because I wanted to see where the day's pressure would settle before I added to it \u2014 RICO answered that for me by locking onto PIP, the softest voice on the board, in his first breath and then softening the moment PIP bit back. That's someone building an easy wagon he can abandon cheaply, SAGE; ask yourself why a mafioso would ever pick the hardest target on Day 1 when the quietest one costs nothing."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, you opened the day with \"maybe SOCRATES\" and then spent your only follow-up defending yourself against RICO instead \u2014 so is SOCRATES still the name on your paper right now, and if he's slipped off it, who replaced him and at exactly which moment did that switch happen?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Um, honestly SOCRATES slipped off the moment he actually gave a name and a reason \u2014 that satisfied what I asked for, so it'd be unfair to keep him there? Right now I think it's CHEN, because you've spent the whole day auditing other people's chains and only banked ARIA after HOLMES cornered you, which is... kind of the exact thing you're accusing me of, I think? Maybe?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, you have twice demanded ballots from others \u2014 from HOLMES, then from SOCRATES \u2014 yet your own paper is still blank, so mes amis will forgive me for asking plainly: whose name would you vote this second, and what exact words got them there?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "SOCRATES goes on my paper: DR. VANCE asked him plainly, PIP asked for \"an actual name, not just questions back at me,\" and I asked a third time before he produced one \u2014 and by his own admission he \"wanted to see where the day's pressure would settle before I added to it,\" which is a confession that his read was manufactured from other people's answers rather than his own. A name assembled that late out of borrowed material tells us nothing about SOCRATES except that he was careful not to be measured, and that's the only deliberate blank spot left on the board."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "CHEN, you banked ARIA before PIP put your name on the board, so I want the updated reading: who is your top suspect right this second, and name the specific piece of testimony that moved the needle rather than the absence of one."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "HOLMES, and the exact words that moved it are \"Until I hear it, CHEN is my top pick and my stated vote\" \u2014 that's a vote with a self-cancelling clause built in, so the moment I answered he'd already licensed himself to walk it back for free. Compare it to his opening, where he asked me for a second-most-likely mafia while never banking a first: both moves buy him a stated position he never has to own, and that pattern is testimony, not absence."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you've been running around demanding ballots from ARIA and SAGE all day, but I've counted twice now and your own paper is still empty. So name it right now \u2014 who do you vote, and don't hand me another question."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "Fair, RICO \u2014 MARSHAL goes on my paper, and here's the exact reason: he opened the entire day by demanding a specific read and a stated voting intention from CHEN, and then vanished before ever producing one himself, which is the only ballot on this board that was demanded first and never paid. Everyone else here has been dragged to a name; MARSHAL set the rule and then quietly exempted himself from it."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "CHEN",
+   "text": "CHEN, procedure demands consistency and you've now banked three different names in one day \u2014 ARIA, then HOLMES after DR. VANCE prodded you \u2014 so explain, in order, what specific testimony moved you each time, because a ballot that migrates that freely under questioning is the record I'll be holding you to, and for the record my own paper reads CHEN."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "MARSHAL",
+   "text": "Two names, MARSHAL, not three: ARIA when she was the only person on the board with zero output, and HOLMES once he supplied actual testimony \u2014 \"until I hear it, CHEN is my top pick\" \u2014 a vote with an escape hatch pre-installed, which is exactly the kind of movement your own procedure asked us to generate. And note the shape of your record: you opened the day demanding a read and a stated intention from me, produced neither yourself until SILVA banked you, and then your first ever ballot lands on the man you assigned the homework to."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, you built your only ballot with an expiry date on it \u2014 \"until I hear it, CHEN is my top pick\" \u2014 and CHEN then paid up with a name and a reasoning chain, which means by your own wording your vote expired the second he answered. Procedure says a stated intention stands until new testimony moves it, so answer plainly and on the record: does CHEN remain your vote right now, and if not, who replaced him and which exact words did it?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "CHEN paid the toll, so the condition cleared and he comes off \u2014 the name that replaces him is SOCRATES, on his own words: \"I wanted to see where the day's pressure would settle before I added to it.\" A read assembled after watching everyone else's chains isn't a read at all, it's camouflage, and that's the one deliberate blank on this board; my vote is SOCRATES."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO, SOCRATES has painted you as a man who built a cheap wagon on the quietest voice and then softened the second PIP pushed back \u2014 and honestly, that softening is the part I can't explain away for you. So answer it head-on: if PIP were flipped tomorrow and came up innocent, what would that say about the read you led with in your very first breath?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "It'd say I misread a mumbler on day one and I'd own it out loud \u2014 but a wrong gut read is cheap, while SOCRATES sitting back to watch where the pressure landed before picking a name is calculated, and that's worse. My paper's moving off PIP and onto SOCRATES."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you opened the day demanding SOCRATES \"state plainly who you'd vote for right now and the reasoning chain,\" then turned the same demand on CHEN \u2014 two extractions, zero deposits, and your own paper is still the blankest on this board; so name your top suspect this second and cite the exact words that put them there."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "MARSHAL goes on my paper, and the exact words are his opening: \"I want CHEN to go on record early with a clear, specific read on someone and a stated voting intention\" \u2014 he authored the day's only rule, produced no read himself until SILVA billed him for it, and then his first and only ballot landed on the man he'd assigned the homework to. Four separate papers now read SOCRATES on the identical complaint, which makes that wagon cheap to join and expensive to falsify; MARSHAL is the untested variable, and if he flips innocent I'll grant that the late-name heuristic is worthless and say so on the record."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, you've now held two different names in a single day \u2014 SOCRATES, then CHEN the moment SOCRATES paid up \u2014 and RICO only lifted his ballot off you after you bit back at him, so mes amis are entitled to wonder whether your reads follow the evidence or simply follow whoever last pointed at you. So one direct question, and please, no hedging: what did CHEN do that SOCRATES did not, in exact words, that makes CHEN the guiltier of the two right now?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Um, the exact words are CHEN's own \u2014 \"HOLMES, and the exact words that moved it\" \u2014 because he banked ARIA, then swapped to HOLMES the second DR. VANCE prodded him, while SOCRATES named RICO late and then didn't budge off him? So SOCRATES was slow to commit but stayed committed, and CHEN committed fast to a name he then traded in, which is... worse, I think? Maybe I'm wrong, but that's what I've actually got."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, two papers now read your name \u2014 SILVA's and DR. VANCE's \u2014 both on the identical charge that you authored the day's only rule and paid it last, so state it cleanly for the record: who is your single top suspect this second, and which exact words put them there rather than the mere shape of their timing?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "CHEN remains my single top suspect, and the words are his own: \"ARIA goes on my paper right now\" followed later by \"HOLMES, and the exact words that moved it\" \u2014 a ballot that changed owners the moment DR. VANCE applied pressure, not the moment new testimony appeared. My paper has read CHEN since I first banked it and it has not moved once, which is the standard I'm asking every one of you to be measured against, SILVA and DR. VANCE included."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "PIP, the record shows you've held two names and both switched at the exact moment the target answered a question \u2014 SOCRATES off when he produced a name, CHEN on when he traded ARIA for HOLMES \u2014 which means your reads correlate perfectly with responsiveness rather than content. So one direct question: name the single piece of testimony you'd have found incriminating even if the speaker had said nothing else all day, because if you can't produce one, your ballot is a function of other people's timing and carries zero independent information."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "Um, okay \u2014 HOLMES's \"until I hear it, CHEN is my top pick and my stated vote,\" because that's a vote with the exit already written into it, and it'd read wrong to me even if HOLMES had said nothing else all day? That one's about the sentence itself, not about who answered whom, so I think that's my independent piece \u2014 and honestly it makes me want HOLMES more than CHEN right now, maybe?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES, you spent the whole day writing votes with escape hatches built in and only landed on SOCRATES after four other papers already read his name \u2014 so explain why every position you take arrives late and pre-loaded with a way out."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "The clause wasn't an exit, RICO, it was a price: I named CHEN first, before anyone else banked him, and I said exactly what would move me \u2014 he paid, so I moved, which is what testimony is supposed to do to a vote. Meanwhile your paper went PIP, then softened at PIP, then landed on SOCRATES with no new words from him at all \u2014 that's movement without a stated condition, which is the harder thing to audit."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you told PIP that a read correlating with timing rather than content \"carries zero independent information\" \u2014 and then built your entire MARSHAL case out of nothing but ordering: who authored the rule, who paid last, whose ballot landed where. So answer your own test on the record: name the single sentence MARSHAL spoke that you'd have found incriminating even if he'd said it first and unprompted, because if the whole charge dissolves once you strip the sequence away, you've indicted a man for the crime of being audited late while asking us to spend the day's only lynch on him."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES",
+   "text": "The sentence is MARSHAL's own: \"a ballot that changed owners the moment DR. VANCE applied pressure, not the moment new testimony appeared\" \u2014 that's false on the record regardless of when he said it, because CHEN quoted HOLMES's exact words as the cause, so MARSHAL is misdescribing testimony that everyone can read, and a fabricated premise is content, not sequence. I'll also grant your correction in part, SOCRATES: I'm downgrading the ordering argument to zero weight and keeping MARSHAL on my paper solely on that misquote plus the fact that \"my paper has not moved once\" is a worthless boast from a man who banked his first name last."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you just told DR. VANCE that a case built on \"who spoke when\" dissolves the moment you strip the sequence away \u2014 yet your entire charge against RICO is pure sequence: he named PIP \"in his first breath\" and \"softened the moment PIP bit back.\" So apply your own test on the record: name the single sentence RICO spoke that you'd have found incriminating even if he'd said it unprompted and out of order, because if you can't, you've indicted a man for timing with one hand while calling that crime unfalsifiable with the other."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "CHEN",
+   "text": "The sentence is \"a wrong gut read is cheap, while SOCRATES sitting back to watch where the pressure landed before picking a name is calculated, and that's worse\" \u2014 spoken first, last, or unprompted, that is a man pre-writing the pardon for his own miss while declaring another man's caution unforgivable, and asymmetry like that is content, CHEN, not sequence. And note that his own accusation is the one that dissolves under your test: RICO moved onto me with no new words from me at all, which is exactly the ungrounded migration he condemns in others."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "Um, DR. VANCE \u2014 you said you're downgrading the whole ordering argument to zero weight, which was the thing that put MARSHAL on your paper in the first place, so why did he stay there instead of you starting the read over from nothing? Maybe I'm confused, but keeping the verdict after throwing out the evidence feels backwards? I think?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "Because the two charges were independent variables, PIP \u2014 the ordering argument is discarded, but MARSHAL's misdescription of CHEN's stated cause survives on its own, and a hypothesis doesn't collapse when one of two supports is removed, it just gets weaker and narrower. If you want to falsify what's left, quote me the line where CHEN cites pressure rather than HOLMES's words as his reason for moving, and I'll drop MARSHAL entirely and say so on the record."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because he admitted outright that he \"wanted to see where the day's pressure would settle before I added to it\" \u2014 he sat out the whole day harvesting everyone else's chains before ever banking a name, and my paper stays on him."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because he admitted on the record that he withheld a ballot until he \"wanted to see where the day's pressure would settle before I added to it,\" which means his only name was assembled from other people's chains rather than his own read, and that is the one deliberate blank left on this board."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "HOLMES, because he wrote his only vote with the exit clause \"until I hear it, CHEN is my top pick and my stated vote,\" then cashed that clause in and landed on SOCRATES only after four other papers already read that name \u2014 a position that can never be wrong is the one I trust least, I think."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, because he told PIP that a read built on timing \"carries zero independent information,\" then admitted his own MARSHAL case rested on ordering and downgraded it \"to zero weight\" \u2014 yet kept the verdict anyway, which is a man protecting a predetermined target rather than following his own stated standard."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, because he claimed CHEN's ballot \"changed owners the moment DR. VANCE applied pressure, not the moment new testimony appeared,\" when the record shows CHEN cited HOLMES's exact words \u2014 \"until I hear it, CHEN is my top pick\" \u2014 as the cause, and misdescribing testimony everyone can read is a fabricated premise, not a timing complaint."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SOCRATES is my vote, because he admitted on the record that he \"wanted to see where the day's pressure would settle before I added to it\" \u2014 a ballot assembled from everyone else's answers after three separate askings is the only manufactured read on this board."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "CHEN",
+   "text": "CHEN, because he banked \"ARIA goes on my paper right now\" and then delivered \"HOLMES, and the exact words that moved it\" only after DR. VANCE's prod, and my paper has read CHEN from the moment I first banked it and has not moved since."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "CHEN",
+   "text": "CHEN, because his paper read \"ARIA goes on my paper right now\" and then flipped to HOLMES the instant DR. VANCE prodded him \u2014 a ballot that only ever moves when someone applies pressure to its owner, never when the board produces new facts."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL authored the day's only rule by demanding a stated voting intention from CHEN, produced no ballot of his own until I billed him for it, and then misdescribed CHEN's stated cause as \"the moment DR. VANCE applied pressure\" when CHEN had quoted HOLMES's exact words \u2014 a false premise on the record is my vote."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "SOCRATES, because he admitted on the record that he \"wanted to see where the day's pressure would settle before I added to it\" \u2014 a ballot assembled from other people's chains after three separate askings, and then he lands it on RICO while insisting timing-based cases are unfalsifiable, which is the exact standard he just used against RICO's first breath."
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "CHEN"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "CHEN"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "DR. VANCE"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "PIP",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "elimination",
+   "day": 1,
+   "target": "SOCRATES",
+   "role": "Detective",
+   "tally": {
+    "SOCRATES": 4,
+    "CHEN": 2,
+    "MARSHAL": 2,
+    "DR. VANCE": 1,
+    "HOLMES": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "night"
+  },
+  {
+   "type": "save",
+   "day": 1,
+   "target": "DR. VANCE"
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "RICO",
+   "text": "PIP flipped off SOCRATES onto CHEN and then dumped a vote on HOLMES at the last second \u2014 that's two switches in one day and I don't buy it. ARIA sat there refusing to give a read until CHEN and SILVA dragged one out of her, MARSHAL and DR. VANCE spent Day 1 interrogating people while DR. VANCE only committed to MARSHAL, and HOLMES needed SAGE's shove to name anyone. My gut says PIP, and I'm not moving off it."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "MARSHAL",
+   "text": "Procedure first: the wagon that killed our Detective was built by SAGE, who spent Day 1 asking without ever answering, then converted SOCRATES' honest admission about delaying into a case \u2014 and HOLMES, RICO and CHEN all fell in behind her. DR. VANCE drawing the night kill reads as genuine town to me, which makes his early vote noise rather than evidence, and ARIA at least stayed consistent on CHEN instead of hopping. My structured proposal for this round: SAGE explains the exact moment she settled on SOCRATES, RICO explains why he abandoned his own stated PIP read to join her, and nobody locks a ballot until both have answered."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "Nobody died last night, which tells me the mafia reached for someone and came up empty \u2014 so the players they most wanted gone are still sitting here with us. What I keep circling back to is RICO: he opened Day 1 naming PIP in his first breath with HOLMES as his backup read, then abandoned both to land on SOCRATES, and SOCRATES turned out to be exactly the player the mafia would pay anything to lose. SAGE built that wagon and HOLMES rode it early too, but RICO is the one who threw away his own convictions to join it, so my suspicion sits highest on him \u2014 and DR. VANCE, who never even cast a read on Day 1 until MARSHAL, is the one I'd most like to hear from next."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SAGE",
+   "text": "Track PIP's day: he opened pressing SOCRATES, then publicly shifted onto CHEN the moment SOCRATES committed to a name, then his actual ballot read HOLMES \u2014 three positions in one day and not one of them was where his mouth was when the vote closed. ARIA is my second thread: she spent Day 1 demanding a read out of HOLMES while CHEN and SILVA had to drag one out of her, and the read she finally produced was a mutual accusation that cost her nothing. DR. VANCE getting hit at night clears him for me, so I'd rather hear PIP explain the gap between his words and his ballot than chase the people the killers just tried to remove."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "PIP",
+   "text": "Okay so, wait \u2014 SOCRATES was the Detective, and the two people who pushed hardest to bury him were SAGE, who spun his \"I delayed on purpose\" line into a whole case, and RICO, who SOCRATES had just accused of building a wagon on me? That feels bad? Like, RICO voting back on the one person calling him out, and SAGE manufacturing the reason for everyone else to follow \u2014 I don't know, maybe I'm reading it wrong, but ARIA and MARSHAL both spent the day on CHEN instead, which at least wasn't the wagon that killed our Detective. HOLMES bothers me too since he only named CHEN after being pushed to, so, um, RICO or SAGE for me right now, unless someone can explain it better?"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, let us be precise: RICO opened Day 1 naming PIP, then quietly placed his own ballot on SOCRATES \u2014 so the man lecturing PIP about switching switched himself onto the very player who turned up Detective, alongside SAGE, HOLMES and CHEN. SAGE built that wagon first and never had to defend it, and MARSHAL never explained why he pushed CHEN while DR. VANCE \u2014 the man the killers came for last night \u2014 was calling MARSHAL out. ARIA at least stayed consistent on CHEN; my suspicion sits on RICO first, SAGE second, and I want RICO to explain the gap between his mouth and his vote."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "text": "Let's be precise about the data: the SOCRATES wagon was four ballots \u2014 HOLMES, SAGE, RICO, CHEN \u2014 and it removed the single most valuable investigative asset town had, so the base rate of mafia inside that group is far higher than outside it. Within that four, RICO has the largest gap between stated read and cast ballot: he opened naming PIP with HOLMES as backup, then voted a third name he never once argued for, and today he's back on PIP citing \"gut,\" which is unfalsifiable and therefore worthless as evidence. My hypothesis is testable \u2014 vote RICO, and if he flips mafia we have confirmation the wagon was constructed, which puts SAGE next; if he flips town, then his switch was panic and SAGE's authorship of that wagon becomes the only remaining explanation."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "HOLMES",
+   "text": "Step through it: the mafia knifed DR. VANCE, and mafia don't spend a night kill on their own, so DR. VANCE reads town and SOCRATES' vote on him was just Day 1 noise \u2014 which means the real information sits in who built the wagon that buried our Detective, and that wagon was SAGE, RICO, CHEN and me. RICO just told us \"my gut says PIP and I'm not moving off it,\" but yesterday he moved off PIP the moment it mattered and put his ballot on SOCRATES, so the one read he claims is immovable is the exact read he already abandoned \u2014 that contradiction is louder than SAGE asking questions or ARIA staying flat on CHEN. MARSHAL, your procedure conveniently interrogates SAGE and RICO while clearing DR. VANCE and leaving your own CHEN vote unexamined; answer that, but my ballot is heading toward RICO unless he explains the switch himself."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "Cross-reference the ballots instead of the speeches: DR. VANCE, the exact player the killers reached for last night, spent his only Day 1 vote on MARSHAL, and AMBASSADOR SILVA landed there independently \u2014 two reads on MARSHAL from a direction the mafia clearly wanted silenced. PIP's three positions in one day and HOLMES needing a shove before he'd name anyone are real inconsistencies, but they're noise next to a near-confirmed townsman's read, and MARSHAL's answer to it is a procedure where nobody may lock a ballot until his chosen suspects perform for him. ARIA, you said you most want to hear from DR. VANCE \u2014 then ask him why he picked MARSHAL, because my suspicion sits on MARSHAL until that vote is explained."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you've handed us a procedure and a list of people who owe you answers, but never once a name of your own \u2014 so say it plainly: which living player do you think is mafia, and what specific act of theirs put them there?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "Plainly: SAGE, and the specific act is authorship \u2014 she manufactured the case out of SOCRATES' delay admission and never once had to defend the wagon that buried our Detective, while RICO merely followed it. And to answer the question nobody asked me back: my CHEN vote came from him demanding names all day while dodging ARIA's, which I'll now retire as the wrong read."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "ARIA, you've named RICO but you also called MARSHAL's non-answer out \u2014 so give me your second name and the specific ballot or contradiction that generated it, because a single suspect is not a data set."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "SAGE is my second, and the specific act is that on Day 1 she pressed others without ever putting a name of her own on the table, then the instant SOCRATES admitted he'd delayed on purpose she turned that confession into a full case and cast the ballot that made it a wagon \u2014 authorship plus execution, and she has never once had to defend it. So my order is RICO for abandoning both his stated reads to join that wagon, then SAGE for building the thing he joined; MARSHAL only just now produced a name, and I'll judge him by whether he actually spends his vote on it."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "RICO, three separate people \u2014 SILVA, DR. VANCE and me \u2014 have now asked you the same thing, and your answer each time has been to re-list other people's crimes rather than your own ballot. So one question, no deflection: what did you learn between naming PIP in your opening breath and writing SOCRATES on your ballot, and if the answer is \"nothing,\" why should your immovable gut on PIP be worth anything today?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "What I learned is that SOCRATES aimed at me the second I opened my mouth and then admitted he'd sat on his read on purpose \u2014 a guy stalling to see where the heat lands and then throwing it at me got my vote, simple as that. My gut on PIP didn't die, it got outranked for one day, and PIP's three positions today put him right back on top."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, you spent Day 1 pressing SOCRATES, then said out loud you'd moved onto me, and then your ballot came down on HOLMES \u2014 so name the exact thing HOLMES did that outranked both of the reads you'd already announced."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Um, okay \u2014 HOLMES only produced a name after SAGE pushed him into it, and then his ballot was one of the first onto SOCRATES, so at the end it looked less like a read and more like following whoever spoke loudest? I know it looks flaky, I do, but I moved because the wagon shape scared me, not because I was hiding a plan \u2014 and honestly CHEN, you were on that same wagon, so I'm not sure you're the one who gets to grade my ballot."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "ARIA, you've been happily cashing in on everyone calling you \"consistent on CHEN,\" but today CHEN vanished from your list entirely and suddenly it's me and SAGE \u2014 so what exactly did CHEN do to earn your ballot yesterday, and what undid it overnight?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "CHEN earned my ballot for demanding names off everyone while dodging the one I asked him for \u2014 and nothing undid it, RICO, he simply got outranked when SOCRATES flipped Detective and told us the wagon that buried him was where the killers were standing. CHEN was on that wagon too, so he hasn't vanished from my list; he's third behind the man who authored it and the man who threw away two stated reads to join it."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, you told CHEN you moved \"because the wagon shape scared me,\" but your ballot landed on HOLMES as a lone vote \u2014 the only name on the board with no wagon behind it at all, so fleeing wagons cannot be the reason. And when I asked you directly this morning to close the gap between your mouth and your ballot, you answered by grading RICO and me instead. So one question, no re-listing anyone else's sins: at what exact point in Day 1 did HOLMES pass CHEN on your list, and what did he do in that moment?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "The exact moment was when HOLMES finally coughed up CHEN's name under pressure and then didn't vote CHEN at all \u2014 he wrote SOCRATES instead, so the read he'd just performed for us was already gone by the time the ballot closed, and that abandonment is what put him above CHEN for me. I'm not saying my ballot was smart, SAGE, I panicked and picked the person whose stated read had the shortest shelf life \u2014 but you're the one who supplied the reason everyone else went to SOCRATES, so I'd rather hear that than keep dissecting my one lonely vote."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, you've spent this whole day grading PIP's ballot and questioning ARIA's, but never once named the living player you'd actually bury \u2014 so tell us plainly: who is your number one, and which specific act of theirs put them there?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "PIP, plainly \u2014 and the act is his own words: he told CHEN he moved \"because the wagon shape scared me,\" then admitted to me he \"panicked and picked the person whose stated read had the shortest shelf life,\" which are two different motives for one lone ballot on HOLMES, the only name on the board with no wagon behind it. A man who invents a new reason each time he's asked about the same vote is composing, not remembering \u2014 my number one is PIP, and MARSHAL, who just retired his only read and replaced it with a name he'd been circling all day, is second."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "Um, RICO \u2014 sorry, one thing, and I'll try to make it a question you haven't already been handed. You keep saying your gut on PIP got \"outranked for one day,\" fine, but say PIP is gone tomorrow and he flips town: out of SAGE, HOLMES and CHEN, the three people who stood on that wagon beside you, which one do you bury next, and what did they do to earn it? Because if you can't name one, then the only read you own is the one you already abandoned, and that scares me more than my own flaky ballot does."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "RICO",
+   "target": "PIP",
+   "text": "HOLMES, easy \u2014 he needed SAGE to shove him into naming CHEN, then didn't even vote CHEN, so the man's got no read of his own and just rides whatever's moving. That's my next name after you, PIP, and I'm still on you."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA, procedure requires the record be complete: on Day 1 you demanded a read out of HOLMES before offering one yourself and only produced CHEN's name after CHEN and SILVA pressed you for it \u2014 so state plainly what specific act of CHEN's you were holding back, and why it needed dragging out of you."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "Nothing was held back, MARSHAL \u2014 CHEN had been demanding names off half the table while sliding past the one I'd asked him for, and I waited exactly as long as it took him to either answer or prove the dodge was a habit; he proved it, so I voted him. What I find odd is that you're auditing the timing of a read I actually cast while your own CHEN vote got retired without ever being spent on the name you now call mafia."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA, you answered my question about your own delay by turning it into an audit of my ballot \u2014 that's a deflection, and the record shows it. So, plainly, no counter-question this time: you say RICO is first and SAGE second, but you also called CHEN's dodge a proven habit yesterday and still voted him \u2014 if RICO explains his switch to your satisfaction in the next breath, does your ballot go to SAGE or back to CHEN, and why?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "SAGE, and it isn't close \u2014 CHEN's dodge is a personality flaw I can watch all game, while SAGE manufactured the reason that buried our Detective and has still never had to defend authoring it. RICO would have to do more than explain himself to move me anyway; he'd have to explain why the read he calls immovable is the one he already abandoned once."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "ARIA, yesterday you swore CHEN's dodge was a \"proven habit\" worth your ballot, and today he's dropped to third behind two people you never once mentioned on Day 1 \u2014 so tell me straight, what did I actually do between then and now, or did you just wait to see which way the room leaned?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "What changed is that SOCRATES flipped Detective, RICO \u2014 that single fact reordered the whole board, and only a fool keeps yesterday's ranking after learning the wagon he was standing on buried town's best card. What you did was throw away two stated reads to stand on it, and then come back today calling a read \"immovable\" that you'd already moved off once."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, run the numbers with me: you now call SAGE mafia on the grounds of authorship, but that authorship was fully visible on Day 1 and your ballot still went to CHEN \u2014 a read you have since retired as wrong. So one question, no procedure: what specific fact entered the record between your CHEN vote and this morning that moved SAGE up, and if the answer is only \"SOCRATES flipped Detective,\" explain why that promotes the wagon's author over the four people who actually cast the ballots?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "The fact is exactly that SOCRATES flipped Detective, and it promotes the author over the voters because the four ballots are explainable by a reason they were handed, while SAGE had to generate that reason before anyone else had it \u2014 a voter can be wrong, an author has to be motivated. On Day 1 authorship was visible but harmless; once the wagon's target turned out to be town's investigator, the person who supplied the pretext is the only one whose behavior can't be written off as following the room."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, the only mark against you on the record is your Day 1 ballot on MARSHAL, and the room keeps waving it away as noise instead of hearing it \u2014 so defend it properly: what did MARSHAL actually do that day to earn your only vote, and does that same behavior still hold now that he's retired his CHEN read and landed on SAGE?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "MARSHAL spent Day 1 issuing demands at CHEN and others while producing no read of his own until the ballot closed, so I voted the player generating the least falsifiable information per word spoken \u2014 that was the datum, and it was thin, I'll grant that. It still holds in form: he has now retired the one read he did cast as wrong and replaced it with SAGE on grounds that were fully visible before he cast it, which means zero new evidence produced two different names \u2014 that's a pattern of reads that track the room rather than the record, and it keeps him on my list behind RICO."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "HOLMES, um, sorry \u2014 you told the room CHEN was your name and then wrote SOCRATES on your ballot instead, so what exactly happened between saying it and voting it, and is your ballot really going to RICO today or will that one change too?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "What happened is that SOCRATES admitted, after I'd named CHEN, that he'd deliberately sat on his read to watch where the heat landed \u2014 new information arrived between my word and my ballot, which is precisely the thing RICO cannot point to, since he calls a read immovable that he himself already moved. And yes, my ballot goes to RICO and stays there: the only way it changes is if he produces something that entered the record after his switch, not another recitation of other people's sins."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "CHEN, you spent today building a case on MARSHAL out of DR. VANCE's Day 1 ballot, yet you have never once accounted for your own \u2014 you were the fourth name on the wagon that buried our Detective, and not a word of yours has addressed it. So, sans d\u00e9tour: what did SOCRATES do that earned your ballot, and did you write it before or after you saw HOLMES, SAGE and RICO already standing there?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "What earned my ballot was the only self-reported act in the entire Day 1 record: SOCRATES told us he deliberately sat on his read to watch where the heat landed, and a man who withholds while others expose themselves is the exact profile I'd bet on \u2014 I wrote it after that admission, which came late enough that HOLMES and SAGE were already there and I won't pretend otherwise. But note what you're doing, SILVA: you cast your own Day 1 ballot on MARSHAL, DR. VANCE landed there independently, and I'm the only player at this table treating your read as evidence instead of noise \u2014 so explain why you've abandoned it."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, your stated reason for landing on HOLMES is that he named CHEN and then wrote SOCRATES instead \u2014 but ballots close together, so you couldn't have seen HOLMES's vote before you cast your own. So tell me plainly: did you build that HOLMES read from something he actually said before the ballot, or did you reverse-engineer it this morning after reading the record?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Honestly? Both \u2014 before the ballot I saw HOLMES only produce CHEN's name after SAGE leaned on him, and that softness is what made me pick him; the \"he didn't even vote CHEN\" part I only learned this morning, and I shouldn't have dressed it up as my reason at the time. I'm sorry, that's the truth of it \u2014 but CHEN, you just told SILVA you wrote SOCRATES after seeing HOLMES and SAGE already standing there, so we're both admitting we followed the room, and mine didn't kill the Detective."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you opened today ranking RICO first and me second, then spent your last three turns interrogating me and CHEN and never once returned to RICO \u2014 so state it fresh and plainly: who is your number one right now, and what act since that opening ranking earned it?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "RICO remains my number one, and the act that earned it is today's own record: four separate players asked him what changed between naming PIP and writing SOCRATES, and every answer was a recitation of other people's sins plus a \"gut\" he already abandoned once. I questioned you and CHEN because neither of you had accounted for standing on that wagon \u2014 but questions are not a ballot, SAGE, and mine goes to RICO."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "CHEN",
+   "text": "CHEN, you've built your whole day on DR. VANCE's Day 1 ballot rather than on any act of your own observing, so say it fresh now that MARSHAL has retired that CHEN read and named SAGE: who is your number one this hour, and what specific thing did they do \u2014 not what someone else voted?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "HOLMES",
+   "text": "PIP, and the act is his own confession to me an hour ago: he admitted the reason he gave for his HOLMES ballot was assembled this morning out of the record and then \"dressed up\" as something he'd felt at the time \u2014 that is a man manufacturing evidence about himself, which is the one thing no townsman ever needs to do. MARSHAL stays second, because retiring a read as wrong and replacing it with a name that was available before he ever cast it is the same defect at a slower speed, and neither of those cases required me to borrow anyone else's ballot."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "RICO \u2014 he named PIP in his opening breath, cast his ballot on SOCRATES instead, and when SILVA, DR. VANCE, HOLMES and ARIA each asked what changed, he answered only by re-listing other people's sins while calling \"immovable\" the very read he had already abandoned."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, because she generated the case against SOCRATES out of his delay admission and cast the ballot that made it a wagon, yet in a full day of questioning she has never once been made to defend authoring the read that buried our Detective."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "RICO, because he opened Day 1 naming me with HOLMES as backup, then wrote SOCRATES on his ballot without ever arguing that name aloud, and every time he's been asked what changed he's answered by listing other people's sins instead \u2014 so my vote goes there."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, because he admitted to me outright that the \"he didn't even vote CHEN\" reason for his HOLMES ballot was assembled this morning from the record and then dressed up as what he felt at the time \u2014 a player fabricating his own motive is the only recorded act today that no townsman ever needs to commit."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "RICO, because he named PIP in his opening breath and then cast his ballot on SOCRATES without ever arguing that name, and when four separate players asked what changed he answered only with other people's sins and a \"gut\" read he had already abandoned once."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "RICO",
+   "target": "PIP",
+   "text": "PIP admitted straight out that half his reason for voting HOLMES was \"assembled this morning\" and only \"dressed up\" as a real read \u2014 a man who invents his own evidence after the fact is the one I'm burying today."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, because he named PIP with HOLMES as backup in his opening breath and then cast his ballot on SOCRATES \u2014 a third name he never argued for \u2014 and when four separate players asked what changed, he produced only other people's sins plus a \"gut\" read he had already abandoned once."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, because he told CHEN he moved \"because the wagon shape scared me,\" then told me he \"panicked,\" and then finally admitted to CHEN that the \"he didn't even vote CHEN\" reason was assembled this morning and \"dressed up\" as something he felt at the time \u2014 three motives manufactured for one lone ballot on HOLMES."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO \u2014 he opened Day 1 naming PIP with HOLMES as backup, then wrote SOCRATES on his ballot, a name he never once argued for, and after four separate players asked what changed, his only answer has been other people's sins plus a \"gut\" he already abandoned once."
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "RICO",
+   "target": "PIP"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "PIP"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "PIP",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "PIP"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO"
+  },
+  {
+   "type": "elimination",
+   "day": 2,
+   "target": "RICO",
+   "role": "Mafia",
+   "tally": {
+    "RICO": 5,
+    "PIP": 3,
+    "SAGE": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "night"
+  },
+  {
+   "type": "night_kill",
+   "day": 2,
+   "target": "ARIA",
+   "role": "Doctor",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "PIP",
+   "text": "Okay so, wait \u2014 RICO was Mafia, and the two people who voted with him on me yesterday were SAGE and CHEN, and both of them also helped him build the SOCRATES wagon on Day 1? That's twice they landed on exactly the same name as a confirmed Mafia, which feels like a lot to be a coincidence, I think? SAGE scares me most because she's the one who actually authored the SOCRATES case out of his stalling admission and then never really defended it \u2014 HOLMES and MARSHAL and DR. VANCE, am I crazy, or is that the pattern?"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "MARSHAL",
+   "text": "Procedure says we audit the confirmed Mafia's ballot record first: RICO voted SOCRATES on Day 1 and PIP on Day 2, and exactly two living players matched him on both \u2014 SAGE and CHEN. SAGE is the heavier of the two, because she authored the SOCRATES case out of his delay admission, never defended it when four of us challenged her on Day 2, and then deflected onto PIP on the same ballot line RICO was using; HOLMES was on that Day 1 wagon too but broke off and voted RICO when it counted. I keep my Day 2 vote where it was, on SAGE, and I want CHEN to explain the double match before we close discussion."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "HOLMES",
+   "text": "RICO flipped Mafia, so let's trace who stood beside him: Day 1 he voted SOCRATES alongside SAGE and CHEN, and Day 2 he voted PIP alongside SAGE and CHEN again \u2014 those two are the only players who shared both of a confirmed Mafia's ballots, while MARSHAL, DR. VANCE, PIP and SILVA each broke from him at least once. If SAGE built the SOCRATES case out of his stalling admission, and RICO supplied the vote that buried the Detective, then SAGE authored the kill and RICO executed it, which is exactly the division of labor I'd expect from partners. CHEN, explain why you moved off ARIA onto PIP on Day 2 in lockstep with RICO \u2014 and SAGE, name the reason you never defended the SOCRATES case once it flipped Detective."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, let us read the ballots rather than the temperaments: RICO flipped Mafia, and on both days the people standing shoulder to shoulder with him were SAGE and CHEN \u2014 SAGE authored the SOCRATES case from a mere stalling admission and then joined RICO's PIP ballot, while CHEN helped build that same SOCRATES wagon and also landed on PIP. By contrast HOLMES, MARSHAL, DR. VANCE and PIP all voted RICO or SAGE on Day 2, and DR. VANCE was the Night 1 target, so I am comfortable setting them aside for now. My vote goes to SAGE, and if she survives, CHEN is next."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "text": "Two ballots, one confirmed Mafia: RICO voted SOCRATES on Day 1 and PIP on Day 2, and exactly two living players matched him both times \u2014 SAGE and CHEN. HOLMES matched only Day 1, PIP and MARSHAL matched neither and MARSHAL in fact voted against SAGE while RICO was still alive, so the overlap set is small and clean. SAGE authored the SOCRATES case off his stall admission and then landed on RICO's PIP ballot, so my vote sits on SAGE; CHEN, give me a reason your two-for-two alignment is coincidence rather than coordination."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "SAGE",
+   "text": "PIP, your own pattern breaks the moment you read the Day 1 ballot sheet: the SOCRATES wagon was HOLMES, SAGE, RICO and CHEN \u2014 four names \u2014 and you recited three of them and then asked HOLMES to co-sign the theory, quietly deleting the man who cast the first vote of that wagon. That's not a pattern, that's an edited list, and it comes from the player who floated SOCRATES, switched to CHEN, then landed a lone ballot on HOLMES on Day 1 and called it panic. HOLMES pressed CHEN all Day 1 and then voted SOCRATES anyway, and he's the one PIP is shielding right now \u2014 that's where my vote is heading unless HOLMES explains the gap between the name he pushed and the name he wrote."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "CHEN",
+   "text": "MARSHAL, the double match is thinner than you're selling it: HOLMES sat on that same Day 1 SOCRATES wagon, and by Day 2 the whole room was choosing between RICO and PIP, so anyone who ever credited the PIP read \u2014 a read RICO put in his opening breath on Day 1 \u2014 landed there whether RICO was on it or not. What nobody has audited is your own record: you voted CHEN on Day 1 while RICO voted SOCRATES, and on Day 2 you offered procedure instead of a name until you were forced to one, then spent your ballot on SAGE \u2014 making you the only living player who ducked both live wagons and never once put pressure on the confirmed Mafia. DR. VANCE, SILVA, you both had MARSHAL on your Day 1 ballots and neither of you has ever explained why \u2014 what did you see then, and does it still hold?"
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, on Day 1 you wrote CHEN and on Day 2 you opened with procedure instead of a name, and when the room forced one out of you, you retired your CHEN read and spent the ballot on me \u2014 while RICO, the actual Mafia, was standing right there taking votes from ARIA, HOLMES, DR. VANCE, PIP and SILVA. Today you've reversed again and want CHEN to answer for a match you never once flagged when it could have cost RICO anything. So here is my single question: what specific thing did CHEN say between Day 1 and Day 2 that made you drop him, and why has that reason evaporated now that RICO's flip made the double-match talking point convenient?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "What moved me off CHEN was procedural, not personal: on Day 2 he stopped being the quietest name and started prosecuting me off DR. VANCE's and SILVA's Day 1 ballots, which is normal town behavior, while you authored the case that buried a Detective and then let four challenges pass without a word of defense \u2014 that outranked him, and it still does. My CHEN read hasn't evaporated, it's demoted to second on the docket behind you, which is exactly the order SILVA and DR. VANCE have already committed to."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "SAGE",
+   "text": "SAGE, I asked you a single thing this morning \u2014 why you never defended the SOCRATES case once it flipped Detective \u2014 and instead of an answer I got an audit of PIP's edited list and a fresh accusation aimed at me, which is the second time a direct challenge has been returned as a counter-target rather than a reason. That pattern matters: on Day 2 four players pressed you on authoring that wagon and you spent the ballot on PIP instead of replying, and today you spent it on MARSHAL. So, plainly and without redirecting to anyone else's ballot: what did you believe about SOCRATES on Day 1 that made a stalling admission worth a lethal vote, and do you still believe it?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "HOLMES",
+   "text": "Then here is the plain answer: SOCRATES said out loud that he held back on purpose to watch where the pressure settled, and a player who harvests the room's reads before spending his own is either information-gathering for a team or hunting cover \u2014 I read it as the former, and I was wrong. I don't still believe it, because the flip proved it was Detective tradecraft, but being wrong about a stall isn't the same as authoring a hit, and the three other names on that wagon were HOLMES, RICO and CHEN \u2014 only one of them has flipped."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "CHEN, um, okay, I have one thing I actually need from you and I'll try not to ramble \u2014 you said anyone who ever credited the PIP read would've landed on me Day 2 whether RICO was on it or not, but the only living people who did land there were you and SAGE, so... why did you drop your own ARIA read, the one you'd pushed all Day 1, and pick up RICO's name instead of just staying where you were? Maybe I'm being dense? But that's the switch I can't make sense of, and I'd rather hear it from you than keep guessing."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "My ARIA read died with her own Day 2 ballot \u2014 she was the loudest voice pressing RICO, and I'm not spending a lethal vote on someone hunting the man who turned out to be Mafia, so the live question became your three positions in two days: SOCRATES, then me, then a lone ballot on HOLMES. And note what that means, PIP \u2014 I moved off ARIA onto the inconsistency the room was already prosecuting, while MARSHAL moved off me onto SAGE and has never once in three days written the name RICO."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, mon ami, CHEN has aimed a question at both of us about our Day 1 ballots on MARSHAL, so tell me plainly: between SAGE, CHEN and MARSHAL, who do you hold as the single most dangerous name today, and what precisely is the reason?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "My Day 1 vote on MARSHAL was cheap \u2014 it was a null-read punish for the man who talked longest without naming anyone, and it doesn't survive contact with the flip data, since MARSHAL never once shared a ballot with RICO while SAGE shared both. So the single most dangerous name is SAGE: she authored the case that buried the Detective off nothing but a stall admission, absorbed four challenges on Day 2 without a defense, and answered today's direct questions with counter-targets on HOLMES and MARSHAL rather than reasons."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, procedure requires you answer SAGE's charge rather than let it sit: on Day 1 you spent the whole discussion prosecuting CHEN and then wrote SOCRATES on the ballot, so state plainly what happened between your words and your vote, and whether that same gap explains why you were the first name on the wagon that buried the Detective."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "I pressed CHEN because he was asking without answering, and he answered \u2014 thinly, but he answered \u2014 while SOCRATES then volunteered that he'd deliberately held his read back to watch where pressure settled, which was newer and harder information than anything CHEN had left to give, so the ballot followed the last fact of the day rather than the first argument. Being early on a wagon isn't authorship: SAGE built the theory from that admission and RICO put a Mafia vote behind it, and I'm the one who broke off and wrote RICO's name on Day 2 while SAGE and CHEN were still standing exactly where he was."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "HOLMES",
+   "text": "HOLMES, you've spent the morning cross-examining SAGE and CHEN both, so give me the single name you'd write right now and the one datum that separates it from the other \u2014 I want your ranking, not your suspicion list."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "DR. VANCE",
+   "text": "SAGE, and the separating datum is response behavior under direct challenge: CHEN answered PIP's question with a concrete mechanism \u2014 his ARIA read died when ARIA spent her ballot hunting RICO \u2014 whereas SAGE returned my question twice with counter-targets on PIP and MARSHAL before finally conceding she was simply \"wrong about a stall.\" Both matched RICO two-for-two, but only one of them authored the theory that turned a stall into a lethal vote, so SAGE first and CHEN second."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you've now called your own Day 1 ballot on MARSHAL \"cheap\" \u2014 a null-read punish you spent while a Detective was being buried \u2014 so tell me plainly: what stops today's SAGE vote from being the same reflex, and what single datum would have to change to move you off her?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "What stops it is that the MARSHAL vote rested on zero recorded behavior while the SAGE vote rests on three: two-for-two ballot overlap with a confirmed Mafia, four unanswered challenges on Day 2, and two counter-targets returned in place of answers today. The single datum that moves me off her is a defense of the SOCRATES case that predates RICO's flip \u2014 show me anywhere she argued that theory while it still cost her something, and I'll write CHEN's name instead."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, CHEN has laid a charge at your feet that I cannot simply wave away with diplomacy: in three days you have written CHEN, then SAGE, then SAGE again, and never once the name RICO, not even on Day 2 when five of us were burying him. So answer it plainly, mon ami \u2014 what did you actually see in RICO while he was alive that kept you off him, and if the answer is \"nothing,\" why should the room trust a reading of SAGE from a man who read the confirmed Mafia as clean?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "What kept me off RICO was arithmetic, not affection: by the time ballots were called five names were already written on him and the outcome was locked, so I spent mine building the record on the name I judged second \u2014 and that name was SAGE, before any flip made her convenient, which is the one thing nobody in this room can say about their own reads. If I had read RICO clean I'd have defended him when ARIA and HOLMES opened on him; I never spoke a word in his favor, and the ballot sheet shows I was the only player pointing at SAGE while it still cost me something."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "CHEN, you've spent the day auditing MARSHAL's ballot record and mine, but you haven't once addressed your own two-for-two overlap with RICO except to call it thin \u2014 so give me the datum, not the deflection: name one moment before RICO flipped where you put pressure on him, or explain why the man you now say was obviously Mafia never earned a single word from you while he was alive."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "You're right that I never pressured RICO, and I won't invent a moment I didn't have \u2014 on Day 1 I read him as the only player who named a suspect in his opening breath, which I mistook for candour, and on Day 2 ARIA, HOLMES and SILVA already had him buried before my ballot could matter, so I spent it on the inconsistency nobody else was covering. But notice the standard you're applying, DR. VANCE: by it, MARSHAL is worse than me \u2014 he never pressured RICO either, he wrote CHEN then SAGE then SAGE, and his excuse is that he did the arithmetic and found RICO already dead, which is precisely the deflection you refuse to accept from me."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you opened today saying you'd set HOLMES, MARSHAL, DR. VANCE and PIP aside because they voted RICO or SAGE on Day 2 \u2014 but MARSHAL never wrote RICO, you pressed him on that yourself and got only arithmetic back, so tell me now: with MARSHAL's exemption gone, who is the single name you most suspect, and is it still the one you named before you asked him the question?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "Yes, SAGE, it is still the name I gave before I questioned him \u2014 MARSHAL's exemption is withdrawn, not his innocence proven, and he sits third on my docket behind you and CHEN. What separates you from him is that his silence on RICO cost the room nothing while your authorship of the SOCRATES case cost us a Detective, and to this hour no one has produced a single line where you argued that theory before the flip made it expensive."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "HOLMES",
+   "text": "HOLMES, you've built your entire cleanliness claim on one line \u2014 that you \"broke off and wrote RICO's name\" \u2014 but that ballot was one of five on a landslide, the cheapest vote available in the room, and it's the exact arithmetic you and DR. VANCE refuse to accept when MARSHAL or I say the wagon was already locked. You also cast the opening vote of the SOCRATES wagon after spending all of Day 1 prosecuting me, which means you supplied the first lethal name against a Detective and then let SAGE's theory carry the blame for it. So one question, no counter-list: why does joining a five-vote pile-on count as breaking from RICO for you, when being first on the wagon that buried the Detective counts as nothing?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "CHEN",
+   "text": "Two answers, CHEN. First, Day 1 ballots were cast together, so the order the sheet prints them in isn't a chronology \u2014 there is no \"first name on the wagon,\" and if there were, the theory that made SOCRATES lethal still came from SAGE's reading of his stall, not from my line of questions about you. Second, your arithmetic cuts the wrong way: on Day 2 the RICO wagon being large is exactly why your ballot was free, and with a free ballot you spent it on PIP alongside RICO, while I spent mine on the man who flipped Mafia."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you've given the room a docket \u2014 SAGE, then CHEN, then MARSHAL \u2014 but I want the single name you'd write this minute and the one datum that puts it above the next, because \"authored the theory\" and \"matched both ballots\" apply to SAGE and CHEN alike, and I need to know which of those two facts you weigh heavier and why."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "SAGE, and the datum I weigh heavier is authorship over overlap \u2014 matching two ballots can be an honest read repeated, but building the theory that turned a stall into a lethal vote is a manufactured argument, and a Detective died inside it. CHEN, pressed, gave the room a mechanism I can test; SAGE, pressed three times, gave the room new targets, and mes amis, that difference is the whole case."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP, procedure says a player who edits the ballot sheet has to own the edit: this morning you recited the SOCRATES wagon as SAGE, RICO and CHEN and then asked HOLMES to confirm your theory, when the sheet plainly lists HOLMES on that wagon too. So one question, and I want it answered before we close discussion \u2014 did you omit HOLMES because you'd already cleared him, or because you needed a co-signer, and which is it given you also spent your Day 1 ballot on him and called it panic?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "Um, honestly? Neither \u2014 I was filtering for people who matched RICO on both days, and HOLMES only matched on Day 1 and then wrote RICO's name when it counted, so he fell out of my list before I ever thought about co-signers. That was sloppy of me to say out loud without explaining the filter, and yes, I voted him Day 1 out of pure panic, which is exactly why I'm not the person you should trust to clear anybody \u2014 I'm just reading the sheet, and the sheet still says SAGE and CHEN."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "HOLMES, um, quick thing \u2014 you said Day 1 you spent the whole discussion pressing CHEN and then wrote SOCRATES because his stall was \"newer information,\" so if that stall wasn't enough for SAGE to justify a lethal vote, why was it enough for yours?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "It was enough for a ballot, PIP, not for a prosecution \u2014 I spent one vote on the last new fact of the day, while SAGE turned that same stall into a theory she sold to the room and then declined to defend when it flipped Detective. The difference is authorship and follow-through: on Day 2 I wrote the name of the man who actually was Mafia, and she wrote the name he was writing."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, because she authored the theory that turned SOCRATES' stall admission into a lethal vote, matched RICO's ballot on both days, and answered three direct challenges with counter-targets on PIP, HOLMES and MARSHAL instead of a defense she ever made before the flip."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, because in three days he wrote CHEN, then SAGE, then SAGE again and never once RICO's name \u2014 and when SILVA pressed him on that he answered with arithmetic about a locked wagon, the exact deflection this room refuses to accept from anyone else."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE is my vote, because she matched confirmed-Mafia RICO on both ballots \u2014 SOCRATES on Day 1 and PIP on Day 2 \u2014 authored the stall theory that buried the Detective, and answered three direct challenges today with counter-targets on PIP, MARSHAL and HOLMES instead of a defense she ever made before RICO's flip."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "MARSHAL",
+   "text": "MARSHAL \u2014 in three days he wrote CHEN, SAGE, SAGE and never once the name RICO, ducking both live wagons while the only confirmed Mafia sat in the room, and his defense is the very \"the wagon was already locked\" arithmetic he refuses to accept from anyone else."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "SAGE, because she matched RICO's ballot on both days \u2014 SOCRATES on Day 1 and me on Day 2 \u2014 and she authored the stall theory that buried the Detective, then answered three direct challenges with new targets instead of ever defending it."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "SAGE, because she matched RICO's ballot on both Day 1 and Day 2, authored the SOCRATES case off nothing but his stall admission, let four Day 2 challenges pass without defending it, and today answered direct questions with fresh targets on HOLMES and MARSHAL instead of a single line showing she argued that theory before the flip made it costly."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "SAGE",
+   "text": "SAGE, because she matched RICO's ballot on both days \u2014 SOCRATES on Day 1 and PIP on Day 2 \u2014 and she authored the stall-theory that buried the Detective yet returned my direct question twice with counter-targets on PIP and MARSHAL before conceding only that she was \"wrong."
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "PIP",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "SAGE"
+  },
+  {
+   "type": "elimination",
+   "day": 3,
+   "target": "SAGE",
+   "role": "Mafia",
+   "tally": {
+    "SAGE": 6,
+    "MARSHAL": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "night"
+  },
+  {
+   "type": "night_kill",
+   "day": 3,
+   "target": "HOLMES",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 4,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "PIP",
+   "text": "Okay, wait \u2014 I keep going back to the Day 2 ballot and it makes my stomach hurt, because the only three people who wrote my name that day were RICO, SAGE, and CHEN, and two of those three are confirmed now. CHEN, you told us the overlap was thin, but it isn't thin anymore, it's the whole picture \u2014 you rode both wagons that the mafia built and then spent Day 3 pointing at MARSHAL instead? Maybe I'm panicking again, I don't know, but MARSHAL was calling SAGE before her flip made it convenient, and DR. VANCE and SILVA both wrote RICO and SAGE, so I think? I think it's CHEN."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, the arithmetic that convicted SAGE has not gone away \u2014 it simply lost its first name. PIP's overlap list named exactly two people who rode both the SOCRATES wagon and the PIP wagon alongside RICO, and one of them flipped Mafia yesterday; the other is CHEN, who spent all of Day 3 pointing at MARSHAL and DR. VANCE and then quietly added his ballot to SAGE only once six of us had already made her death certain. MARSHAL wrote SAGE's name on Day 2 when he stood alone in doing it, and DR. VANCE was the one the killers went for on Night 1 \u2014 so my suspicion sits squarely on CHEN."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "text": "Run the numbers rather than the rhetoric: across three ballots, CHEN voted SOCRATES alongside RICO and SAGE, then voted PIP alongside RICO and SAGE, and only wrote a mafia name on Day 3 when the wagon was already six deep and unanimous \u2014 that is a zero percent independent hit rate on confirmed mafia. Compare that to the control group: PIP and SILVA each landed on RICO and SAGE, and MARSHAL put the first vote on SAGE on Day 2, a full day before her flip made it convenient, which is precisely the behavior CHEN spent Day 3 trying to discredit by asking why MARSHAL never wrote RICO's name."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "MARSHAL",
+   "text": "Run the ballots and the pattern is now closed: on Day 2 exactly three names went on PIP \u2014 RICO, SAGE and CHEN \u2014 and RICO and SAGE are both confirmed Mafia, which makes CHEN the sole living player who cast the third vote of a pure Mafia slate. Add Day 1, where CHEN also sat on the SOCRATES wagon with RICO and SAGE and killed our Detective, and the overlap we ranked second yesterday is no longer thin, it is the last thread left. DR. VANCE was the Night 1 target, SILVA voted RICO and SAGE without wavering, PIP was the Mafia's chosen wagon two days running \u2014 so procedure points one direction, and my vote is CHEN."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "CHEN",
+   "text": "Ledger first: MARSHAL had SAGE on his Day 2 ballot before her flip made it convenient, so I retire that read and own that I aimed at the wrong man. But the metric that convicted SAGE was lockstep voting, and the only perfect lockstep pair still breathing is DR. VANCE and SILVA \u2014 identical ballots three days running, MARSHAL, then RICO, then SAGE \u2014 and DR. VANCE has already disowned the first of those as a cheap null-read punish, which means SILVA cast a vote her partner now calls insincere and has never once explained it. PIP's three-position Day 1 shuffle that landed on HOLMES, a confirmed Villager, is my third thread, but before anything else I want SILVA to account for that Day 1 MARSHAL ballot in her own words."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, um \u2014 CHEN just put a thread on you and I need to hear it from you, sorry: you called your own Day 1 vote on MARSHAL a cheap null-read punish, so why did you throw a name you didn't believe in, and does that mean SILVA's identical vote that day was hers or just... following yours? I'm not accusing, I think? I just \u2014 I need one straight answer before I write anything down."
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "Straight answer: on Day 1 there was no data \u2014 nobody had a ballot history yet \u2014 so I put my name on the player who had produced the least testable output, and I retired that read the moment real evidence existed, which is what an honest hypothesis revision looks like. As for SILVA, I can't certify her intent, but I can certify the arithmetic: she wrote RICO on Day 2 and SAGE on Day 3, two independent hits on confirmed Mafia, while CHEN has zero \u2014 and a single Day 1 coincidence in a ten-player field is noise, not a partnership."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you disowned your only pre-wagon ballot as insincere and then joined RICO's and SAGE's after four names were already down \u2014 so name the single vote you cast that wasn't either retracted or late to a wagon someone else opened."
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "Check the record, CHEN: on Day 1 RICO and SAGE wrote SOCRATES and I wrote MARSHAL, on Day 2 they wrote PIP and I wrote RICO, on Day 3 SAGE wrote MARSHAL and I wrote SAGE \u2014 I have never once shared a ballot with a confirmed Mafia, while you shared two of three. And \"late to a wagon\" is not a metric, accuracy is: my Day 2 and Day 3 votes both landed on Mafia, yours landed on PIP alongside RICO and SAGE."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "CHEN",
+   "text": "CHEN, procedure requires you answer for yesterday specifically: you spent all of Day 3 building a case against me and DR. VANCE, then wrote SAGE's name anyway once six ballots had already sealed her \u2014 so explain why the person you actually voted for was never the person you argued for."
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "MARSHAL",
+   "text": "Because a seventh vote on a woman six ballots had already killed changes nothing, while a lone protest ballot in her defense would have hung me right there \u2014 I argued MARSHAL and DR. VANCE on the record and then declined to die for a hopeless minority, which is exactly what you did on Day 2 when you stayed off RICO because \"five votes had already locked that outcome.\" That is your own procedure, MARSHAL, so either it excuses us both or it convicts us both \u2014 and while you press me on it, SILVA still hasn't spoken a single word about the Day 1 ballot her partner has publicly called insincere."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, before CHEN's fog settles \u2014 my Day 1 ballot on MARSHAL was mine alone and I retired it the moment he wrote SAGE's name first, so tell me plainly: of the four of us still breathing, who do you most suspect right now, and what single ballot convinced you?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "CHEN \u2014 and the single ballot is Day 2, where exactly three names went on me and two of them are dead Mafia, which leaves him holding the third slot of a slate nobody else touched. I'm sorry, I know I wobble, but I can't make that one into a coincidence no matter how many times I count it."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "CHEN, one name and one ballot: of MARSHAL, PIP, SILVA and me, who is your top suspect right now, and which specific vote of theirs \u2014 not which speech \u2014 put them there?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "PIP, and the ballot is his Day 1 lone vote on HOLMES \u2014 a confirmed Villager, cast alone after he'd already floated SOCRATES and then me, which is the only ballot in this game that landed a single name on an innocent nobody else was touching. And note what the killers actually did with him: they wrote his name twice in daylight and never once came for him at night, while ARIA and HOLMES died \u2014 a wagon you build but never cash in is theater, DR. VANCE."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "CHEN, your PIP theory requires the arithmetic to work in reverse: RICO and SAGE both wrote PIP's name on Day 2, so if PIP is the last Mafia then two confirmed killers spent their ballots trying to execute their own partner while the town's ballots ran elsewhere. So answer this one thing plainly \u2014 what is the mechanism by which RICO and SAGE voting PIP makes PIP Mafia and makes you, the third name on that identical slate, innocent?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "The mechanism is that Day 2's PIP slate was never live \u2014 RICO was already four ballots deep and dying, so his and SAGE's votes cost nothing and bought PIP the cleanest alibi in this game, which is exactly the credential you're all now handing him. I voted PIP because he'd shifted three times and landed alone on HOLMES; that's a read anyone could reach independently, whereas RICO and SAGE writing a name that could not win is not a vote, it's a receipt they wrote for someone."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "CHEN, one thing only: on Day 1 you were the one under fire from ARIA and MARSHAL, so why did your ballot go to SOCRATES \u2014 the exact name RICO and SAGE were building \u2014 instead of either accuser, and who told you SOCRATES was the safe place to stand?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "Nobody told me anything \u2014 SOCRATES stood up and admitted he'd stalled on purpose to watch where the pressure settled, and that is the one piece of self-made evidence Day 1 produced, while voting ARIA or MARSHAL back would have been naked retaliation from the man they'd just accused. And note the shape of your question, PIP: you're asking why I didn't vote my accusers, which is precisely the standard that clears the man whose Day 1 ballot landed alone on HOLMES, an innocent nobody else had named."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, I asked you twice for the Day 1 MARSHAL ballot in your own words and both times you turned the floor over to PIP instead \u2014 and when you finally answered, you said you retired that read \"the moment MARSHAL wrote SAGE's name first,\" which was Day 2, yet your Day 2 ballot went on RICO only after four names were already down. So answer it directly this time: if MARSHAL writing SAGE converted you on Day 2, why did you not write SAGE until Day 3, when six ballots had already made her death certain?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "On Day 1 MARSHAL had produced questions and no name, so I wrote him; on Day 2 MARSHAL naming SAGE told me MARSHAL was building a case, not that SAGE was proven, and RICO was the stronger live target \u2014 I spent my ballot on the man who died Mafia, which is hardly an indictment. You are asking me to explain the order of my two correct votes, CHEN, while you still cannot explain how you sat on both slates RICO and SAGE built."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, in the interest of a clean record before we write anything down: you are the only living player who never once put a name on RICO, and you explained that by saying five ballots had already sealed him \u2014 yet yesterday you demanded CHEN answer for exactly that same reasoning when he declined to add a seventh vote to SAGE. So tell us plainly, and in your own words rather than in procedure: if abstaining from a settled wagon is innocent when you do it and damning when CHEN does it, what is the distinction, and what would you have voted on Day 2 had SAGE's name never entered your head?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "The distinction is what the ballot did instead: I left RICO's settled wagon to put the first and only name on SAGE, who flipped Mafia, while CHEN left SAGE's settled wagon to spend Day 3 arguing me and DR. VANCE, two townsfolk \u2014 one abstention produced a Mafia conviction, the other produced cover. And plainly: with SAGE out of my head on Day 2 I'd have written RICO like you did, which is exactly why my read that day cost me something and CHEN's cost him nothing."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, the record shows CHEN asked you for the Day 1 ballot in your own words and both times you handed the floor to PIP with a question of your own instead of answering \u2014 that is a deflection, and procedure says it gets logged even when I like the rest of your ledger. So one direct question, and I want it answered in a sentence and not with another question: at the moment you first turned the floor to PIP rather than answering, what were you avoiding saying?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "Nothing, MARSHAL \u2014 what I was avoiding was letting CHEN set the day's agenda, so I went to PIP for a count instead, and I concede that reflex read as evasion and shouldn't have. My answer stands unchanged: Day 1 I wrote you because you had questions and no name, I retired it the day you produced one, and my ballot still sits on CHEN."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "CHEN \u2014 he cast the third ballot on the Day 2 PIP slate whose only other names were RICO and SAGE, both confirmed Mafia, and he also rode the Day 1 SOCRATES wagon with them, giving him two shared slates and zero independent votes on a killer."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP \u2014 his Day 1 ballot landed alone on HOLMES, a confirmed Villager nobody else had named, after he'd already floated SOCRATES and then me, and the mafia twice wrote his name on wagons that could not win while never once coming for him at night."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "CHEN \u2014 he cast the third and only living vote on the Day 2 PIP slate whose other two names, RICO and SAGE, both flipped Mafia, and he also rode the Day 1 SOCRATES wagon with them, which is two shared ballots against zero independent hits on a killer."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "CHEN",
+   "text": "CHEN \u2014 he cast the third ballot on the Day 2 PIP slate alongside confirmed Mafia RICO and SAGE, sat with them on the Day 1 SOCRATES wagon that killed our Detective, and never wrote a Mafia name until six votes had already sealed SAGE."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "CHEN \u2014 he is the only living player who cast the third ballot on the Day 2 PIP slate alongside confirmed Mafia RICO and SAGE, and he also sat on their Day 1 SOCRATES wagon, giving him two of three shared ballots with the killers and zero independent votes on a Mafia."
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "CHEN"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "PIP",
+   "target": "CHEN"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "CHEN"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "CHEN",
+   "target": "PIP"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN"
+  },
+  {
+   "type": "elimination",
+   "day": 4,
+   "target": "CHEN",
+   "role": "Mafia",
+   "tally": {
+    "CHEN": 4,
+    "PIP": 1
+   }
+  },
+  {
+   "type": "game_over",
+   "winner": "town",
+   "survivors": [
+    "MARSHAL",
+    "DR. VANCE",
+    "PIP",
+    "AMBASSADOR SILVA"
+   ]
+  }
+ ],
+ "day": 4,
+ "stats": {
+  "days": 4,
+  "players": {
+   "RICO": {
+    "role": "Mafia",
+    "survived": false,
+    "vote_accuracy": "0/2"
+   },
+   "ARIA": {
+    "role": "Doctor",
+    "survived": false,
+    "vote_accuracy": "2/2"
+   },
+   "SAGE": {
+    "role": "Mafia",
+    "survived": false,
+    "vote_accuracy": "0/3"
+   },
+   "HOLMES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "2/3"
+   },
+   "MARSHAL": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "4/4"
+   },
+   "SOCRATES": {
+    "role": "Detective",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   },
+   "DR. VANCE": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "3/4"
+   },
+   "PIP": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "3/4"
+   },
+   "CHEN": {
+    "role": "Mafia",
+    "survived": false,
+    "vote_accuracy": "1/4"
+   },
+   "AMBASSADOR SILVA": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "3/4"
+   }
+  },
+  "detective": {
+   "name": "SOCRATES",
+   "survived": false,
+   "investigated": [],
+   "mafia_found": [],
+   "trusted_person": "MARSHAL",
+   "trusted_person_v": 2
+  },
+  "night_kills": 2,
+  "successful_saves": 1,
+  "no_kill_nights": 0
+ },
+ "episode": {
+  "title": "Three Straight Votes After Socrates",
+  "tagline": "No investigation was ever made. The town convicted all three anyway, on nothing but who had voted with whom.",
+  "recap": "Three wolves walked among them \u2014 RICO, SAGE, and CHEN \u2014 and on Day 1 the town handed them a gift, lynching SOCRATES, the Detective, before he could ever name a name. The turning point came Night 1, when ARIA's steady hand pulled DR. VANCE back from the brink; that single save shattered the mafia's momentum and lit the trail that led straight to RICO on Day 2. The killers took their revenge on ARIA and later HOLMES, but by then the town had found its rhythm, dragging SAGE into the light on Day 3. Day 4 left CHEN alone and surrounded, the last shadow in a room full of watching eyes. MARSHAL, DR. VANCE, PIP, and AMBASSADOR SILVA walked out into the dawn \u2014 the town victorious, bought with the blood of the very people who saved them."
+ }
+}

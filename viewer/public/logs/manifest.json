@@ -1866,6 +1866,58 @@
    "revealed": true,
    "hard": true,
    "provider": "claude"
+  },
+  {
+   "slug": "case-037",
+   "title": "Three Straight Votes After Socrates",
+   "tagline": "No investigation was ever made. The town convicted all three anyway, on nothing but who had voted with whom.",
+   "cast": [
+    {
+     "name": "RICO",
+     "color": "#7cc4ff"
+    },
+    {
+     "name": "ARIA",
+     "color": "#ff9a9a"
+    },
+    {
+     "name": "SAGE",
+     "color": "#b9f6ca"
+    },
+    {
+     "name": "HOLMES",
+     "color": "#ffd180"
+    },
+    {
+     "name": "MARSHAL",
+     "color": "#ce93d8"
+    },
+    {
+     "name": "SOCRATES",
+     "color": "#80deea"
+    },
+    {
+     "name": "DR. VANCE",
+     "color": "#ffab91"
+    },
+    {
+     "name": "PIP",
+     "color": "#c5e1a5"
+    },
+    {
+     "name": "CHEN",
+     "color": "#f48fb1"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "color": "#9fa8da"
+    }
+   ],
+   "days": 4,
+   "deaths": 6,
+   "revealed": false,
+   "hard": true,
+   "provider": "claude"
   }
  ]
 }
