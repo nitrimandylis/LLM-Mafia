@@ -37,6 +37,18 @@ DEFAULT_GM_MODEL = "qwen/qwen3.5-9b"
 # finished and is worthless.
 MAX_CONSECUTIVE_FAILURES = 3
 
+# The two things query_model returns when a call failed. Both are the WHOLE
+# reply, so match the whole reply: a substring test flags a real player who
+# says another "remains silent", which is ordinary Mafia talk and cost a
+# finished game its publish on 2026-08-23.
+FALLBACK_ENDINGS = ("remains silent*", "mumbles something noncommittal*")
+
+
+def is_fallback(text):
+    """True only for text query_model produced in place of a failed reply."""
+    text = (text or "").strip()
+    return text.startswith("*") and text.endswith(FALLBACK_ENDINGS)
+
 
 class BackendUnavailable(RuntimeError):
     """Raised when MAX_CONSECUTIVE_FAILURES backend calls fail in a row."""
@@ -317,7 +329,7 @@ class MafiaGame:
                 for future in as_completed(futures):
                     player = futures[future]
                     response = future.result()
-                    if response == f"*{player.name} remains silent*":
+                    if is_fallback(response):
                         self.log(f"🗣️  {player.name} has nothing to say", "yellow", public=False)
                         continue
                     self.log(f"🗣️  {player.name}: {response}", "normal")
@@ -368,7 +380,7 @@ class MafiaGame:
                 for future in as_completed(futures):
                     player = futures[future]
                     response = future.result()
-                    if response == f"*{player.name} remains silent*":
+                    if is_fallback(response):
                         self.log(f"🗣️  {player.name} has nothing to say", "yellow", public=False)
                         continue
                     self.log(f"🗣️  {player.name}: {response}", "normal")
@@ -414,7 +426,7 @@ class MafiaGame:
                     player, template.format(target=target.name), recent_context,
                     min_words=3, public_speech=True,
                 )
-                if question == f"*{player.name} remains silent*":
+                if is_fallback(question):
                     # Failed generation — skip the exchange, don't publish it
                     self.log(f"🔍 {player.name} has no question for {target.name}", "yellow", public=False)
                     continue
@@ -424,7 +436,7 @@ class MafiaGame:
 
                 answer_prompt = f"{player.name} just asked you: '{question}'. Respond directly in 1-2 sentences."
                 answer = self.query_model(target, answer_prompt, recent_context, public_speech=True)
-                if answer == f"*{target.name} remains silent*":
+                if is_fallback(answer):
                     self.log(f"💬 {target.name} does not answer", "normal", public=False)
                     continue
                 self.log(f"💬 {target.name}: {answer}", "normal")
@@ -460,7 +472,7 @@ class MafiaGame:
             for future in as_completed(futures):
                 player = futures[future]
                 response = future.result()
-                if response == f"*{player.name} remains silent*":
+                if is_fallback(response):
                     self.log(f"⚔️  {player.name} offers no accusation", "yellow", public=False)
                     continue
                 collected.append((player, response))
@@ -1320,7 +1332,7 @@ Here is the game history so far:
                     prompt = f"Mafia coordination: Based on the discussion, confirm or change your target. Choose from: {', '.join(valid_targets)}. Reply with name only or one sentence."
                 try:
                     response = self.query_model(m, prompt, chat_context)
-                    if response and "remains silent" not in response:
+                    if response and not is_fallback(response):
                         chat.append(f"{m.name}: {response}")
                         self.log(f"   {m.name}: {response}", "red", public=False)
                         self.emit("mafia_chat", private=True, day=self.day,

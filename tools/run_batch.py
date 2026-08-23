@@ -26,6 +26,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
+from mafia.game import is_fallback
 from tools.claude_usage import read_usage
 
 RUNS_DIR = REPO_ROOT / "runs"
@@ -94,8 +95,7 @@ def smells_wrong(log_path):
 
     fallback_lines = 0
     for event in log["events"]:
-        text = event.get("text") or ""
-        if "remains silent" in text or "mumbles something noncommittal" in text:
+        if is_fallback(event.get("text")):
             fallback_lines += 1
     if fallback_lines:
         reasons.append(f"{fallback_lines} fallback line(s)")

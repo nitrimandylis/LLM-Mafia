@@ -85,8 +85,40 @@ def test_backend_failure_aborts():
     print("backend failure abort OK")
 
 
+def test_smells_wrong_ignores_players_talking_about_silence():
+    """A real line that contains the fallback wording is not a fallback.
+    This exact statement failed the gate on 2026-08-23 and cost a good game."""
+    import json
+    import tempfile
+    from tools.run_batch import smells_wrong
+
+    real = ("AMBASSADOR SILVA's behavior pattern is most suspicious: deflected "
+            "HOLMES's question on Day 1, and remains silent through today's "
+            "entire discussion.")
+    log = {
+        "day": 4,
+        "events": [
+            {"type": "statement", "text": real},
+            {"type": "statement", "text": "*CHEN remains silent*"},
+            {"type": "statement", "text": "*PIP mumbles something noncommittal*"},
+            {"type": "game_over"},
+        ],
+    }
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+        json.dump(log, f)
+        path = Path(f.name)
+    assert smells_wrong(path) == ["2 fallback line(s)"]
+
+    log["events"] = [log["events"][0], log["events"][-1]]
+    path.write_text(json.dumps(log))
+    assert smells_wrong(path) == []
+    path.unlink()
+    print("✅ smells_wrong counts only whole-reply fallbacks")
+
+
 if __name__ == "__main__":
     test_next_slug()
     test_should_start_game()
     test_backend_failure_aborts()
     print("ok")
+    test_smells_wrong_ignores_players_talking_about_silence()
