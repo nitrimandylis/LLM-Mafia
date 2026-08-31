@@ -4,9 +4,9 @@ name: case
 # running out of quota can never cost more than the single game in flight.
 on:
   schedule:
-    # 01:00 UTC Sunday = 03:00 Athens in winter, 04:00 in summer. Both sit
-    # inside the window the clock guard below allows.
-    - cron: '0 1 * * 0'
+    # 21:00 UTC Saturday = 00:00 Athens Sunday in summer, 23:00 Athens Saturday
+    # in winter. Either way the whole night sits inside the guard's window.
+    - cron: '0 21 * * 6'
   workflow_dispatch:
 
 permissions:
@@ -25,17 +25,25 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # GitHub delays scheduled runs under load, and a game that starts at 09:00
-      # spends a five-hour quota window Nick is trying to use. A skipped week
-      # costs one episode. Manual runs skip the guard.
+      # GitHub delays scheduled runs under load, sometimes by five hours. The
+      # game may start any time overnight; a daytime start would spend a
+      # five-hour quota window Nick is trying to use. Testing for daytime rather
+      # than for a night window keeps this correct across the DST change, when
+      # the same cron lands at 23:00 Athens instead of 00:00. A skip is pushed,
+      # so a silent week means the run never started at all. Manual runs skip
+      # the guard.
       - id: guard
         if: github.event_name == 'schedule'
         run: |
           hour=$(TZ=Europe/Athens date +%-H)
           echo "Athens hour: $hour"
-          if [ "$hour" -lt 3 ] || [ "$hour" -ge 7 ]; then
-            echo "Outside 03:00-07:00 Athens — skipping this week."
+          if [ "$hour" -ge 7 ] && [ "$hour" -lt 22 ]; then
+            echo "Started at ${hour}:00 Athens — past the cutoff, skipping this week."
             echo "skip=true" >> "$GITHUB_OUTPUT"
+            curl -H "Title: Mafia: week skipped" -H "Tags: mafia" \
+                 -H "Priority: low" -H "Click: $RUN_URL" \
+                 -d "GitHub started the run at ${hour}:00 Athens, past the 07:00 cutoff. No game this week." \
+                 "https://ntfy.sh/$NTFY_TOPIC"
           fi
 
       - uses: actions/setup-python@v5
