@@ -20,6 +20,7 @@ jobs:
     env:
       CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       GH_TOKEN: ${{ github.token }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
@@ -44,6 +45,9 @@ jobs:
                  -H "Priority: low" -H "Click: $RUN_URL" \
                  -d "GitHub started the run at ${hour}:00 Athens, past the 07:00 cutoff. No game this week." \
                  "https://ntfy.sh/$NTFY_TOPIC"
+            [ -n "$DISCORD_WEBHOOK" ] && curl -s -H "Content-Type: application/json" \
+                 -d "{\"content\": \"🎭 **Mafia**: week skipped (started at ${hour}:00 Athens, past cutoff)\"}" \
+                 "$DISCORD_WEBHOOK"
           fi
 
       - uses: actions/setup-python@v5
@@ -75,9 +79,22 @@ jobs:
           path: runs/
           if-no-files-found: ignore
 
+      - name: Notify on success
+        if: success() && steps.guard.outputs.skip != 'true'
+        run: |
+          curl -H "Title: Mafia: new case" -H "Tags: mafia" \
+               -H "Click: $RUN_URL" -d "Game finished and published. $RUN_URL" \
+               "https://ntfy.sh/$NTFY_TOPIC"
+          [ -n "$DISCORD_WEBHOOK" ] && curl -s -H "Content-Type: application/json" \
+               -d "{\"content\": \"🎭 **Mafia**: new case published — <$RUN_URL>\"}" \
+               "$DISCORD_WEBHOOK"
+
       - name: Notify on failure
         if: failure()
         run: |
           curl -H "Title: Mafia: run failed" -H "Tags: mafia" \
                -H "Click: $RUN_URL" -d "The game did not finish. $RUN_URL" \
                "https://ntfy.sh/$NTFY_TOPIC"
+          [ -n "$DISCORD_WEBHOOK" ] && curl -s -H "Content-Type: application/json" \
+               -d "{\"content\": \"⚠️ **Mafia**: run failed — <$RUN_URL>\"}" \
+               "$DISCORD_WEBHOOK"
