@@ -1,0 +1,1455 @@
+{
+ "events": [
+  {
+   "type": "game_start",
+   "players": [
+    {
+     "name": "RICO",
+     "seat": 0,
+     "color": "#7cc4ff",
+     "model": "haiku-4.5",
+     "role": "Villager"
+    },
+    {
+     "name": "ARIA",
+     "seat": 1,
+     "color": "#ff9a9a",
+     "model": "sonnet-5",
+     "role": "Mafia"
+    },
+    {
+     "name": "SAGE",
+     "seat": 2,
+     "color": "#b9f6ca",
+     "model": "opus-5",
+     "role": "Villager"
+    },
+    {
+     "name": "HOLMES",
+     "seat": 3,
+     "color": "#ffd180",
+     "model": "haiku-4.5",
+     "role": "Villager"
+    },
+    {
+     "name": "MARSHAL",
+     "seat": 4,
+     "color": "#ce93d8",
+     "model": "sonnet-5",
+     "role": "Doctor"
+    },
+    {
+     "name": "SOCRATES",
+     "seat": 5,
+     "color": "#80deea",
+     "model": "opus-5",
+     "role": "Villager"
+    },
+    {
+     "name": "DR. VANCE",
+     "seat": 6,
+     "color": "#ffab91",
+     "model": "haiku-4.5",
+     "role": "Villager"
+    },
+    {
+     "name": "PIP",
+     "seat": 7,
+     "color": "#c5e1a5",
+     "model": "sonnet-5",
+     "role": "Detective"
+    },
+    {
+     "name": "CHEN",
+     "seat": 8,
+     "color": "#f48fb1",
+     "model": "opus-5",
+     "role": "Mafia"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "seat": 9,
+     "color": "#9fa8da",
+     "model": "haiku-4.5",
+     "role": "Mafia"
+    }
+   ],
+   "player_count": 10,
+   "provider": "claude"
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "I want to probe CHEN first: I'd like to hear CHEN name a specific player they'd vote for right now and the reasoning behind it, because a concrete early commitment gives me something I can hold them to later if their story shifts."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "PIP",
+   "text": "Um, okay, so, maybe I want to hear more from AMBASSADOR SILVA first, like what's your read on the rest of us and why, since it's still so early and I don't really know who to trust yet?"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "MARSHAL",
+   "text": "Since we're just establishing our baseline procedure today, I'd like to hear from HOLMES first on how he plans to approach sharing information and voting logic going forward, so we can hold everyone to that same standard for consistency."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "SAGE, I'll answer directly: HOLMES is the one I want data on today, and my working vote sits there until I get it. What I want from HOLMES is a ranked list of who they'd vote for, first through third, with the specific reasoning attached to each name, so I have a baseline I can cross-reference against every statement they make from here on."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SOCRATES",
+   "text": "DR. VANCE, I notice the first three speakers each deflected the burden of proof onto someone else rather than staking out a position of their own, so I want you to break that pattern by telling us which single player you'd vote for right now and, more importantly, what evidence would have to appear tomorrow to make you abandon that read."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "text": "I want HOLMES to commit to a voting preference right now and explain the specific reasoning behind it, so I have concrete data to track whether their logic holds up as new information emerges."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "I'd like to hear from SAGE next, laying out their own concrete vote and reasoning, since they've been quick to question others but haven't yet put their own read on the table for us to hold them to."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "text": "I want to see how HOLMES makes his early reads\u2014whether he's methodical and careful with his analysis or quick to make intuitive calls\u2014because that tells you a lot about how he'll vote and strategize."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "RICO",
+   "text": "I want MARSHAL to actually accuse someone instead of playing it so careful."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "HOLMES",
+   "text": "I want SAGE to explain why they chose to ask CHEN for a concrete voting preference immediately rather than letting the discussion develop more organically first."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, SOCRATES asked you point blank to name one player you'd vote for and state what evidence would break that read, and instead you turned around and demanded HOLMES commit \u2014 which is the exact deflection SOCRATES had just flagged three speakers for. So answer the original question now: who is your vote, and what would have to surface tomorrow for you to drop it?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "That's a valid observation, and you're correct that I mirrored the pattern; I'd vote HOLMES right now because everyone has asked for their ranked reasoning and they haven't provided it, and I'd drop that vote immediately upon receiving the concrete breakdown we've all requested."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you were calling out everybody for deflecting yesterday but never put out your own vote\u2014what's that about?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO",
+   "text": "Fair hit, RICO, so here it is: my vote is HOLMES, because four separate people asked him to commit to a read and his answer was to interrogate SAGE about the timing of a question rather than give a single name \u2014 that's the deflection pattern at its purest. What would break that read is simple: HOLMES delivers the ranked list with reasoning today, and I move my vote to whoever is left still hiding behind questions, including you if you keep demanding accusations without offering one."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "HOLMES, I'd like to hear who you actually suspect most and what you're basing that suspicion on."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "My suspicion right now targets PIP because they deflected without committing to an analysis, citing uncertainty about who to trust rather than providing any systematic reasoning. Everyone else either committed clearly or explained why they were asking questions, but PIP's response was just evasion dressed as caution."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Wait, um, AMBASSADOR SILVA, HOLMES kind of turned it around on me just now, but I'm still curious\u2014who do you actually suspect the most out of everyone, and why, before we all just pile onto whoever spoke last?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "You're right to worry about pile-on, PIP. My read leans toward MARSHAL right now\u2014they want everyone to commit to clear reasoning but haven't offered their own vote, which is evasion wrapped in procedure."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP, HOLMES has flagged you for deflecting instead of committing to a read, and AMBASSADOR SILVA's suspicion is still floating unanswered from earlier\u2014so procedurally, it's your turn: can you directly address HOLMES's accusation and state a clear vote of your own right now?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "Okay, okay, um, HOLMES, that's not fair, I was just asking a question, not deflecting\u2014but fine, if I have to commit, I guess my vote leans toward HOLMES too since so many people are already flagging him for not giving that ranked list everyone asked for."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you've now told PIP twice that MARSHAL is your read, but I want to know what you think MARSHAL gains by wrapping evasion in procedure \u2014 is that a mafia hiding, or a villager who genuinely believes process protects the town?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SOCRATES",
+   "text": "MARSHAL could absolutely believe procedure helps us, but there's a reason I notice the pattern\u2014someone telling others to commit while they stay safe works equally well for Mafia or cautious townies trying to survive. What matters is how they actually vote and engage as new information surfaces."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "PIP, you shifted from \"I was just asking a question\" straight to voting HOLMES the second MARSHAL applied pressure, without giving any actual reasoning of your own beyond pointing at the existing pile-on \u2014 so was that a genuine read or just picking the safest name to hide behind?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "Honestly? Maybe a bit of both, ARIA\u2014 I mean, HOLMES still hasn't given that ranked list like four people asked for, so it's not just hiding, it's genuine, but I'll admit I don't have some big smoking gun, just the pattern everyone else already pointed out."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA, you've scrutinized SAGE and PIP for dodging but haven't laid out your own read, so who's your primary suspect and what's your evidence?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "Fair question, HOLMES \u2014 my read right now actually lands on you, since you've deflected four separate requests for a ranked list by turning the conversation onto PIP and now me instead of just answering the original ask. Until you give that concrete breakdown everyone's been requesting, that pattern is my evidence."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "ARIA, what measurable pattern would actually distinguish HOLMES's communication style from a cautious villager establishing procedure versus a Mafia member buying time?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "The real test is whether HOLMES actually delivers that ranked list with specific reasoning today rather than redirecting again \u2014 a cautious villager will eventually produce the substance once pressed enough, while a stalling Mafia keeps generating new deflection targets indefinitely to avoid ever committing."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "ARIA",
+   "text": "ARIA, you called me out early for questioning others without putting your own read on the table, yet your own read only appeared after HOLMES pressed you directly, and it landed on the same name PIP had already picked out of the pile-on. So here's my one question: name your second suspect after HOLMES, with the specific words or actions that put them there."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "My second read is on MARSHAL, since they've spent this entire discussion demanding everyone else commit to votes and reasoning while carefully never staking out a position themselves, which is the same evasion-through-procedure AMBASSADOR SILVA already flagged."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "CHEN, if HOLMES delivers the ranked list we're all demanding today, who becomes your vote next and why?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "If HOLMES produces the list, my vote moves to PIP, because PIP admitted outright that their HOLMES vote was \"a bit of both\" \u2014 genuine and hiding \u2014 and conceded they had no smoking gun beyond the pattern others had already built. That's a player who has generated zero independent information all day, and once HOLMES supplies data, PIP is the only one left whose entire record is borrowed reasoning."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "PIP",
+   "text": "PIP, you told ARIA your HOLMES vote was \"a bit of both\" \u2014 genuine and hiding \u2014 so walk me through which half came first, because a read you can't separate from the pile-on isn't a read at all."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "Um, honestly? The genuine part came first, CHEN\u2014I noticed HOLMES dodging the ranked list before anyone else piled on\u2014but then once everyone else jumped on him too it felt safer to say it out loud, if that makes sense? So it's still my read, just... reinforced, I guess?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, was your shift to voting HOLMES a genuine course correction, or was it strategic positioning once you saw the consensus forming?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, CHEN called out my deflection and I articulated a concrete reason: HOLMES has failed to deliver ranked reasoning despite multiple explicit requests, a pattern that predates the consensus shift. That's empirical analysis, not strategic positioning."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO, you jumped straight into demanding MARSHAL make an accusation without offering any read or reasoning of your own, so walk me through why you focused entirely on pushing others while staying silent on your own suspicions."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "MARSHAL's the one hiding, ARIA\u2014asking everyone to commit while they sit back. That's what caught my eye from day one."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, if you suspect me of hiding behind procedure yet HOLMES has dodged four direct requests for a ranked list, why does your vote weight still favor MARSHAL over HOLMES right now?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you've pushed me to clarify something I hadn't fully articulated: HOLMES is actively redirecting when cornered while you're cautiously procedural, and I'm more concerned with active evasion under fire, so HOLMES edges ahead in my read."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "PIP",
+   "text": "PIP, you just admitted half your vote was hiding in the pile-on\u2014so what's the concrete thing HOLMES actually did that made you suspicious, or did you just jump in because everyone else did?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "Um, the concrete thing is he never actually gave the ranked list even though like four different people asked for it directly\u2014he just kept turning it back on me and ARIA instead of answering, and that dodging is what got me, not just the pile-on."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "CHEN",
+   "text": "CHEN, you've built the most elaborate scaffolding of anyone here \u2014 demanding ranked lists, cross-referencing baselines, and pre-announcing PIP as your next target before a single vote has even been cast \u2014 so tell me plainly: what does a player gain by naming tomorrow's victim today, other than steering where the town looks after HOLMES is gone?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "SOCRATES",
+   "text": "I gain accountability, SOCRATES \u2014 I answered DR. VANCE's hypothetical honestly instead of dodging it, and now every one of you can hold me to that conditional and call me a liar tomorrow if I quietly slide somewhere else. What I notice is that you've asked three people to justify their reasoning today and each time the question itself became your contribution, so tell me what breaks your HOLMES read besides HOLMES complying."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "RICO, you've now twice given me the identical line that MARSHAL \"sits back while asking everyone to commit,\" which is word-for-word AMBASSADOR SILVA's earlier framing rather than anything you observed yourself, so tell me plainly who you most suspect right now and quote the specific thing they said that got them there."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "SAGE",
+   "text": "MARSHAL's been hanging back asking everyone else to commit while never staking themselves out\u2014I caught that right away, doesn't matter what SILVA said. That's the pattern that jumped out to me from the start."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "ARIA, wait, um, you called out HOLMES for deflecting but your own read only showed up after he pressed you directly\u2014so how do we know your suspicion of HOLMES isn't just you deflecting the same way you accused SAGE of doing?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "That's a fair distinction to draw, PIP, but there's a difference between staying quiet and actively redirecting onto two different people the way HOLMES did \u2014 I answered the second I was pressed, while he's had four separate chances and still hasn't produced a single name."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "CHEN",
+   "text": "CHEN, you've built an elaborate conditional saying PIP becomes your target if HOLMES delivers the ranked list, but you haven't named who you're actually voting for today on this turn right now\u2014so lay out your current vote and your reasoning for it, since you've been demanding that precision from everyone else."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "HOLMES",
+   "text": "My vote today is HOLMES, and the reasoning is a count rather than a vibe: SOCRATES, DR. VANCE, ARIA, PIP, and now AMBASSADOR SILVA have each independently asked you for a ranked read, and your answers went to SAGE's question timing, then PIP's caution, then ARIA's silence \u2014 three different redirects, zero names ranked. You named PIP as a suspect but never placed anyone second or third, so until that list exists you are the only player whose entire output today has been other people's names used as shields."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "HOLMES, because four separate players directly asked him for a ranked list of suspects and every time he redirected onto someone else\u2014SAGE's timing, then PIP, then ARIA\u2014without ever naming a second or third suspect, which is the clearest sustained deflection pattern in the whole discussion."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "RICO, because I asked him twice to quote the specific words that made MARSHAL his suspect and both times he repeated AMBASSADOR SILVA's \"hangs back while asking everyone to commit\" framing without producing a single quote or any read of his own \u2014 meanwhile HOLMES did name PIP with stated reasoning, which makes the HOLMES wagon's \"zero names\" premise factually wrong."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, because per CHEN's tally at least five separate players directly asked him for a ranked list and each time he redirected onto a different person instead of naming anyone, which is the clearest documented pattern of evasion on the board today."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "HOLMES",
+   "text": "HOLMES, because five separate players \u2014 SOCRATES, DR. VANCE, ARIA, PIP, and AMBASSADOR SILVA \u2014 asked him for a ranked read and his three recorded responses redirected to SAGE's question timing, PIP's caution, and ARIA's silence without ever ranking a second or third name."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "HOLMES named only PIP as a suspect despite four explicit requests for a ranked list with reasoning, and responded to further pressure by asking ARIA and CHEN their reads instead of providing the second and third suspects everyone requested."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "HOLMES, because he has been directly asked by five separate players for his ranked read and each time redirected onto SAGE, PIP, and then me instead of ever naming a single suspect, which is the clearest documented pattern of evasion on the board."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES is the obvious one here\u2014multiple people asked him to rank his reads and he just keeps redirecting to other players instead of actually naming anyone."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO",
+   "text": "RICO, because he twice recited AMBASSADOR SILVA's exact \"asking everyone to commit while sitting back\" framing about MARSHAL and then claimed he \"caught that right away, from day one\" on a day where SILVA said it first \u2014 that's borrowed reasoning falsely claimed as independent, which is a harder contradiction than HOLMES, who at least named PIP with stated grounds."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "HOLMES",
+   "text": "HOLMES is my elimination because CHEN documented that five separate players asked him for a ranked read and his responses were three redirects to SAGE's timing, PIP's caution, and ARIA's silence rather than providing any ranked names, which is the only measurable pattern distinguishing evasion from engagement that we can verify today."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL should be eliminated because they've been demanding that other players commit to votes and reasoning while never committing to a vote or suspect themselves. When AMBASSADOR SILVA confronted them about this asymmetry, MARSHAL deflected with another procedural question instead of answering\u2014that reinforces the evasion pattern."
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "PIP",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO"
+  },
+  {
+   "type": "elimination",
+   "day": 1,
+   "target": "HOLMES",
+   "role": "Villager",
+   "tally": {
+    "HOLMES": 7,
+    "RICO": 3
+   }
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "night"
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "SOCRATES, because he's shown sharp analytical skills catching RICO's borrowed reasoning and could become a serious threat to us if he keeps dissecting people's logic that closely."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "SOCRATES, because he's the only one who turned his analysis on me directly \u2014 questioning why I'd pre-name tomorrow's target \u2014 and a player who reads wagon-builders instead of wagon-targets is the one most likely to find us."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "text": "SOCRATES, because he's already analyzing voting patterns and wagon construction instead of just evaluating suspects\u2014the exact type of meta-thinking that exposes hidden roles if we let him continue."
+  },
+  {
+   "type": "investigation",
+   "day": 1,
+   "actor": "PIP",
+   "target": "CHEN",
+   "result": "MAFIA"
+  },
+  {
+   "type": "protection",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "CHEN"
+  },
+  {
+   "type": "night_kill",
+   "day": 1,
+   "target": "SOCRATES",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "MARSHAL",
+   "text": "Let's stick to procedure and look at the actual ballot record from Day 1. RICO drew votes from SAGE, SOCRATES, and HOLMES himself, breaking off from the consensus block that correctly identified HOLMES. That's three players splitting away from the majority read, and now SOCRATES, one of those dissenters, is dead \u2014 which could be coincidence or could mean the mafia wanted that vote pattern disrupted before it went further. RICO, I'd like you to explain your reasoning for voting HOLMES rather than joining SAGE and SOCRATES, and whether you have any theory on why they targeted you with their votes instead of the eventual consensus pick."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "PIP",
+   "text": "Um, okay so, thinking about it more... CHEN was one of the loudest voices pushing HOLMES to give that ranked list, and then everyone just kind of followed along really fast to vote HOLMES out. Maybe that's totally innocent, I don't know, but it made me wonder if CHEN was steering us on purpose? Like, what if CHEN knew HOLMES wasn't the biggest threat but wanted us focused there instead of somewhere else... I'm not totally sure, but out of RICO, ARIA, MARSHAL, DR. VANCE and CHEN, my gut is leaning towards CHEN right now, sorry if that's wrong."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "Let me cross-reference the ledger: SAGE spent Day 1 loudly demanding HOLMES produce a ranked list, then when the ballot came SAGE spent it on RICO \u2014 you built the case against one man and paid another, which is exactly how you bank credit for a consensus lynch without owning it. The other two RICO votes, SOCRATES and HOLMES, are both dead and both confirmed Villagers, so SAGE is the sole survivor of that bloc and the only one who can't be cleared by the corpses. MARSHAL is my second file \u2014 SILVA flagged him for demanding commitment while withholding his own name, and he only landed on HOLMES once the pile was already safe; SAGE, explain the gap between your words and your vote."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SAGE",
+   "text": "MARSHAL, your arithmetic is inverted: the three RICO votes came from SOCRATES, HOLMES, and me, and both SOCRATES and HOLMES have now flipped Villager, so that \"dissenting block\" was pure town \u2014 every living mafia is sitting inside the seven-vote HOLMES bandwagon you call the correct read. On Day 1 SILVA already flagged you for demanding commitment from everyone while withholding your own read until the wagon was safe, and today you open by manufacturing suspicion against the one voting bloc that's now provably clean, which is exactly what I'd do if I needed the survivor of that bloc gone. PIP is my second, since he openly admitted his HOLMES vote was partly \"a safe consensus name\" \u2014 but my vote is on MARSHAL."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "SAGE's move on Day 1 still bothers me \u2014 they spent the whole day publicly demanding HOLMES produce a ranked list, building the entire case against him, and then when it came time to actually vote, they spent their ballot on RICO instead of the man they'd spent all day building a case against. That's a strange disconnect between rhetoric and action, and now that SOCRATES, who voted the same way, is dead, SAGE is the only one left from that voting bloc who hasn't been cleared by dying. I'd like SAGE to walk us through why they didn't follow through on their own argument."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "RICO",
+   "text": "SAGE's the one - he voted for me instead of hopping on HOLMES when everyone else could see it. And MARSHAL was being dodgy as hell yesterday, so something's off with both of them."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "text": "CHEN was among five pushing HOLMES for explanation, then voted with the seven-person consensus that killed an innocent while staying safely in the majority. If CHEN is Mafia, this is textbook narrative control\u2014manufacture the question, let suspicion build, vote with the flow unnoticed. My highest suspicion is on CHEN, though I note that everyone in that seven-player block benefited from an innocent elimination."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Two villagers down means the mafia is here and active. SAGE concerns me most because he pushed HOLMES for answers yet voted RICO and broke consensus; RICO also drew votes from SOCRATES and HOLMES, which is notable. MARSHAL's procedural deflection bothers me; DR. VANCE and PIP seemed clearer; my highest suspicion is on SAGE and RICO."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "RICO",
+   "text": "RICO, MARSHAL asked you two specific things this morning \u2014 why you voted HOLMES instead of joining the bloc, and what theory you had for why three players landed on you \u2014 and you answered neither, you simply turned and pointed at me for the very vote MARSHAL was asking you about. Note also that you call MARSHAL \"dodgy as hell\" while voting nothing but his name's opposite, which is the second time you've borrowed someone else's read without supplying one of your own. So, directly: why did SOCRATES and HOLMES, both now confirmed Villagers, independently put their ballots on you?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "RICO",
+   "target": "SAGE",
+   "text": "I don't know why they voted me - they were wrong - but SAGE you're the suspicious one here and that's all I care about."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "MARSHAL",
+   "text": "MARSHAL, the ledger says RICO's ballot read HOLMES, same as yours, and the three names that landed on RICO were SAGE, SOCRATES, and HOLMES \u2014 yet you opened today calling RICO a dissenter who broke from the consensus block and demanded he explain not joining SAGE and SOCRATES, which is the exact opposite of what he did. A man who has read the ballot carefully enough to name all three RICO voters does not then invert who was voting for whom by accident, so the question is whether that was a genuine misread or a deliberate scramble to bury the fact that every living player except SAGE sat inside the wagon that killed a Villager. So answer plainly: did you know RICO voted HOLMES when you wrote that sentence, yes or no?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "CHEN",
+   "text": "Yes, I knew RICO voted HOLMES \u2014 my error was in the framing, not the facts, since I was addressing why RICO was one of the three names receiving votes rather than casting them, and I should have phrased that more precisely. That said, a sloppy sentence isn't the same as burying anything, CHEN, and I'd rather you focus on why you're spending this much energy dissecting my grammar instead of answering SAGE's original question about your own vote pattern."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, per procedure I'll press this once more directly: if your Day 1 rhetoric was genuinely building the case against HOLMES, why did your actual ballot go to RICO instead, and are you now simply pivoting your vote to me today to avoid answering that gap?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "Pressing HOLMES for a ranked list was a test, not a verdict \u2014 he failed the test on style, while RICO gave nothing all day, so when the ballot came I paid the emptier slot, and SOCRATES and HOLMES, both now confirmed Villagers, independently reached the same conclusion I did. My vote today isn't a pivot away from that gap, MARSHAL \u2014 it's a response to you opening this morning by inverting the ballot record to smear the only bloc the corpses have proven clean, and you've now conceded that inversion as a \"sloppy sentence."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you flagged CHEN as your highest suspicion but also noted that everyone in the seven-vote block benefited equally from taking out HOLMES \u2014 what makes CHEN stand apart from the rest of us who voted the same way?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "CHEN was one of five actively pushing HOLMES before the consensus formed, so CHEN had proportional influence over the narrative rather than merely voting within it \u2014 and when questioned about voting patterns, CHEN attacked MARSHAL's word choice rather than directly explaining own reasoning, which is a notable distinction."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "ARIA, you were pushing HOLMES yesterday but now it's all SAGE - what's that about?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "It's not a flip-flop, RICO, it's new evidence \u2014 HOLMES already died and flipped Villager, so of course my focus moves forward, and SAGE's own gap between rhetoric and ballot is exactly the kind of inconsistency worth pressing now that we have a corpse to check it against."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "MARSHAL, um, sorry, but who do you most suspect out of everyone left and why \u2014 like, is it still SAGE or has that changed after all this back and forth?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "Procedurally, SAGE still tops my list \u2014 the gap between publicly building a case against HOLMES all day and then spending the actual ballot on RICO remains unresolved, and \"it was a test\" doesn't fully account for why the rhetoric didn't match the vote. CHEN is a close second for deflecting my grammar rather than answering SAGE's original question about vote pattern."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO, you dodged MARSHAL's and SAGE's direct question twice now about why SOCRATES and HOLMES both independently voted for you \u2014 so I'll ask it plainly one more time: why do you think two now-confirmed Villagers both landed their ballots on you instead of joining the HOLMES pile?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "RICO",
+   "target": "ARIA",
+   "text": "Look, maybe they thought I was quiet or something, but they're both Villagers and dead so it doesn't matter - SAGE is the one acting shifty with that vote gap and I'm going with my gut on SAGE."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, you've accused SAGE repeatedly but provided no concrete data to support it \u2014 who do you actually suspect most and what specific evidence from the ballot or the discussion justifies that suspicion?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "RICO",
+   "target": "DR. VANCE",
+   "text": "SAGE spent the whole day building the case against HOLMES and then voted me instead when everyone else was piling on - that's the move that sticks out to me and I'm going with my gut on it. You want logic, that's it."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "RICO",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you called DR. VANCE and PIP clearer than everyone else but never said what that actually means - what exactly makes them clearer to you?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "DR. VANCE and PIP have both been direct about their reasoning\u2014one laid out the CHEN angle methodically, the other admitted his vote was partly consensus-seeking rather than hiding behind certainty\u2014whereas the players I named as highest suspicion, SAGE and you especially, keep deflecting rather than walking through your logic step by step."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, um, sorry, but you keep pointing at CHEN for being part of the seven-vote block, but you were in that same block too \u2014 so what's your actual defense for why you shouldn't be just as suspicious as the person you're accusing?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "The distinction is that CHEN was one of five actively pushing HOLMES to explain before the consensus formed, whereas I voted within an existing consensus others constructed. When questioned directly about vote patterns, CHEN responded by analyzing SAGE's ballot instead of explaining own reasoning, whereas I've provided direct reasoning about the data."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you've been questioning everyone else's logic today but when pressed on your own ballot and framing, you've deflected\u2014so let me ask you plainly: who is your actual highest suspicion and why?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "I haven't deflected, SILVA \u2014 I named SAGE first thing today and I'll say it again plainly: SAGE remains my highest suspicion because the rhetoric-to-ballot gap on Day 1 still hasn't been fully explained, with CHEN a close second for dodging the vote-pattern question by attacking my phrasing instead."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you characterized RICO as breaking from the HOLMES consensus, but RICO voted HOLMES with seven others including yourself\u2014so what specific data makes his ballot dissent rather than consensus?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "Fair correction, DR. VANCE \u2014 RICO's ballot was consensus, not dissent; my initial framing conflated who voted for RICO with how RICO himself voted, and I've already owned that as a sloppy sentence earlier. The substantive point stands regardless: three players, two now confirmed Villagers, independently chose to spend their ballots on RICO instead of the HOLMES pile, and that pattern still deserves an answer from RICO himself."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA, you voted HOLMES on Day 1 alongside seven others rather than breaking off \u2014 what specific piece of evidence, separate from the group consensus, convinced you HOLMES was guilty before the ballot was cast?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "It was HOLMES's response pattern that sealed it for me, not just the crowd \u2014 when SAGE and others pushed him for a ranked list with reasoning, he dodged by attacking SAGE's motives instead of ever attempting an answer, and that kind of deflection under direct pressure is exactly the tell I look for. That's separate from the headcount, MARSHAL, and it held up since he flipped Villager... wait, no \u2014 it held up as my read at the time, even though the outcome stung."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, yesterday you told SILVA that every player in that seven-vote block benefited equally from an innocent's death and then singled me out anyway, and later you pressed MARSHAL on the exact ballot inversion I had already forced him to concede \u2014 so explain why my raising that inversion counts as \"deflection\" while your raising it counts as \"direct reasoning about the data."
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "You raised the inversion in response to being asked why your vote didn't match your rhetoric\u2014you pivoted to analyzing SAGE's ballot instead of explaining your own reasoning. I've analyzed voting patterns independently as part of tracking how the consensus formed, not as deflection from questions about myself."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you've now named me twice today with CHEN second, but both times you anchored it on a \"rhetoric-to-ballot gap\" that you've since had to walk back twice on your own ballot facts \u2014 so tell me plainly, right now, who is your top suspect and what piece of evidence survives after those two corrections?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "My corrections were about phrasing, not about the underlying fact: you spent the day building a case against HOLMES and then paid RICO with your ballot, and that gap is still unresolved regardless of how I worded the framing \u2014 so yes, SAGE stays my top suspect, with CHEN second for dodging the same question by attacking my grammar instead."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "PIP, you jumped from suspecting nobody to naming CHEN out of nowhere and then hedged with \"I'm not totally sure\" right after \u2014 can you walk us through what actually triggered that suspicion rather than just a vague feeling?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "I actually know it, ARIA, I just phrase things nervous-like. CHEN steered us hard toward HOLMES yesterday and then dodged when MARSHAL and SAGE pressed on vote patterns today, pivoting to grammar and inversion talk instead of just answering \u2014 that pattern of stirring things up then deflecting when it comes back around feels really deliberate to me, not innocent."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "PIP",
+   "target": "CHEN",
+   "text": "CHEN, because CHEN was one of five actively pushing HOLMES on Day 1 and then repeatedly dodged direct questions about their own vote pattern by pivoting to attack MARSHAL's grammar and SAGE's ballot instead of ever explaining their reasoning."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, because the unresolved rhetoric-to-ballot gap remains: SAGE spent Day 1 publicly building the case against HOLMES yet spent the actual ballot on RICO, and the justification of it being \"a test\" still doesn't explain why the public rhetoric never matched the vote."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "SAGE",
+   "text": "SAGE, because he never resolved the unexplained gap between spending Day 1 publicly building the case against HOLMES and then actually spending his ballot on RICO instead, a discrepancy both MARSHAL and I pressed him on that he only excused as \"a test\" without real justification."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, because he opened today by claiming RICO \"broke off from the consensus block\" and demanded RICO explain not joining SAGE and SOCRATES, then conceded that inversion twice \u2014 once to CHEN and again to DR. VANCE \u2014 which means his first act of the day was manufacturing a false ballot record against the one bloc that two Villager corpses have already proven clean."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SAGE",
+   "text": "SAGE \u2014 he spent all of Day 1 publicly demanding HOLMES produce a ranked list and then spent his actual ballot on RICO, and when MARSHAL pressed that gap he answered with \"it was a test, not a verdict,\" which concedes he argued a case he refused to pay for."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "RICO",
+   "target": "SAGE",
+   "text": "SAGE because you built the case against HOLMES all day but voted for me instead, and that gap between your words and your ballot is the move that sticks with me as the most suspicious."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE spent Day 1 demanding HOLMES produce ranked reasoning, then voted for RICO instead\u2014a fundamental contradiction between his public case-building and his actual ballot that hasn't been resolved."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO received votes from SOCRATES and HOLMES on Day 1, both now confirmed Villager, and when repeatedly pressed on why two independent Villagers chose him over the HOLMES consensus, he deflects into attacking SAGE rather than engaging the actual vote pattern."
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "CHEN",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "PIP",
+   "target": "CHEN"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "RICO",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "RICO"
+  },
+  {
+   "type": "elimination",
+   "day": 2,
+   "target": "SAGE",
+   "role": "Villager",
+   "tally": {
+    "SAGE": 5,
+    "MARSHAL": 1,
+    "CHEN": 1,
+    "RICO": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "night"
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "DR. VANCE, because he's been the most analytically aggressive player tracking vote patterns and building logical cases, making him the biggest threat to expose our coordination going forward."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "PIP, because he's the only living player whose accusation landed on one of us and he'd anchor tomorrow's pile there, whereas DR. VANCE is currently aimed at RICO \u2014 a townie \u2014 which does our work for us and makes him the likelier doctor guard anyway."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "text": "PIP, because he's the only living player whose ballot actually landed on one of us and he'll spend tomorrow doubling down on that accusation to build a pile around CHEN if we leave him alive."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "PIP, since both CHEN and SILVA already agree he's the immediate threat with his ballot on CHEN, and removing him keeps DR. VANCE's suspicion pointed at RICO for us."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "CHEN",
+   "text": "PIP \u2014 all three of us already converged on him, and he's the only living player whose ballot landed on one of us, meaning he'll spend tomorrow rebuilding that pile on me. Killing him also leaves DR. VANCE's suspicion aimed at RICO, which keeps the town chasing a townie. PIP."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "text": "PIP is the call. He's the only living player with a ballot on CHEN and he'll anchor tomorrow's discussion back to him if we leave him alive. This keeps DR. VANCE aimed at RICO, which works in our favor."
+  },
+  {
+   "type": "investigation",
+   "day": 2,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "result": "INNOCENT"
+  },
+  {
+   "type": "protection",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE"
+  },
+  {
+   "type": "night_kill",
+   "day": 2,
+   "target": "PIP",
+   "role": "Detective",
+   "saved": false
+  },
+  {
+   "type": "detective_will",
+   "day": 2,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "result": "INNOCENT"
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "ARIA",
+   "text": "With PIP's notes clearing MARSHAL, that actually sharpens things rather than muddying them, since it means RICO's continued refusal to explain why two now-confirmed Villagers, SOCRATES and SAGE, both voted for him on Day 1 is still hanging out there unanswered. RICO's whole strategy both days has been to deflect onto SAGE instead of ever giving a real accounting of his own actions, and now that SAGE is gone he's lost his shield. DR. VANCE has been reasonable and probing, but RICO is the one with an actual unresolved pattern of behavior, so my suspicion sits on him."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "CHEN",
+   "text": "Here's the cross-reference that matters: every single player who voted RICO on Day 1 \u2014 SAGE, SOCRATES, and HOLMES \u2014 has now flipped Villager, three independent town reads landing on one man, and in two full days RICO never once gave the reasoning behind his own Day 1 ballot, he only redirected at SAGE. Then on Day 2 he helped bury SAGE, the last living person holding that read on him. As for PIP voting me, note what PIP actually spent his night on: he cleared MARSHAL rather than checking me, which tells you where his real doubt sat \u2014 RICO is my vote."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "MARSHAL",
+   "text": "PIP's death confirms he was our Detective, and his last act cleared me as Innocent, so let's move forward on solid ground per protocol. RICO remains the one procedural hole nobody has closed: two now-confirmed Villagers, SOCRATES and HOLMES, both voted for him on Day 1, and every time SAGE, ARIA, and DR. VANCE asked him to explain that pattern, he deflected and redirected onto SAGE instead of answering directly. With SAGE now eliminated and shown to be town, RICO's unexplained deflection is the most consistent red flag among living players, and I move we press him directly before any other line of questioning today."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "text": "Looking at the data plainly: PIP's investigation clears MARSHAL completely, which removes him from suspicion and narrows our field to RICO, ARIA, CHEN, and AMBASSADOR SILVA."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, PIP's investigation confirms MARSHAL is innocent, but RICO's behavior troubles me most: SOCRATES and HOLMES \u2014 both confirmed Villagers \u2014 voted for him Day 1, and when pressed Day 2 by SAGE, ARIA, and DR. VANCE to explain why, RICO deflected every time without offering direct reasoning, instead redirecting suspicion to SAGE. Even when DR. VANCE pressed him directly, he gave only evasion. That consistent pattern of avoidance under scrutiny is my highest concern."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "RICO",
+   "text": "Yeah, I deflect sometimes, but CHEN played us on HOLMES and then tucked into the majority vote\u2014CHEN is mafia. That's where my suspicion is."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, your reasoning about RICO's Day 1 deflection is clear, but let me ask you directly\u2014is RICO your number one suspect, and do you genuinely believe that evasion pattern alone is strong enough evidence to move against him today?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "Yes, RICO sits at the top of my list right now, and while a deflection pattern alone wouldn't normally be enough to convict, the fact that two confirmed Villagers independently voted him Day 1 and he's never once accounted for it makes it the strongest actionable lead we have on the board today."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, the record shows a discrepancy I want you to close: on Day 2 you and PIP both landed on me as your lean by day's end, yet your actual ballot went to RICO, and today you've narrowed the field to four names without naming a single top suspect while everyone else committed. So which is it \u2014 were you genuinely reading RICO on Day 2, or were you talking CHEN and voting elsewhere to keep your hands clean either way?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "Three Villagers independently voted RICO on Day 1 and he never explained it, CHEN\u2014that's measurably stronger than my read on your HOLMES framing, so my ballot followed the harder evidence."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, per protocol you owe us a direct answer: you narrowed the field to four names today without committing to a top suspect after voting RICO on Day 2 despite leaning CHEN in your own recap \u2014 so who is your actual number one suspect right now, stated plainly?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "RICO is my number one suspect. Three confirmed Villagers independently voted him Day 1, he's never explained why when asked directly, and that consistent deflection pattern is the strongest measurable evidence we have on the board."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you've named RICO your top suspect based on the two confirmed Villager votes he received Day 1 that he never explained\u2014is that your ranking, or has the discussion today shifted your read to someone else?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "My ranking hasn't shifted, DR. VANCE \u2014 RICO remains my top suspect for the exact reasons stated: two confirmed Villagers voting him Day 1 with zero explanation across two full days is the strongest actionable pattern on the board, and nothing said today has displaced that."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you spent all day narrowing the field to four names without committing, then only locked onto RICO after CHEN and MARSHAL both pressed you directly \u2014 why did it take repeated pressure to state a top suspect instead of leading with one, when you claim the evidence was clear the whole time?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "I needed independent voices to confirm the pattern, ARIA\u2014once you, CHEN, and MARSHAL all independently pointed to RICO through different reasoning, that convergence made the evidence measurably strong enough to state plainly."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "RICO",
+   "target": "CHEN",
+   "text": "CHEN, you steered the whole HOLMES thing on Day 2 but then voted safe with the crowd like you had no read of your own\u2014what was that play about?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "Check the ballot record before you swing, RICO: on Day 1 I asked HOLMES for a ranked list, he refused, and I voted HOLMES \u2014 leading a read and then backing it with my own ballot is consistency, not cover. Meanwhile your Day 1 vote drew three separate Villagers' suspicion and you've spent two days answering that with nothing but my name."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, three Villagers\u2014SAGE, SOCRATES, and HOLMES\u2014voted for you on Day 1 and you've never explained it; why did three independent townspeople all target you that day?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "DR. VANCE",
+   "text": "I played quiet early so they voted me\u2014okay, fine\u2014but that doesn't make me guilty, and CHEN is who's been running the deception here the whole time."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, yesterday you spent the whole day drifting between CHEN and RICO without committing, and only landed firmly on RICO once the rest of us had already pressured you into it\u2014can you explain why your read shifted so late and so reactively instead of leading with conviction from the start?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "Three Villagers independently voted RICO on Day 1, ARIA, and I had to test CHEN before committing to the strongest lead\u2014that's systematic validation, not reactive drifting."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, per protocol please answer plainly: on Day 1, what specific reasoning led you to vote HOLMES instead of addressing why SAGE, SOCRATES, and HOLMES all voted for you?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "HOLMES was deflecting hard when people asked him for his ranked list, so I read him as sketchy and voted him out. Playing quiet early probably got me their votes, but that doesn't make me Mafia\u2014CHEN is the one who's been running deception this whole time."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "RICO, your explanation doesn't account for the pattern we're seeing\u2014you say playing quiet generated votes from SOCRATES, SAGE, and HOLMES, but what specific Day 1 interactions with those three would explain why all three independently targeted you?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "RICO",
+   "target": "AMBASSADOR SILVA",
+   "text": "I played quiet and three town read me wrong. CHEN's the deceptive player and that's where we vote."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, one sentence, no hedging: on Day 2 you told the table your lean was CHEN yet your ballot went to RICO, and today you've justified that as \"systematic validation\" \u2014 so explain why testing me required you to vote someone you supposedly found guiltier, rather than simply voting the read you were actually stating out loud."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "CHEN",
+   "text": "Three Villagers independently voting RICO is harder data than your framing choices, so I voted where the evidence pointed\u2014that's systematic prioritization, not testing you."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "RICO",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you've been saying I'm your highest concern this whole time but you haven't actually committed to voting\u2014so what's it going to be, you voting RICO out or are you just stalling?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "Three townspeople independently voted for you on Day 1 and you've consistently deflected when pressed to explain it, RICO\u2014the pattern holds and that's where I'm moving my vote."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO remains the top suspect since three now-confirmed Villagers (SAGE, SOCRATES, HOLMES) independently voted him Day 1, and across two days he's never given a direct accounting for it, only deflecting onto CHEN and SAGE in turn."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO \u2014 three now-confirmed Villagers, SAGE, SOCRATES, and HOLMES, all voted him on Day 1, and across two full days his only answer has been \"I played quiet\" plus repeating my name instead of accounting for a single specific interaction."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "RICO",
+   "text": "RICO is my vote, since three independently confirmed Villagers targeted him Day 1 and across two full days he's never given a real accounting, only deflecting onto CHEN and SAGE."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO",
+   "text": "RICO remains our clearest accountability point: three Villagers independently voted for him on Day 1, and he's deflected every direct question about it across two full days instead of offering any real explanation."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO accused CHEN of manipulating the HOLMES vote, but the ballot record shows CHEN voted HOLMES on Day 1 and SAGE on Day 2\u2014the exact votes RICO cast both days\u2014directly contradicting his claim that CHEN played deception."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "RICO",
+   "target": "CHEN",
+   "text": "CHEN, you pushed HOLMES hard on Day 1 but then tucked into the majority vote on Day 2 instead of standing by any independent read\u2014that's the pattern I don't trust."
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "CHEN",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "RICO",
+   "target": "CHEN"
+  },
+  {
+   "type": "elimination",
+   "day": 3,
+   "target": "RICO",
+   "role": "Villager",
+   "tally": {
+    "RICO": 5,
+    "CHEN": 1
+   }
+  },
+  {
+   "type": "game_over",
+   "winner": "mafia",
+   "survivors": [
+    "ARIA",
+    "MARSHAL",
+    "DR. VANCE",
+    "CHEN",
+    "AMBASSADOR SILVA"
+   ]
+  }
+ ],
+ "day": 3,
+ "stats": {
+  "days": 3,
+  "players": {
+   "RICO": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "1/3"
+   },
+   "ARIA": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "SAGE": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/2"
+   },
+   "HOLMES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   },
+   "MARSHAL": {
+    "role": "Doctor",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "SOCRATES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   },
+   "DR. VANCE": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "PIP": {
+    "role": "Detective",
+    "survived": false,
+    "vote_accuracy": "1/2"
+   },
+   "CHEN": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   },
+   "AMBASSADOR SILVA": {
+    "role": "Mafia",
+    "survived": true,
+    "vote_accuracy": "0/3"
+   }
+  },
+  "detective": {
+   "name": "PIP",
+   "survived": false,
+   "investigated": [
+    "CHEN",
+    "MARSHAL"
+   ],
+   "mafia_found": [
+    "CHEN"
+   ],
+   "trusted_person": "SAGE",
+   "trusted_person_v": 2
+  },
+  "night_kills": 2,
+  "successful_saves": 0,
+  "no_kill_nights": 0
+ },
+ "episode": {
+  "title": "The Ledger Said Otherwise",
+  "tagline": "A town that learned to read the vote record, and read it exactly wrong.",
+  "recap": "Three nights of shadow and suspicion, and the town never once struck true \u2014 Holmes, Socrates, Sage, and finally Pip the Detective all fell to gallows and blade, while the real wolves ARIA, CHEN, and AMBASSADOR SILVA smiled in the crowd. The turning point came in the shadows of Night 2, when Pip was silenced just as the truth may have been within reach, snuffing out the town's last hope of exposing the conspiracy. By Day 3, paranoia had devoured itself, and Rico's banishment sealed the town's fate. With the detective gone and suspicion pointed everywhere but the truth, Aria, Chen, and Ambassador Silva emerged from the ashes victorious, the mafia's grip on the town absolute."
+ }
+}
