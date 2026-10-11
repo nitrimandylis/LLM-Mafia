@@ -30,7 +30,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from tools.run_batch import smells_wrong
 from tools.publish_game import next_slug, read_manifest
 
-SITE_URL = "https://llm-mafia.vercel.app"
+SITE_URL = "https://mafia.nicktrim.com"
 REVIEW_MODEL = "opus"
 REVIEW_TIMEOUT_SECONDS = 600
 

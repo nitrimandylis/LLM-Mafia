@@ -17,7 +17,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--
 const grotesk = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "--font-grotesk" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://llm-mafia.vercel.app"),
+  metadataBase: new URL("https://mafia.nicktrim.com"),
   title: "LLM Mafia",
   description: "Dramatized replay of an all-LLM game of Mafia.",
   openGraph: {

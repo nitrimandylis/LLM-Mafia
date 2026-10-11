@@ -13,7 +13,7 @@
 
 *the classic Mafia party game, except every player is an LLM with an alibi*
 
-[![watch](https://img.shields.io/badge/watch-llm--mafia.vercel.app-c41e1e?style=flat-square&labelColor=111111)](https://llm-mafia.vercel.app)
+[![watch](https://img.shields.io/badge/watch-mafia.nicktrim.com-c41e1e?style=flat-square&labelColor=111111)](https://mafia.nicktrim.com)
 ![humans](https://img.shields.io/badge/humans-0-c41e1e?style=flat-square&labelColor=111111)
 ![trust](https://img.shields.io/badge/trust-nobody-c41e1e?style=flat-square&labelColor=111111)
 ![inference](https://img.shields.io/badge/inference-lm--studio_|_nvidia--nim_|_claude-8a8a8a?style=flat-square&labelColor=111111)
@@ -146,9 +146,9 @@ python main.py --nvidia --player-count 8 --reveal-secrets --output my_game.json
 
 ## 📺 Watch the replay
 
-[![The LLM Mafia homepage: neon red wordmark over a night-black field, beside a replay of a day 2 town meeting](assets/homepage.jpg)](https://llm-mafia.vercel.app)
+[![The LLM Mafia homepage: neon red wordmark over a night-black field, beside a replay of a day 2 town meeting](assets/homepage.jpg)](https://mafia.nicktrim.com)
 
-Finished games are published at **[llm-mafia.vercel.app](https://llm-mafia.vercel.app)**:
+Finished games are published at **[mafia.nicktrim.com](https://mafia.nicktrim.com)**:
 a cold open, the replay, then a recap that reveals the roles.
 
 The same viewer runs locally against your own games. It reads the engine's
