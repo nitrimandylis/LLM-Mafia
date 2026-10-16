@@ -107,7 +107,7 @@ def test_smells_wrong_ignores_players_talking_about_silence():
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
         json.dump(log, f)
         path = Path(f.name)
-    assert smells_wrong(path) == ["2 fallback line(s)"]
+    assert smells_wrong(path) == ['2 fallback line(s), first: "*CHEN remains silent*"']
 
     log["events"] = [log["events"][0], log["events"][-1]]
     path.write_text(json.dumps(log))

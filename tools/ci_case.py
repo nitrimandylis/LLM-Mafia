@@ -163,24 +163,40 @@ def validate_verdict(verdict, names, gm_title, gm_tagline):
     return problems
 
 
-def notify(title, body, url=None):
-    """One pointer-only push: a title, a line, a URL. Never contents.
-    A failed push is logged, never fatal — the run already did its work."""
-    topic = os.environ.get("NTFY_TOPIC")
-    if not topic:
-        print(f"NTFY_TOPIC unset, would have sent: {title} — {body}")
-        return
-    headers = {"Title": title, "Tags": "mafia"}
-    if url:
-        headers["Click"] = url
-        body = f"{body}\n{url}"
-    request = urllib.request.Request(
-        f"https://ntfy.sh/{topic}", data=body.encode("utf-8"), headers=headers
-    )
+def post(url, data, headers):
+    """A failed push is logged, never fatal — the run already did its work."""
+    request = urllib.request.Request(url, data=data, headers=headers)
     try:
         urllib.request.urlopen(request, timeout=15)
     except (urllib.error.URLError, TimeoutError, OSError) as error:
-        print(f"⚠️  ntfy push failed: {error}")
+        print(f"⚠️  push to {url.split('/')[2]} failed: {error}")
+
+
+def notify(title, body, url=None):
+    """One pointer-only push to ntfy and Discord: a title, a line, a URL.
+    Never contents. This is the only place an outcome is announced, since the
+    script exits 0 for a rejection as well as for a merge."""
+    topic = os.environ.get("NTFY_TOPIC")
+    webhook = os.environ.get("DISCORD_WEBHOOK")
+    if not topic and not webhook:
+        print(f"NTFY_TOPIC and DISCORD_WEBHOOK unset, would have sent: {title} — {body}")
+        return
+
+    if topic:
+        headers = {"Title": title, "Tags": "mafia"}
+        text = body
+        if url:
+            headers["Click"] = url
+            text = f"{body}\n{url}"
+        post(f"https://ntfy.sh/{topic}", text.encode("utf-8"), headers)
+
+    if webhook:
+        # Angle brackets stop Discord unfurling the link into a preview card.
+        content = f"🎭 **{title}**: {body}"
+        if url:
+            content += f" — <{url}>"
+        post(webhook, json.dumps({"content": content}).encode("utf-8"),
+             {"Content-Type": "application/json"})
 
 
 def git(*command):

@@ -93,12 +93,15 @@ def smells_wrong(log_path):
     log = json.loads(log_path.read_text())
     reasons = []
 
-    fallback_lines = 0
+    fallback_lines = []
     for event in log["events"]:
         if is_fallback(event.get("text")):
-            fallback_lines += 1
+            fallback_lines.append(event["text"].strip())
     if fallback_lines:
-        reasons.append(f"{fallback_lines} fallback line(s)")
+        # Quote the first one, so a false positive can be judged from the push
+        # alone instead of from the run artifact.
+        first = fallback_lines[0][:120]
+        reasons.append(f'{len(fallback_lines)} fallback line(s), first: "{first}"')
 
     if not any(event["type"] == "game_over" for event in log["events"]):
         reasons.append("no game_over event")

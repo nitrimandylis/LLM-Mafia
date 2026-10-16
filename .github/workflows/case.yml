@@ -79,16 +79,9 @@ jobs:
           path: runs/
           if-no-files-found: ignore
 
-      - name: Notify on success
-        if: success() && steps.guard.outputs.skip != 'true'
-        run: |
-          curl -H "Title: Mafia: new case" -H "Tags: mafia" \
-               -H "Click: $RUN_URL" -d "Game finished and published. $RUN_URL" \
-               "https://ntfy.sh/$NTFY_TOPIC"
-          [ -n "$DISCORD_WEBHOOK" ] && curl -s -H "Content-Type: application/json" \
-               -d "{\"content\": \"🎭 **Mafia**: new case published — <$RUN_URL>\"}" \
-               "$DISCORD_WEBHOOK"
-
+      # No success step: ci_case.py exits 0 for a rejection too, so it announces
+      # its own outcome (published, rejected, or needs a look) to ntfy and
+      # Discord. Only a crash is left for the workflow to report.
       - name: Notify on failure
         if: failure()
         run: |
