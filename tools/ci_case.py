@@ -165,11 +165,13 @@ def validate_verdict(verdict, names, gm_title, gm_tagline):
 
 def post(url, data, headers):
     """A failed push is logged, never fatal — the run already did its work."""
-    request = urllib.request.Request(url, data=data, headers=headers)
     try:
+        request = urllib.request.Request(url, data=data, headers=headers)
         urllib.request.urlopen(request, timeout=15)
-    except (urllib.error.URLError, TimeoutError, OSError) as error:
-        print(f"⚠️  push to {url.split('/')[2]} failed: {error}")
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as error:
+        # ValueError is a malformed webhook secret; it must not fail a run
+        # that already merged.
+        print(f"⚠️  push failed: {error}")
 
 
 def notify(title, body, url=None):
@@ -195,8 +197,13 @@ def notify(title, body, url=None):
         content = f"🎭 **{title}**: {body}"
         if url:
             content += f" — <{url}>"
-        post(webhook, json.dumps({"content": content}).encode("utf-8"),
-             {"Content-Type": "application/json"})
+        # The body quotes player text, so mentions are off: a model writing
+        # @everyone must not ping the channel. Cloudflare in front of Discord
+        # 403s urllib's default User-Agent, hence the explicit one.
+        payload = {"content": content, "allowed_mentions": {"parse": []}}
+        post(webhook, json.dumps(payload).encode("utf-8"),
+             {"Content-Type": "application/json",
+              "User-Agent": f"DiscordBot ({SITE_URL}, 1.0)"})
 
 
 def git(*command):
