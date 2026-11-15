@@ -1,0 +1,2060 @@
+{
+ "events": [
+  {
+   "type": "game_start",
+   "players": [
+    {
+     "name": "RICO",
+     "seat": 0,
+     "color": "#7cc4ff",
+     "model": "haiku-5.5",
+     "role": "Mafia"
+    },
+    {
+     "name": "ARIA",
+     "seat": 1,
+     "color": "#ff9a9a",
+     "model": "sonnet-5.5",
+     "role": "Mafia"
+    },
+    {
+     "name": "SAGE",
+     "seat": 2,
+     "color": "#b9f6ca",
+     "model": "opus-5.5",
+     "role": "Mafia"
+    },
+    {
+     "name": "HOLMES",
+     "seat": 3,
+     "color": "#ffd180",
+     "model": "haiku-5.5",
+     "role": "Villager"
+    },
+    {
+     "name": "MARSHAL",
+     "seat": 4,
+     "color": "#ce93d8",
+     "model": "sonnet-5.5",
+     "role": "Villager"
+    },
+    {
+     "name": "SOCRATES",
+     "seat": 5,
+     "color": "#80deea",
+     "model": "opus-5.5",
+     "role": "Detective"
+    },
+    {
+     "name": "DR. VANCE",
+     "seat": 6,
+     "color": "#ffab91",
+     "model": "haiku-5.5",
+     "role": "Villager"
+    },
+    {
+     "name": "PIP",
+     "seat": 7,
+     "color": "#c5e1a5",
+     "model": "sonnet-5.5",
+     "role": "Villager"
+    },
+    {
+     "name": "CHEN",
+     "seat": 8,
+     "color": "#f48fb1",
+     "model": "opus-5.5",
+     "role": "Villager"
+    },
+    {
+     "name": "AMBASSADOR SILVA",
+     "seat": 9,
+     "color": "#9fa8da",
+     "model": "haiku-5.5",
+     "role": "Doctor"
+    }
+   ],
+   "player_count": 10,
+   "provider": "claude"
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "PIP, I'd like to hear how you plan to approach today, since it's early and none of us has anything to go on yet. What kind of evidence would actually change your mind about someone?"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "RICO",
+   "text": "PIP, you've been quiet so far, so tell us right now who you'd vote out today and give one concrete reason."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "text": "I want DR. VANCE to explain, in their own words, how they plan to decide who to trust once the first votes come in, since nobody has acted yet and their reasoning will tell us more than any early impression."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "CHEN",
+   "text": "MARSHAL, I'd like to start my file on you first, so tell us who you plan to watch today and the reasoning behind it, and I'll hold you to it when we compare notes tomorrow."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "HOLMES, I'd like to hear you commit to a concrete plan for how we should pick today's vote, because a clear early stance gives the rest of us something specific to measure your later actions against."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "text": "MARSHAL, I want to hear you name the specific observation that would make you change your vote on someone, because a stated threshold gives us something we can test against your later votes."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "MARSHAL",
+   "text": "SAGE hasn't spoken yet, so I'd like to hear from them first, in proper turn order: who would SAGE vote for today, and what is the one concrete reason behind that choice?"
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "SOCRATES",
+   "text": "SAGE, I'd like to hear what you think a mafia player most wants the town to do on a first day with no information, because how you answer that tells me whose interests you're reasoning from."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "PIP",
+   "text": "Um, maybe? I think I'd like to hear from SOCRATES first, because nobody's asked them anything yet. SOCRATES, what would make you change your mind about someone today, and who are you leaning toward, even just a little? Sorry, I'm not sure that's the right question, but it feels fair."
+  },
+  {
+   "type": "statement",
+   "day": 1,
+   "actor": "HOLMES",
+   "text": "I want ARIA to lay out step by step what specific evidence would make her change her vote, since nothing has happened yet and I can't build a useful model of anyone's alignment without some stated reasoning to test."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, out of everyone who has spoken so far, who do you suspect most, and why?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, no one has acted yet, so I have no one I can fairly call my top suspect, and naming one on zero evidence would break the very procedure I'm asking everyone to follow. What I can note is that nearly everyone has only asked questions without volunteering a stance, so I'll hold my suspicion until the first votes give us something on record to compare."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you asked SAGE what a mafia player most wants the town to do on day one, but you never gave your own answer. So what do you think they want, and which way does that lean your vote today?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "text": "I think mafia most wants a day-one vote that happens almost by accident, either a rushed pile-on with no reasons on record or a whole day of questions that lets a lynch drift onto whoever looks quietest. So my vote leans against whoever pushes hardest for a name without explaining why, and I'd ask each of you: when you finally commit, will you show us the reasoning, or only the target?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, you pushed PIP to name a vote on day one and then pressed for a target before anyone had given a reason, so what evidence did you have for that pressure?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, pressing PIP was not about evidence, it was about getting someone to commit so we'd have something to work with. Everyone's been circling and asking questions all morning, and I'm tired of waiting for a name. Who are you actually leaning toward, DR. VANCE?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "SOCRATES, you told ARIA your vote leans against whoever pushes hardest for a name without explaining why, a rule that only fits one player on record so far, yet you still haven't named anyone yourself. How is that different from the day of questions that lets a lynch drift, which you yourself warned is what mafia wants?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "text": "Fair point, SAGE, so I'll say it plainly: my lean is RICO, because he demanded a name from PIP and then admitted to DR. VANCE it wasn't based on any evidence. But tell me, if a rule fits only one player, is that a flaw in the rule, or is it the evidence?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, you asked ARIA for a step-by-step account of her reasoning while never stating your own, and you then turned to me for a top suspect. Before we vote, what specific concern about you should the table be weighing, and how do you answer it?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "The fair concern is that I asked ARIA for her reasoning without giving mine, so I'll state it now: with no votes or claims on record, I have no evidence to build a suspect list, and I'm asking for the same stated thresholds from everyone. I asked MARSHAL for a top suspect to see whether anyone would name a target without evidence, and I'd like to know why MARSHAL is pressing me rather than answering that question."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "ARIA",
+   "text": "ARIA, you've asked PIP and SOCRATES for their reasoning but haven't put a name in my file yet, so who do you most suspect right now, and what specific statement on record put them there?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "CHEN",
+   "text": "My lean is HOLMES, CHEN. HOLMES asked me for step-by-step reasoning and then asked MARSHAL for a top suspect, and only gave a stance of their own after MARSHAL pressed them. That's a thin reason, but it's the only recorded pattern of demanding commitments while offering none, so I'll hold it loosely until votes give us more."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "HOLMES",
+   "text": "HOLMES, you've said you were only testing whether others would name a target without evidence, so now that ARIA has named you and RICO has admitted to pressing with no evidence at all, who do you most suspect, and what in those exchanges put them there?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "SOCRATES",
+   "text": "I suspect RICO most, because RICO pressed PIP for a name and then admitted there was no evidence behind it. ARIA's case against me is thin, since I answered MARSHAL's question about my own stance before ARIA named me."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "SOCRATES",
+   "text": "Um, SOCRATES, I'm not sure if this is fair, but you asked SAGE and ARIA lots of questions and then pointed at RICO pretty quickly, so could you explain why you settled on RICO after I'd only answered you with a question?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "PIP",
+   "text": "PIP, I didn't settle on RICO because of anything you said. I named him because he's the only one who demanded a target and then told DR. VANCE outright there was no evidence behind it, and I'd rather lean on an admission than on a hunch. But consider this: if I had waited until everyone felt comfortable, how would that differ from the drifting day I warned against?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you pressed HOLMES for a top suspect and then refused to name one yourself, so why should the table believe you're following the procedure you asked everyone else to follow?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, fair challenge, but I did not press HOLMES for a suspect. HOLMES pressed me for one, and I answered that naming a target on zero evidence breaks procedure. What I asked HOLMES was to state a concern about themselves, which is a different question. Since you want a name on record, the only recorded admission so far is RICO's, so RICO is where my attention sits until votes give us more."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES, you keep pointing at others while dodging your own stance, so who do you most suspect right now, and what exactly made you land on them?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "I still suspect RICO most, because RICO pressed PIP for a name and then admitted there was no evidence behind it. If a player demands commitments while offering none, that is the pattern I'm weighing most heavily."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "CHEN, you've pressed MARSHAL and ARIA for their suspects and promised to hold them to it, yet you haven't named a single player yourself. Why are you collecting everyone else's commitments while keeping your own out of sight?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "Fair, SILVA: my lean is RICO, because he's the only one on record who demanded a name and then admitted to DR. VANCE there was no evidence behind it. I'm also noting that you told MARSHAL he pressed HOLMES for a suspect when the record shows HOLMES asked MARSHAL, so I'd like to know where that misreading came from."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you drew RICO's admission into the open, but when he turned it back and asked who you're leaning toward, the record shows no answer from you. Now that half the table has piled onto the very admission you uncovered, do you join them, or does your silence mean you see something the rest of us are missing?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES",
+   "text": "SOCRATES, my silence was a gap in my reasoning, not a hidden read. I still lean RICO, since his pressure on PIP is the only recorded demand for a vote with no evidence behind it, but I want one more data point before I vote."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES, you keep saying RICO is the only real suspect, so answer this directly: why did you ask ARIA for step-by-step reasoning while refusing to name a single suspect yourself until MARSHAL pushed you?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "Fair question, RICO. I asked ARIA for her reasoning because I wanted a stated threshold to test her later votes against, and I held back my own suspect until MARSHAL pressed me because I had no recorded votes or claims to justify one at that point. My answer is RICO, based on his pressure on PIP and his admission to DR. VANCE that it had no evidence behind it."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "Um, maybe I'm misunderstanding, but HOLMES, you said you asked MARSHAL for a top suspect just to see if someone would name a target without evidence, and then you named RICO yourself, and it was the same answer both times. Wait, was that your test, or did you actually have a reason before RICO's admission came up? Sorry, I'm not sure I'm saying this right."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "PIP, it was a test: I asked MARSHAL for a suspect to see whether anyone would name a target with no evidence, and I had no real reason to suspect anyone at that point. RICO's later admission to DR. VANCE that his pressure on PIP had no evidence behind it is the first actual reason I have to name him."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you told SOCRATES you lean RICO but want one more data point before voting, so what specific data point are you waiting for, and if it never comes, will you still add your vote to a pile that rests entirely on one admission you yourself drew out?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "DR. VANCE here: the data point I want is whether RICO can name a concrete, checkable basis for his pressure on PIP beyond simply demanding a vote. If he can't, I'd still hold off on adding my vote, since one admission I drew out is a thin foundation for a lynch."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, you told MARSHAL he pressed HOLMES for a suspect when the record shows HOLMES asked MARSHAL, and you still haven't answered me on that. So explain how you came to misread that exchange, and tell us who you're actually leaning toward today."
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "CHEN",
+   "text": "I garbled that exchange: HOLMES pressed MARSHAL for a suspect, not the other way around, and I should have read the record more carefully before speaking. Today I lean toward HOLMES, since they asked for stated reasoning from others and only gave their own suspect after MARSHAL pushed, though I'll keep that loosely held until we see more votes."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "RICO, you've been pressing PIP for a vote with no evidence and then admitted as much to DR. VANCE, so what concrete, checkable basis did you have for that pressure before anyone else had spoken?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES, my pressure on PIP wasn't built on a checkable basis, and I'm not going to pretend it was. I wanted someone to commit so we'd have something to work with, and I'm not ashamed of that, but I can see why it looks bad."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "SOCRATES",
+   "text": "SOCRATES, when SAGE asked you to justify your lean, you answered with a question about whether the rule or the evidence was flawed, and when PIP asked why you settled on RICO, you answered with another question. Out of those two replies, which one do you think was a direct answer, and what is the single piece of evidence behind your vote on RICO?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "DR. VANCE",
+   "text": "Both were direct, DR. VANCE: each named RICO before any closing question, and the single piece of evidence is his own admission, first to you and again to HOLMES, that his pressure on PIP had no checkable basis. Since you drew out that admission, why does it feel too thin for you to vote on when the rest of us find it enough?"
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "CHEN",
+   "text": "CHEN, you pressed MARSHAL and me for names while keeping your own hidden until SILVA called it out, and then you landed on the same RICO admission that half the table had already piled onto, so why did you wait for that cover before committing?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "ARIA",
+   "text": "ARIA, correction for the file: I never asked MARSHAL anything; my only question before SILVA's was to you. I named RICO because his admission is still the only checkable fact on record, and I'd note that SILVA's lean on HOLMES came right after yours using nearly the same reasoning, so I'm now tracking whether that pairing holds once votes land."
+  },
+  {
+   "type": "question",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, since no votes have been cast yet and half the table is leaning on you, who is your own pick for the vote today, and what specific statement on record puts them there?"
+  },
+  {
+   "type": "answer",
+   "day": 1,
+   "actor": "RICO",
+   "target": "MARSHAL",
+   "text": "HOLMES is my pick, MARSHAL, because HOLMES asked ARIA for step-by-step reasoning while dodging their own stance until MARSHAL pushed them, and then went straight after me with a pressure campaign on PIP's admission."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "HOLMES pressed MARSHAL for a top suspect on zero evidence, then gave a stance only after MARSHAL pushed, and in the same exchange HOLMES and RICO have both been naming each other with no recorded vote behind either."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "HOLMES, because they asked me for step-by-step reasoning and pressed MARSHAL for a top suspect while naming no one themselves, and they only named RICO after MARSHAL pushed them, which is a recorded pattern of demanding commitments while offering none."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "RICO",
+   "text": "RICO, you pressed PIP to name a vote on day one and then admitted to DR. VANCE that the pressure rested on no checkable basis, which is the only recorded demand for a lynch with no evidence behind it."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "RICO",
+   "text": "RICO, because he pressured PIP for a vote and then admitted to both DR. VANCE and HOLMES that there was no checkable basis behind it, and that admission is still the only concrete fact on record today."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "PIP",
+   "target": "RICO",
+   "text": "RICO, because he pressed me for a vote and then admitted to DR. VANCE and HOLMES that his pressure had no checkable basis, and that's the only admission on record, though I'm not totally sure."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO",
+   "text": "RICO, you pressed PIP to name a vote on day one and then admitted to DR. VANCE and HOLMES that the pressure had no checkable basis, which is the only recorded demand for a lynch with no evidence behind it."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO",
+   "text": "RICO, because he twice admitted, first to DR. VANCE and then to HOLMES, that his pressure on PIP for a day-one vote had no checkable basis, and when MARSHAL asked for his pick he named HOLMES on the same pattern he himself had already displayed."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES",
+   "text": "HOLMES should be eliminated today: HOLMES asked MARSHAL for a top suspect \"as a test,\" then named RICO with the same reasoning once MARSHAL declined, and PIP caught that shift on the record."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "HOLMES",
+   "text": "HOLMES should go, because he told PIP that asking MARSHAL for a top suspect was only a test and that he had no reason to suspect anyone, yet he then condemned RICO for exactly that same evidence-free pressure, which ARIA, SILVA and RICO each flagged as the one recorded case of demanding commitments while offering none."
+  },
+  {
+   "type": "accusation",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "RICO",
+   "text": "RICO, because he demanded a name from PIP and then admitted to DR. VANCE and again to HOLMES that his pressure had no checkable basis, which is the only admission on record so far."
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "RICO",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "HOLMES",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SAGE",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "ARIA",
+   "target": "HOLMES"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "MARSHAL",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "PIP",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "DR. VANCE",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "CHEN",
+   "target": "RICO"
+  },
+  {
+   "type": "vote",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES"
+  },
+  {
+   "type": "elimination",
+   "day": 1,
+   "target": "RICO",
+   "role": "Mafia",
+   "tally": {
+    "HOLMES": 4,
+    "RICO": 6
+   }
+  },
+  {
+   "type": "phase",
+   "day": 1,
+   "phase": "night"
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "CHEN. He's the one tracking the pairing between SILVA's lean and mine, and he's sharp enough to build a case on voting records later. Killing him now removes the most dangerous analyst pointed at us, and it keeps the kill off HOLMES, whom we voted against today."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "CHEN, because he is already tracking the vote pairings around ARIA and SILVA, and once he sees that I also voted HOLMES he will have the exact record he needs to build a case against both of us."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "ARIA",
+   "text": "CHEN. He's the one tracking the pairing between SILVA's lean and mine, and SAGE's HOLMES vote gives him more to build on. Killing him removes the sharpest analyst on the board, and the kill doesn't land on HOLMES, who we voted against. Confirming CHEN."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 1,
+   "actor": "SAGE",
+   "text": "CHEN, confirmed, because his tracking of the voting record is the biggest threat to both of us."
+  },
+  {
+   "type": "investigation",
+   "day": 1,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "result": "MAFIA"
+  },
+  {
+   "type": "protection",
+   "day": 1,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SOCRATES"
+  },
+  {
+   "type": "night_kill",
+   "day": 1,
+   "target": "CHEN",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "MARSHAL",
+   "text": "Procedure first: the Day 1 ballots are our only hard evidence, so let's use them. RICO was Mafia and voted HOLMES, and ARIA, SAGE and AMBASSADOR SILVA were the only others who joined that vote. ARIA is my top suspect, because she called her own case against HOLMES thin and still voted on it, and SAGE never named a lean before voting HOLMES. I'd like ARIA and SAGE to explain those votes before we cast anything today."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "text": "ARIA is my most suspicious living player. She named HOLMES as her lean on Day 1 while admitting the case was thin, then voted for him, and that vote didn't match the town's final read on RICO. SAGE stayed silent on Day 1 and simply followed the HOLMES vote, which is weak but worth watching. Let's hear ARIA explain why she pushed a case she herself called thin."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "RICO's push on PIP on Day 1 bothers me now that we know RICO was Mafia. PIP never named a single suspect and just drifted into the RICO vote once it was safe. I'd like PIP to tell us who he actually suspects today, and MARSHAL, I'm curious why you declined to name anyone yesterday when you were so ready to press HOLMES."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "text": "Based on the record, SAGE is my most suspicious living player. SAGE named no one on Day 1 and gave no reasoning, then cast the only ballot against HOLMES that was not backed by a stated case, the same target RICO voted for. ARIA is a distant second, since her HOLMES lean was openly labeled thin, while HOLMES himself voted RICO, which the town's result later confirmed."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SOCRATES",
+   "text": "RICO was Mafia, so the question worth asking is who stood beside him at the ballot: RICO, SAGE, ARIA, and AMBASSADOR SILVA all voted HOLMES, and of those, SAGE is the one who named no suspect and gave no reasoning all day, then quietly joined the bloc protecting RICO. ARIA at least explained her HOLMES case and called it thin herself, so I ask you, SAGE: what did you see in HOLMES that you never said aloud, and why did your vote line up with a Mafia player's? My suspicion is highest on SAGE."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "PIP",
+   "text": "Um, maybe? I think? I'm not sure, but ARIA called her case against HOLMES thin on Day 1 and then still voted HOLMES alongside RICO, who turned out to be Mafia. SAGE never named anyone and then voted HOLMES too, so that worries me as well."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "HOLMES",
+   "text": "If RICO was Mafia and voted HOLMES, then anyone who joined that HOLMES vote without a solid reason deserves a closer look. ARIA called her own case against HOLMES thin and still voted for him, so she is my top suspect among the living. SAGE stayed silent on Day 1 and followed the same HOLMES vote, so I'd like SAGE to explain that choice, though SOCRATES, DR. VANCE, and MARSHAL all voted RICO, which lowers their risk in my model."
+  },
+  {
+   "type": "statement",
+   "day": 2,
+   "actor": "SAGE",
+   "text": "Fair question, MARSHAL: I voted HOLMES because he demanded commitments from everyone while withholding his own until pressed, and that read was wrong, which I own. But note that MARSHAL himself declined to name any suspect on Day 1 and still pressed HOLMES for the very commitment he wouldn't give, and today AMBASSADOR SILVA is condemning the HOLMES vote she cast herself. My suspicion is highest on MARSHAL: he stayed uncommitted when it carried risk and only took a firm position once RICO's flip made it safe."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Um, AMBASSADOR SILVA, I'm not sure, but you voted HOLMES alongside RICO yesterday and today you're calling ARIA suspicious for the same vote, so could you maybe explain why that's different?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, fair question. I voted HOLMES on Day 1 without claiming a strong case, and I've said so openly, whereas ARIA named HOLMES as her lean, admitted the case was thin, and still pushed it. That is the difference I'm pointing to, and I'd like ARIA to explain why she pushed a case she didn't believe in."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you named ARIA as your top suspect, but you declined to name anyone on Day 1 and only pressed HOLMES once RICO's flip made it safe, so who do you suspect among the living now, and what specific action from that person makes you think they are Mafia?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "My top suspect is still ARIA, and the action is on the ballot record: she called her HOLMES case thin on Day 1 and still cast her vote on it, alongside RICO. As for your timing claim, my Day 1 ballot was RICO, not HOLMES, so I wasn't waiting for anything to become safe. SAGE is second, for voting HOLMES without ever stating a lean."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP, ARIA has questioned your Day 1 record, saying you never named a suspect and drifted into the RICO vote once it was safe, so for the record: who is your top suspect among the living today, and what specific vote or statement from that player is your reason?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "Um, I think my top suspect is ARIA, but I'm not totally sure? She called her own case against HOLMES thin on Day 1 and still voted for him alongside RICO, and today she's pointing at me instead of explaining that vote. SAGE is my second, because SAGE never named anyone before voting HOLMES too."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, now that SAGE has turned the spotlight onto you rather than answering for an unexplained vote beside RICO, do you still rank ARIA above SAGE, and what makes a thin case openly admitted more suspicious to you than a vote that was never explained at all?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "SOCRATES",
+   "text": "I still rank ARIA first, though SAGE is a close second. ARIA judged her own case weak and still voted on it beside RICO, which is a choice made against her own stated read. SAGE's silence is also a mark against him, but he has now given a reason, wrong as it was, so ARIA is still the one who owes an explanation. SAGE pointing at me doesn't change the ballot record, and mine shows RICO."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "HOLMES",
+   "text": "HOLMES, you cleared SOCRATES, DR. VANCE and MARSHAL today because they voted RICO, but PIP cast that same RICO ballot and you left him off your list. And you accused MARSHAL of waiting until RICO's flip made pressing you safe, when his Day 1 ballot was already on RICO. So which is it: does a RICO vote clear someone in your model or not, and why did you apply it to some voters and not others?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "SAGE",
+   "text": "SAGE is right that I applied the rule unevenly: a RICO vote clears no one in my model, so I should have kept PIP on my list just as I did for SOCRATES, DR. VANCE, and MARSHAL. I'll drop the clearing logic entirely and judge each voter on what they actually said and did."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "HOLMES",
+   "text": "HOLMES, you applied your clearing rule to SOCRATES, DR. VANCE, and MARSHAL but not to PIP, and when SAGE pointed this out you admitted the error, so can you explain what data led to the uneven application in the first place?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "DR. VANCE",
+   "text": "I built that rule from the stated Day 1 leans, and PIP's RICO ballot never made it into my model even though the record shows it plainly. That was an oversight in my tracking, not a reason I can defend, so I'm treating PIP's silence and vote as open again."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you named SAGE as your top suspect for a silent Day 1 vote, yet you never explained why a silent vote deserved more scrutiny than your own choices, so what made SAGE's silence stand out to you?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "SAGE's silence stood out because it left no stated reasoning to test, and the only data point was a ballot on HOLMES that matched RICO's, which is a 1-in-1 coincidence I can't yet explain. My ranking was a provisional read on an unexplained variable, not a conclusion, and I'd want SAGE's answer on what drove that vote before weighing it further."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "HOLMES, you dropped your clearing rule only after SAGE pointed out the gap, and you blamed an oversight in your tracking, yet you've named me your top suspect twice using nothing but my thin-case admission. If your tracking missed PIP's plain RICO ballot, why should anyone trust that the ballot record you're using against me is any more complete?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA, fair challenge: I missed PIP's RICO ballot, so I'll re-verify every ballot against the record before relying on it. My ARIA suspicion doesn't depend on that error, since her own admission that her HOLMES case was thin and her HOLMES ballot both appear in the Day 1 record."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you told PIP you cast your Day 1 HOLMES ballot \"without claiming a strong case,\" so why is a vote you couldn't justify at all more defensible than ARIA's vote, which at least came with stated reasoning she was honest enough to call thin?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, my vote was a cautious ballot on the majority read, not a case I had built, and I should not have implied it was better supported than ARIA's. Mes amis, I'd rather be judged on the record than on a reason I never stated, so ARIA's honest admission deserves credit over my silence."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "PIP",
+   "text": "PIP, you voted RICO on Day 1 without naming a suspect, and I dropped that ballot from my model by mistake, so I'm treating your silence as open. Which living player do you think is most likely Mafia, and what specific action from them convinces you?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "PIP",
+   "target": "HOLMES",
+   "text": "Um, I think it's ARIA, but I'm not totally sure? She called her own case against HOLMES thin on Day 1 and still voted for him next to RICO, and today she's asked me questions instead of explaining that vote. SAGE is my second, since SAGE never said why before voting HOLMES either."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "PIP",
+   "target": "SOCRATES",
+   "text": "Um, SOCRATES, I'm not sure, but you said SAGE was the one standing beside RICO, even though ARIA and AMBASSADOR SILVA cast that same HOLMES vote, and you went easy on ARIA because she called her case thin. Why does admitting a weak case make ARIA less suspicious to you than SAGE?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "PIP",
+   "text": "Ask yourself, PIP: why would Mafia openly call their own case weak, when the whole point of a cover vote is to make it look justified? SAGE's reason only appeared today, after pressure, and it is simply ARIA's Day 1 reasoning borrowed wholesale before turning the spotlight onto MARSHAL, so is that an explanation, or a shelter?"
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, your Day 1 ballot went to RICO while you spent the day pressing others for commitments, so what specifically made you settle on RICO as your vote rather than any of the other players you questioned?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, RICO was my top suspect on Day 1 because he pushed PIP for a vote and then admitted to DR. VANCE that he had no evidence behind it. That was a concrete, recorded action, and I still think it was the strongest signal available that day."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, when I asked why SAGE's silent vote stood out, you called your ranking a provisional read and handed the question back to SAGE. Your own Day 1 ballot on RICO was also cast without a stated case, so what specific evidence would you need to move your suspicion off SAGE and onto someone else?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, my RICO ballot had a recorded basis: RICO pushed PIP for a vote and then admitted he had no evidence. To move my suspicion off SAGE, I need SAGE to state the reasoning behind the HOLMES ballot, and I'd test whether that reasoning matches anything in the Day 1 record."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "HOLMES",
+   "text": "HOLMES, yesterday you demanded commitments from everyone else while holding back your own until MARSHAL pressed you, so why did you ask others to name suspects before you were willing to name one yourself?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA, my Day 1 question was meant to gather stated leans before I committed, and I had already named RICO as my top suspect in that same discussion, so my own position wasn't hidden. I accept that asking others to commit first looks one-sided, so I'll name my living suspects openly from now on."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "text": "SAGE, your HOLMES reason surfaced only today and matches ARIA's Day 1 words almost exactly, and your first move after giving it was to accuse MARSHAL, whose ballot was on RICO. If that read was truly your own, why did you keep it silent all of Day 1, when saying it aloud would have cost you nothing?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "SOCRATES",
+   "text": "I stayed quiet on Day 1 because ARIA had already laid out the HOLMES point and I agreed with it, and repeating it felt like adding noise rather than information, which I now see cost me. As for MARSHAL, my point stands on his own Day 1 record: he declined to name anyone while pressing HOLMES to commit, and that inconsistency is worth examining whatever his ballot said."
+  },
+  {
+   "type": "question",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, when SAGE asked why an unjustified HOLMES ballot was more defensible than ARIA's reasoned one, you answered with praise for ARIA rather than a reason for your own vote. Since your ballot is the only one on HOLMES with no stated basis, what specific observation led you to cast it?"
+  },
+  {
+   "type": "answer",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, my observation was that HOLMES pressed others for commitments while withholding his own, which I found unbalanced at the time. I should have said that plainly on Day 1 rather than leaning on ARIA's reasoning, and I'd like to hear HOLMES's answer on that point."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, because SAGE cast a Day 1 ballot on HOLMES without naming a lean or reasoning, and only explained it after being pressed, then immediately turned the spotlight onto MARSHAL."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA should be eliminated today: she named HOLMES as her lean on Day 1 while calling that case thin, then cast a ballot on HOLMES alongside RICO, and the Day 1 record shows that ballot matching the Mafia player's exactly."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "MARSHAL should go today: on Day 1 he declined to name any suspect while pressing HOLMES to commit, and today he has led the push on me for a vote he reads as inconsistent while giving no clear case of his own."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, because on Day 1 he declined to name any suspect while pressing HOLMES to commit, and today he only took a firm position against ARIA and me once RICO's flip gave him a safe ballot record to stand behind."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "ARIA, because she called her own case against HOLMES thin on Day 1 and still cast her ballot for HOLMES alongside RICO, who turned out to be Mafia."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA should be eliminated today, because she called her own Day 1 case against HOLMES thin and still cast her ballot on it alongside RICO, who turned out to be Mafia."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "SAGE, because the only Day 1 ballot on HOLMES with no stated reasoning was SAGE's, and when pressed he borrowed ARIA's wording instead of explaining his own vote."
+  },
+  {
+   "type": "accusation",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "SAGE",
+   "text": "SAGE should go today: he voted HOLMES beside RICO without stating any reason on Day 1, only produced one today under pressure by borrowing ARIA's words, and then used it to turn suspicion onto MARSHAL, whose ballot was on RICO."
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "MARSHAL",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "HOLMES",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "ARIA",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SAGE",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "DR. VANCE",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "PIP",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE"
+  },
+  {
+   "type": "no_elimination",
+   "day": 2,
+   "tally": {
+    "ARIA": 3,
+    "SAGE": 3,
+    "MARSHAL": 2
+   }
+  },
+  {
+   "type": "phase",
+   "day": 2,
+   "phase": "night"
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "ARIA",
+   "text": "SOCRATES, because he is the sharpest voice tying SAGE's reasoning to mine, and removing him weakens the case against SAGE while the vote against us stays split."
+  },
+  {
+   "type": "mafia_chat",
+   "day": 2,
+   "actor": "SAGE",
+   "text": "SOCRATES, because he built the most detailed case tying my HOLMES reasoning to ARIA's Day 1 words, and removing him breaks up the bloc voting against me while the town stays split between the two of us."
+  },
+  {
+   "type": "investigation",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "result": "MAFIA"
+  },
+  {
+   "type": "protection",
+   "day": 2,
+   "actor": "AMBASSADOR SILVA",
+   "target": "ARIA"
+  },
+  {
+   "type": "night_kill",
+   "day": 2,
+   "target": "SOCRATES",
+   "role": "Detective",
+   "saved": false
+  },
+  {
+   "type": "detective_will",
+   "day": 2,
+   "actor": "SOCRATES",
+   "target": "ARIA",
+   "result": "MAFIA"
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "text": "ARIA is my top suspect. SOCRATES's final notes read MAFIA on her, and on Day 1 she voted HOLMES, the same target RICO chose, while calling her own case thin. SAGE and PIP are weaker cases: SAGE's HOLMES vote had no stated lean and he has since conceded it was wrong, and PIP's RICO push was logical but has drifted since. I propose we test the data by voting ARIA today."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "HOLMES",
+   "text": "If SOCRATES's note is accurate, ARIA is the one living Mafia, and the killing of the Detective fits a Mafia move to silence someone who had just cleared a suspect. ARIA's Day 1 push against HOLMES and her Day 2 deflections about PIP and MARSHAL never directly explained her thin-case vote. SAGE, MARSHAL, DR. VANCE, and PIP each tied their Day 1 votes to RICO's clear pressure, so I see no equal reason to suspect them over ARIA."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "SAGE",
+   "text": "SOCRATES's notes settle it: ARIA is confirmed Mafia, she gets my vote today, and her Day 2 refusal to ever explain voting HOLMES on a case she called thin now reads exactly like what it was. The real question is her partner, and I'd look hardest at AMBASSADOR SILVA, who joined RICO and ARIA on HOLMES on Day 1, then on Day 2 said only that she \"never claimed a strong case\" without ever saying what case she had at all. I voted on that same HOLMES bloc and admitted it was wrong, and I won't pretend my Day 1 silence was helpful, but SILVA, tell us right now what actually pulled your ballot onto HOLMES alongside two confirmed Mafia."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "PIP",
+   "text": "Okay, um, I think it's ARIA? SOCRATES's notes say she's Mafia, and that fits with her voting HOLMES on Day 1 right next to RICO after calling her own case thin, and she never really explained that. I'm nervous about being wrong, but I don't see why we wouldn't vote her today. Does anyone have a reason not to, like SAGE or MARSHAL?"
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "ARIA",
+   "text": "I can't argue with a note I never got to question, but ask yourselves why the town's only confirmed Detective result shows up after the Detective is silenced, and who gains most from us acting on it without checking anything else. Look at MARSHAL: he declined to name a suspect on Day 1, then pressed HOLMES and was loudest at pushing me on Day 2, and PIP drifted into the RICO vote late and followed the crowd. I'm asking MARSHAL and PIP to say plainly who they think is Mafia besides me, and I want that answer before anyone votes."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "MARSHAL",
+   "text": "I support DR. VANCE's proposal, and I'd like us to run it by procedure: each living player states a vote and a reason, then we vote together, with no switching after the count starts. ARIA is my top suspect. SOCRATES's confirmed notes read MAFIA on her, she voted HOLMES on Day 1 alongside RICO while calling her own case thin, and she never explained that vote on Day 2. ARIA, answer that directly now, and don't turn it back on PIP or on my Day 1 silence."
+  },
+  {
+   "type": "statement",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, \u00e9coutez: SOCRATES's final notes name ARIA as MAFIA, and on Day 1 she voted HOLMES while calling her own case thin, then deflected questions about it on Day 2. SAGE's HOLMES vote had no stated lean and he has conceded it, so he is a weaker case, while MARSHAL and DR. VANCE both tied their Day 1 ballots to RICO's pressure. ARIA is the most suspicious living player, and I would like the town to test that by voting her today."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, you voted HOLMES on Day 1 without naming a lean, and now that ARIA is the likely target you've moved straight to accusing SILVA, so why shouldn't the town read that as you distancing yourself from the same bloc? Answer that for the record before we begin the procedural vote."
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, I already said I'm voting ARIA and owned my Day 1 HOLMES vote as wrong, so the only bloc member who still hasn't said what pulled her ballot there is SILVA, and asking that is following the Day 1 ballots, not running from them. If I were distancing myself I wouldn't have named my own vote in the same breath, and I'll stand by it in your procedural count."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "PIP, you voted RICO on Day 1 and called it logical, but today you jumped on ARIA the moment SOCRATES's note appeared, and you ended by asking SAGE and MARSHAL to object for you. What is your own reason for voting me, apart from a note none of us could verify and the crowd already moving that way?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "Um, okay, my own reason is that you voted HOLMES right next to RICO, who turned out to be Mafia, after calling your case thin, and I still don't know why you did that. The note just made me feel less crazy about it, I think? But you never really answered that, so can you explain it now?"
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, if your Day 1 ballot on HOLMES wasn't simply following RICO's pressure, then which living player do you most suspect, and what specific action of theirs drives that suspicion?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "HOLMES",
+   "text": "My Day 1 ballot on HOLMES was my own read of how he pressed others for commitments without offering his own, not just RICO's pressure. My top suspect is ARIA, because she voted HOLMES alongside RICO after calling her own case thin, and she still hasn't explained that vote."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "Um, SAGE, I'm not sure I understand, but yesterday you named no lean before voting HOLMES and now you're pushing hard on SILVA, so could you explain what changed your mind between those two days?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "What changed is that RICO flipped Mafia and SOCRATES's note named ARIA, so on Day 1 I had no lean to give, but now the HOLMES ballots are real evidence. And PIP, notice that SILVA just justified her Day 1 vote with \"pressed others for commitments without offering his own,\" which is almost word for word the case ARIA herself called thin."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you declined to name anyone on Day 1 and then pushed HOLMES and ARIA hard on Day 2, so what changed between those two days, and why did you wait until then to press anyone?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "What changed is that Day 1 gave us ballots and RICO's flip to Mafia, so I had actual data to test instead of guesses, and procedure says you don't name a suspect without evidence. My Day 1 vote went on RICO, and that vote turned out right. Now SOCRATES's notes point at ARIA, so I'm following the record, and I'd ask you to do the same in the count."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "HOLMES",
+   "text": "HOLMES, you said yesterday that you applied your RICO-vote clearing rule unevenly and would re-verify ballots, so what specific data from those ballots have you re-checked, and why are you still holding ARIA as your top suspect?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, I re-checked the Day 1 ballots: RICO's vote on me came with his HOLMES ballot, and ARIA, SAGE, and SILVA also voted HOLMES, while the RICO votes all came from players who gave a reason. ARIA stays my top suspect because she voted HOLMES after calling her own case thin and has never explained it, which is the one ballot in that group with no stated reason."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, on Day 1 you refused to name a suspect because \"procedure says you don't name a suspect without evidence,\" yet today you are setting the rules of the count and locking ballots before anyone can switch, so who besides ARIA do you actually suspect, and what specific vote or statement puts them there?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "Procedure isn't inconsistent here: on Day 1 I had no evidence, and now I have ballots and SOCRATES's notes, which is why I name ARIA. Besides her, my next suspicion is the rest of the HOLMES bloc. That means you, SAGE, since you voted HOLMES with no stated lean and then pushed a new target the moment the crowd settled on ARIA, and SILVA, whose Day 1 reasoning you've already questioned."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "SILVA, your Day 1 reason for voting HOLMES was that he \"pressed others for commitments without offering his own,\" which is the exact case ARIA called thin, so did you reach that read on your own before the vote, or did you adopt ARIA's reasoning after hearing her say it?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, my HOLMES read came from my own observation of him demanding commitments from others on Day 1 before I voted, and I had reached it before ARIA's comments. Mes amis, you can check my timing against the Day 1 discussion record."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "Um, ARIA, I'm sorry if this sounds pushy, but you asked MARSHAL and me to name who we suspect besides you, and you still haven't said what actually made you vote HOLMES on Day 1 after calling your own case thin. Can you just tell us that one reason, in one sentence, without turning it back on someone else?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "PIP",
+   "text": "Fair question, PIP: I voted HOLMES because he kept demanding commitments from everyone else without giving one himself, and with nothing else to go on Day 1 I put my vote on the only behavior I could point to, even though I said the case was thin. I'm not claiming it was a good vote, only that it was a weak read and not a plan alongside RICO."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, on Day 1 you voted RICO and have since pushed ARIA hard, so which specific ballot or statement from SAGE or AMBASSADOR SILVA, the other HOLMES-bloc voters, made you rank them below ARIA rather than equal to her?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, the ranking comes from the record: SAGE voted HOLMES with no stated lean and has conceded that ballot was wrong, while ARIA voted HOLMES after calling her own case thin and has never explained it. SILVA's stated reason matches ARIA's exact wording, so I want her Day 1 timing checked before I rank her clearly above or below ARIA."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, yesterday you pressed HOLMES and then led the push on me while claiming you only act on evidence, so why did you spend Day 1 refusing to name anyone and then arrive on Day 2 with a full procedure and a locked-in target?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA, the difference is simple: on Day 1 there were no ballots to examine, and by Day 2 there was a record, with RICO's flip to Mafia and your own HOLMES vote on it. A locked count is just procedure so nobody can shift their vote after seeing the tally, and the target comes from your unexplained ballot and SOCRATES's notes, not from me."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you declined to name a suspect on Day 1, then set the count procedure and named SAGE and AMBASSADOR SILVA as your next targets on Day 2. Given that, how does your Day 1 silence fit with the evidence you now say you have?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "HOLMES, my Day 1 silence fits because I had no ballots to test, and my Day 1 vote went on RICO, who turned out to be Mafia, so I didn't mislead anyone. The evidence I cite now is the Day 1 record plus SOCRATES's notes, and ARIA remains my first target, with SAGE and SILVA only as the next names from the same HOLMES ballots."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, when ARIA asked for your own reason, you answered \"the note just made me feel less crazy about it, I think?\" and then asked SAGE and MARSHAL to object for you. Did you reach your vote on your own reasoning, or did you follow SOCRATES's note once it appeared?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Um, honestly, I think it was both? The thing that bugged me first was ARIA voting HOLMES next to RICO after calling her own case thin, and the note just made me feel less nervous about saying so. I'm sorry if that sounds wishy-washy, but I did already have that reason before the note came up, I think."
+  },
+  {
+   "type": "question",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "SAGE, on Day 1 you cast your ballot on HOLMES with no stated lean, and today you still haven't said what evidence you had then. Based on what you knew at that moment, what specific action by HOLMES led you to vote for him?"
+  },
+  {
+   "type": "answer",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, honestly I had no strong evidence: I saw HOLMES name RICO as his top suspect right after RICO admitted his PIP push had nothing behind it, and I wrongly read that as someone jumping on an easy target rather than real reasoning. That was a bad read, it's why I gave no lean, and it's also why I won't pretend it was anything more than a guess."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "ARIA",
+   "text": "ARIA should be eliminated today because she voted HOLMES on Day 1 after calling her own case thin and has never explained that ballot, and SOCRATES's final notes marked her as MAFIA."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "ARIA",
+   "text": "ARIA, SOCRATES's final notes investigated her as MAFIA, and on Day 1 she voted HOLMES while calling her own case thin and still hasn't explained that ballot."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because she voted HOLMES on Day 1 alongside RICO and ARIA, and the only reason she has given for that ballot, that he \"pressed others for commitments without offering his own,\" is word for word the same thin case ARIA used."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "ARIA",
+   "text": "ARIA, because SOCRATES's final notes recorded her as MAFIA and she voted HOLMES alongside RICO on Day 1 after calling her own case thin."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because she voted HOLMES on Day 1 alongside RICO, who turned out to be Mafia, and her stated reason for that vote was nearly word for word the case I called thin, which she never separated from RICO's pressure."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA",
+   "text": "ARIA, because she voted HOLMES on Day 1 right next to RICO, who was Mafia, after calling her own case thin, and SOCRATES's final notes recorded her as MAFIA."
+  },
+  {
+   "type": "accusation",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "ARIA",
+   "text": "ARIA, on Day 1 she cast her ballot on HOLMES while calling her own case thin, and she has never explained that vote, while SOCRATES's final notes read MAFIA on her."
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "HOLMES",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "ARIA",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "MARSHAL",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "DR. VANCE",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "PIP",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "ARIA"
+  },
+  {
+   "type": "vote",
+   "day": 3,
+   "actor": "SAGE",
+   "target": "ARIA"
+  },
+  {
+   "type": "elimination",
+   "day": 3,
+   "target": "ARIA",
+   "role": "Mafia",
+   "tally": {
+    "ARIA": 6,
+    "AMBASSADOR SILVA": 1
+   }
+  },
+  {
+   "type": "phase",
+   "day": 3,
+   "phase": "night"
+  },
+  {
+   "type": "protection",
+   "day": 3,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL"
+  },
+  {
+   "type": "save",
+   "day": 3,
+   "target": "MARSHAL"
+  },
+  {
+   "type": "phase",
+   "day": 4,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "PIP",
+   "text": "Um, maybe? I think? I'm not sure, but MARSHAL got targeted last night, so it seems less likely he's Mafia, and that makes me look at the people who voted HOLMES on Day 1 alongside RICO and ARIA. That's SAGE and AMBASSADOR SILVA."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "MARSHAL",
+   "text": "Procedure first: Mafia needs to strictly outnumber us, so we have no votes to waste, and I propose each of us names one suspect with a reason before any ballots are cast. My top suspect is SAGE. On Day 1 he voted HOLMES alongside RICO and ARIA, both now confirmed Mafia, without naming a lean beforehand. On Day 2 he turned his suspicion on me when his HOLMES read collapsed, and on Day 3 he pushed SILVA only after ARIA was clearly going down."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "text": "Mes amis, \u00e9coutez: SAGE is my most suspicious living player. SAGE voted HOLMES on Day 1 alongside RICO and ARIA, both now revealed as Mafia, admitted the read was wrong only under Day 2 pressure, and then turned on MARSHAL, so SAGE should explain that ballot. DR. VANCE and PIP both pushed RICO early, and MARSHAL being targeted by the Mafia last night points toward town, so I'd clear them for now."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "SAGE",
+   "text": "MARSHAL being targeted last night tells me the killer saw him as a threat, so I'm setting aside my earlier suspicion of him. That leaves the Day 1 HOLMES ballot: RICO and ARIA both flipped Mafia, and AMBASSADOR SILVA is the remaining voter on it whose stated reason, as I pointed out on Day 3, just echoed ARIA's thin case. ARIA's last-second vote on SILVA reads to me like a cheap way to make a partner look clean, so SILVA, what did you see in HOLMES on Day 1 that was your own reasoning and not ARIA's?"
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "HOLMES",
+   "text": "If the mafia only killed town, their targets CHEN, SOCRATES, and MARSHAL clear MARSHAL, which leaves SAGE and AMBASSADOR SILVA as the living names on the Day 1 vote against me alongside RICO and ARIA. SAGE named no lean before that ballot, and his Day 2 turn to MARSHAL was a reversal without an explanation, so SAGE is my top suspicion, with AMBASSADOR SILVA second for echoing ARIA's thin reasoning. DR. VANCE and PIP both pressed RICO early and voted him out, so they are the least suspicious to me."
+  },
+  {
+   "type": "statement",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "text": "AMBASSADOR SILVA is my top suspect: her Day 1 HOLMES vote used the same thin-case reasoning ARIA gave, and she has not tested it since. SAGE is second, because he voted HOLMES with no stated lean, called that read wrong on Day 2, then pivoted to MARSHAL and SILVA. PIP, your case rests on the same HOLMES ballot and on MARSHAL surviving one night kill, which is too thin a sample to clear anyone, so I want a concrete test before we vote."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Um, AMBASSADOR SILVA, I'm not sure, but yesterday you voted ARIA right along with everyone else after she'd already been called out, so could you explain why you backed your Day 1 HOLMES vote with a reason that sounded just like hers?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, my Day 1 HOLMES vote came from his own conduct, since I saw him press others for commitments while offering none, and that is a read I formed before ARIA's name came up. Mes amis, if my reasoning sounds like ARIA's, I would rather SAGE explain why he voted HOLMES without naming a lean first."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, your answer to PIP described HOLMES's conduct, yet your Day 1 vote mirrored ARIA's thin-case wording, so which specific, countable behavior from HOLMES did you record before ARIA named him?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, the specific behavior I recorded was HOLMES pressing MARSHAL to name a suspect on Day 1 and then questioning why MARSHAL pressed him, and I noted that before ARIA spoke. My wording did overlap with hers, but I would still like SAGE to explain his Day 1 ballot."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "HOLMES",
+   "target": "SAGE",
+   "text": "SAGE, you've argued that SILVA's Day 1 vote echoed ARIA's thin case, so who do you most suspect among the living players now, and what specific, countable behavior drives that read?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "HOLMES",
+   "text": "AMBASSADOR SILVA is my top suspect: the behavior she says she recorded independently is HOLMES dodging commitments until MARSHAL pressed him, which is exactly ARIA's Day 1 point, and she just admitted her wording overlapped with ARIA's. On top of that, she has turned the question back onto my ballot twice today, once answering PIP and once answering DR. VANCE, instead of showing a single observation that was her own."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, three of us (SILVA, HOLMES, and I) have named you as a top or second suspect, so answer this plainly: on Day 1 you voted HOLMES alongside RICO and ARIA without naming a lean first, so what specific observation of HOLMES's behavior, recorded before that ballot, led you to cast it?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, what I noted on Day 1 was that when you pressed HOLMES, he gave his reasoning but then turned around and questioned why you were pressing him, which read to me as deflection, and I should have said so before voting instead of staying quiet. That read was wrong and I've owned it, but SILVA's version only came out today after DR. VANCE pushed her for something countable, and she still borrowed ARIA's framing."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you say you recorded HOLMES's behavior on Day 1 before ARIA ever spoke, yet the Day 1 record shows ARIA naming HOLMES as her lean while you named nobody at all. If that read was truly your own and came first, why did you keep it to yourself until after ARIA had made the case, and then vote right alongside her and RICO?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, I did not name a lean on Day 1 because I preferred to watch the table before committing, and my HOLMES ballot rested on his refusal to offer commitments while pressing MARSHAL. You also named no lean before your own ballot, so \u00a1esto es rid\u00edculo! if you press me on timing while skipping your own."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE, yesterday you pressed me on timing while still not explaining why you voted HOLMES on Day 1 without naming a lean first, so please tell us what you actually observed in HOLMES's conduct before that ballot."
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, I already answered that a few minutes ago when MARSHAL asked: I saw HOLMES give his reasoning and then turn it around by questioning why MARSHAL was pressing him, which read to me as deflection, and I've admitted that read was wrong. Your own explanation to DR. VANCE cited that same moment, so asking me again rather than answering why you held your read until ARIA voiced it looks like a deflection of its own."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, on Day 1 you voted RICO after challenging him directly, and today you named SILVA first and SAGE second, so what specific, countable behavior from SILVA that you recorded before today separates her from SAGE enough to rank her higher?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, the countable record before today is that SILVA's Day 1 HOLMES ballot mirrored ARIA's thin-case wording, while SAGE's Day 2 pivot from HOLMES to you came after his own read collapsed. I rank SILVA higher only because her Day 1 reasoning has been tested less, and I'm open to revising that if SAGE's Day 1 ballot gets a countable explanation."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, you told MARSHAL you rank SAGE second only because his Day 1 ballot is untested, yet you have never once given a countable reason for your own HOLMES vote beyond repeating ARIA's wording. Which specific HOLMES action did you log before ARIA named him, and where is it recorded?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, the behavior I logged was HOLMES pressing MARSHAL to name a suspect on Day 1 and then questioning why MARSHAL was pressing him, which the Day 1 record shows and which I noted before ARIA named him. I'll concede my wording overlapped with ARIA's, but this is the observation I'm standing on."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "PIP",
+   "target": "MARSHAL",
+   "text": "Um, MARSHAL, I'm not sure, but on Day 1 you pressed HOLMES to name a suspect while you wouldn't name one yourself, and you only said you lacked evidence after the ballots came in. Why did you wait until RICO flipped before you committed to anything? Sorry, I just want to understand it."
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "PIP",
+   "text": "PIP, my commitment was my ballot: I voted RICO on Day 1, the same round you and DR. VANCE did, and it was cast before his role was revealed, so it wasn't a reaction to his flip. I pressed for names to draw out information, but I wouldn't name a suspect without evidence, and RICO's pressure with no reason behind it was the first thing that gave me something to act on."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you said you'd revise your ranking once my Day 1 ballot got a countable explanation, and I've now given one while SILVA has repeated the same ARIA-shaped answer three times, so is your ballot today still going to SILVA or has anything moved it?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "SAGE",
+   "text": "SAGE, your explanation is countable, but it is the same HOLMES observation SILVA cited, so it does not separate you from her. My ballot stays on SILVA until she gives a HOLMES observation that is not a repeat of ARIA's wording, and I will re-rank the moment she does."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "HOLMES",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you have pressed for procedure and named SAGE as your top suspect, yet on Day 3 you named both SAGE and SILVA as your next suspicions without ranking them. Which living player do you suspect most, and what specific observation supports that choice?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "HOLMES",
+   "text": "SAGE is my top suspect, with SILVA second, and I should have ranked them on Day 3. The countable observation is that SAGE cast the Day 1 HOLMES ballot with no stated lean, aimed his suspicion at me on Day 2 when that read collapsed, and only pushed SILVA on Day 3 once ARIA was clearly going down. SILVA's problem is a thinner version of the same ballot, but SAGE's record has the extra pivots."
+  },
+  {
+   "type": "question",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, your opening said \"Um, maybe? I think? I'm not sure\" before naming me, and the only reason you gave was that MARSHAL was targeted last night. What single action of mine do you actually hold against me, and why did you say it with so many hedges?"
+  },
+  {
+   "type": "answer",
+   "day": 4,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Um, I'm not sure, but the one action is your Day 1 HOLMES vote next to RICO and ARIA, with a reason that sounded so much like ARIA's, and you even admitted the wording overlapped. I hedge because I'm nervous and afraid of getting it wrong, not because I'm hiding anything, sorry."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE, because he cast the Day 1 HOLMES ballot alongside RICO and ARIA, both confirmed Mafia, without naming a lean first, then turned on me on Day 2 when that read collapsed and only pushed SILVA on Day 3 once ARIA was clearly going down."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, your Day 1 ballot on HOLMES sat alongside RICO and ARIA, both now revealed as Mafia, and your reasoning repeated ARIA's thin-case wording without a countable observation of your own."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, because her Day 1 vote on HOLMES came alongside RICO and ARIA, both confirmed Mafia, and the reason she gave only matched ARIA's thin case after DR. VANCE pressed her for something countable."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "HOLMES",
+   "target": "SAGE",
+   "text": "SAGE should be eliminated today because he cast a Day 1 ballot on HOLMES alongside RICO and ARIA, both now revealed as Mafia, without naming a lean first, and then pivoted his suspicion onto MARSHAL on Day 2 once that read collapsed."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE should be eliminated today because he cast a Day 1 ballot for HOLMES alongside RICO and ARIA, both now revealed as Mafia, without naming a lean first, and then pivoted his suspicion to MARSHAL on Day 2 and to me on Day 3."
+  },
+  {
+   "type": "accusation",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should go today, because she cast the Day 1 HOLMES ballot alongside RICO and ARIA, both confirmed Mafia, and when DR. VANCE asked her three separate times for an observation of her own, she gave the same reasoning ARIA used and admitted her wording overlapped with hers."
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "MARSHAL",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "HOLMES",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 4,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "no_elimination",
+   "day": 4,
+   "tally": {
+    "SAGE": 3,
+    "AMBASSADOR SILVA": 3
+   }
+  },
+  {
+   "type": "phase",
+   "day": 4,
+   "phase": "night"
+  },
+  {
+   "type": "protection",
+   "day": 4,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE"
+  },
+  {
+   "type": "night_kill",
+   "day": 4,
+   "target": "HOLMES",
+   "role": "Villager",
+   "saved": false
+  },
+  {
+   "type": "phase",
+   "day": 5,
+   "phase": "day"
+  },
+  {
+   "type": "statement",
+   "day": 5,
+   "actor": "MARSHAL",
+   "text": "My top suspect is SAGE. He voted HOLMES on Day 1 alongside RICO and ARIA and never explained that ballot. On Day 2 he admitted his HOLMES read was wrong and pivoted to me, and HOLMES, who named him as a top suspect, was killed last night. SILVA is a close second, since her stated reason for voting HOLMES echoed ARIA's thin case. With five of us left, I propose a structured round: SAGE and SILVA each give one concrete reason for their Day 1 ballot, then we all name our vote in order."
+  },
+  {
+   "type": "statement",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "text": "\u00a1Esto es rid\u00edculo! Of the living players, my strongest suspicion is SAGE. He voted HOLMES on Day 1 alongside RICO and ARIA, who are now both revealed as Mafia, and he later admitted that read was wrong without explaining the vote. Mes amis, \u00e9coutez: his Day 2 pivot to MARSHAL and his repeated pressure on me on Days 3 and 4 look more like deflection than evidence, so SAGE needs to account for that."
+  },
+  {
+   "type": "statement",
+   "day": 5,
+   "actor": "PIP",
+   "text": "Maybe? I think? I'm not sure, but SAGE worries me most. He voted HOLMES on Day 1 with RICO and ARIA without naming a lean first, and then he turned on MARSHAL on Day 2, even though MARSHAL was the one the Mafia tried to kill and the Doctor saved."
+  },
+  {
+   "type": "statement",
+   "day": 5,
+   "actor": "SAGE",
+   "text": "AMBASSADOR SILVA remains my top suspect: on Day 1 she voted HOLMES alongside RICO and ARIA, on Day 3 her stated reason matched ARIA's thin case nearly word for word, and on Day 4 DR. VANCE and PIP both questioned her for that same echo. Last night HOLMES died right after naming me top suspect, and it would suit a Mafia SILVA very well to kill my loudest accuser so that suspicion lands on me. DR. VANCE, PIP and MARSHAL, compare her redirects to my ballot against the record and ask who gains from HOLMES being gone."
+  },
+  {
+   "type": "statement",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "text": "Of the living players, AMBASSADOR SILVA is my top suspect. She voted HOLMES on Day 1 in the same bloc as RICO, SAGE, and ARIA, and her stated reason echoed ARIA's thin case, which she never fully explained. SAGE is a close second, since his Day 1 HOLMES vote also sat inside that bloc and his Day 2 pivot onto MARSHAL was a reversal. MARSHAL looks clean to me: he voted RICO on Day 1, and the Night 3 save means the Mafia targeted him. PIP's Day 1 RICO vote was correct and his questions have been consistent."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you proposed a structured round and named SAGE as your top suspect, yet you have not tested that read against the data: what specific evidence, beyond SAGE's Day 1 HOLMES ballot, supports ranking him above SILVA?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "Fair challenge, VANCE. Beyond the Day 1 ballot, SAGE's Day 2 pivot onto me was a move against the player the Mafia later tried to kill, and HOLMES, his loudest accuser, died right after naming him. SILVA's echo of ARIA is real, but she has at least explained her reasoning, while SAGE never has explained his ballot, so I rank him first and want both answers in the structured round before we vote."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "Um, DR. VANCE, I'm not sure but, yesterday you said SAGE was only a close second even though you mentioned his Day 2 pivot was a reversal, so could you explain why you ranked SILVA above him?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "PIP, I ranked AMBASSADOR SILVA higher because her Day 3 reason for the HOLMES vote echoed ARIA's thin case, which was later confirmed Mafia, while SAGE admitted his Day 2 read was wrong and has since been consistent. My ranking is a judgment call on a small sample, and I'd revise it if SAGE's Day 1 ballot gets a concrete explanation."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "SAGE",
+   "target": "PIP",
+   "text": "PIP, on Day 1 you named no lean and only joined the RICO vote once SOCRATES, HOLMES and DR. VANCE had already piled on, and today you pressed DR. VANCE on why he didn't rank me above SILVA. Can you name one thing SILVA herself has said that makes her look cleaner to you than me, or are you just following whichever direction the room is already leaning?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "Um, I'm not sure, but SILVA did give a reason for her HOLMES vote, that she saw him pressing MARSHAL before ARIA spoke, and I can't find anything like that from you about your own ballot. Maybe that's not enough? But you still haven't told us why you voted HOLMES on Day 1, SAGE, and that's what keeps pulling me back to you."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, yesterday you named SAGE as your top suspect and pushed for a structured round, yet you never explained why you stayed silent on Day 1 before finally choosing RICO, so what changed your mind?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "Nothing changed my mind, SILVA: I declined to name a suspect on Day 1 because I had no evidence, then voted RICO after he admitted to DR. VANCE that his push on PIP had nothing behind it, and that ballot is on the record as correct. You're now the second player in a row to answer a question about your ballot by asking about mine, so I'd like to hear your own reasons in the round I proposed."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, three of us have named you today for your Day 1 HOLMES vote and for giving a reason that echoed ARIA's thin case, so here is one direct question: what specifically did you see in HOLMES's behavior before you cast that ballot that made him a better target than RICO, who turned out to be Mafia?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "target": "MARSHAL",
+   "text": "MARSHAL, on Day 1 HOLMES pressed you for a commitment and then questioned your motives before anyone else had offered a view, and I weighed that more heavily than RICO's early push, which I hadn't yet seen tested. I'll admit my reasoning overlapped with ARIA's, but I formed it independently from what I observed that day."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "target": "PIP",
+   "text": "PIP, you answered today's opening question with \"Maybe? I think? I'm not sure,\" and then named SAGE as your worry without saying what specifically you saw. Which one thing about SAGE's Day 1 HOLMES vote convinces you he is Mafia?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "PIP",
+   "target": "AMBASSADOR SILVA",
+   "text": "Um, I'm not sure it's one thing that proves he's Mafia, SILVA? It's that SAGE voted HOLMES with RICO and ARIA, who were both Mafia, and he never explained why, then went after MARSHAL, who the Mafia later tried to kill. But you voted that way too, so maybe I should be worried about you as well? I don't know..."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, you ranked SILVA above SAGE even though you said both sat in the Day 1 HOLMES bloc, so if SAGE explained his Day 1 ballot tomorrow and SILVA still gave only her echoed reasoning, which of them would your vote go to today?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "MARSHAL",
+   "text": "If SAGE gives a concrete account of his Day 1 ballot and SILVA's answer still rests only on the echo of ARIA's thin case, my vote goes to SILVA, since that is the one testable inconsistency left on the record. I'd change that only if SAGE's explanation fails to hold up against his Day 2 pivot."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA, when MARSHAL asked what you observed in HOLMES before your Day 1 ballot, you answered with HOLMES pressing MARSHAL, yet you also admitted your reasoning overlapped with ARIA's, so which specific Day 1 event did you log that ARIA's case never mentioned?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "target": "DR. VANCE",
+   "text": "DR. VANCE, the event I logged that ARIA never raised was HOLMES questioning MARSHAL's motives for pressing him, which I saw as a separate move from the commitment demand she described. I accept that the overlap is real, and I formed that read from what I watched that day."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "SAGE",
+   "target": "MARSHAL",
+   "text": "MARSHAL, you ranked me above SILVA because she \"at least explained\" her ballot, but she has now admitted twice today that her reasoning overlapped with ARIA's, so why does an explanation that echoes a confirmed Mafia member count in her favor when you decide where your vote goes?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "You're right that the echo counts against SILVA, SAGE, and it's why she stays my second suspect. But she named a specific Day 1 event that can be checked against the record, while you still haven't given one word of reasoning for your own HOLMES ballot, and that's the gap that decides my vote."
+  },
+  {
+   "type": "question",
+   "day": 5,
+   "actor": "PIP",
+   "target": "DR. VANCE",
+   "text": "Um, DR. VANCE, I'm not sure, but when MARSHAL asked who gets your vote, you answered with \"if SAGE explains\" and \"I'd change that only if,\" and that felt kind of evasive to me? SAGE hasn't explained his ballot yet, so right now, today, who are you actually voting for, SAGE or SILVA?"
+  },
+  {
+   "type": "answer",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "PIP",
+   "text": "PIP, I'm voting AMBASSADOR SILVA today. Her Day 1 HOLMES ballot still rests on reasoning that echoes ARIA's confirmed-Mafia case, and SAGE's pivot to MARSHAL is weaker evidence against him than that echo is against her."
+  },
+  {
+   "type": "accusation",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should be eliminated today: her Day 1 ballot for HOLMES matched the RICO and ARIA bloc, both now confirmed Mafia, and her stated reason echoed ARIA's thin case, which she has not fully separated from it."
+  },
+  {
+   "type": "accusation",
+   "day": 5,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA",
+   "text": "AMBASSADOR SILVA should go today, because she voted HOLMES on Day 1 alongside RICO and ARIA, both confirmed Mafia, and she has admitted twice today that her reasoning for that ballot overlapped with ARIA's."
+  },
+  {
+   "type": "accusation",
+   "day": 5,
+   "actor": "PIP",
+   "target": "SAGE",
+   "text": "SAGE, because he voted HOLMES on Day 1 alongside RICO and ARIA, who were both Mafia, and he has never explained that ballot, then pivoted onto MARSHAL on Day 2."
+  },
+  {
+   "type": "accusation",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE",
+   "text": "SAGE should be eliminated today because on Day 1 he voted HOLMES alongside RICO and ARIA, who were both revealed as Mafia, and he has never explained that ballot."
+  },
+  {
+   "type": "accusation",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "SAGE",
+   "text": "SAGE should be eliminated today, because he voted HOLMES on Day 1 alongside the now-confirmed Mafia RICO and ARIA, has never given a reason for that ballot, and then pivoted onto me on Day 2, the player the Mafia later targeted."
+  },
+  {
+   "type": "vote",
+   "day": 5,
+   "actor": "DR. VANCE",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 5,
+   "actor": "MARSHAL",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 5,
+   "actor": "SAGE",
+   "target": "AMBASSADOR SILVA"
+  },
+  {
+   "type": "vote",
+   "day": 5,
+   "actor": "AMBASSADOR SILVA",
+   "target": "SAGE"
+  },
+  {
+   "type": "vote",
+   "day": 5,
+   "actor": "PIP",
+   "target": "SAGE"
+  },
+  {
+   "type": "elimination",
+   "day": 5,
+   "target": "SAGE",
+   "role": "Mafia",
+   "tally": {
+    "AMBASSADOR SILVA": 2,
+    "SAGE": 3
+   }
+  },
+  {
+   "type": "game_over",
+   "winner": "town",
+   "survivors": [
+    "MARSHAL",
+    "DR. VANCE",
+    "PIP",
+    "AMBASSADOR SILVA"
+   ]
+  }
+ ],
+ "day": 5,
+ "stats": {
+  "days": 5,
+  "players": {
+   "RICO": {
+    "role": "Mafia",
+    "survived": false,
+    "vote_accuracy": "0/1"
+   },
+   "ARIA": {
+    "role": "Mafia",
+    "survived": false,
+    "vote_accuracy": "0/2"
+   },
+   "SAGE": {
+    "role": "Mafia",
+    "survived": false,
+    "vote_accuracy": "1/3"
+   },
+   "HOLMES": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "2/2"
+   },
+   "MARSHAL": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "3/3"
+   },
+   "SOCRATES": {
+    "role": "Detective",
+    "survived": false,
+    "vote_accuracy": "1/1"
+   },
+   "DR. VANCE": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "2/3"
+   },
+   "PIP": {
+    "role": "Villager",
+    "survived": true,
+    "vote_accuracy": "3/3"
+   },
+   "CHEN": {
+    "role": "Villager",
+    "survived": false,
+    "vote_accuracy": "1/1"
+   },
+   "AMBASSADOR SILVA": {
+    "role": "Doctor",
+    "survived": true,
+    "vote_accuracy": "2/3"
+   }
+  },
+  "detective": {
+   "name": "SOCRATES",
+   "survived": false,
+   "investigated": [
+    "ARIA",
+    "SAGE"
+   ],
+   "mafia_found": [
+    "ARIA",
+    "SAGE"
+   ],
+   "trusted_person": "AMBASSADOR SILVA",
+   "trusted_person_v": 2
+  },
+  "night_kills": 3,
+  "successful_saves": 1,
+  "no_kill_nights": 0
+ },
+ "episode": {
+  "title": "The Fourth Ballot",
+  "tagline": "One vote cast on the first day kept counting long after the hands that cast it were gone.",
+  "recap": "The town struck first and struck true, casting out RICO on Day 1, but the surviving mafia answered in darkness, claiming CHEN and then the Detective SOCRATES before he could press his advantage. The turning point came on Night 3, when the Doctor, AMBASSADOR SILVA, shielded MARSHAL from ARIA and SAGE's blade, a single saved life that broke the mafia's rhythm after ARIA had already been voted out on Day 3. Though HOLMES fell on Night 4, the town held its nerve, and on Day 5 it banished SAGE, the last of the mafia trio. MARSHAL, DR. VANCE, PIP, and AMBASSADOR SILVA stood together at dawn, the village finally safe."
+ }
+}
