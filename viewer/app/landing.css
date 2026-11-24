@@ -415,6 +415,18 @@
 @media (max-width: 860px) {
   .lp-hero { grid-template-columns: 1fr; }
   .lp-term-wrap { display: none; }
+  /* On a narrow screen, cover would show a quarter of the street blown up
+     past reading. Show the whole street instead, as a strip along the bottom
+     of the hero where the empty space under the buttons is. */
+  .lp-hero { padding-bottom: calc(100vw * 9 / 16 * 0.9); } /* room for the strip; only its faded top edge may overlap */
+  .lp-hero::before {
+    inset: auto 0 0 0;
+    height: calc(100vw * 9 / 16);
+    background: url("/hero/street.png") center / cover no-repeat;
+    /* a mask, not a colour fade, so the edges match whatever glow is behind */
+    mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 75%, transparent 100%);
+  }
   .lp-skins { grid-template-columns: 1fr; }
   .lp-pipe-grid { grid-template-columns: 1fr; gap: 40px; }
   .lp-ep-featured { grid-template-columns: 1fr; }
