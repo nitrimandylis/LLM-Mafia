@@ -232,6 +232,6 @@ without either a yes or a look.
 
 `LLMS LIE. PROVED IT.`
 
-MIT licensed.
+MIT licensed. The hero street (`viewer/public/hero/street.png`) was generated with FLUX 3 Image Klein under the FLUX Kommunity licence.
 
 </div>

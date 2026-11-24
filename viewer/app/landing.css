@@ -92,6 +92,19 @@
   position: relative;
   overflow: hidden;
 }
+/* The street outside: a 256x144 pixel-art backdrop (FLUX 3 Klein, snapped to
+   a real grid and 24 colours in code), scaled up with hard edges like the
+   mugshots. Its own red spill (left) and streetlamp (right) sit where the
+   page's glows already are. The wash darkens the wordmark side and fades the
+   bottom into the page so the hero has no hard lower edge. */
+.lp-hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 62%, #040507 100%),
+    linear-gradient(90deg, rgba(5, 6, 9, 0.78) 0%, rgba(5, 6, 9, 0.5) 50%, rgba(5, 6, 9, 0.62) 100%),
+    url("/hero/street.png") left center / cover no-repeat;
+  image-rendering: pixelated;
+}
 .lp-col { position: relative; z-index: 1; }
 
 .lp-logo {
